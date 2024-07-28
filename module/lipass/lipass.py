@@ -33,7 +33,9 @@ class LIPass(UI):
                               f"lip_picture_url={self.config.Cookie_lip_picture_url}"
                 }
                 data = '{"task_id":"15"}'
-                res = requests.post(url=url, data=data, headers=headers, verify=False)
+
+                proxies = {"http": "http://tbox12:20171", "https": "http://tbox12:20171"}
+                res = requests.post(url=url, data=data, headers=headers, proxies=proxies, verify=False)
                 msg = json.loads(res.text)
                 if msg['msg'] == 'ok':
                     logger.info('check in success')

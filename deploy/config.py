@@ -14,13 +14,13 @@ class ExecutionError(Exception):
 class ConfigModel:
     Repository: str = "https://github.com/takagisanmie/NIKKEAutoScript"
     Branch: str = "master"
-    GitExecutable: str = "./toolkit/Git/mingw64/bin/git.exe"
-    GitProxy: Optional[str] = None
+    GitExecutable: str = "/usr/bin/git"
+    GitProxy: Optional[str] = "http://tbox12:20171"
 
-    PythonExecutable: str = "./python-3.9.13-embed-amd64/python.exe"
+    PythonExecutable: str = "./VENV/bin/python"
     RequirementsFile: str = "requirements.txt"
 
-    AdbExecutable: str = "./toolkit/android-platform-tools/adb.exe"
+    AdbExecutable: str = "/usr/bin/adb"
     ReplaceAdb: bool = True
     AutoConnect: bool = True
     InstallUiautomator2: bool = True
