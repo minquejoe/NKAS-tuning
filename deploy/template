@@ -1,7 +1,7 @@
 Deploy:
   Git:
-    Repository: http://github.com/takagisanmie/NIKKEAutoScript
-    Branch: master
+    Repository: https://github.com/minquejoe/NKAS-tunning.git
+    Branch: main
     GitExecutable: /usr/bin/git
     GitProxy: http://tbox12:20171
     AutoUpdate: true

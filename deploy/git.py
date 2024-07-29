@@ -18,7 +18,7 @@ class GitManager(DeployConfig):
         except FileNotFoundError:
             logger.info(f'File not found: {file}')
 
-    def git_repository_init(self, repo, source='origin', branch='master', proxy=''):
+    def git_repository_init(self, repo, source='origin', branch='main', proxy=''):
         '''
             初始化Git
         '''

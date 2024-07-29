@@ -6,10 +6,10 @@
       "ScreenshotMethod": "DroidCast",
       "ControlMethod": "minitouch",
       "AdbRestart": false,
-      "ScreenshotInterval": 1
+      "ScreenshotInterval": 0.5
     },
     "Optimization": {
-      "WhenTaskQueueEmpty": "stay_there"
+      "WhenTaskQueueEmpty": "close_game"
     },
     "Notification": {
       "WhenDailyTaskCompleted": false
@@ -21,7 +21,7 @@
   "Restart": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-07-29 04:00:00",
+      "NextRun": "2024-07-30 04:00:00",
       "Command": "Restart",
       "SuccessInterval": 0,
       "FailureInterval": 0,
@@ -34,7 +34,7 @@
   "Reward": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-07-29 04:00:00",
+      "NextRun": "2024-07-30 04:00:00",
       "Command": "Reward",
       "SuccessInterval": "720-720",
       "FailureInterval": "720-720",
@@ -51,7 +51,7 @@
   "Destruction": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-07-29 04:00:00",
+      "NextRun": "2024-07-30 04:00:00",
       "Command": "Destruction",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -64,7 +64,7 @@
   "Commission": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-07-29 04:00:00",
+      "NextRun": "2024-07-30 04:00:00",
       "Command": "Commission",
       "SuccessInterval": "720-720",
       "FailureInterval": "720-720",
@@ -80,7 +80,7 @@
   "Mailbox": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-07-29 04:00:00",
+      "NextRun": "2024-07-30 04:00:00",
       "Command": "Mailbox",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -93,7 +93,7 @@
   "LIPass": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-07-29 04:00:00",
+      "NextRun": "2024-07-30 04:00:00",
       "Command": "LIPass",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -114,7 +114,7 @@
   "Daily": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-07-29 04:00:00",
+      "NextRun": "2024-07-30 04:00:00",
       "Command": "Daily",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -131,7 +131,7 @@
   "MissionPass": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-07-29 04:00:00",
+      "NextRun": "2024-07-30 04:00:00",
       "Command": "MissionPass",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -144,7 +144,7 @@
   "Liberation": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-07-29 04:00:00",
+      "NextRun": "2024-07-30 04:00:00",
       "Command": "Liberation",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -157,7 +157,7 @@
   "Conversation": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-07-29 04:00:00",
+      "NextRun": "2024-07-30 04:00:00",
       "Command": "Conversation",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -170,7 +170,7 @@
   "Shop": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-07-29 04:00:00",
+      "NextRun": "2024-07-30 04:00:00",
       "Command": "Shop",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -206,7 +206,7 @@
   "SimulationRoom": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-07-29 04:00:00",
+      "NextRun": "2024-07-30 04:00:00",
       "Command": "SimulationRoom",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -224,7 +224,7 @@
   "TribeTower": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-07-29 04:00:00",
+      "NextRun": "2024-07-30 04:00:00",
       "Command": "TribeTower",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -240,7 +240,7 @@
   "RookieArena": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-07-29 04:00:00",
+      "NextRun": "2024-07-30 04:00:00",
       "Command": "RookieArena",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -279,7 +279,7 @@
   "DailyGift": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-07-29 04:00:00",
+      "NextRun": "2024-07-30 04:00:00",
       "Command": "DailyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,

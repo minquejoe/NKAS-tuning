@@ -12,8 +12,8 @@ class ExecutionError(Exception):
 
 
 class ConfigModel:
-    Repository: str = "https://github.com/takagisanmie/NIKKEAutoScript"
-    Branch: str = "master"
+    Repository: str = "https://github.com/minquejoe/NKAS-tunning.git"
+    Branch: str = "main"
     GitExecutable: str = "/usr/bin/git"
     GitProxy: Optional[str] = "http://tbox12:20171"
 

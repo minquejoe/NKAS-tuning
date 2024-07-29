@@ -96,10 +96,10 @@ class Updater(GitManager, PipManager):
 
         '''
              当本地和上游仓库不一样时，会返回上游仓库最新的commit，如果一样，则返回None 
-             git.exe log ..origin/master --pretty=format:"h---%an---%ad---%s" --date=iso -1
+             git.exe log ..origin/main --pretty=format:"h---%an---%ad---%s" --date=iso -1
              
              返回上游仓库最新的commit
-             git.exe log origin/master --pretty=format:"h---%an---%ad---%s" --date=iso -1
+             git.exe log origin/main --pretty=format:"h---%an---%ad---%s" --date=iso -1
         '''
         sha1, _, _, message = self.get_commit(f"..{source}/{self.Branch}")
 

@@ -99,7 +99,7 @@ class DroidCast(Uiautomator2):
     def droidcast_url(self, url='/screenshot?format=png'):
         """
         Check APIs from source code:
-        https://github.com/rayworks/DroidCast/blob/master/app/src/main/java/com/rayworks/droidcast/Main.java
+        https://github.com/rayworks/DroidCast/blob//app/src/main/java/com/rayworks/droidcast/Main.java
 
         Available APIs:
         - /screenshot
