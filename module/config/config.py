@@ -233,7 +233,7 @@ class NikkeConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher):
                     'Command': 'Restart',         
                     'SuccessInterval': 0,
                     'FailureInterval': 0, 
-                    'ServerUpdate': '04:00'
+                    'ServerUpdate': '05:00'
                  },  
             'Storage': 
                 {

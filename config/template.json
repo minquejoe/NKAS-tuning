@@ -25,7 +25,7 @@
       "Command": "Restart",
       "SuccessInterval": 0,
       "FailureInterval": 0,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Storage": {
       "Storage": {}
@@ -38,7 +38,7 @@
       "Command": "Reward",
       "SuccessInterval": "720-720",
       "FailureInterval": "720-720",
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Reward": {
       "CollectSocialPoint": true,
@@ -55,7 +55,7 @@
       "Command": "Destruction",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Storage": {
       "Storage": {}
@@ -68,7 +68,7 @@
       "Command": "Commission",
       "SuccessInterval": "720-720",
       "FailureInterval": "720-720",
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "CollectionItems": {
       "NIKKE": "All"
@@ -84,7 +84,7 @@
       "Command": "Mailbox",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Storage": {
       "Storage": {}
@@ -97,7 +97,7 @@
       "Command": "LIPass",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Cookie": {
       "lip_user_name": null,
@@ -118,7 +118,7 @@
       "Command": "Daily",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Daily": {
       "EnhanceEquipment": false,
@@ -135,7 +135,7 @@
       "Command": "MissionPass",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Storage": {
       "Storage": {}
@@ -148,7 +148,7 @@
       "Command": "Liberation",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Storage": {
       "Storage": {}
@@ -161,7 +161,7 @@
       "Command": "Conversation",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Storage": {
       "Storage": {}
@@ -174,7 +174,7 @@
       "Command": "Shop",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "GeneralShop": {
       "enable": true
@@ -194,7 +194,7 @@
       "Command": "RubbishShop",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "RubbishShop": {
       "priority": null
@@ -210,7 +210,7 @@
       "Command": "SimulationRoom",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Area": {
       "Difficulty": "Level_1",
@@ -228,7 +228,7 @@
       "Command": "TribeTower",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Overcome": {
       "OnlyToCompleteDailyMission": false
@@ -244,7 +244,7 @@
       "Command": "RookieArena",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Storage": {
       "Storage": {}
@@ -257,7 +257,7 @@
       "Command": "Interception",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Storage": {
       "Storage": {}
@@ -270,7 +270,7 @@
       "Command": "EventDaemon",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Storage": {
       "Storage": {}
@@ -283,7 +283,7 @@
       "Command": "DailyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Storage": {
       "Storage": {}
@@ -296,7 +296,7 @@
       "Command": "WeeklyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Storage": {
       "Storage": {}
@@ -309,7 +309,7 @@
       "Command": "MonthlyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Storage": {
       "Storage": {}

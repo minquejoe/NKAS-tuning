@@ -9,7 +9,7 @@ Scheduler:
     value: 120
     display: hide
   ServerUpdate:
-    value: 04:00
+    value: 05:00
     display: hide
 Emulator:
   Serial:
