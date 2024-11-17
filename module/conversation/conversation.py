@@ -4,6 +4,7 @@ from module.base.utils import (
     find_center,
 )
 from module.conversation.assets import *
+from module.event_daemon.assets import SKIP
 from module.handler.assets import CONFIRM_B, AUTO_CLICK_CHECK
 from module.logger import logger
 from module.ui.assets import CONVERSATION_CHECK, GOTO_BACK
@@ -51,10 +52,10 @@ class Conversation(UI):
                 return
         else:
             try:
+                if not self.opportunity_remain:
+                    logger.warning("There are no remaining opportunities")
+                    raise NoOpportunitiesRemain
                 if CONVERSATION_CHECK.match(self.device.image, offset=5):
-                    if not self.opportunity_remain:
-                        logger.warning("There are no remaining opportunities")
-                        raise NoOpportunitiesRemain
                     r = [
                         i.get("area")
                         for i in FAVOURITE_CHECK.match_several(
@@ -62,7 +63,10 @@ class Conversation(UI):
                         )
                     ]
                     r.sort(key=lambda x: x[1])
-                    self.device.click_minitouch(*find_center(r[0]))
+                    if len(r) > 0:
+                        self.device.click_minitouch(*find_center(r[0]))
+                    else:
+                        self.device.click_minitouch(380, 450)
             except Exception:
                 pass
 
@@ -137,11 +141,13 @@ class Conversation(UI):
                                                                                                  threshold=10):
                 break
 
+            if click_timer.reached() and self.appear_then_click(SKIP, offset=5, static=False):
+                click_timer.reset()
+                continue
+
             if click_timer.reached():
                 self.device.click_minitouch(*ANSWER_CHECK.location)
-                logger.info(
-                    "Click %s @ %s" % (point2str(*ANSWER_CHECK.location), "ANSWER")
-                )
+                logger.info("Click %s @ %s" % (point2str(*ANSWER_CHECK.location), "ANSWER"))
                 click_timer.reset()
                 continue
 
