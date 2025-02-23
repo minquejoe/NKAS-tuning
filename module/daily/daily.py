@@ -50,14 +50,15 @@ class Daily(UI):
                 break
 
     def toast(self):
-        from winotify import Notification
-        toast = Notification(app_id="NKAS",
-                             title="NKAS",
-                             msg="任务已全部完成！",
-                             icon=ICON.Helm_Circle,
-                             duration='long')
+        pass
+        # from winotify import Notification
+        # toast = Notification(app_id="NKAS",
+        #                      title="NKAS",
+        #                      msg="任务已全部完成！",
+        #                      icon=ICON.Helm_Circle,
+        #                      duration='long')
 
-        toast.show()
+        # toast.show()
 
     # enhance equipment
     def enhance_equipment(self, skip_first_screenshot=True):

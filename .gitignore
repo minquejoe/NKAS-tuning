@@ -9,4 +9,6 @@
 **/pic
 **/log
 **/node_modules
-
+config/deploy.yaml
+config/nkas.json
+**.lock
