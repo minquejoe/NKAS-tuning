@@ -88,14 +88,14 @@ class Conversation(UI):
             else:
                 self.device.screenshot()
 
-            if click_timer.reached() \
-                    and COMMUNICATE_QUICKLY.match_appear_on(self.device.image, threshold=6) \
-                    and self.appear_then_click(COMMUNICATE_QUICKLY, offset=5, interval=3):
-                confirm_timer.reset()
-                click_timer.reset()
-                continue
+            # if click_timer.reached() \
+            #         and COMMUNICATE_QUICKLY.match_appear_on(self.device.image, threshold=6) \
+            #         and self.appear_then_click(COMMUNICATE_QUICKLY, offset=5, interval=3):
+            #     confirm_timer.reset()
+            #     click_timer.reset()
+            #     continue
 
-            elif click_timer.reached() \
+            if click_timer.reached() \
                     and COMMUNICATE.match_appear_on(self.device.image, threshold=6) \
                     and self.appear_then_click(COMMUNICATE, offset=5, interval=3):
                 confirm_timer.reset()
