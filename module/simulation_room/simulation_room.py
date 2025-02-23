@@ -333,11 +333,23 @@ class SimulationRoom(UI):
                 click_timer.reset()
                 continue
 
+            # if click_timer.reached() and self.appear_then_click(QUICK_SIMULATION_CONFIRM, offset=(5, 5), static=False):
+            #     confirm_timer.reset()
+            #     click_timer.reset()
+            #     continue
+            # elif click_timer.reached() and self.appear_then_click(START_SIMULATION_CONFIRM, offset=(5, 5), static=False):
+            #     confirm_timer.reset()
+            #     click_timer.reset()
+            #     continue
+            
             if click_timer.reached() and self.appear_then_click(START_SIMULATION_CONFIRM, offset=(5, 5), static=False):
                 confirm_timer.reset()
                 click_timer.reset()
                 continue
-
+            
+            if self.appear(SELECT_REWARD_EFFECT_CHECK, offset=(30, 30), interval=5, static=False):
+                break
+            
             if self.appear(SIMULATION_CHECK, offset=(30, 30), threshold=0.86) and confirm_timer.reached():
                 logger.hr(f'Area {self.region_label.get(self.current_region)}', 2)
                 break

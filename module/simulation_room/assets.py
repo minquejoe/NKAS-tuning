@@ -43,5 +43,6 @@ SKIP_CHECK = Button(area={'cn': (223, 561, 385, 591)}, color={'cn': (202, 202, 2
 SR_CHECK = Button(area={'cn': (114, 639, 161, 663)}, color={'cn': (220, 221, 221)}, button={'cn': (114, 639, 161, 663)}, file={'cn': './assets/cn/simulation_room/SR_CHECK.png'})
 SSR_CHECK = Button(area={'cn': (117, 465, 163, 486)}, color={'cn': (200, 200, 201)}, button={'cn': (117, 465, 163, 486)}, file={'cn': './assets/cn/simulation_room/SSR_CHECK.png'})
 START_SIMULATION = Button(area={'cn': (315, 746, 407, 771)}, color={'cn': (123, 174, 217)}, button={'cn': (315, 746, 407, 771)}, file={'cn': './assets/cn/simulation_room/START_SIMULATION.png'})
-START_SIMULATION_CONFIRM = Button(area={'cn': (282, 1067, 444, 1096)}, color={'cn': (109, 201, 245)}, button={'cn': (282, 1067, 444, 1096)}, file={'cn': './assets/cn/simulation_room/START_SIMULATION_CONFIRM.png'})
+START_SIMULATION_CONFIRM = Button(area={'cn': (41, 1053, 345, 1108)}, color={'cn': (44, 181, 245)}, button={'cn': (41, 1053, 345, 1108)}, file={'cn': './assets/cn/simulation_room/START_SIMULATION_CONFIRM.png'})
+QUICK_SIMULATION_CONFIRM = Button(area={'cn': (376, 1051, 681, 1114)}, color={'cn': (247, 146, 63)}, button={'cn': (376, 1051, 681, 1114)}, file={'cn': './assets/cn/simulation_room/QUICK_SIMULATION_CONFIRM.png'})
 TARGET_HP_CHECK = Button(area={'cn': (351, 643, 412, 666)}, color={'cn': (112, 77, 68)}, button={'cn': (351, 643, 412, 666)}, file={'cn': './assets/cn/simulation_room/TARGET_HP_CHECK.png'})
