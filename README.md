@@ -2,6 +2,9 @@
 
 https://github.com/takagisanmie/NIKKEAutoScript
 
+# for myself
+- attention: change the app start setting in VENV, otherwise the app may not launch as expected!!!
+
 # NIKKEAutoScript
 
 胜利女神：NIKKE 自动日常脚本
