@@ -43,6 +43,9 @@ class Reward(UI):
                 confirm_timer.reset()
                 click_timer.reset()
                 continue
+            
+            if self.appear(EMPTY_CHECK, threshold=1.00):
+                break
 
             if self.appear(MAIN_CHECK, offset=(10, 10)) and confirm_timer.reached():
                 break
