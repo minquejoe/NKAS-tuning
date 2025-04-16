@@ -35,6 +35,10 @@ class LoginHandler(UI):
                     break
             else:
                 confirm_timer.reset()
+                
+            if self.appear_text('将下载'):
+                self.appear_text_then_click('确认')
+                continue
 
             if self.appear_text('正在下载游戏执行所需'):
                 self.device.stuck_record_clear()
