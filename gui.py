@@ -23,7 +23,7 @@ def func(ev: threading.Event):
         help="Port to listen. Default to WebuiPort in deploy setting",
     )
     args, _ = parser.parse_known_args()
-    host = args.host or 'localhost'
+    host = args.host or '0.0.0.0'
     port = args.port or 12271
 
     uvicorn.run("module.webui.app:app", host=host, port=port, factory=True)
