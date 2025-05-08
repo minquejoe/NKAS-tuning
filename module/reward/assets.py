@@ -4,6 +4,7 @@ from module.base.button import Button
 # Don't modify it manually.
 
 NO_REWARDS = Button(area={'cn': (386, 531, 632, 568)}, color={'cn': (191, 179, 178)}, button={'cn': (386, 531, 632, 568)}, file={'cn': './assets/cn/reward/NO_REWARDS.png'})
+NO_REWARDS_1 = Button(area={'cn': (263, 870, 439, 887)}, color={'cn': (224, 224, 224)}, button={'cn': (263, 870, 439, 887)}, file={'cn': './assets/cn/reward/NO_REWARDS_1.png'})
 NO_REWARDS_2 = Button(area={'cn': (620, 750, 663, 786)}, color={'cn': (81, 84, 93)}, button={'cn': (620, 750, 663, 786)}, file={'cn': './assets/cn/reward/NO_REWARDS_2.png'})
 NO_REWARDS_3 = Button(area={'cn': (438, 754, 603, 778)}, color={'cn': (69, 81, 99)}, button={'cn': (438, 754, 603, 778)}, file={'cn': './assets/cn/reward/NO_REWARDS_3.png'})
 RECEIVE = Button(area={'cn': (426, 1047, 471, 1090)}, color={'cn': (67, 191, 249)}, button={'cn': (426, 1047, 471, 1090)}, file={'cn': './assets/cn/reward/RECEIVE.png'})

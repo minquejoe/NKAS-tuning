@@ -26,7 +26,7 @@ class Reward(UI):
                 confirm_timer.reset()
                 click_timer.reset()
                 continue
-
+            # 点击领取奖励
             if self.handle_reward(interval=1):
                 confirm_timer.reset()
                 click_timer.reset()
@@ -36,7 +36,10 @@ class Reward(UI):
                 confirm_timer.reset()
                 click_timer.reset()
                 continue
-
+            # 判断是否有奖励可领
+            if self.appear(NO_REWARDS_1, offset=(30, 30), interval=1):
+                break
+            # 点击获得奖励
             if click_timer.reached() and self.appear_then_click(
                     RECEIVE, offset=(30, 30), interval=10
             ):
@@ -173,6 +176,7 @@ class Reward(UI):
     def run(self):
         self.ui_ensure(page_reward)
         self.receive_reward()
+        # 友情点
         if self.config.Reward_CollectSocialPoint:
             # ----
             # self.ui_ensure(page_friend)
@@ -181,6 +185,7 @@ class Reward(UI):
             self.temporary(MAIN_GOTO_FRIEND)
             # ----
             self.receive_social_point()
+        # pjjc奖励  
         if self.config.Reward_CollectSpecialArenaPoint:
             self.ui_ensure(page_arena)
             try:
