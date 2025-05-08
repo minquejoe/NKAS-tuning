@@ -15,6 +15,8 @@ from module.device.method.utils import RETRY_TRIES, RETRY_DELAY, PackageNotInsta
 from module.exception import RequestHumanTakeover, EmulatorNotRunningError
 from module.logger import logger
 from module.map.map_grids import SelectedGrids
+from functools import cached_property
+from module.device.env import IS_LINUX, IS_MACINTOSH, IS_WINDOWS
 
 
 def retry(func):
@@ -532,3 +534,61 @@ class Connection(ConnectionAttr):
             second(int, float, tuple):
         """
         time.sleep(ensure_time(second))
+
+    def adb_getprop(self, name):
+        """
+        Get system property in Android, same as `getprop <name>`
+
+        Args:
+            name (str): Property name
+
+        Returns:
+            str:
+        """
+        return self.adb_shell(['getprop', name]).strip()
+
+    @cached_property
+    @retry
+    def is_avd(self):
+        if get_serial_pair(self.serial)[0] is None:
+            return False
+        if 'ranchu' in self.adb_getprop('ro.hardware'):
+            return True
+        if 'goldfish' in self.adb_getprop('ro.hardware.audio.primary'):
+            return True
+        return False
+
+    @cached_property
+    @retry
+    def is_waydroid(self):
+        res = self.adb_getprop('ro.product.brand')
+        logger.attr('ro.product.brand', res)
+        return 'waydroid' in res.lower()
+
+    @cached_property
+    @retry
+    def is_bluestacks_air(self):
+        # BlueStacks Air is the Mac version of BlueStacks
+        if not IS_MACINTOSH:
+            return False
+        if not self.is_ldplayer_bluestacks_family:
+            return False
+        # [bst.installed_images]: [Tiramisu64]
+        # [bst.instance]: [Tiramisu64]
+        # Tiramisu64 is Android 13 and BlueStacks Air is the only BlueStacks version that uses Android 13
+        res = self.adb_getprop('bst.installed_images')
+        logger.attr('bst.installed_images', res)
+        if 'Tiramisu64' in res:
+            return True
+        return False
+
+    @cached_property
+    @retry
+    def is_mumu_pro(self):
+        # MuMU Pro is the Mac version of MuMu
+        if not IS_MACINTOSH:
+            return False
+        if not self.is_mumu_family:
+            return False
+        logger.attr('is_mumu_pro', True)
+        return True

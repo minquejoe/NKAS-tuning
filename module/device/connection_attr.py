@@ -1,4 +1,5 @@
 import os
+import re
 from functools import cached_property
 
 import adbutils
@@ -111,3 +112,49 @@ class ConnectionAttr:
 
         logger.attr('u2.Device', f'Device(atx_agent_url={device._get_atx_agent_url()})')
         return device
+
+    @cached_property
+    def is_mumu12_family(self):
+        # 127.0.0.1:16XXX
+        return 16384 <= self.port <= 17408
+
+    @cached_property
+    def is_mumu_family(self):
+        # 127.0.0.1:7555
+        # 127.0.0.1:16384 + 32*n
+        return self.serial == '127.0.0.1:7555' or self.is_mumu12_family
+
+    @cached_property
+    def is_ldplayer_bluestacks_family(self):
+        # Note that LDPlayer and BlueStacks have the same serial range
+        return self.serial.startswith('emulator-') or 5555 <= self.port <= 5587
+
+    @cached_property
+    def is_nox_family(self):
+        return 62001 <= self.port <= 63025
+
+    @cached_property
+    def is_vmos(self):
+        return 5667 <= self.port <= 5699
+
+    @cached_property
+    def is_emulator(self):
+        return self.serial.startswith('emulator-') or self.serial.startswith('127.0.0.1:')
+
+    @cached_property
+    def is_network_device(self):
+        return bool(re.match(r'\d+\.\d+\.\d+\.\d+:\d+', self.serial))
+
+    @cached_property
+    def is_local_network_device(self):
+        return bool(re.match(r'192\.168\.\d+\.\d+:\d+', self.serial))
+
+    @cached_property
+    def is_over_http(self):
+        return bool(re.match(r"^https?://", self.serial))
+
+    @cached_property
+    def is_chinac_phone_cloud(self):
+        # Phone cloud with public ADB connection
+        # Serial like xxx.xxx.xxx.xxx:301
+        return bool(re.search(r":30[0-9]$", self.serial))
