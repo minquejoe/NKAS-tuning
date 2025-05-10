@@ -12,66 +12,28 @@ from module.base.utils import (
 )
 from module.logger import logger
 from module.ocr.ocr import Digit
-from module.rookie_arena.assets import *
-from module.ui.assets import ROOKIE_ARENA_CHECK, ARENA_GOTO_ROOKIE_ARENA
+from module.special_arena.assets import *
+from module.ui.assets import SPECIAL_ARENA_CHECK, ARENA_GOTO_SPECIAL_ARENA
 from module.ui.page import page_arena
 from module.ui.ui import UI
 
 
-class RookieArenaIsUnavailable(Exception):
+class SpecialArenaIsUnavailable(Exception):
     pass
 
 
-class RookieArena(UI):
+class SpecialArena(UI):
     @property
     def free_opportunity_remain(self) -> bool:
+        # 免费票
         result = FREE_OPPORTUNITY_CHECK.appear_on(self.device.image, 20)
         if result:
             logger.info(f"[Free opportunities remain] {result}")
         return result
 
-    @property
-    def competitor_power_list(self) -> list[int]:
-        start_time = time.time()
-        r = [
-            i.get("area")
-            for i in POWER_CHECK.match_several(
-                self.device.image, threshold=0.66, static=False
-            )
-        ]
-        # 按照 upper 排序
-        r.sort(key=lambda x: x[1])
-        r = [_area_offset(i, (22, -10, 65, 8)) for i in r]
-
-        r = [
-            self.ocr_models.__getattribute__("arena").ocr(
-                crop(
-                    crop(self.device.image, i),
-                    _area_offset(
-                        find_letter_area(
-                            extract_letters(
-                                crop(self.device.image, i), letter=(90, 93, 99)
-                            )
-                            < 128
-                        ),
-                        (-2, -2, 3, 2),
-                    ),
-                )
-            )
-            for i in r
-        ]
-
-        r = list(map(lambda x: int(x[0]["text"]), r))
-        logger.attr(
-            name="%s %ss"
-                 % ("COMPETITOR_POWER_LIST", float2str(time.time() - start_time)),
-            text=str(r),
-        )
-
-        return r
-
     @cached_property
     def own_power(self) -> int:
+        # 获取战力
         area = _area_offset(OWN_POWER_CHECK.area, (20, -2, 70, 2))
         OWN_POWER = Digit(
             [area],
@@ -88,17 +50,6 @@ class RookieArena(UI):
 
     def start_competition(self, skip_first_screenshot=True):
         logger.hr("Start a competition")
-
-        # competitor = [
-        #     index
-        #     for index, i in enumerate(self.competitor_power_list)
-        #     if i <= self.own_power
-        # ]
-        #
-        # if not len(competitor):
-        #     competitor.append(2)
-        #     logger.warning("detected no competitor's power below own power")
-        #     logger.warning("will choose the third competitor")
 
         confirm_timer = Timer(1, count=5).start()
         click_timer = Timer(0.3)
@@ -158,7 +109,7 @@ class RookieArena(UI):
 
             if (
                     already_start
-                    and self.appear(ROOKIE_ARENA_CHECK, offset=(10, 10))
+                    and self.appear(SPECIAL_ARENA_CHECK, offset=(10, 10), static=False)
                     and confirm_timer.reached()
             ):
                 break
@@ -168,7 +119,7 @@ class RookieArena(UI):
             self.device.stuck_record_clear()
             return self.start_competition()
 
-    def ensure_into_rookie_arena(self, skip_first_screenshot=True):
+    def ensure_into_special_arena(self, skip_first_screenshot=True):
         confirm_timer = Timer(2, count=3).start()
         click_timer = Timer(0.3)
         while 1:
@@ -178,21 +129,21 @@ class RookieArena(UI):
                 self.device.screenshot()
 
             if self.appear(NEXT_SEASON, offset=(50, 50)):
-                raise RookieArenaIsUnavailable
+                raise SpecialArenaIsUnavailable
 
             if click_timer.reached() and self.appear_then_click(
-                    ARENA_GOTO_ROOKIE_ARENA, offset=(30, 30), interval=5, static=False
+                    ARENA_GOTO_SPECIAL_ARENA, offset=(30, 30), interval=5, static=False
             ):
                 confirm_timer.reset()
                 click_timer.reset()
                 continue
-
+            
             if (
-                    self.appear(ROOKIE_ARENA_CHECK, offset=(10, 10), static=False)
+                    self.appear(SPECIAL_ARENA_CHECK, offset=(10, 10), static=False)
                     and confirm_timer.reached()
             ):
                 break
-
+        
         if self.free_opportunity_remain:
             self.start_competition()
         else:
@@ -201,7 +152,7 @@ class RookieArena(UI):
     def run(self):
         self.ui_ensure(page_arena)
         try:
-            self.ensure_into_rookie_arena()
-        except RookieArenaIsUnavailable:
+            self.ensure_into_special_arena()
+        except SpecialArenaIsUnavailable:
             pass
         self.config.task_delay(server_update=True)
