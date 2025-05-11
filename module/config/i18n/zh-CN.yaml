@@ -122,6 +122,9 @@ Task:
   EventDaemon:
     name: 半自动活动
     help: "需要手动选择关卡"
+  DailyRecruit:
+    name: 每日抽卡
+    help: ""
 Emulator:
   _info:
     name: 模拟器设置
@@ -198,6 +201,16 @@ Reward:
     help: ""
   CollectSpecialArenaPoint:
     name: 收获特殊竞技场点数
+    help: ""
+DailyRecruit:
+  _info:
+    name: 每日抽卡
+    help: ""
+  EventFreeRecruit:
+    name: 活动免费单抽
+    help: ""
+  SocialPointRecruit:
+    name: 友情点单抽
     help: ""
 Conversation:
   _info:

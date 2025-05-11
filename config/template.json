@@ -48,6 +48,23 @@
       "Storage": {}
     }
   },
+  "DailyRecruit": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "DailyRecruit",
+      "SuccessInterval": "720-720",
+      "FailureInterval": "720-720",
+      "ServerUpdate": "04:00"
+    },
+    "DailyRecruit": {
+      "EventFreeRecruit": true,
+      "SocialPointRecruit": true
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
   "Destruction": {
     "Scheduler": {
       "Enable": false,

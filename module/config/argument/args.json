@@ -157,6 +157,58 @@
       }
     }
   },
+  "DailyRecruit": {
+    "Scheduler": {
+      "Enable": {
+        "type": "lock",
+        "value": true,
+        "display": "disabled"
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "DailyRecruit",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": "720-720",
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": "720-720",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "DailyRecruit": {
+      "EventFreeRecruit": {
+        "type": "checkbox",
+        "value": true
+      },
+      "SocialPointRecruit": {
+        "type": "checkbox",
+        "value": true
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
   "Destruction": {
     "Scheduler": {
       "Enable": {

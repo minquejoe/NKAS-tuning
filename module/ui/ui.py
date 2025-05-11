@@ -11,7 +11,7 @@ from module.ui.page import (Page, page_unknown, page_main, page_reward, page_des
                             page_rookie_arena,
                             page_special_arena, page_outpost, page_commission, page_interception,
                             page_special_interception,
-                            page_mailbox)
+                            page_mailbox, page_recruit)
 
 
 class UI(InfoHandler):
@@ -38,6 +38,7 @@ class UI(InfoHandler):
                 page_mailbox,
                 page_interception,
                 page_special_interception,
+                page_recruit,
                 ]
 
     def ui_page_appear(self, page: Page):

@@ -160,6 +160,11 @@ class NikkeAutoScript:
 
         Reward(config=self.config, device=self.device).run()
 
+    def daily_recruit(self):
+        from module.daily_recruit.daily_recruit import DailyRecruit
+
+        DailyRecruit(config=self.config, device=self.device).run()
+
     def destruction(self):
         from module.destruction.destruction import Destruction
 
