@@ -115,7 +115,7 @@ class DailyRecruit(UI):
                 self.device.screenshot()
                 
             # 友情点不足
-            if self.appear(SOCIAL_POINT_NOT_ENOUGH, offset=(5, 5), static=False):
+            if self.appear(SOCIAL_POINT_NOT_ENOUGH, static=False):
                 logger.info("There are not enough social point")
                 raise NotEnoughSocialPoint
             
@@ -147,7 +147,7 @@ class DailyRecruit(UI):
             # 结束
             if (
                     recruit_end
-                    and self.appear(SOCIAL_RECRUIT, offset=(10, 10), static=False)
+                    and self.appear(SOCIAL_RECRUIT_CHECK, offset=(10, 10), static=False)
                     and confirm_timer.reached()
             ):
                 break
