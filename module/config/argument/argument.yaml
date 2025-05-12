@@ -33,6 +33,9 @@ Optimization:
 Reward:
   CollectSocialPoint: true
   CollectSpecialArenaPoint: true
+DailyRecruit:
+  EventFreeRecruit: true
+  SocialPointRecruit: true
 Area:
   Difficulty:
     value: 'Level_1'

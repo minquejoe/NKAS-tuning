@@ -149,3 +149,8 @@ page_outpost.link(button=OUTPOST_GOTO_COMMISSION, destination=page_commission)
 page_mailbox = Page(MAILBOX_CHECK)
 page_mailbox.link(button=MAILBOX_GOTO_MAIN, destination=page_main)
 page_main.link(button=MAIN_GOTO_MAILBOX, destination=page_mailbox)
+
+# recruit
+page_recruit = Page(RECRUIT_CHECK)
+page_recruit.link(button=TEAM_GOTO_MAIN, destination=page_main)
+page_main.link(button=MAIN_GOTO_RECRUIT, destination=page_recruit)
