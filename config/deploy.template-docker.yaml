@@ -7,7 +7,7 @@ Deploy:
     AutoUpdate: true
 
   Python:
-    PythonExecutable: /opt/conda/bin/python
+    PythonExecutable: /usr/local/bin/python
     RequirementsFile: ./deploy/docker/requirements.txt
 
   Adb:
