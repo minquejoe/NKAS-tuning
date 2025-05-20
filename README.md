@@ -25,8 +25,8 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
 
 #### linux
 ------
-1. git clone https://github.com/mackerel-12138/NIKKEAutoScript.git
-2. cp config/deploy.template-docker.yaml config/deploy.yaml
+1. git clone 本项目地址
+2. cp config/deploy.template-docker.yaml config/deploy.yaml, vi config/deploy.yaml修改源仓库地址
 3. docker compose up -d
 4. 浏览器打开127.0.0.1:12271
 
