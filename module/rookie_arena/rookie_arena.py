@@ -26,7 +26,7 @@ class RookieArenaIsUnavailable(Exception):
 class RookieArena(UI, ArenaBase):
     @cached_property
     def button(self):
-        return [(590, 710), (590, 840), (590, 980)]
+        return [(590, 730), (590, 900), (590, 110)]
     
     @cached_property
     def coordinate_config(self) -> list[dict]:
