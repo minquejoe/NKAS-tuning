@@ -1,13 +1,8 @@
-import time
 from functools import cached_property
-
 from module.base.timer import Timer
+from module.base.arena import ArenaBase
 from module.base.utils import (
     _area_offset,
-    crop,
-    extract_letters,
-    find_letter_area,
-    float2str,
     point2str,
 )
 from module.logger import logger
@@ -22,7 +17,44 @@ class SpecialArenaIsUnavailable(Exception):
     pass
 
 
-class SpecialArena(UI):
+class SpecialArena(UI, ArenaBase):
+    @cached_property
+    def button(self):
+        return [(590, 800), (590, 950), (590, 1100)]
+    
+    @cached_property
+    def coordinate_config(self) -> list[dict]:
+        """
+        返回战力、等级识别区域
+        """
+        return [
+            {
+                "Power": (376, 736, 455, 767),
+                "Ranking": (70, 830, 112, 855),
+                "CommanderLevel": (72, 801, 111, 817),
+                "SynchroLevel": (392, 836, 414, 855)
+            },
+            {
+                "Power": (376, 886, 455, 917),
+                "Ranking": (70, 980, 112, 1005),
+                "CommanderLevel": (72, 951, 111, 967),
+                "SynchroLevel": (392, 986, 414, 1005)
+            },
+            {
+                "Power": (376, 1036, 455, 1067),
+                "Ranking": (70, 1130, 112, 1155),
+                "CommanderLevel": (72, 1101, 111, 1117),
+                "SynchroLevel": (392, 1136, 414, 1155)
+            }
+        ]
+    
+    FIELD_LETTERS = {
+        "Power": (107, 107, 107),
+        "Ranking": (107, 107, 107),
+        "CommanderLevel": (222, 222, 222),
+        "SynchroLevel": (255, 255, 255)
+    }
+    
     @property
     def free_opportunity_remain(self) -> bool:
         # 免费票
@@ -40,13 +72,9 @@ class SpecialArena(UI):
             name="OWN_POWER",
             letter=(247, 247, 247),
             threshold=128,
-            lang="arena",
+            lang="cnocr_num",
         )
         return int(OWN_POWER.ocr(self.device.image))
-
-    @cached_property
-    def button(self):
-        return [(590, 710), (590, 840), (590, 980)]
 
     def start_competition(self, skip_first_screenshot=True):
         logger.hr("Start a competition")
@@ -69,11 +97,17 @@ class SpecialArena(UI):
                     and click_timer_2.reached()
                     and self.free_opportunity_remain
             ):
-                # TODO 根据战力选择
-                self.device.click_minitouch(580, 1080)
+                # 根据策略选择
+                opponent_id =  3
+                if self.config.OpponentSelection_Enable:
+                    opponent_id = self.select_strategy(True)["id"]
+                opponent =  self.button[opponent_id-1]
+                logger.info(f"Secect opponent {opponent_id}")
+                
+                self.device.click_minitouch(opponent[0], opponent[1])
                 logger.info(
                     "Click %s @ %s"
-                    % (point2str(580, 1080), "START_COMPETITION")
+                    % (point2str(opponent[0], opponent[1]), "START_COMPETITION")
                 )
                 confirm_timer.reset()
                 click_timer.reset()

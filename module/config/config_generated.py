@@ -79,5 +79,10 @@ class GeneratedConfig:
     # Group `CollectionItems`
     CollectionItems_NIKKE = 'All'  # All, Laplace, Frima, Diesel, Exia
 
+    # Group `OpponentSelection`
+    OpponentSelection_Enable = False
+    OpponentSelection_SortingWeight = '{"Power":0.3, "CommanderLevel":0.2, "SynchroLevel":0.3, "Ranking":0.2}'
+    OpponentSelection_SelectionStrategy = 'Min'  # Max, Middle, Min
+
     # Group `Storage`
     Storage_Storage = {}
