@@ -104,3 +104,6 @@ OpponentSelection:
   SelectionStrategy:
     value: 'Min'
     option: [ 'Max','Middle','Min' ]
+Conversation:
+  QuickConsultation: false
+  OnlyFavourite: false
