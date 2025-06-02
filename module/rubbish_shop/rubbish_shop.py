@@ -8,6 +8,7 @@ from module.base.utils import exec_file, crop
 from module.handler.assets import CONFIRM_A
 from module.logger import logger
 from module.map.map_grids import SelectedGrids
+from module.ocr.ocr import Digit
 from module.rubbish_shop.assets import *
 from module.shop.shop import ShopBase, Product, NotEnoughMoneyError, PurchaseTimeTooLong
 from module.ui.page import page_shop
@@ -47,6 +48,17 @@ class RubbishShop(ShopBase):
         )
 
     @cached_property
+    def broken_core(self) -> int:
+        BROKEN_CORE = Digit(
+            [BROKEN_CORE_NUM.area],
+            name="BROKEN_CORE",
+            letter=(150, 150, 150),
+            threshold=128,
+            lang="cnocr_num",
+        )
+        return int(BROKEN_CORE.ocr(self.device.image))
+
+    @cached_property
     def currency(self) -> int:
         confirm_timer = Timer(1, count=2).start()
         click_timer = Timer(0.3)
@@ -64,10 +76,9 @@ class RubbishShop(ShopBase):
 
             if self.appear(CONFIRM_A, offset=5, static=False) and confirm_timer.reached():
                 break
-
-        img = crop(self.device.image, (300, 680, 450, 720))
-        result = int(re.sub("\D", "", self.ocr_models.cnocr.ocr(img)[0]['text']))
-        logger.attr('Currency', result)
+        
+        result = self.broken_core
+        logger.attr('Broken Core nums: ', result)
         skip_first_screenshot = True
         confirm_timer.reset()
         click_timer.reset()
