@@ -27,11 +27,11 @@ class InfoHandler(ModuleBase):
     def handle_login_reward(self):
         if CLOSE_DAILY_LOGIN.appear_on(self.device.image):
             self.device.click_minitouch(1, 420)
+            self.device.sleep(1)
             return True
         # Daily Login, Memories Spring, Monthly Card, etc.
         if self.appear_text_then_click("_领取奖励", interval=5):
             return True
-
         elif a := self.appear_text("_全部领取", interval=5):
             x, y = a[0], a[1]
             b = get_color(
@@ -45,6 +45,7 @@ class InfoHandler(ModuleBase):
                 return True
             else:
                 self.device.click_minitouch(1, 420)
+                self.device.sleep(1)
 
     # 屑芙蒂的补给品，仅关闭窗口，不抽取
     def handle_shifty_supplies(self):
