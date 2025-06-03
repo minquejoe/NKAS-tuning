@@ -113,11 +113,11 @@ class Conversation(UI):
                         self.device.click_minitouch(*find_center(r[0]))
                     else:
                         self.device.click_minitouch(380, 450)
+                    # TODO
+                    self.device.sleep(2)
             except Exception:
                 pass
 
-        tmp_image = self.device.image
-        self.device.sleep(2)
         self.device.screenshot()
         self.get_next_target()
 

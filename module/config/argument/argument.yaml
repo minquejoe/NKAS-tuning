@@ -71,6 +71,7 @@ Event:
     value: 'normal'
     option: [ 'normal','hard' ]
 Daily:
+  SendGift: false
   EnhanceEquipment: false
   CallReward: false
 Cookie:

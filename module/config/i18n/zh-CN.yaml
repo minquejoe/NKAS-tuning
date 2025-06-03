@@ -345,6 +345,9 @@ Daily:
   _info:
     name: 每日任务
     help: ""
+  SendGift:
+    name: 送一个最低稀有度的好感券给第一个好感未满的妮姬
+    help: ""
   EnhanceEquipment:
     name: 强化背包内随机一个装备，会消耗 一个模组推进器 (蓝) 或 模组高级增强器 (紫)
     help: ""

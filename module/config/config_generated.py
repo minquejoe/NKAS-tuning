@@ -66,6 +66,7 @@ class GeneratedConfig:
     Event_Difficulty = 'normal'  # normal, hard
 
     # Group `Daily`
+    Daily_SendGift = False
     Daily_EnhanceEquipment = False
     Daily_CallReward = False
 

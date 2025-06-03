@@ -139,6 +139,7 @@
       "ServerUpdate": "04:00"
     },
     "Daily": {
+      "SendGift": false,
       "EnhanceEquipment": false,
       "CallReward": false
     },

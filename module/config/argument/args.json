@@ -454,6 +454,10 @@
       }
     },
     "Daily": {
+      "SendGift": {
+        "type": "checkbox",
+        "value": false
+      },
       "EnhanceEquipment": {
         "type": "checkbox",
         "value": false

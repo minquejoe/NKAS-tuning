@@ -1,13 +1,14 @@
 from module.base.decorator import run_once
 from module.base.timer import Timer
-from module.base.utils import mask_area, point2str
+from module.base.utils import crop, find_center, mask_area, point2str
 from module.common.enum.webui import ICON
 from module.daily.assets import *
+from module.handler.assets import CONFIRM_B
 from module.logger import logger
-from module.ui.assets import DAILY_CHECK, INVENTORY_CHECK
-from module.ui.page import page_daily, page_inventory
+from module.ui.assets import DAILY_CHECK, INVENTORY_CHECK, CONVERSATION_CHECK
+from module.ui.page import page_daily, page_inventory, page_conversation
 from module.ui.ui import UI
-
+from module.conversation.assets import *
 
 class NoItemsError(Exception):
     pass
@@ -139,6 +140,97 @@ class Daily(UI):
                 self.ensure_back()
                 return
 
+    def get_next_target(self, skip_first_screenshot=True):
+        # 是否进入到某个角色
+        if DETAIL_CHECK.match(self.device.image, threshold=0.71) \
+                and GIFT.match_appear_on(self.device.image, threshold=10):
+            # 好感最大值
+            if self.appear(RANK_MAX_CHECK, offset=5, threshold=0.95):
+                # 下一个
+                tmp_image = self.device.image
+                self.device.click_minitouch(690, 560)
+                # 比较头像是否变化
+                while 1:
+                    if skip_first_screenshot:
+                        skip_first_screenshot = False
+                    else:
+                        self.device.screenshot()
+                    avatar = Button(COMMUNICATE_NIKKE_AVATAR.area, None, button=COMMUNICATE_NIKKE_AVATAR.area)
+                    avatar._match_init = True
+                    avatar.image = crop(tmp_image, COMMUNICATE_NIKKE_AVATAR.area)
+                    if not self.appear(avatar, offset=5, threshold=0.95):
+                        break
+            else:
+                self.device.stuck_record_clear()
+                self.device.click_record_clear()
+                return
+        else:
+            try:
+                if CONVERSATION_CHECK.match(self.device.image, offset=5):
+                    r = [
+                        i.get("area")
+                        for i in FAVOURITE_CHECK.match_several(
+                            self.device.image, threshold=0.71, static=False
+                        )
+                    ]
+                    r.sort(key=lambda x: x[1])
+                    if len(r) > 0:
+                        self.device.click_minitouch(*find_center(r[0]))
+                    else:
+                        self.device.click_minitouch(380, 450)
+                    # TODO
+                    self.device.sleep(2)
+            except Exception:
+                pass
+
+        self.device.screenshot()
+        self.get_next_target()
+
+    def sending(self, skip_first_screenshot=True):
+        logger.info("Sending......")
+        click_timer = Timer(0.3)
+        
+        send_done = False
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                self.device.screenshot()
+            
+            # 结束
+            if send_done \
+                    and self.appear(GIFT_SEND_DONE, offset=5, threshold=0.95) \
+                    and self.appear_then_click(GIFT_SEND_CLOSE, offset=5, interval=1):
+                click_timer.reset()
+                break
+            # 进入
+            if click_timer.reached() \
+                    and self.appear_then_click(GIFT, offset=5, interval=1):
+                click_timer.reset()
+                continue
+            # 选择礼物
+            if click_timer.reached() \
+                    and self.appear_then_click(GIFT_RANK_R, offset=5, interval=1):
+                click_timer.reset()
+                continue
+            # 送礼
+            if  click_timer.reached() \
+                    and self.appear(GIFT_SELECT_CHECK, offset=(5, 5), static=False) \
+                    and self.appear_then_click(GIFT_SEND, offset=5, threshold=0.95, interval=1):
+                send_done = True
+                click_timer.reset()
+                continue
+            # 升级
+            if click_timer.reached() \
+                    and self.appear_then_click(RANK_INCREASE_COMFIRM, offset=5, static=False):
+                click_timer.reset()
+                continue
+
+    def send_gift(self):
+        logger.hr("Send a gift to nikke")
+        self.get_next_target()
+        self.sending()
+
     def ensure_back(self, skip_first_screenshot=True):
         confirm_timer = Timer(1, count=1).start()
         click_timer = Timer(0.3)
@@ -164,10 +256,12 @@ class Daily(UI):
             if self.config.Daily_CallReward:
                 from module.reward.reward import Reward
                 Reward(config=self.config, device=self.device).run()
-
             if self.config.Daily_EnhanceEquipment:
                 self.ui_ensure(page_inventory)
                 self.enhance_equipment()
+            if self.config.Daily_SendGift:
+                self.ui_ensure(page_conversation)
+                self.send_gift()
         except NoItemsError:
             logger.warning('No equipment in the inventory')
             self.ensure_back()
