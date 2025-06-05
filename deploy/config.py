@@ -12,12 +12,12 @@ class ExecutionError(Exception):
 
 
 class ConfigModel:
-    Repository: str = "https://github.com/takagisanmie/NIKKEAutoScript"
+    Repository: str = "https://github.com/megumiss/NIKKEAutoScript"
     Branch: str = "master"
     GitExecutable: str = "./toolkit/Git/mingw64/bin/git.exe"
     GitProxy: Optional[str] = None
 
-    PythonExecutable: str = "./python-3.9.13-embed-amd64/python.exe"
+    PythonExecutable: str = "./toolkit/python.exe"
     RequirementsFile: str = "requirements.txt"
 
     AdbExecutable: str = "./toolkit/android-platform-tools/adb.exe"

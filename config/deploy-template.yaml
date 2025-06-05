@@ -1,14 +1,14 @@
 Deploy:
   Git:
-    Repository: https://github.com/takagisanmie/NIKKEAutoScript
+    Repository: https://github.com/megumiss/NIKKEAutoScript
     Branch: master
     GitExecutable: ./toolkit/Git/mingw64/bin/git.exe
     GitProxy: null
     AutoUpdate: true
 
   Python:
-    PythonExecutable: ./python-3.9.13-embed-amd64/python.exe
-    RequirementsFile: ./deploy/docker/requirements.txt
+    PythonExecutable: ./toolkit/python.exe
+    RequirementsFile: requirements.txt
 
   Adb:
     AdbExecutable: ./toolkit/android-platform-tools/adb.exe
@@ -24,7 +24,3 @@ Deploy:
   Webui:
     WebuiHost: localhost
     WebuiPort: 12271
-
-
-
-

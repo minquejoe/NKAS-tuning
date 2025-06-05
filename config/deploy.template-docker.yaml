@@ -1,6 +1,6 @@
 Deploy:
   Git:
-    Repository: https://github.com/takagisanmie/NIKKEAutoScript
+    Repository: https://github.com/megumiss/NIKKEAutoScript
     Branch: master
     GitExecutable: /usr/bin/git
     GitProxy: null
