@@ -8,7 +8,7 @@ Deploy:
 
   Python:
     PythonExecutable: ./python-3.9.13-embed-amd64/python.exe
-    RequirementsFile: requirements.txt
+    RequirementsFile: ./deploy/docker/requirements.txt
 
   Adb:
     AdbExecutable: ./toolkit/android-platform-tools/adb.exe

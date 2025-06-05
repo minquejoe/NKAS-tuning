@@ -1,7 +1,6 @@
 from functools import cached_property
 
 from deploy.config import DeployConfig
-from module.exception import RequestHumanTakeover
 from module.logger import logger
 
 
@@ -15,7 +14,7 @@ class PipManager(DeployConfig):
         if self.RequirementsFile == 'requirements.txt':
             return 'requirements.txt'
         else:
-            raise RequestHumanTakeover
+            return self.filepath("RequirementsFile")
 
     @cached_property
     def pip(self):
