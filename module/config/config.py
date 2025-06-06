@@ -1,6 +1,8 @@
 import copy
 import operator
 from datetime import datetime, timedelta
+import threading
+import time
 
 from module.base.filter import Filter
 from module.base.utils import ensure_time
@@ -55,6 +57,8 @@ def name_to_function(name):
 
 
 class NikkeConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher):
+    stop_event: threading.Event = None
+    
     def __init__(self, config_name, task=None):
         self.config_name = config_name
         self.data = {}

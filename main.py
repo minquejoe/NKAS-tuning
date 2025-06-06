@@ -278,12 +278,11 @@ class NikkeAutoScript:
         while 1:
             if datetime.now() > future:
                 return True
-
-            # if self.stop_event is not None:
-            #     if self.stop_event.is_set():
-            #         logger.info("Update event detected")
-            #         logger.info(f"[{self.config_name}] exited. Reason: Update")
-            #         exit(0)
+            if self.stop_event is not None:
+                if self.stop_event.is_set():
+                    logger.info("Update event detected")
+                    logger.info(f"[{self.config_name}] exited. Reason: Update")
+                    exit(0)
 
             time.sleep(5)
             """
@@ -362,6 +361,13 @@ class NikkeAutoScript:
         failure_record = {}
 
         while 1:
+            # Check update event from GUI
+            if self.stop_event is not None:
+                if self.stop_event.is_set():
+                    logger.info("Update event detected")
+                    logger.info(f"Alas [{self.config_name}] exited.")
+                    break
+            
             task = self.get_next_task()
             _ = self.device
 

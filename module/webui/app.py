@@ -99,7 +99,7 @@ class NikkeAutoScriptGUI(Frame):
                         label_on=t("Gui.Button.Stop"),
                         label_off=t("Gui.Button.Start"),
                         onclick_on=lambda: self.nkas.stop(),
-                        onclick_off=lambda: self.nkas.start(None),
+                        onclick_off=lambda: self.nkas.start(None, updater.event),
                         get_state=lambda: self.nkas.alive,
                         color_on="off",
                         color_off="on",
@@ -677,7 +677,10 @@ class NikkeAutoScriptGUI(Frame):
 def startup():
     # 初始化多进程数据共享
     State.init()
-    task_handler.add(updater.check_update, updater.delay)
+    updater.event = State.manager.Event()
+    if updater.delay > 0:
+        task_handler.add(updater.check_update, updater.delay)
+    task_handler.add(updater.schedule_update(), 86400)
     task_handler.start()
 
 
@@ -699,6 +702,19 @@ def app():
         local.gui = gui
         gui.run()
 
+    instances: List[str] = []
+
     routes = webio_routes(applications=[index])
-    app = Starlette(routes=routes, debug=True, on_startup=[startup], on_shutdown=[clearup])
+    app = Starlette(
+            routes=routes,
+            debug=True,
+            on_startup=[
+                startup,
+                lambda: ProcessManager.restart_processes(
+                    instances=instances, ev=updater.event
+                ),
+            ],
+            on_shutdown=[clearup]
+    )
+    
     return app
