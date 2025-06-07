@@ -50,7 +50,7 @@ class Reward(UI):
                 click_timer.reset()
                 continue
             
-            if self.appear(EMPTY_CHECK, threshold=1.00):
+            if confirm_timer.reached() and self.appear(EMPTY_CHECK, threshold=1.00):
                 logger.info("Reward done after check EMPTY_CHECK")
                 break
 
