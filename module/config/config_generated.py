@@ -26,6 +26,7 @@ class GeneratedConfig:
     Emulator_ScreenshotInterval = 0.5
 
     # Group `Optimization`
+    Optimization_AutoRedCircle = False
     Optimization_WhenTaskQueueEmpty = 'goto_main'  # stay_there, goto_main, close_game
 
     # Group `Reward`

@@ -9,6 +9,7 @@
       "ScreenshotInterval": 0.5
     },
     "Optimization": {
+      "AutoRedCircle": false,
       "WhenTaskQueueEmpty": "goto_main"
     },
     "Notification": {

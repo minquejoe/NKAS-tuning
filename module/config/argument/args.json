@@ -38,6 +38,10 @@
       }
     },
     "Optimization": {
+      "AutoRedCircle": {
+        "type": "checkbox",
+        "value": false
+      },
       "WhenTaskQueueEmpty": {
         "type": "select",
         "value": "goto_main",
