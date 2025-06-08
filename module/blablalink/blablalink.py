@@ -316,7 +316,7 @@ class Blablalink(UI):
     def run(self):
         """主执行流程"""
         local_now = datetime.now()
-        target_time = local_now.replace(hour=23, minute=0, second=0, microsecond=0)
+        target_time = local_now.replace(hour=8, minute=0, second=0, microsecond=0)
         
         if local_now > target_time or self.config.Blablalink_Immediately:
             try:
