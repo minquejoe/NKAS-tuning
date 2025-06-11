@@ -29,6 +29,17 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
 
 ---
 
+### 联合
+
+其他平台/方式的脚本：
+- [DoroHelper](https://github.com/1204244136/DoroHelper)（PC端+AutoHotkey）
+- [autoxjs-scripts](https://github.com/Zebartin/autoxjs-scripts)（安卓端+autojs）
+
+其他工具：
+- [Nikke-CDK-Tool](https://github.com/Small-tailqwq/Nikke-CDK-Tool)（CDK收集/兑换）
+
+---
+
 ### 如何使用
 
 #### 需要一个可正常运行nikke的安卓"模拟器"，并且可以使用adb远程连接，比如：云手机、ARM架构模拟器、ARM架构的Redroid/Waydroid
@@ -54,6 +65,8 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
 - [ ] 个突
 - [ ] 自动普通企业塔
 - [ ] 模拟室快速
+- [ ] CDK自动兑换
+- [x] 通知优化
 - [x] 自动打红圈（现在只支持特拦、企业塔）
 - [x] 咨询答案选择优化
 - [x] 每日送礼
