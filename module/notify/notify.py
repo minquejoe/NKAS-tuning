@@ -4,7 +4,6 @@ from onepush import get_notifier
 from onepush.core import Provider
 from onepush.exceptions import OnePushException
 from onepush.providers.custom import Custom
-from winotify import Notification
 from requests import Response
 
 from module.logger import logger
@@ -14,6 +13,7 @@ onepush.core.log = logger
 
 
 def handle_notify_win(**kwargs) -> bool:
+    from winotify import Notification
     toast = Notification(app_id="NKAS",
                         title=kwargs["title"],
                         msg=kwargs["content"],

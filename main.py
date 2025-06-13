@@ -120,7 +120,7 @@ class NikkeAutoScript:
             logger.exception(e)
             if self.config.Notification_WhenDailyTaskCrashed:
                 handle_notify(
-                    self.config.Error_OnePushConfig,
+                    self.config.Notification_OnePushConfig,
                     title="NKAS crashed",
                     content=f"<{self.config_name}> Exception occured",
                 )
