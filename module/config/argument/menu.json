@@ -23,7 +23,11 @@
       "TribeTower",
       "RookieArena",
       "SpecialArena",
-      "Interception",
+      "Interception"
+    ],
+    "Tools": [
+      "TowerDaemon",
+      "CombatDaemon",
       "EventDaemon"
     ],
     "Gift": [

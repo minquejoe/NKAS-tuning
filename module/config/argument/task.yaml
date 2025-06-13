@@ -75,6 +75,14 @@ SpecialArena:
 Interception:
   - Scheduler
 
+# ==================== Tools ====================
+
+TowerDaemon:
+  - Scheduler
+
+CombatDaemon:
+  - Scheduler
+
 EventDaemon:
   - Scheduler
 
