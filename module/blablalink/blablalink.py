@@ -151,8 +151,10 @@ class Blablalink(UI):
             logger.error(f"Failed to get points: {str(e)}")
             return 0
     
-    def get_post_list(self) -> list:
-        """获取帖子列表"""
+    def get_post_list(self, exclude_liked: bool = False) -> list:
+        """获取帖子列表
+        :param exclude_liked: 是否排除已点赞的帖子
+        """
         try:
             url = "https://api.blablalink.com/api/ugc/direct/standalonesite/Dynamics/GetPostList"
             body = {
@@ -161,14 +163,29 @@ class Blablalink(UI):
                 "plate_unique_id": "outpost",
                 "nextPageCursor": "",
                 "order_by": 1,
-                "limit": "10"
+                "limit": "20" if exclude_liked else "10"  # 需要过滤时获取更多帖子
             }
             response = self._request_with_retry('POST', url, json=body)
             
-            if response.get('code') == 0:
-                return [post['post_uuid'] for post in response.get('data', {}).get('list', [])]
-            logger.warning(f"Failed to get post list: {response.get('msg', 'Unknown error')}")
-            return []
+            if response.get('code') != 0:
+                logger.warning(f"Failed to get post list: {response.get('msg', 'Unknown error')}")
+                return []
+
+            posts = response.get('data', {}).get('list', [])
+            result = []
+            
+            for post in posts:
+                post_uuid = post.get('post_uuid')
+                
+                # 排除已点赞的帖子
+                if exclude_liked and post.get('my_upvote') is not None:
+                    continue
+                    
+                if post_uuid:
+                    result.append(post_uuid)
+            
+            logger.info(f"Got {len(result)} posts (exclude_liked={exclude_liked})")
+            return result
         except Exception as e:
             logger.error(f"Exception when getting post list: {str(e)}")
             return []
@@ -193,12 +210,13 @@ class Blablalink(UI):
             return False
     
     def like_random_posts(self):
-        """随机点赞5个帖子"""
+        """随机点赞5个帖子（只选未点赞过的）"""
         logger.info("Starting like task")
-        post_uuids = self.get_post_list()
+        # 获取未点赞的帖子列表
+        post_uuids = self.get_post_list(exclude_liked=True)
         
         if not post_uuids:
-            logger.warning("No posts available to like")
+            logger.warning("No unliked posts available")
             return
 
         selected = random.sample(post_uuids, min(5, len(post_uuids)))
@@ -230,6 +248,7 @@ class Blablalink(UI):
     def open_random_posts(self):
         """随机打开3个帖子"""
         logger.info("Starting browse posts task")
+        # 获取所有帖子（不过滤点赞状态）
         post_uuids = self.get_post_list()
         
         if not post_uuids:
@@ -313,6 +332,25 @@ class Blablalink(UI):
         except Exception as e:
             logger.error(f"Exception when posting comment: {str(e)}")
     
+    def check_login(self) -> bool:
+        """检查登录状态"""
+        try:
+            url = "https://api.blablalink.com/api/user/CheckLogin"
+            response = self._request_with_retry('GET', url)
+            
+            code = response.get('code', -1)
+            msg = response.get('msg', '')
+            
+            if code == 0 and msg == 'ok':
+                logger.info("Login status: valid")
+                return True
+            else:
+                logger.error(f"Login check failed: code={code}, msg={msg}")
+                return False
+        except Exception as e:
+            logger.error(f"Login check exception: {str(e)}")
+            return False
+
     def run(self):
         """主执行流程"""
         local_now = datetime.now()
@@ -321,6 +359,9 @@ class Blablalink(UI):
         if local_now > target_time or self.config.Blablalink_Immediately:
             try:
                 logger.info("Starting blablalink daily tasks")
+                # 检查Cookie
+                if not self.check_login():
+                    raise RequestHumanTakeover
                 # 点赞任务
                 self.like_random_posts()
                 # 浏览任务
