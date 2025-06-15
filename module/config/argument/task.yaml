@@ -27,7 +27,9 @@ Mailbox:
 # ==================== Daily ====================
 Blablalink:
   - Scheduler
-  - Blablalink
+  - BlaAuth
+  - BlaDaily
+  - CDK
 
 DailyRecruit:
   - Scheduler

@@ -103,14 +103,21 @@
       "FailureInterval": 120,
       "ServerUpdate": "04:00"
     },
-    "Blablalink": {
-      "Immediately": false,
+    "BlaAuth": {
       "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
       "Cookie": null,
-      "OpenID": null,
+      "OpenID": null
+    },
+    "BlaDaily": {
+      "Enable": false,
+      "Immediately": false,
       "PostID": null,
       "CommentID": null,
       "Points": null
+    },
+    "CDK": {
+      "Enable": false,
+      "Source": "https://gamewith.jp/nikke/article/show/371014"
     },
     "Storage": {
       "Storage": {}

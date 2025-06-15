@@ -27,6 +27,7 @@ class Blablalink(UI):
         'sec-fetch-dest': 'empty',
         'sec-fetch-mode': 'cors',
         'sec-fetch-site': 'same-site',
+        'x-channel-type': '2',
         'x-language': 'zh-TW'
     }
     
@@ -39,13 +40,13 @@ class Blablalink(UI):
     def _prepare_config(self):
         """从配置中准备所有必要参数"""
         # 获取Cookie
-        cookie = self.config.Blablalink_Cookie
+        cookie = self.config.BlaAuth_Cookie
         if not cookie:
             logger.error("Cookie not configured")
             raise RequestHumanTakeover("Cookie not set")
         self.common_headers['cookie'] = cookie
         # 获取OpenID
-        openid = self.config.Blablalink_OpenID
+        openid = self.config.BlaAuth_OpenID
         if not openid:
             logger.error("OpenID not configured")
             raise RequestHumanTakeover("OpenID not set")
@@ -65,7 +66,7 @@ class Blablalink(UI):
         }
         self.common_headers['x-common-params'] = json.dumps(common_params, ensure_ascii=False)
         # 获取user-agent
-        useragent = self.config.Blablalink_UserAgent
+        useragent = self.config.BlaAuth_UserAgent
         if not useragent:
             logger.warning("User-agent configured")
             raise RequestHumanTakeover("User-agent not set")
@@ -112,14 +113,26 @@ class Blablalink(UI):
         """获取任务列表"""
         try:
             return self._request_with_retry(
-                'POST', 
-                'https://api.blablalink.com/api/lip/proxy/lipass/Points/GetTaskListWithStatusV2',
-                params={'get_top': 'true', 'intl_game_id': '29080'}
+                'GET', 
+                'https://api.blablalink.com/api/lip/proxy/lipass/Points/GetTaskListWithStatusV2?get_top=false&intl_game_id=29080',
+                # params={'get_top': 'false', 'intl_game_id': '29080'}
             )
         except Exception as e:
             logger.error(f"Failed to get task list: {str(e)}")
             return {}
-    
+
+    def execute_signin(self, task_id: str):
+        """执行签到任务"""
+        if not task_id:
+            logger.error("No signin task ID found")
+            return
+        
+        logger.info("Executing signin task")
+        if self.perform_signin(task_id):
+            logger.info("Signin completed successfully")
+        else:
+            logger.error("Signin failed")
+
     def perform_signin(self, task_id: str) -> bool:
         """执行签到操作"""
         try:          
@@ -284,8 +297,8 @@ class Blablalink(UI):
     def post_comment(self):
         """发布评论"""
         logger.info("Starting comment task")
-        post_uuid = self.config.Blablalink_PostID
-        comment_uuid = self.config.Blablalink_CommentID
+        post_uuid = self.config.BlaDaily_PostID
+        comment_uuid = self.config.BlaDaily_CommentID
         
         if not post_uuid:
             logger.warning("PostID is required")
@@ -351,45 +364,84 @@ class Blablalink(UI):
             logger.error(f"Login check exception: {str(e)}")
             return False
 
+    def parse_task_status(self, tasks_data: Dict) -> Dict:
+        """解析任务状态
+        :return: 包含任务状态和必要ID的字典
+        """
+        status = {
+            'signin_completed': True,
+            'like_completed': True,
+            'browse_completed': True,
+            'comment_completed': True,
+            'signin_task_id': ''
+        }
+        
+        try:
+            tasks = tasks_data.get('data', {}).get('tasks', [])
+            for task in tasks:
+                task_name = task.get('task_name', '')
+                reward = next(iter(task.get('reward_infos', [])), None)
+                is_completed = reward.get('is_completed', False) if reward else False
+                
+                if '每日簽到' in task_name:
+                    status['signin_completed'] = is_completed
+                    status['signin_task_id'] = task.get('task_id', '')
+                    logger.info(f"Signin task: {'completed' if is_completed else 'pending'}")
+                
+                elif '按讚' in task_name:
+                    status['like_completed'] = is_completed
+                    logger.info(f"Like task: {'completed' if is_completed else 'pending'}")
+                
+                elif '瀏覽' in task_name:
+                    status['browse_completed'] = is_completed
+                    logger.info(f"Browse task: {'completed' if is_completed else 'pending'}")
+                
+                elif '評論' in task_name:
+                    status['comment_completed'] = is_completed
+                    logger.info(f"Comment task: {'completed' if is_completed else 'pending'}")
+        
+        except Exception as e:
+            logger.error(f"Failed to parse task status: {str(e)}")
+        
+        return status
+
     def run(self):
         """主执行流程"""
         local_now = datetime.now()
         target_time = local_now.replace(hour=8, minute=0, second=0, microsecond=0)
         
-        if local_now > target_time or self.config.Blablalink_Immediately:
+        if local_now > target_time or self.config.BlaDaily_Immediately:
             try:
                 logger.info("Starting blablalink daily tasks")
                 # 检查Cookie
                 if not self.check_login():
                     raise RequestHumanTakeover
-                # 点赞任务
-                self.like_random_posts()
-                # 浏览任务
-                self.open_random_posts()
-                # 评论任务
-                self.post_comment()
-                # 签到
+                
                 # 获取任务列表
                 tasks_data = self.get_tasks()
                 if not tasks_data:
                     logger.error("Failed to get task list")
                     return
-                # 检查签到状态
-                found, completed, task_id = self.check_daily_status(tasks_data)
-                if not found:
-                    logger.error("Daily checkin task not found")
-                    return
-                logger.info(f"Checkin task ID: {task_id}")
-                status_msg = "Completed" if completed else "Not completed"
-                logger.info(f"Checkin status: {status_msg}")
-                # 执行签到
-                if not completed:
-                    if not self.perform_signin(task_id):
-                        logger.error("Failed to get task list")
+                
+                # 解析任务状态
+                task_status = self.parse_task_status(tasks_data)
+                
+                # 执行未完成的任务
+                if not task_status.get('signin_completed', True):
+                    self.execute_signin(task_status.get('signin_task_id'))
+                
+                if not task_status.get('like_completed', True):
+                    self.like_random_posts()
+                
+                if not task_status.get('browse_completed', True):
+                    self.open_random_posts()
+                
+                if not task_status.get('comment_completed', True):
+                    self.post_comment()
                 
                 # 获取金币数量
                 points = self.get_points()
-                self.config.Blablalink_Points = points
+                self.config.BlaDaily_Points = points
                 logger.info(f"Current points: {points}")
             except MissingHeader as e:
                 logger.error("Please check all parameters settings")
