@@ -99,8 +99,8 @@ Task:
     name: 日常
     help: ""
   Blablalink:
-    name: 社区签到
-    help: "社区每日签到、评论、点赞任务 https://www.blablalink.com"
+    name: 妮游社
+    help: ""
   Interception:
     name: 异常拦截战
     help: "目前只打克拉肯"
@@ -401,12 +401,28 @@ OpponentSelection:
     Max: "最高"
     Middle: "中间"
     Min: "最低"
-Blablalink:
+BlaDaily:
   _info:
-    name: 任务设置
+    name: 每日任务
     help: ""
+  Enable:
+    name: 启用该功能
+    help: "社区每日签到、评论、点赞任务 https://www.blablalink.com"
   Immediately:
     name: 立即执行
+    help: ""
+  PostID:
+    name: 帖子ID
+    help: "要评论帖子的ID"
+  CommentID:
+    name: 评论ID
+    help: "要回复的某个评论的ID，此时必须填写帖子ID，ID可在F12中查看（页面ID显示有问题，不影响使用）"
+  Points:
+    name: 剩余金币数量
+    help: ""
+BlaAuth:
+  _info:
+    name: Cookie设置
     help: ""
   UserAgent:
     name: 浏览器UA
@@ -417,14 +433,15 @@ Blablalink:
   OpenID:
     name: OpenID
     help: "个人OpenID，可在F12中的x-common-params查看"
-  PostID:
-    name: 帖子ID
-    help: "要评论帖子的ID"
-  CommentID:
-    name: 评论ID
-    help: "要回复的某个评论的ID，此时必须填写帖子ID，ID可在F12中查看（页面ID显示有问题，不影响使用）"
-  Points:
-    name: 剩余金币数量
+CDK:
+  _info:
+    name: CDK自动兑换
+    help: ""
+  Enable:
+    name: 启用该功能
+    help: "从来源网站中获取最新的10个CDK，并自动兑换 https://www.blablalink.com/cdk"
+  Source:
+    name: CDK来源
     help: ""
 TowerDaemon:
   _info:
