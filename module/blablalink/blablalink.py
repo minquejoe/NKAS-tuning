@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import random
+import re
 from typing import Dict, Tuple
 import requests
 import json
@@ -405,52 +406,179 @@ class Blablalink(UI):
         
         return status
 
-    def run(self):
-        """主执行流程"""
-        local_now = datetime.now()
-        target_time = local_now.replace(hour=8, minute=0, second=0, microsecond=0)
+    def daily(self):
+        logger.info("Starting blablalink daily tasks")
+        # 检查Cookie
+        if not self.check_login():
+            raise RequestHumanTakeover
         
-        if local_now > target_time or self.config.BlaDaily_Immediately:
+        # 获取任务列表
+        tasks_data = self.get_tasks()
+        if not tasks_data:
+            logger.error("Failed to get task list")
+            return
+        
+        # 解析任务状态
+        task_status = self.parse_task_status(tasks_data)
+        
+        # 执行未完成的任务
+        if not task_status.get('signin_completed', True):
+            self.execute_signin(task_status.get('signin_task_id'))
+        
+        if not task_status.get('like_completed', True):
+            self.like_random_posts()
+        
+        if not task_status.get('browse_completed', True):
+            self.open_random_posts()
+        
+        if not task_status.get('comment_completed', True):
+            self.post_comment()
+        
+        # 获取金币数量
+        points = self.get_points()
+        self.config.BlaDaily_Points = points
+        logger.info(f"Current points: {points}")
+
+    def cdk(self):
+        """CDK兑换功能"""
+        sources = self.config.CDK_Source
+        if not sources:
+            logger.info("No CDK sources configured")
+            return
+        
+        # 1. 解析所有来源网址
+        all_cdks = []
+        for url in sources.splitlines():
+            url = url.strip()
+            if not url:
+                continue
+            
             try:
-                logger.info("Starting blablalink daily tasks")
-                # 检查Cookie
-                if not self.check_login():
-                    raise RequestHumanTakeover
+                logger.info(f"Processing CDK source: {url}")
                 
-                # 获取任务列表
-                tasks_data = self.get_tasks()
-                if not tasks_data:
-                    logger.error("Failed to get task list")
-                    return
+                # 根据域名决定提取方式
+                if 'gamewith.jp' in url:
+                    cdks = self.extract_from_gamewith(url)
+                # 添加其他网站的处理方式
+                # elif 'otherdomain.com' in url:
+                #     cdks = self.extract_from_other(url)
+                else:
+                    logger.warning(f"Unsupported CDK source: {url}")
+                    cdks = []
                 
-                # 解析任务状态
-                task_status = self.parse_task_status(tasks_data)
-                
-                # 执行未完成的任务
-                if not task_status.get('signin_completed', True):
-                    self.execute_signin(task_status.get('signin_task_id'))
-                
-                if not task_status.get('like_completed', True):
-                    self.like_random_posts()
-                
-                if not task_status.get('browse_completed', True):
-                    self.open_random_posts()
-                
-                if not task_status.get('comment_completed', True):
-                    self.post_comment()
-                
-                # 获取金币数量
-                points = self.get_points()
-                self.config.BlaDaily_Points = points
-                logger.info(f"Current points: {points}")
-            except MissingHeader as e:
-                logger.error("Please check all parameters settings")
-                raise RequestHumanTakeover
+                if cdks:
+                    logger.info(f"Found {len(cdks)} CDK candidates: {', '.join(cdks)}")
+                    all_cdks.extend(cdks)
             except Exception as e:
-                logger.error(f"Blablalink exception: {str(e)}")
-                raise RequestHumanTakeover
+                logger.error(f"Failed to process CDK source {url}: {str(e)}")
+        
+        if not all_cdks:
+            logger.warning("No CDK candidates found in any sources")
+            return
+        
+        # 2. 获取兑换历史记录
+        redeemed_cdks = self.get_cdk_redemption_history()
+        unredeemed_cdks = [cdk for cdk in all_cdks if cdk not in redeemed_cdks]
+        
+        if not unredeemed_cdks:
+            logger.info("All CDK candidates have already been redeemed")
+            return
+        
+        logger.info(f"Found {len(unredeemed_cdks)} unredeemed CDK candidates")
+        
+        # 3. 尝试兑换未使用的CDK
+        success_count = 0
+        for cdk in unredeemed_cdks:
+            if self.redeem_cdk(cdk):
+                success_count += 1
+            time.sleep(random.uniform(1.0, 3.0))  # 随机延迟防止请求过快
+        
+        logger.info(f"CDK redemption completed: {success_count}/{len(unredeemed_cdks)} successful")
+
+    def get_cdk_redemption_history(self) -> list:
+        """获取CDK兑换历史记录"""
+        try:
+            result = self._request_with_retry(
+                'POST',
+                'https://api.blablalink.com/api/game/proxy/Game/GetCdkRedemptionHistory',
+                json={"page_num": 1, "page_size": 20}
+            )
+            
+            if result.get('code') != 0:
+                logger.error(f"Failed to get CDK history: {result.get('msg', 'Unknown error')}")
+                return []
+            
+            history = result.get('data', {}).get('cdk_redemption_list', [])
+            redeemed_cdks = [item['cdk'] for item in history]
+            logger.info(f"Retrieved {len(redeemed_cdks)} redeemed CDKs from history")
+            return redeemed_cdks
+        except Exception as e:
+            logger.error(f"Exception when getting CDK history: {str(e)}")
+            return []
+    
+    def redeem_cdk(self, cdk: str) -> bool:
+        """兑换单个CDK"""
+        try:
+            result = self._request_with_retry(
+                'POST',
+                'https://api.blablalink.com/api/game/proxy/Game/RecordCdkRedemption',
+                json={"cdkey": cdk}
+            )
+            
+            if result.get('code') == 0 and result.get('msg') == 'ok':
+                logger.info(f"Successfully redeemed CDK: {cdk}")
+                return True
+            
+            # 处理不同的错误情况
+            msg = result.get('msg', 'CDK Exchange err')
+            logger.error(f"Failed to redeem CDK {cdk}: {msg}")
+            return False
+        except Exception as e:
+            logger.error(f"Exception when redeeming CDK {cdk}: {str(e)}")
+            return False
+
+    def extract_from_gamewith(self, url: str) -> list:
+        """从gamewith.jp提取CDK"""
+        try:
+            logger.info(f"Fetching CDKs from gamewith.jp: {url}")
+            response = requests.get(url, timeout=10)
+            response.raise_for_status()
+            
+            # 使用正则表达式提取CDK
+            pattern = r'<div class="w-clipboard-copy-ui">([^<]+)</div>'
+            matches = re.findall(pattern, response.text)
+            # 过滤空值并去空格
+            cdks = [cdk.strip() for cdk in matches if cdk.strip()]
+            
+            # 返回找到的所有值（最多10个）
+            return cdks[:10]
+        except Exception as e:
+            logger.error(f"Failed to extract CDKs from gamewith.jp {url}: {str(e)}")
+            return []
+    
+    # 其他网站的提取方法
+    # def extract_from_other(self, url: str) -> list:
+    #     """从其他网站提取CDK"""
+    #     # 实现其他网站的CDK提取逻辑
+    #     return []
+        
+    def run(self):
+        try:
+            local_now = datetime.now()
+            target_time = local_now.replace(hour=8, minute=0, second=0, microsecond=0)
+            if local_now > target_time or self.config.BlaDaily_Immediately:
+                if self.config.BlaDaily_Enable:
+                    self.daily()
+                if self.config.CDK_Enable:
+                    self.cdk()
+            else:
+                random_minutes = random.randint(5, 30)
+                target_time = target_time + timedelta(minutes=random_minutes)
+                self.config.task_delay(target=target_time)
             self.config.task_delay(server_update=True)
-        else:
-            random_minutes = random.randint(5, 30)
-            target_time = target_time + timedelta(minutes=random_minutes)
-            self.config.task_delay(target=target_time)
+        except MissingHeader as e:
+            logger.error("Please check all parameters settings")
+            raise RequestHumanTakeover
+        except Exception as e:
+            logger.error(f"Blablalink exception: {str(e)}")
+            raise RequestHumanTakeover

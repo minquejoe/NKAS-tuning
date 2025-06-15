@@ -439,7 +439,7 @@ CDK:
     help: ""
   Enable:
     name: 启用该功能
-    help: "从来源网站中识别CDK，并自动兑换 https://www.blablalink.com/cdk"
+    help: "从来源网站中获取最新的10个CDK，并自动兑换 https://www.blablalink.com/cdk"
   Source:
     name: CDK来源
     help: ""
