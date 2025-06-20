@@ -77,6 +77,10 @@ SpecialArena:
 Interception:
   - Scheduler
 
+StoryEvent:
+  - Scheduler
+  - StoryEvent
+
 # ==================== Tools ====================
 
 TowerDaemon:
