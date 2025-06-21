@@ -5,6 +5,7 @@ from module.base.template import Template
 # Don't modify it manually.
 
 COOP_ACCEPT = Button(area={'cn': (503, 863, 549, 887)}, color={'cn': (124, 200, 236)}, button={'cn': (503, 863, 549, 887)}, file={'cn': './assets/cn/coop/COOP_ACCEPT.png'})
+COOP_BANNER_CHECK = Button(area={'cn': (224, 153, 264, 175)}, color={'cn': (138, 138, 135)}, button={'cn': (224, 153, 264, 175)}, file={'cn': './assets/cn/coop/COOP_BANNER_CHECK.png'})
 COOP_CANCEL = Button(area={'cn': (625, 138, 661, 156)}, color={'cn': (131, 131, 131)}, button={'cn': (625, 138, 661, 156)}, file={'cn': './assets/cn/coop/COOP_CANCEL.png'})
 COOP_CHECK = Button(area={'cn': (458, 182, 608, 205)}, color={'cn': (75, 75, 73)}, button={'cn': (458, 182, 608, 205)}, file={'cn': './assets/cn/coop/COOP_CHECK.png'})
 COOP_PREPARE = Button(area={'cn': (334, 1195, 386, 1220)}, color={'cn': (148, 199, 249)}, button={'cn': (334, 1195, 386, 1220)}, file={'cn': './assets/cn/coop/COOP_PREPARE.png'})
@@ -14,6 +15,6 @@ DATELINE_CHECK = Button(area={'cn': (569, 285, 628, 304)}, color={'cn': (131, 93
 DIFFICULTY_CONFIRM = Button(area={'cn': (334, 854, 385, 877)}, color={'cn': (120, 207, 247)}, button={'cn': (334, 854, 385, 877)}, file={'cn': './assets/cn/coop/DIFFICULTY_CONFIRM.png'})
 DIFFICULTY_NORMAL = Button(area={'cn': (180, 611, 248, 643)}, color={'cn': (155, 223, 255)}, button={'cn': (180, 611, 248, 643)}, file={'cn': './assets/cn/coop/DIFFICULTY_NORMAL.png'})
 DIFFICULTY_NORMAL_NOT_CHECKED = Button(area={'cn': (181, 611, 247, 643)}, color={'cn': (192, 193, 192)}, button={'cn': (181, 611, 247, 643)}, file={'cn': './assets/cn/coop/DIFFICULTY_NORMAL_NOT_CHECKED.png'})
+EVENT_BANNER = Button(area={'cn': (29, 121, 267, 187)}, color={'cn': (116, 74, 67)}, button={'cn': (29, 121, 267, 187)}, file={'cn': './assets/cn/coop/EVENT_BANNER.png'})
 FREE_OPPORTUNITY_CHECK = Button(area={'cn': (568, 1012, 584, 1030)}, color={'cn': (251, 108, 93)}, button={'cn': (568, 1012, 584, 1030)}, file={'cn': './assets/cn/coop/FREE_OPPORTUNITY_CHECK.png'})
-FREE_OPPORTUNITY_CHECK1 = Button(area={'cn': (570, 1014, 604, 1027)}, color={'cn': (250, 139, 125)}, button={'cn': (570, 1014, 604, 1027)}, file={'cn': './assets/cn/coop/FREE_OPPORTUNITY_CHECK1.png'})
 SECECT_DIFFICULTY = Button(area={'cn': (282, 513, 408, 533)}, color={'cn': (170, 170, 170)}, button={'cn': (282, 513, 408, 533)}, file={'cn': './assets/cn/coop/SECECT_DIFFICULTY.png'})

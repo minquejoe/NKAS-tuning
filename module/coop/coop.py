@@ -1,17 +1,17 @@
 from module.base.decorator import Config
 from module.base.timer import Timer
-from module.base.utils import point2str
-from module.exception import OperationFailed
+from module.base.utils import crop
 from module.logger import logger
 from module.simulation_room.assets import AUTO_SHOOT, AUTO_BURST, END_FIGHTING
 from module.coop.assets import *
-from module.ui.assets import TRIBE_TOWER_CHECK, GOTO_BACK, MAIN_CHECK
 from module.ui.page import page_main, page_event
 from module.ui.ui import UI
 from module.ocr.ocr import Digit
 # 活动引用
 from module.story_event.event_20250612.assets import EVENT_CHECK, COOP_ENTER, COOP_SELECT_CHECK, TEMPLATE_COOP_ENABLE
 
+class NoOpportunityRemain(Exception):
+    pass
 
 class CoopIsUnavailable(Exception):
     pass
@@ -46,19 +46,56 @@ class Coop(UI):
     def ensure_into_coop(self, skip_first_screenshot=True):
         '''普通协同，从banner进入作战'''
         logger.hr('COOP START')
-        click_timer = Timer(0.3)
+        coop_enter = False
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
                 self.device.screenshot()
 
-            # 滑动banner查找协同作战
+            if not coop_enter:
+                # 滑动banner查找协同作战
+                self.ensure_sroll((260, 150), (30, 150), speed=35, count=1, delay=0.5)
+                self.device.screenshot()
+                banner_first = Button(EVENT_BANNER.area, None, button=EVENT_BANNER.area)
+                banner_first._match_init = True
+                banner_first.image = crop(self.device.image, EVENT_BANNER.area)
+                while 1:
+                    if skip_first_screenshot:
+                        skip_first_screenshot = False
+                    else:
+                        self.device.screenshot()
+
+                    tmp_image = self.device.image
+                    # 滑动到下一个banner
+                    self.ensure_sroll((260, 150), (30, 150), speed=35, count=1, delay=0.5)
+                    # 比较banner是否变化
+                    while 1:
+                        self.device.screenshot()
+                        
+                        banner = Button(EVENT_BANNER.area, None, button=EVENT_BANNER.area)
+                        banner._match_init = True
+                        banner.image = crop(tmp_image, EVENT_BANNER.area)
+                        if self.appear(banner, offset=10, threshold=0.8):
+                            continue
+                        else:
+                            break
+
+                    # 回到第一个banner
+                    if self.appear(banner_first, offset=10, threshold=0.8):
+                        logger.info("Not find coop in banner")
+                        raise CoopIsUnavailable
+
+                    if self.appear_then_click(COOP_BANNER_CHECK, offset=10, interval=2):
+                        logger.info("Find coop in banner")
+                        coop_enter = True
+                        break
+
             if self.appear(COOP_CHECK, offset=10):
                 break
 
         if self.free_opportunity_remain and not self.dateline:
-            self.start_competition()
+            self.start_coop()
         else:
             logger.info("There are no free opportunities")
 
@@ -87,6 +124,7 @@ class Coop(UI):
         # 检查是否有开启的协同
         coops = TEMPLATE_COOP_ENABLE.match_multi(self.device.image, name='COOP_ENABLE')
         if not coops:
+            logger.info("Not find coop in event")
             raise CoopIsUnavailable
 
         # 进入协同作战界面
@@ -189,19 +227,23 @@ class Coop(UI):
                 break
 
         if self.free_opportunity_remain:
+            logger.info("There are no free opportunities")
+            raise NoOpportunityRemain
+
+        if self.free_opportunity_remain:
             self.device.click_record_clear()
             self.device.stuck_record_clear()
             return self.start_coop()
 
     def run(self):
         try:
+            self.ui_ensure(page_main)
             if self.config.Coop_EventCoop:
                 self.ui_ensure(page_event)
-                self.ensure_into_coop()
-            else:
-                self.ui_ensure(page_main)
-                self.ensure_into_coop()
+            self.ensure_into_coop()
         except CoopIsUnavailable:
+            pass
+        except NoOpportunityRemain:
             pass
 
         self.config.task_delay(server_update=True)
