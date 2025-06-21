@@ -115,6 +115,11 @@ BlaDaily:
   Points:
     value: ''
     display: disabled
+Coop:
+  EventCoop: false
+  MatchDifficulty:
+    value: 'Normal'
+    option: [ 'Normal' ]
 CDK:
   Enable: false
   Source:

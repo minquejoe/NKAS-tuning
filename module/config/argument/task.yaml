@@ -77,6 +77,10 @@ SpecialArena:
 Interception:
   - Scheduler
 
+Coop:
+  - Scheduler
+  - Coop
+
 StoryEvent:
   - Scheduler
   - StoryEvent

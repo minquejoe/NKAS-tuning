@@ -97,6 +97,10 @@ class GeneratedConfig:
     BlaDaily_CommentID = None
     BlaDaily_Points = None
 
+    # Group `Coop`
+    Coop_EventCoop = False
+    Coop_MatchDifficulty = 'Normal'  # Normal
+
     # Group `CDK`
     CDK_Enable = False
     CDK_Source = 'https://gamewith.jp/nikke/article/show/371014'
