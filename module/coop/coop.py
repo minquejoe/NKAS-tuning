@@ -114,7 +114,7 @@ class Coop(UI):
 
             if click_timer.reached() \
                     and self.appear(EVENT_CHECK, offset=10, interval=5) \
-                    and self.appear_then_click(COOP_ENTER, offset=10, interval=3):
+                    and self.appear_then_click(COOP_ENTER, offset=10, interval=5):
                 click_timer.reset()
                 continue
 
@@ -227,13 +227,12 @@ class Coop(UI):
                 break
 
         if self.free_opportunity_remain:
-            logger.info("There are no free opportunities")
-            raise NoOpportunityRemain
-
-        if self.free_opportunity_remain:
             self.device.click_record_clear()
             self.device.stuck_record_clear()
             return self.start_coop()
+        else:
+            logger.info("There are no free opportunities")
+            raise NoOpportunityRemain
 
     def run(self):
         try:
