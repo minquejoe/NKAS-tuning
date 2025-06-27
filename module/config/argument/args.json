@@ -1078,7 +1078,7 @@
       }
     }
   },
-  "StoryEvent": {
+  "Event": {
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
@@ -1091,7 +1091,7 @@
       },
       "Command": {
         "type": "input",
-        "value": "StoryEvent",
+        "value": "Event",
         "display": "hide"
       },
       "SuccessInterval": {
@@ -1110,7 +1110,7 @@
         "display": "hide"
       }
     },
-    "StoryEvent": {
+    "Event": {
       "Event": {
         "type": "select",
         "value": "",
@@ -1123,17 +1123,33 @@
         "type": "checkbox",
         "value": true
       },
-      "Story": {
-        "type": "checkbox",
-        "value": false
-      },
       "Challenge": {
         "type": "checkbox",
         "value": true
       },
-      "Mission": {
+      "Story": {
         "type": "checkbox",
-        "value": true
+        "value": false
+      },
+      "StoryPart": {
+        "type": "select",
+        "value": "Story_1",
+        "option": [
+          "Story_1",
+          "Story_2"
+        ]
+      },
+      "StoryDifficulty": {
+        "type": "select",
+        "value": "Normal",
+        "option": [
+          "Normal",
+          "Hard"
+        ]
+      },
+      "Game": {
+        "type": "checkbox",
+        "value": false
       },
       "Shop": {
         "type": "checkbox",
