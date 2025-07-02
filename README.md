@@ -131,7 +131,7 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
 
 ### GUI预览
 
-![GUI预览]((https://raw.githubusercontent.com/megumiss/NIKKEAutoScript/master/doc/assets/gui.png))
+![GUI预览](https://raw.githubusercontent.com/megumiss/NIKKEAutoScript/master/doc/assets/gui.png)
 
 ---
 
