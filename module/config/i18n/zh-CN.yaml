@@ -140,6 +140,9 @@ Task:
   Event:
     name: 剧情活动
     help: ""
+  Event2:
+    name: 剧情活动2
+    help: ""
 Emulator:
   _info:
     name: 模拟器设置
@@ -439,6 +442,8 @@ Event:
     name: 当前活动
     help: ""
     event_20250612: "Memories Teller"
+    event_20250703l: "OuteR: Automata"
+    event_20250703s: "OVER THE HORIZON"
   LoginStamp:
     name: 签到印章
     help: ""
@@ -448,6 +453,9 @@ Event:
   Story:
     name: 自动关卡
     help: "倒数第二关快速战斗，需要打完当前开启关卡倒数第二关后开启。选择的关卡必须和当前开启的关卡一致"
+  Coop:
+    name: 协同作战
+    help: "大型活动内置协同作战普通难度摆烂"
   StoryPart:
     name: 关卡选择
     help: ""
@@ -466,10 +474,7 @@ Event:
     help: "还没做"
 Coop:
   _info:
-    name: 协同设置
-    help: ""
-  EventCoop:
-    name: 活动协同
+    name: 协同作战
     help: ""
   MatchDifficulty:
     name: 匹配难度

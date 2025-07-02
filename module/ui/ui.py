@@ -14,7 +14,6 @@ from module.ui.page import (
     page_conversation,
     page_daily,
     page_destroy,
-    page_event,
     page_friend,
     page_interception,
     page_inventory,
@@ -61,7 +60,6 @@ class UI(InfoHandler):
         page_interception,
         page_special_interception,
         page_recruit,
-        page_event,
     ]
 
     def ui_page_appear(self, page: Page):
