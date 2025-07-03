@@ -79,3 +79,7 @@ Event2:
 Coop:
   Scheduler:
     Enable: false
+
+SoloRaid:
+  Scheduler:
+    Enable: false

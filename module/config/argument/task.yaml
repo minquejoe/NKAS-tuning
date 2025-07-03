@@ -89,6 +89,10 @@ Event2:
   - Scheduler
   - Event
 
+SoloRaid:
+  - Scheduler
+  - SoloRaid
+
 # ==================== Tools ====================
 
 TowerDaemon:

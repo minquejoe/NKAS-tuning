@@ -26,7 +26,8 @@
       "Interception",
       "Coop",
       "Event",
-      "Event2"
+      "Event2",
+      "SoloRaid"
     ],
     "Tools": [
       "TowerDaemon",
