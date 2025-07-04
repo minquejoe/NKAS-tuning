@@ -27,7 +27,6 @@ from module.ui.assets import (
     EVENT_SWITCH,
     FIGHT_CLOSE,
     FIGHT_QUICKLY_CHECK,
-    FIGHT_QUICKLY_DISABLE,
     FIGHT_QUICKLY_FIGHT,
     FIGHT_QUICKLY_MAX,
     GOTO_BACK,
@@ -220,7 +219,7 @@ class Event(UI):
             # 已经挑战过，返回挑战列表
             if (
                 self.appear(CHALLENGE_STAGE_CHECK, offset=10)
-                and self.appear(FIGHT_QUICKLY_DISABLE, threshold=10)
+                and self.appear(CHALLENGE_QUICKLY_DISABLE, threshold=10)
                 and self.appear(CHALLENGE_BATTLE_DONE, threshold=10)
                 and self.appear_then_click(CHALLENGE_CANCEL, offset=10, interval=1)
             ):
@@ -236,7 +235,7 @@ class Event(UI):
                 click_timer.reached()
                 and self.appear(CHALLENGE_STAGE_CHECK, offset=10)
                 and self.appear(CHALLENGE_BATTLE, threshold=10)
-                and self.appear_then_click(CHALLENGE_QUICK_ENABLE, threshold=10, interval=1)
+                and self.appear_then_click(CHALLENGE_QUICKLY_ENABLE, threshold=20, interval=1)
             ):
                 click_timer.reset()
                 continue
@@ -254,7 +253,7 @@ class Event(UI):
             if (
                 click_timer.reached()
                 and self.appear(CHALLENGE_STAGE_CHECK, offset=10)
-                and self.appear(FIGHT_QUICKLY_DISABLE, threshold=10)
+                and self.appear(CHALLENGE_QUICKLY_DISABLE, threshold=10)
                 and self.appear_then_click(CHALLENGE_BATTLE, threshold=10, interval=1)
             ):
                 click_timer.reset()
@@ -314,14 +313,12 @@ class Event(UI):
                 continue
 
             if self.appear(self.event_assets.REWARD_CHECK, offset=10):
+                self.device.sleep(1)
                 break
 
         # 领取奖励
         while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.screenshot()
+            self.device.screenshot()
 
             # 返回活动页面
             if self.appear(self.event_assets.EVENT_CHECK, offset=10):
@@ -752,7 +749,7 @@ class Event(UI):
                 if (
                     click_timer.reached()
                     and self.appear(self.event_assets.STORY_STAGE_CHECK, offset=10)
-                    and self.appear(FIGHT_QUICKLY_DISABLE, threshold=10)
+                    and self.appear(CHALLENGE_QUICKLY_DISABLE, threshold=10)
                     and self.appear_then_click(FIGHT_CLOSE, offset=10, interval=1)
                 ):
                     break
