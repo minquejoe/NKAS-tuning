@@ -199,10 +199,16 @@ class Daily(UI):
             else:
                 self.device.screenshot()
 
+            # 升级
+            if click_timer.reached() and self.appear_then_click(
+                RANK_INCREASE_COMFIRM, offset=10, static=False, interval=1
+            ):
+                click_timer.reset()
+                continue
             # 结束
             if (
                 send_done
-                and self.appear(GIFT_SEND_DONE, offset=5, threshold=0.95)
+                and self.appear(GIFT_SEND_DONE, threshold=10)
                 and self.appear_then_click(GIFT_SEND_CLOSE, offset=5, interval=1)
             ):
                 click_timer.reset()
@@ -219,13 +225,9 @@ class Daily(UI):
             if (
                 click_timer.reached()
                 and self.appear(GIFT_SELECT_CHECK, offset=(5, 5), static=False)
-                and self.appear_then_click(GIFT_SEND, offset=5, threshold=0.95, interval=1)
+                and self.appear_then_click(GIFT_SEND, threshold=10, interval=1)
             ):
                 send_done = True
-                click_timer.reset()
-                continue
-            # 升级
-            if click_timer.reached() and self.appear_then_click(RANK_INCREASE_COMFIRM, offset=5, static=False):
                 click_timer.reset()
                 continue
 

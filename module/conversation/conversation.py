@@ -195,7 +195,9 @@ class Conversation(UI):
                 self.device.image, threshold=10
             ):
                 break
-            if click_timer.reached() and self.appear_then_click(RANK_INCREASE_COMFIRM, offset=5, static=False):
+            if click_timer.reached() and self.appear_then_click(
+                RANK_INCREASE_COMFIRM, offset=10, static=False, interval=1
+            ):
                 click_timer.reset()
                 continue
             if click_timer.reached() and self.appear_then_click(SKIP, offset=5, static=False):
@@ -253,7 +255,7 @@ class Conversation(UI):
                 self.device.screenshot()
 
             if click_timer.reached() and self.appear_then_click(
-                RANK_INCREASE_COMFIRM, offset=(10, 10), interval=0.3, static=False
+                RANK_INCREASE_COMFIRM, offset=10, static=False, interval=1
             ):
                 confirm_timer.reset()
                 click_timer.reset()

@@ -17,7 +17,7 @@ GIFT = Button(area={'cn': (160, 1018, 225, 1059)}, color={'cn': (254, 177, 79)},
 OPPORTUNITY = Button(area={'cn': (83, 295, 183, 325)}, color={'cn': (70, 192, 249)}, button={'cn': (83, 295, 183, 325)}, file={'cn': './assets/cn/conversation/OPPORTUNITY.png'})
 OPPORTUNITY_B = Button(area={'cn': (506, 1068, 541, 1087)}, color={'cn': (192, 191, 194)}, button={'cn': (506, 1068, 541, 1087)}, file={'cn': './assets/cn/conversation/OPPORTUNITY_B.png'})
 RANK_INCREASE_CHECK = Button(area={'cn': (233, 660, 389, 704)}, color={'cn': (90, 50, 78)}, button={'cn': (233, 660, 389, 704)}, file={'cn': './assets/cn/conversation/RANK_INCREASE_CHECK.png'})
-RANK_INCREASE_COMFIRM = Button(area={'cn': (286, 1076, 433, 1098)}, color={'cn': (114, 110, 106)}, button={'cn': (286, 1076, 433, 1098)}, file={'cn': './assets/cn/conversation/RANK_INCREASE_COMFIRM.png'})
+RANK_INCREASE_COMFIRM = Button(area={'cn': (295, 1079, 387, 1096)}, color={'cn': (145, 150, 152)}, button={'cn': (295, 1079, 387, 1096)}, file={'cn': './assets/cn/conversation/RANK_INCREASE_COMFIRM.png'})
 RANK_MAX_CHECK = Button(area={'cn': (465, 828, 510, 843)}, color={'cn': (241, 168, 163)}, button={'cn': (465, 828, 510, 843)}, file={'cn': './assets/cn/conversation/RANK_MAX_CHECK.png'})
 TEMPLATE_ANSWER_CHECK = Template(file={'cn': './assets/cn/conversation/TEMPLATE_ANSWER_CHECK.png'})
 TEMPLATE_ANSWER_TRUE = Template(file={'cn': './assets/cn/conversation/TEMPLATE_ANSWER_TRUE.png'})
