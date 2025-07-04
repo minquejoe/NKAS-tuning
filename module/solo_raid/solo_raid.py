@@ -111,7 +111,7 @@ class SoloRaid(UI):
                 click_timer.reached()
                 and self.appear(SOLO_RAID_CHECK, offset=10)
                 and self.appear(CHALLENGE_QUICKLY_DISABLE, threshold=10)
-                and self.appear_then_click(CHALLENGE, offset=10, interval=1)
+                and self.appear_then_click(CHALLENGE, threshold=10, interval=2)
             ):
                 click_timer.reset()
                 continue
