@@ -228,6 +228,7 @@ class Daily(UI):
                 and self.appear_then_click(GIFT_SEND, threshold=10, interval=1)
             ):
                 send_done = True
+                self.device.sleep(1)
                 click_timer.reset()
                 continue
 
@@ -274,7 +275,7 @@ class Daily(UI):
         self.receive()
         if self.config.Notification_WhenDailyTaskCompleted:
             handle_notify(
-                None,
+                self.config.Notification_OnePushConfig,
                 title='NKAS',
                 content='任务已全部完成！',
             )
