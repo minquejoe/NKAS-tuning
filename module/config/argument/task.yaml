@@ -74,6 +74,10 @@ SpecialArena:
   - Scheduler
   - OpponentSelection
 
+ChampionArena:
+  - Scheduler
+  - CheerStrategy
+
 Interception:
   - Scheduler
 
