@@ -81,6 +81,12 @@ class MissionPass(UI):
                 and not self.appear(REWARD_RED_POINT, offset=(-10, -50, 10, 50))
             ):
                 self.device.click_minitouch(1, 1)
+                self.device.sleep(0.5)
+                click_timer.reset()
+                continue
+
+            # 回到主页面
+            if self.appear(MAIN_CHECK, offset=10):
                 logger.info('Close misson pass')
                 break
 
@@ -130,21 +136,45 @@ class MissionPass(UI):
         while 1:
             find_dot = False
             # 每次都检查所有的pass
+            self.ensure_sroll((640, 200), (500, 200), speed=40, count=1, delay=0.5)
             for _ in range(passs):
                 self.device.screenshot()
-                # 检查红点
-                if click_timer.reached() and self.appear_then_click(DOT, offset=5):
+                if self.appear(DOT, offset=5):
                     find_dot = True
-                    self.receive()
                     while 1:
                         self.device.screenshot()
-                        if self.appear(MAIN_CHECK, offset=5, interval=0.3):
+                        # 进入某个pass
+                        if (
+                            click_timer.reached()
+                            and self.appear(MAIN_CHECK, offset=30)
+                            and self.appear_then_click(DOT, offset=5, interval=3)
+                        ):
+                            click_timer.reset()
+                            continue
+                        # pass弹窗
+                        if self.appear(PASS_CHECK, offset=30):
+                            logger.info('Open misson pass')
                             break
+
+                    # 领取pass
+                    self.receive()
                     self.config.PASS_LIMIT -= 1
                     logger.attr('PENDING MISSION PASS', self.config.PASS_LIMIT)
                     break
-                passs -= 1
-                self.ensure_sroll((640, 200), (500, 200), speed=40, count=1, delay=0.5)
+                else:
+                    tmp_image = self.device.image
+                    self.ensure_sroll((640, 200), (500, 200), speed=40, count=1, delay=0.5)
+                    # 比较banner是否变化
+                    while 1:
+                        self.device.screenshot()
+
+                        banner = Button(PASS_BANNER.area, None, button=PASS_BANNER.area)
+                        banner._match_init = True
+                        banner.image = crop(tmp_image, PASS_BANNER.area)
+                        if not self.appear(banner, offset=10, threshold=0.8):
+                            break
+                        else:
+                            continue
 
             # 没有红点
             if not find_dot:
