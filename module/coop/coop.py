@@ -4,6 +4,7 @@ from module.coop.assets import *
 from module.logger import logger
 from module.ocr.ocr import Digit
 from module.simulation_room.assets import AUTO_BURST, AUTO_SHOOT, END_FIGHTING
+from module.ui.page import page_main
 from module.ui.ui import UI
 
 
@@ -36,7 +37,7 @@ class Coop(UI):
 
     @property
     def dateline(self) -> bool:
-        result = self.appear(DATELINE_CHECK, offset=10)
+        result = self.appear(DATELINE_CHECK, offset=10, threshold=0.9)
         if result:
             logger.info('[Coop has expired]')
         return result
@@ -81,8 +82,13 @@ class Coop(UI):
 
                     # 回到第一个banner
                     if self.appear(banner_first, offset=10, threshold=0.8):
-                        logger.info('Not find coop in banner')
-                        raise CoopIsUnavailable
+                        if self.appear_then_click(COOP_BANNER_CHECK, offset=10, interval=2):
+                            logger.info('Find coop in banner')
+                            coop_enter = True
+                            break
+                        else:
+                            logger.info('Not find coop in banner')
+                            raise CoopIsUnavailable
 
                     if self.appear_then_click(COOP_BANNER_CHECK, offset=10, interval=2):
                         logger.info('Find coop in banner')
@@ -186,6 +192,7 @@ class Coop(UI):
 
     def run(self):
         try:
+            self.ui_ensure(page_main)
             self.ensure_into_coop()
         except CoopIsUnavailable:
             pass
