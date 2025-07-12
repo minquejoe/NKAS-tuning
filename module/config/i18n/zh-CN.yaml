@@ -48,8 +48,8 @@ Menu:
   Daily:
     name: 日常
     help: ""
-  Event:
-    name: 活动
+  Blablalink:
+    name: 妮游社
     help: ""
   Tools:
     name: 工具
@@ -101,8 +101,17 @@ Task:
   Daily:
     name: 日常
     help: ""
-  Blablalink:
-    name: 妮游社
+  BlaAuth:
+    name: Cookie
+    help: ""
+  BlaDaily:
+    name: 妮游社日常
+    help: ""
+  BlaCDK:
+    name: 妮游社CDK
+    help: ""
+  BlaExchange:
+    name: 妮游社兑换
     help: ""
   Interception:
     name: 异常拦截战
@@ -397,9 +406,6 @@ OpponentSelection:
 BlaDaily:
   _info:
     name: 每日任务
-    help: ""
-  Enable:
-    name: 启用该功能
     help: "社区每日签到、评论、点赞任务 https://www.blablalink.com"
   Immediately:
     name: 立即执行
@@ -429,10 +435,7 @@ BlaAuth:
 CDK:
   _info:
     name: CDK自动兑换
-    help: ""
-  Enable:
-    name: 启用该功能
-    help: "默认兑换blablalink中推荐的CDK"
+    help: "默认会兑换blablalink中推荐的CDK"
   Extra:
     name: 额外CDK来源
     help: "从第三方网站中获取最新的5个CDK，并自动兑换"
@@ -442,9 +445,6 @@ CDK:
 BlaExchange:
   _info:
     name: 金币兑换
-    help: ""
-  Enable:
-    name: 启用该功能
     help: ""
   Priority:
     name: 优先兑换

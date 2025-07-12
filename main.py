@@ -280,10 +280,20 @@ class NikkeAutoScript:
 
         Interception(config=self.config, device=self.device).run()
 
-    def blablalink(self):
+    def bla_daily(self):
         from module.blablalink.blablalink import Blablalink
 
-        Blablalink(config=self.config).run()
+        Blablalink(config=self.config).run('daily')
+        
+    def bla_cdk(self):
+        from module.blablalink.blablalink import Blablalink
+
+        Blablalink(config=self.config).run('cdk')
+
+    def bla_exchange(self):
+        from module.blablalink.blablalink import Blablalink
+
+        Blablalink(config=self.config).run('exchange')
 
     def tower_daemon(self):
         from module.daemon.tower_daemon import TowerDaemon

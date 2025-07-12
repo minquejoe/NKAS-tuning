@@ -84,8 +84,6 @@ class GeneratedConfig:
     BlaAuth_XCommonParams = None
 
     # Group `BlaDaily`
-    BlaDaily_Enable = False
-    BlaDaily_Immediately = False
     BlaDaily_PostID = None
     BlaDaily_CommentID = None
     BlaDaily_Points = None
@@ -94,12 +92,10 @@ class GeneratedConfig:
     Coop_MatchDifficulty = 'Normal'  # Normal
 
     # Group `CDK`
-    CDK_Enable = False
     CDK_Extra = False
     CDK_Source = 'https://gamewith.jp/nikke/article/show/371014'
 
     # Group `BlaExchange`
-    BlaExchange_Enable = False
     BlaExchange_Priority = 'Gem_×320 > Gem_×120 > Gem_×60 > Gem_×30 > Welcome_Gift_Core_Dust_×30'
 
     # Group `Event`

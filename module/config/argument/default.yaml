@@ -68,7 +68,15 @@ MonthlyGift:
   Scheduler:
     Enable: false
 
-Blablalink:
+BlaDaily:
+  Scheduler:
+    Enable: false
+
+BlaCDK:
+  Scheduler:
+    Enable: false
+
+BlaExchange:
   Scheduler:
     Enable: false
 

@@ -1,12 +1,13 @@
 import random
 import re
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from functools import cached_property
 from typing import Dict, Tuple
 
 import requests
 
+from module.config.utils import deep_get
 from module.exception import RequestHumanTakeover
 from module.logger import logger
 from module.ui.ui import UI
@@ -17,6 +18,25 @@ class MissingHeader(Exception):
 
 
 class Blablalink(UI):
+    diff = datetime.now(timezone.utc).astimezone().utcoffset() - timedelta(hours=8)
+    @cached_property
+    def next_month(self) -> datetime:
+        local_now = datetime.now()
+        next_month = local_now.month % 12 + 1
+        next_year = local_now.year + 1 if next_month == 1 else local_now.year
+        return (
+            local_now.replace(
+                year=next_year,
+                month=next_month,
+                day=1,
+                hour=4,
+                minute=0,
+                second=0,
+                microsecond=0,
+            )
+            + self.diff
+        )
+
     # 基本头部信息
     base_headers = {
         'accept': 'application/json, text/plain, */*',
@@ -45,13 +65,13 @@ class Blablalink(UI):
     def _prepare_config(self):
         """从配置中准备所有必要参数"""
         # 获取Cookie
-        cookie = self.config.BlaAuth_Cookie
+        cookie = deep_get(self.config.data, keys='BlaAuth.BlaAuth.Cookie')
         if not cookie:
             logger.error('Cookie not configured')
             raise RequestHumanTakeover('Cookie not set')
         self.common_headers['cookie'] = cookie
         # 获取x-common-params
-        xCommonParams = self.config.BlaAuth_XCommonParams
+        xCommonParams = deep_get(self.config.data, keys='BlaAuth.BlaAuth.XCommonParams')
         if not xCommonParams:
             logger.error('x-common-params not configured')
             raise RequestHumanTakeover('x-common-params not set')
@@ -73,7 +93,7 @@ class Blablalink(UI):
         self.common_headers['x-common-params'] = self.config.BlaAuth_XCommonParams
 
         # 获取user-agent
-        useragent = self.config.BlaAuth_UserAgent
+        useragent = deep_get(self.config.data, keys='BlaAuth.BlaAuth.UserAgent')
         if not useragent:
             logger.warning('User-agent configured')
             raise RequestHumanTakeover('User-agent not set')
@@ -621,6 +641,12 @@ class Blablalink(UI):
         """金币兑换功能"""
         logger.info('Starting point exchange task')
 
+        # 3. 根据优先级筛选需要兑换的奖励
+        priority_list = self.exchange_priority
+        if not priority_list:
+            logger.warning('No exchange priority configured')
+            return
+
         # 1. 获取用户信息
         role_info = self.get_role_info()
         if not role_info:
@@ -633,14 +659,8 @@ class Blablalink(UI):
             logger.warning('No commodities available for exchange')
             return
 
-        # 3. 根据优先级筛选需要兑换的奖励
-        priority_list = self.exchange_priority
-        if not priority_list:
-            logger.warning('No exchange priority configured')
-            return
-
         # 获取当前金币数量
-        current_points = self.config.BlaDaily_Points
+        current_points = deep_get(self.config.data, keys='BlaDaily.BlaDaily.Points')
         logger.info(f'Current points: {current_points}')
 
         # 4. 按优先级尝试兑换
@@ -680,14 +700,16 @@ class Blablalink(UI):
             # 执行兑换
             if self.perform_exchange(exchange_id, commodity_price, role_info):
                 logger.info(f'Successfully exchanged {priority}')
-                # 更新金币数量
                 current_points -= commodity_price
-                self.config.BlaDaily_Points = current_points
             else:
                 logger.warning(f'Failed to exchange {priority}')
 
             # 每次兑换后暂停一会儿
             time.sleep(random.uniform(1.0, 3.0))
+
+        # 更新金币数量
+        self.config.modified['BlaDaily.BlaDaily.Points'] = current_points
+        self.config.update()
 
     def get_role_info(self) -> Dict:
         """获取用户角色信息"""
@@ -793,18 +815,20 @@ class Blablalink(UI):
             logger.error(f'Exception when performing exchange: {str(e)}')
             return False
 
-    def run(self):
+    def run(self, task):
         try:
             local_now = datetime.now()
             target_time = local_now.replace(hour=8, minute=0, second=0, microsecond=0)
-            if local_now > target_time or self.config.BlaDaily_Immediately:
-                if self.config.BlaDaily_Enable:
+            if local_now > target_time:
+                if task == 'daily':
                     self.daily()
-                if self.config.CDK_Enable:
+                    self.config.task_delay(server_update=True)
+                if task == 'cdk':
                     self.cdk()
-                if self.config.BlaExchange_Enable:
+                    self.config.task_delay(server_update=True)
+                if task == 'exchange':
                     self.exchange()
-                self.config.task_delay(server_update=True)
+                    self.config.task_delay(target=self.next_month)
             else:
                 random_minutes = random.randint(5, 30)
                 target_time = target_time + timedelta(minutes=random_minutes)

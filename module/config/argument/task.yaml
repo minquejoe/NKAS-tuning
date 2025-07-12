@@ -25,12 +25,6 @@ Mailbox:
   - Scheduler
 
 # ==================== Daily ====================
-Blablalink:
-  - Scheduler
-  - BlaAuth
-  - BlaDaily
-  - CDK
-  - BlaExchange
 
 DailyRecruit:
   - Scheduler
@@ -97,6 +91,23 @@ Event2:
 SoloRaid:
   - Scheduler
   - SoloRaid
+
+# ==================== Blablalink ====================
+
+BlaAuth:
+  - BlaAuth
+
+BlaDaily:
+  - Scheduler
+  - BlaDaily
+
+BlaCDK:
+  - Scheduler
+  - CDK
+
+BlaExchange:
+  - Scheduler
+  - BlaExchange
 
 # ==================== Tools ====================
 

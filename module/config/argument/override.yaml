@@ -25,7 +25,7 @@ Commission:
     SuccessInterval: 720-720
     FailureInterval: 720-720
 
-Blablalink:
+BlaCDK:
   Scheduler:
     ServerUpdate: 04:00, 16:00
 

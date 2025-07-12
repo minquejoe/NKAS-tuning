@@ -330,115 +330,6 @@
       }
     }
   },
-  "Blablalink": {
-    "Scheduler": {
-      "Enable": {
-        "type": "checkbox",
-        "value": false,
-        "option": [
-          true,
-          false
-        ]
-      },
-      "NextRun": {
-        "type": "datetime",
-        "value": "1989-12-27 00:00:00",
-        "validate": "datetime"
-      },
-      "Command": {
-        "type": "input",
-        "value": "Blablalink",
-        "display": "hide"
-      },
-      "SuccessInterval": {
-        "type": "input",
-        "value": 0,
-        "display": "hide"
-      },
-      "FailureInterval": {
-        "type": "input",
-        "value": 120,
-        "display": "hide"
-      },
-      "ServerUpdate": {
-        "type": "input",
-        "value": "04:00, 16:00",
-        "display": "hide"
-      }
-    },
-    "BlaAuth": {
-      "UserAgent": {
-        "type": "textarea",
-        "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
-      },
-      "Cookie": {
-        "type": "textarea",
-        "value": ""
-      },
-      "XCommonParams": {
-        "type": "textarea",
-        "value": ""
-      }
-    },
-    "BlaDaily": {
-      "Enable": {
-        "type": "checkbox",
-        "value": false
-      },
-      "Immediately": {
-        "type": "checkbox",
-        "value": false
-      },
-      "PostID": {
-        "type": "input",
-        "value": "",
-        "valuetype": "str"
-      },
-      "CommentID": {
-        "type": "input",
-        "value": "",
-        "valuetype": "str"
-      },
-      "Points": {
-        "type": "input",
-        "value": "",
-        "display": "disabled"
-      }
-    },
-    "CDK": {
-      "Enable": {
-        "type": "checkbox",
-        "value": false
-      },
-      "Extra": {
-        "type": "checkbox",
-        "value": false
-      },
-      "Source": {
-        "type": "textarea",
-        "value": "https://gamewith.jp/nikke/article/show/371014",
-        "display": "disabled"
-      }
-    },
-    "BlaExchange": {
-      "Enable": {
-        "type": "checkbox",
-        "value": false
-      },
-      "Priority": {
-        "type": "textarea",
-        "value": "Gem_×320 > Gem_×120 > Gem_×60 > Gem_×30 > Welcome_Gift_Core_Dust_×30"
-      }
-    },
-    "Storage": {
-      "Storage": {
-        "type": "storage",
-        "value": {},
-        "valuetype": "ignore",
-        "display": "disabled"
-      }
-    }
-  },
   "DailyRecruit": {
     "Scheduler": {
       "Enable": {
@@ -1452,6 +1343,199 @@
         "type": "input",
         "value": "04:00",
         "display": "hide"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "BlaAuth": {
+    "BlaAuth": {
+      "UserAgent": {
+        "type": "textarea",
+        "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+      },
+      "Cookie": {
+        "type": "textarea",
+        "value": ""
+      },
+      "XCommonParams": {
+        "type": "textarea",
+        "value": ""
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "BlaDaily": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "BlaDaily",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "BlaDaily": {
+      "PostID": {
+        "type": "input",
+        "value": "",
+        "valuetype": "str"
+      },
+      "CommentID": {
+        "type": "input",
+        "value": "",
+        "valuetype": "str"
+      },
+      "Points": {
+        "type": "input",
+        "value": "",
+        "display": "disabled"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "BlaCDK": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "BlaCDK",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00, 16:00",
+        "display": "hide"
+      }
+    },
+    "CDK": {
+      "Extra": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Source": {
+        "type": "textarea",
+        "value": "https://gamewith.jp/nikke/article/show/371014",
+        "display": "disabled"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "BlaExchange": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "BlaExchange",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "BlaExchange": {
+      "Priority": {
+        "type": "textarea",
+        "value": "Gem_×320 > Gem_×120 > Gem_×60 > Gem_×30 > Welcome_Gift_Core_Dust_×30"
       }
     },
     "Storage": {
