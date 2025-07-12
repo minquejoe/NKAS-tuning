@@ -375,8 +375,8 @@
         "type": "textarea",
         "value": ""
       },
-      "OpenID": {
-        "type": "input",
+      "XCommonParams": {
+        "type": "textarea",
         "value": ""
       }
     },
@@ -407,6 +407,10 @@
     },
     "CDK": {
       "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Extra": {
         "type": "checkbox",
         "value": false
       },

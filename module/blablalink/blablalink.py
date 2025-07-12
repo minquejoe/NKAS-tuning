@@ -50,26 +50,28 @@ class Blablalink(UI):
             logger.error('Cookie not configured')
             raise RequestHumanTakeover('Cookie not set')
         self.common_headers['cookie'] = cookie
-        # 获取OpenID
-        openid = self.config.BlaAuth_OpenID
-        if not openid:
-            logger.error('OpenID not configured')
-            raise RequestHumanTakeover('OpenID not set')
+        # 获取x-common-params
+        xCommonParams = self.config.BlaAuth_XCommonParams
+        if not xCommonParams:
+            logger.error('x-common-params not configured')
+            raise RequestHumanTakeover('x-common-params not set')
 
         # 构建x-common-params
-        common_params = {
-            'game_id': '16',
-            'area_id': 'global',
-            'source': 'pc_web',
-            'intl_game_id': '29080',
-            'language': 'zh-TW',
-            'env': 'prod',
-            'data_statistics_scene': 'outer',
-            'data_statistics_page_id': f'https://www.blablalink.com/user?openid={openid}',
-            'data_statistics_client_type': 'pc_web',
-            'data_statistics_lang': 'zh-TW',
-        }
-        self.common_headers['x-common-params'] = json.dumps(common_params, ensure_ascii=False)
+        # common_params = {
+        #     'game_id': '16',
+        #     'area_id': 'global',
+        #     'source': 'pc_web',
+        #     'intl_game_id': '29080',
+        #     'language': 'zh-TW',
+        #     'env': 'prod',
+        #     'data_statistics_scene': 'outer',
+        #     'data_statistics_page_id': f'https://www.blablalink.com/user?openid={openid}',
+        #     'data_statistics_client_type': 'pc_web',
+        #     'data_statistics_lang': 'zh-TW',
+        # }
+        # self.common_headers['x-common-params'] = json.dumps(common_params, ensure_ascii=False)
+        self.common_headers['x-common-params'] = self.config.BlaAuth_XCommonParams
+
         # 获取user-agent
         useragent = self.config.BlaAuth_UserAgent
         if not useragent:
@@ -436,12 +438,68 @@ class Blablalink(UI):
 
     def cdk(self):
         """CDK兑换功能"""
-        sources = self.config.CDK_Source
-        if not sources:
-            logger.info('No CDK sources configured')
+        # 1. 从官方接口获取未兑换的CDK列表
+        official_cdks = self.get_official_cdks()
+        unredeemed_cdks = official_cdks.copy()
+
+        # 2. 如果开启额外来源，添加来源网站中的CDK
+        if self.config.CDK_Extra:
+            sources = self.config.CDK_Source
+            if sources:
+                redeemed_cdks = self.get_cdk_redemption_history()
+                
+                # 提取外部CDK并过滤已兑换的
+                extra_cdks = self.extract_external_cdks(sources)
+                for cdk in extra_cdks:
+                    if cdk not in redeemed_cdks and cdk not in unredeemed_cdks:
+                        unredeemed_cdks.append(cdk)
+            else:
+                logger.warning('CDK_Extra enabled but no sources configured')
+        else:
+            logger.info('CDK_Extra disabled, only using official CDKs')
+
+        if not unredeemed_cdks:
+            logger.info('All CDK candidates have already been redeemed')
             return
 
-        # 1. 解析所有来源网址
+        logger.info(f'Found {len(unredeemed_cdks)} unredeemed CDK candidates')
+
+        # 3. 尝试兑换未使用的CDK
+        success_count = 0
+        for cdk in unredeemed_cdks:
+            if self.redeem_cdk(cdk):
+                success_count += 1
+            time.sleep(random.uniform(1.0, 3.0))
+
+        logger.info(f'CDK redemption completed: {success_count}/{len(unredeemed_cdks)} successful')
+
+    def get_official_cdks(self) -> list:
+        """从官方接口获取未兑换的CDK列表"""
+        try:
+            result = self._request_with_retry(
+                'POST',
+                'https://api.blablalink.com/api/game/proxy/Game/GetCdkRedemption',
+                json={}
+            )
+
+            if result.get('code') != 0:
+                logger.error(f'Failed to get official CDKs: {result.get("msg", "Unknown error")}')
+                return []
+
+            cdks = []
+            for item in result.get('data', {}).get('cdk_redemption_list', []):
+                # 只添加未兑换的CDK (status=0)
+                if item.get('status') == 0:
+                    cdks.append(item['cdk'])
+            
+            logger.info(f'Retrieved {len(cdks)} official CDKs (all unredeemed)')
+            return cdks
+        except Exception as e:
+            logger.error(f'Exception when getting official CDKs: {str(e)}')
+            return []
+
+    def extract_external_cdks(self, sources: str) -> list:
+        """从外部来源提取CDK"""
         all_cdks = []
         for url in sources.splitlines():
             url = url.strip()
@@ -467,28 +525,7 @@ class Blablalink(UI):
             except Exception as e:
                 logger.error(f'Failed to process CDK source {url}: {str(e)}')
 
-        if not all_cdks:
-            logger.warning('No CDK candidates found in any sources')
-            return
-
-        # 2. 获取兑换历史记录
-        redeemed_cdks = self.get_cdk_redemption_history()
-        unredeemed_cdks = [cdk for cdk in all_cdks if cdk not in redeemed_cdks]
-
-        if not unredeemed_cdks:
-            logger.info('All CDK candidates have already been redeemed')
-            return
-
-        logger.info(f'Found {len(unredeemed_cdks)} unredeemed CDK candidates')
-
-        # 3. 尝试兑换未使用的CDK
-        success_count = 0
-        for cdk in unredeemed_cdks:
-            if self.redeem_cdk(cdk):
-                success_count += 1
-            time.sleep(random.uniform(1.0, 3.0))  # 随机延迟防止请求过快
-
-        logger.info(f'CDK redemption completed: {success_count}/{len(unredeemed_cdks)} successful')
+        return all_cdks
 
     def get_cdk_redemption_history(self) -> list:
         """获取CDK兑换历史记录"""

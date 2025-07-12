@@ -423,18 +423,21 @@ BlaAuth:
   Cookie:
     name: Cookie
     help: ""
-  OpenID:
-    name: OpenID
-    help: "个人OpenID，可在F12中的x-common-params查看"
+  XCommonParams:
+    name: XCommonParams
+    help: "请求header中的x-common-params参数，需要包含openid"
 CDK:
   _info:
     name: CDK自动兑换
     help: ""
   Enable:
     name: 启用该功能
-    help: "从来源网站中获取最新的10个CDK，并自动兑换 https://www.blablalink.com/cdk"
+    help: "默认兑换blablalink中推荐的CDK"
+  Extra:
+    name: 额外CDK来源
+    help: "从第三方网站中获取最新的5个CDK，并自动兑换"
   Source:
-    name: CDK来源
+    name: CDK额外来源
     help: ""
 TowerDaemon:
   _info:

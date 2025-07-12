@@ -81,7 +81,7 @@ class GeneratedConfig:
     # Group `BlaAuth`
     BlaAuth_UserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36'
     BlaAuth_Cookie = None
-    BlaAuth_OpenID = None
+    BlaAuth_XCommonParams = None
 
     # Group `BlaDaily`
     BlaDaily_Enable = False
@@ -95,6 +95,7 @@ class GeneratedConfig:
 
     # Group `CDK`
     CDK_Enable = False
+    CDK_Extra = False
     CDK_Source = 'https://gamewith.jp/nikke/article/show/371014'
 
     # Group `Event`

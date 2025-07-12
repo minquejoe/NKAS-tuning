@@ -97,7 +97,9 @@ BlaAuth:
   Cookie:
     value: ''
     type: textarea
-  OpenID: ''
+  XCommonParams:
+    value: ''
+    type: textarea
 BlaDaily:
   Enable: false
   Immediately: false
@@ -116,6 +118,7 @@ Coop:
     option: [ 'Normal' ]
 CDK:
   Enable: false
+  Extra: false
   Source:
     value: 'https://gamewith.jp/nikke/article/show/371014'
     type: textarea
