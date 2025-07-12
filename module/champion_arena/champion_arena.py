@@ -142,7 +142,8 @@ class ChampionArena(UI, ArenaBase):
             else:
                 self.device.screenshot()
 
-            if self.appear(NEXT_SEASON, offset=10):
+            if self.appear(NEXT_SEASON, offset=(30, 30)):
+                logger.warning('Champion arena disabled')
                 raise ChampionArenaIsUnavailable
 
             if click_timer.reached() and self.appear_then_click(ARENA_GOTO_CHAMPION_ARENA, offset=30, interval=3):
