@@ -1,8 +1,8 @@
-import json
 import random
 import re
 import time
 from datetime import datetime, timedelta
+from functools import cached_property
 from typing import Dict, Tuple
 
 import requests
@@ -80,6 +80,31 @@ class Blablalink(UI):
         self.common_headers['user-agent'] = useragent
 
         logger.info('Headers build successfully')
+
+    @cached_property
+    def exchange_priority(self) -> list:
+        priority = re.sub(r'\s+', '', self.config.BlaExchange_Priority).split('>')
+        return priority
+
+    EXCHANGES = {
+        'Gem_×320': '珠寶 ×320',
+        'Welcome_Gift_Core_Dust_×30': '指揮官見面禮：芯塵 ×30',
+        'Gem_×30': '珠寶 ×30',
+        'Skill_Manual_I_×5': '技能手冊 I ×5',
+        'Ultra_Boost_Module_×5': '模組高級推進器 ×5',
+        'Code_Manual_Selection_Box_×5': '代碼手冊選擇寶箱 ×5',
+        'Gem_×60': '珠寶 ×60',
+        'Mid-Quality_Mold_×3': '中品質鑄模 ×3',
+        'Credit_Case_(1H)_x9': '信用點盒(1H) x9',
+        'Core_Dust_Case_(1H)_×3': '芯塵盒 (1H) ×3',
+        'Gem_×120': '珠寶 ×120',
+        'Mid-Quality_Mold_×8': '中品質鑄模 ×8',
+        'Battle_Data_Set_Case_(1H)_×6': '戰鬥數據輯盒 (1H) ×6',
+        'Core_Dust_Case_(1H)_×6': '芯塵盒 (1H) ×6',
+        'Skill_Manual_I_×30': '技能手冊 I ×30',
+        'Ultra_Boost_Module_×30': '模組高級推進器 ×30',
+        'Code_Manual_Selection_Box_×30': '代碼手冊選擇寶箱 ×30',
+    }
 
     def _request_with_retry(self, method: str, url: str, max_retries: int = 3, **kwargs) -> Dict:
         """带重试机制的请求封装"""
@@ -447,7 +472,7 @@ class Blablalink(UI):
             sources = self.config.CDK_Source
             if sources:
                 redeemed_cdks = self.get_cdk_redemption_history()
-                
+
                 # 提取外部CDK并过滤已兑换的
                 extra_cdks = self.extract_external_cdks(sources)
                 for cdk in extra_cdks:
@@ -477,9 +502,7 @@ class Blablalink(UI):
         """从官方接口获取未兑换的CDK列表"""
         try:
             result = self._request_with_retry(
-                'POST',
-                'https://api.blablalink.com/api/game/proxy/Game/GetCdkRedemption',
-                json={}
+                'POST', 'https://api.blablalink.com/api/game/proxy/Game/GetCdkRedemption', json={}
             )
 
             if result.get('code') != 0:
@@ -491,7 +514,7 @@ class Blablalink(UI):
                 # 只添加未兑换的CDK (status=0)
                 if item.get('status') == 0:
                     cdks.append(item['cdk'])
-            
+
             logger.info(f'Retrieved {len(cdks)} official CDKs (all unredeemed)')
             return cdks
         except Exception as e:
@@ -594,6 +617,182 @@ class Blablalink(UI):
     #     # 实现其他网站的CDK提取逻辑
     #     return []
 
+    def exchange(self):
+        """金币兑换功能"""
+        logger.info('Starting point exchange task')
+
+        # 1. 获取用户信息
+        role_info = self.get_role_info()
+        if not role_info:
+            logger.error('Failed to get role info, cannot proceed with exchange')
+            return
+
+        # 2. 分页获取奖励列表
+        all_commodities = self.get_all_commodities()
+        if not all_commodities:
+            logger.warning('No commodities available for exchange')
+            return
+
+        # 3. 根据优先级筛选需要兑换的奖励
+        priority_list = self.exchange_priority
+        if not priority_list:
+            logger.warning('No exchange priority configured')
+            return
+
+        # 获取当前金币数量
+        current_points = self.config.BlaDaily_Points
+        logger.info(f'Current points: {current_points}')
+
+        # 4. 按优先级尝试兑换
+        for priority in priority_list:
+            logger.info(f'Prepare exchange {priority}')
+            # 查找匹配的商品
+            target_commodity = None
+            for commodity in all_commodities:
+                if self.EXCHANGES[priority] in commodity['commodity_name']:
+                    target_commodity = commodity
+                    break
+
+            if not target_commodity:
+                logger.warning(f'Commodity not found for priority: {priority}')
+                continue
+
+            # 检查兑换限制
+            limit_num = target_commodity['account_exchange_limit']['limit_num']
+            has_exchange_num = target_commodity['has_exchange_num']
+
+            if has_exchange_num >= limit_num:
+                logger.info(f'Commodity {priority} already reached exchange limit ({has_exchange_num}/{limit_num})')
+                continue
+
+            # 检查金币是否足够
+            commodity_price = target_commodity['commodity_price']
+            if current_points < commodity_price:
+                logger.info(f'Not enough points for {priority} (need {commodity_price}, have {current_points})')
+                continue
+
+            # 检查商品是否可以兑换
+            exchange_id = target_commodity['exchange_commodity_id']
+            if not self.check_can_exchange(exchange_id):
+                logger.warning(f'Cannot exchange commodity: {priority}')
+                continue
+
+            # 执行兑换
+            if self.perform_exchange(exchange_id, commodity_price, role_info):
+                logger.info(f'Successfully exchanged {priority}')
+                # 更新金币数量
+                current_points -= commodity_price
+                self.config.BlaDaily_Points = current_points
+            else:
+                logger.warning(f'Failed to exchange {priority}')
+
+            # 每次兑换后暂停一会儿
+            time.sleep(random.uniform(1.0, 3.0))
+
+    def get_role_info(self) -> Dict:
+        """获取用户角色信息"""
+        try:
+            result = self._request_with_retry(
+                'POST', 'https://api.blablalink.com/api/game/proxy/Game/GetSavedRoleInfo', json={}
+            )
+
+            if result.get('code') == 0 and result.get('data', {}).get('has_saved_role_info'):
+                role_info = result['data']['role_info']
+                logger.info(f'Got role info: {role_info["role_name"]}')
+                return role_info
+            else:
+                logger.error(f'Failed to get role info: {result.get("msg", "Unknown error")}')
+                return {}
+        except Exception as e:
+            logger.error(f'Exception when getting role info: {str(e)}')
+            return {}
+
+    def get_all_commodities(self) -> list:
+        """分页获取所有商品列表"""
+        commodities = []
+        page_num = 1
+        page_size = 10
+
+        while True:
+            try:
+                result = self._request_with_retry(
+                    'POST',
+                    'https://api.blablalink.com/api/lip/proxy/commodity/Commodity/GetUserCommodityList',
+                    json={'page_num': page_num, 'page_size': page_size, 'game_id_list': ['29080'], 'is_bind_lip': True},
+                )
+
+                if result.get('code') != 0:
+                    logger.error(f'Failed to get commodities page {page_num}: {result.get("msg", "Unknown error")}')
+                    break
+
+                # 添加当前页的商品
+                page_commodities = result.get('data', {}).get('commodity_list', [])
+                commodities.extend(page_commodities)
+
+                # 计算总页数
+                total_num = result.get('data', {}).get('total_num', 0)
+                total_pages = (total_num + page_size - 1) // page_size
+
+                logger.info(f'Got page {page_num}/{total_pages} with {len(page_commodities)} commodities')
+
+                # 检查是否还有下一页
+                if page_num >= total_pages:
+                    break
+
+                page_num += 1
+                time.sleep(random.uniform(1.0, 2.0))  # 页面间延迟
+
+            except Exception as e:
+                logger.error(f'Exception when getting commodities: {str(e)}')
+                break
+
+        logger.info(f'Total commodities: {len(commodities)}')
+        return commodities
+
+    def check_can_exchange(self, exchange_id: str) -> bool:
+        """检查商品是否可以兑换"""
+        try:
+            result = self._request_with_retry(
+                'POST',
+                'https://api.blablalink.com/api/lip/proxy/commodity/Commodity/CheckUserCanExchange',
+                json={'exchange_commodity_id': exchange_id},
+            )
+
+            if result.get('code') == 0:
+                can_exchange = result.get('data', {}).get('can', False)
+                logger.info(f'Exchange check for {exchange_id}: {"can" if can_exchange else "cannot"}')
+                return can_exchange
+            else:
+                logger.warning(f'Exchange check failed: {result.get("msg", "Unknown error")}')
+                return False
+        except Exception as e:
+            logger.error(f'Exception when checking exchange: {str(e)}')
+            return False
+
+    def perform_exchange(self, exchange_id: str, price: int, role_info: Dict) -> bool:
+        """执行兑换操作"""
+        try:
+            result = self._request_with_retry(
+                'POST',
+                'https://api.blablalink.com/api/lip/proxy/commodity/Commodity/ExchangeCommodity',
+                json={
+                    'exchange_commodity_id': exchange_id,
+                    'exchange_commodity_price': price,
+                    'role_info': role_info,
+                    'save_role': False,
+                },
+            )
+
+            if result.get('code') == 0:
+                logger.info(f'Exchange successful for {exchange_id}')
+                return True
+            else:
+                logger.warning(f'Exchange failed: {result.get("msg", "Unknown error")}')
+                return False
+        except Exception as e:
+            logger.error(f'Exception when performing exchange: {str(e)}')
+            return False
+
     def run(self):
         try:
             local_now = datetime.now()
@@ -603,6 +802,8 @@ class Blablalink(UI):
                     self.daily()
                 if self.config.CDK_Enable:
                     self.cdk()
+                if self.config.BlaExchange_Enable:
+                    self.exchange()
                 self.config.task_delay(server_update=True)
             else:
                 random_minutes = random.randint(5, 30)

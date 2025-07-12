@@ -30,6 +30,7 @@ Blablalink:
   - BlaAuth
   - BlaDaily
   - CDK
+  - BlaExchange
 
 DailyRecruit:
   - Scheduler

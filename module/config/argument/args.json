@@ -420,6 +420,16 @@
         "display": "disabled"
       }
     },
+    "BlaExchange": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Priority": {
+        "type": "textarea",
+        "value": "Gem_×320 > Gem_×120 > Gem_×60 > Gem_×30 > Welcome_Gift_Core_Dust_×30"
+      }
+    },
     "Storage": {
       "Storage": {
         "type": "storage",

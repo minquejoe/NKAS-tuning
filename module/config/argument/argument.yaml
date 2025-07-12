@@ -123,6 +123,11 @@ CDK:
     value: 'https://gamewith.jp/nikke/article/show/371014'
     type: textarea
     display: disabled
+BlaExchange:
+  Enable: false
+  Priority:
+    value: 'Gem_×320 > Gem_×120 > Gem_×60 > Gem_×30 > Welcome_Gift_Core_Dust_×30'
+    type: textarea
 Event:
   Event:
     value: ''

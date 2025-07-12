@@ -439,6 +439,35 @@ CDK:
   Source:
     name: CDK额外来源
     help: ""
+BlaExchange:
+  _info:
+    name: 金币兑换
+    help: ""
+  Enable:
+    name: 启用该功能
+    help: ""
+  Priority:
+    name: 优先兑换
+    help:
+      "不填写则不购买 \n例如: 'Gem_×320 > Welcome_Gift_Core_Dust_×30'，用一个大于号分开，默认只换钻石：\n
+        Gem_×320: 珠寶 ×320\n
+        Welcome_Gift_Core_Dust_×30: 指揮官見面禮：芯塵 ×30\n
+        Gem_×30: 珠寶 ×30\n
+        Skill_Manual_I_×5: 技能手冊 I ×5\n
+        Ultra_Boost_Module_×5: 模組高級推進器 ×5\n
+        Code_Manual_Selection_Box_×5: 代碼手冊選擇寶箱 ×5\n
+        Gem_×60: 珠寶 ×60\n
+        Mid-Quality_Mold_×3: 中品質鑄模 ×3\n
+        Credit_Case_(1H)_x9: 信用點盒(1H) x9\n
+        Core_Dust_Case_(1H)_×3: 芯塵盒 (1H) ×3\n
+        Gem_×120: 珠寶 ×120\n
+        Mid-Quality_Mold_×8: 中品質鑄模 ×8\n
+        Battle_Data_Set_Case_(1H)_×6: 戰鬥數據輯盒 (1H) ×6\n
+        Core_Dust_Case_(1H)_×6: 芯塵盒 (1H) ×6\n
+        Skill_Manual_I_×30: 技能手冊 I ×30\n
+        Ultra_Boost_Module_×30: 模組高級推進器 ×30\n
+        Code_Manual_Selection_Box_×30: 代碼手冊選擇寶箱 ×30\n
+      "
 TowerDaemon:
   _info:
     name: 自动爬塔

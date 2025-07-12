@@ -98,6 +98,10 @@ class GeneratedConfig:
     CDK_Extra = False
     CDK_Source = 'https://gamewith.jp/nikke/article/show/371014'
 
+    # Group `BlaExchange`
+    BlaExchange_Enable = False
+    BlaExchange_Priority = 'Gem_×320 > Gem_×120 > Gem_×60 > Gem_×30 > Welcome_Gift_Core_Dust_×30'
+
     # Group `Event`
     Event_Event = ''  # event_20250703s, event_20250703l, event_20250612
     Event_LoginStamp = True
