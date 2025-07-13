@@ -3,7 +3,7 @@ from module.logger import logger
 from module.ocr.ocr import Digit
 from module.simulation_room.assets import AUTO_BURST, AUTO_SHOOT, END_FIGHTING
 from module.solo_raid.assets import *
-from module.ui.assets import FIGHT_QUICKLY_CHECK, FIGHT_QUICKLY_MAX, MAIN_CHECK
+from module.ui.assets import FIGHT_QUICKLY_CHECK, FIGHT_QUICKLY_MAX, FIGHT_QUICKLY_MIN, MAIN_CHECK
 from module.ui.page import page_main
 from module.ui.ui import UI
 
@@ -102,7 +102,7 @@ class SoloRaid(UI):
             if (
                 click_timer.reached()
                 and self.appear(FIGHT_QUICKLY_CHECK, offset=10)
-                and self.appear_then_click(FIGHT_QUICKLY_MAX, threshold=10, interval=1)
+                and self.appear_then_click(FIGHT_QUICKLY_MAX, offset=30, threshold=0.99, interval=1)
             ):
                 click_timer.reset()
                 continue
@@ -111,7 +111,7 @@ class SoloRaid(UI):
             if (
                 click_timer.reached()
                 and self.appear(FIGHT_QUICKLY_CHECK, offset=10)
-                and not self.appear(FIGHT_QUICKLY_MAX, threshold=10)
+                and self.appear(FIGHT_QUICKLY_MIN, offset=30, threshold=0.99)
                 and self.appear_then_click(CHALLENGE_QUICKLY_CONFIRM, offset=10, interval=1)
             ):
                 click_timer.reset()
