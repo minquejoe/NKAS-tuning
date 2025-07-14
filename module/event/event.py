@@ -704,7 +704,7 @@ class Event(UI):
 
     def find_and_fight_stage(self, open_story):
         click_timer = Timer(0.3)
-        if self.appear(self.STORY_STAGE_11(open_story), offset=10):
+        if self.appear(self.STORY_STAGE_11(open_story), offset=10, static=False):
             while 1:
                 self.device.screenshot()
 
@@ -715,7 +715,7 @@ class Event(UI):
 
                 # 关卡检查
                 if click_timer.reached() and self.appear_then_click(
-                    self.STORY_STAGE_11(open_story), offset=10, interval=1
+                    self.STORY_STAGE_11(open_story), offset=10, interval=1, static=False
                 ):
                     # self.device.sleep(1)
                     click_timer.reset()
