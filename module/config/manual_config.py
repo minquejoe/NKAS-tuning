@@ -79,16 +79,22 @@ class ManualConfig:
 
     EVENTS = [
         {
-            "event_id": "event_20250703s",
-            "event_name": "OVER THE HORIZON",
-            # small evnet
-            "event_type": 2
+            "event_id": "event_20250716",
+            "event_name": "BOOM! THE GHOST!",
+            # large evnet
+            "event_type": 1
         },
         {
             "event_id": "event_20250703l",
             "event_name": "OuteR: Automata",
             # large evnet
             "event_type": 1
+        },
+        {
+            "event_id": "event_20250703s",
+            "event_name": "OVER THE HORIZON",
+            # small evnet
+            "event_type": 2
         },
         {
             "event_id": "event_20250612",

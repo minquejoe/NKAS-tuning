@@ -110,7 +110,7 @@ class Event(UI):
 
             if (
                 click_timer.reached()
-                and self.appear(self.event_assets.EVENT_CHECK, offset=10)
+                and self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30))
                 and self.appear_then_click(self.event_assets.LOGIN_STAMP, offset=10, interval=5)
             ):
                 click_timer.reset()
@@ -128,7 +128,7 @@ class Event(UI):
                 self.device.screenshot()
 
             # 返回活动页面
-            if self.appear(self.event_assets.EVENT_CHECK, offset=10):
+            if self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30)):
                 break
 
             # 返回
@@ -182,7 +182,7 @@ class Event(UI):
 
             if (
                 click_timer.reached()
-                and self.appear(self.event_assets.EVENT_CHECK, offset=10)
+                and self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30))
                 and self.appear_then_click(self.event_assets.CHALLENGE, offset=10, interval=5)
             ):
                 click_timer.reset()
@@ -278,7 +278,7 @@ class Event(UI):
                 self.device.screenshot()
 
             # 返回活动页面
-            if self.appear(self.event_assets.EVENT_CHECK, offset=10):
+            if self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30)):
                 break
 
             # 返回
@@ -306,7 +306,7 @@ class Event(UI):
 
             if (
                 click_timer.reached()
-                and self.appear(self.event_assets.EVENT_CHECK, offset=10)
+                and self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30))
                 and self.appear_then_click(self.event_assets.REWARD, offset=10, interval=1)
             ):
                 click_timer.reset()
@@ -321,7 +321,7 @@ class Event(UI):
             self.device.screenshot()
 
             # 返回活动页面
-            if self.appear(self.event_assets.EVENT_CHECK, offset=10):
+            if self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30)):
                 break
 
             # 关闭
@@ -388,7 +388,7 @@ class Event(UI):
 
             if (
                 click_timer.reached()
-                and self.appear(self.event_assets.EVENT_CHECK, offset=10)
+                and self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30))
                 and self.appear_then_click(self.event_assets.REWARD, offset=10, interval=1)
             ):
                 click_timer.reset()
@@ -405,7 +405,7 @@ class Event(UI):
                 self.device.screenshot()
 
             # 返回活动页面
-            if self.appear(self.event_assets.EVENT_CHECK, offset=10):
+            if self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30)):
                 break
 
             # 关闭
@@ -462,7 +462,7 @@ class Event(UI):
                         self.device.screenshot()
 
                     if click_timer.reached() and self.appear_then_click(
-                        self.event_assets.EVENT_GOTO_STORY_1, offset=10, interval=1
+                        self.event_assets.EVENT_GOTO_STORY_1, offset=10, interval=5
                     ):
                         click_timer.reset()
                         continue
@@ -586,7 +586,7 @@ class Event(UI):
             else:
                 self.device.screenshot()
 
-            if self.appear(self.event_assets.EVENT_CHECK, offset=10):
+            if self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30)):
                 break
 
             if click_timer.reached() and self.appear_then_click(GOTO_BACK, offset=10, interval=2):
@@ -780,7 +780,7 @@ class Event(UI):
 
             if (
                 click_timer.reached()
-                and self.appear(self.event_assets.EVENT_CHECK, offset=10)
+                and self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30))
                 and self.appear_then_click(self.event_assets.COOP_ENTER, offset=10, interval=5)
             ):
                 click_timer.reset()
@@ -837,7 +837,7 @@ class Event(UI):
         while 1:
             self.device.screenshot()
 
-            if self.appear(self.event_assets.EVENT_CHECK, offset=10):
+            if self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30)):
                 break
 
             if click_timer.reached() and self.appear_then_click(GOTO_BACK, offset=10, interval=2):
@@ -859,7 +859,7 @@ class Event(UI):
             else:
                 self.device.screenshot()
 
-            if self.appear(self.event_assets.EVENT_CHECK, offset=10):
+            if self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30)):
                 break
 
             if (
