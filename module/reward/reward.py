@@ -157,7 +157,7 @@ class Reward(UI):
             else:
                 self.device.screenshot()
 
-            if self.appear(RANKING_LOAD_CHECK, offset=(5, 5), threshold=0.95):
+            if self.appear(RANKING_LOAD_CHECK, offset=10):
                 break
 
         scroll_count = 0
