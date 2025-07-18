@@ -18,3 +18,4 @@ CHEER_SELECT_2 = Button(area={'cn': (505, 639, 542, 657)}, color={'cn': (130, 12
 NEXT_SEASON = Button(area={'cn': (475, 827, 553, 841)}, color={'cn': (45, 67, 96)}, button={'cn': (475, 827, 553, 841)}, file={'cn': './assets/cn/champion_arena/NEXT_SEASON.png'})
 PROMOTION = Button(area={'cn': (344, 948, 375, 963)}, color={'cn': (160, 109, 216)}, button={'cn': (344, 948, 375, 963)}, file={'cn': './assets/cn/champion_arena/PROMOTION.png'})
 PROMOTION_CHECK = Button(area={'cn': (261, 108, 456, 124)}, color={'cn': (133, 115, 193)}, button={'cn': (261, 108, 456, 124)}, file={'cn': './assets/cn/champion_arena/PROMOTION_CHECK.png'})
+TEAM = Button(area={'cn': (291, 1005, 417, 1021)}, color={'cn': (219, 104, 104)}, button={'cn': (291, 1005, 417, 1021)}, file={'cn': './assets/cn/champion_arena/TEAM.png'})
