@@ -6,7 +6,7 @@
 
 胜利女神：NIKKE 自动日常脚本，支持除**国服**外的所有**中文**客户端（大概）。Fork自[NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
 
-GODDESS OF VICTORY: NIKKE automatic script, supports all **Chinese** clients except **national server** (probably). Forked from [NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
+GODDESS OF VICTORY: NIKKE automatic script, supports all **Chinese-language** clients except the **CN** client(probably). Forked from [NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
 
 <p align="center">
   <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white">
