@@ -4,7 +4,7 @@
 
 # NIKKEAutoScript
 
-胜利女神：NIKKE 自动日常脚本，支持除**国服**外的所有客户端（大概）。Fork自[NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
+胜利女神：NIKKE 自动日常脚本，支持除**国服**外的所有**中文**客户端（大概）。Fork自[NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
 
 <p align="center">
   <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white">
@@ -42,7 +42,7 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
 
 ### 如何使用
 
-#### 需要一个可正常运行nikke的安卓"模拟器"，并且可以使用adb远程连接，比如：云手机、ARM架构模拟器、ARM架构的Redroid/Waydroid
+#### 需要一个可正常运行nikke的安卓"模拟器"，并且可以使用adb远程连接，比如：蓝叠5国际版、云手机、ARM架构模拟器、ARM架构的Redroid/Waydroid
 
 #### Windows
 0. ~~可以加入qq划水群 823265807~~  
