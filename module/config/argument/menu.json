@@ -17,17 +17,23 @@
       "Liberation",
       "Conversation",
       "Shop",
-      "RubbishShop",
+      "RubbishShop"
+    ],
+    "Ark": [
       "SimulationRoom",
       "TribeTower",
+      "Interception",
       "RookieArena",
       "SpecialArena",
-      "ChampionArena",
-      "Interception",
+      "ChampionArena"
+    ],
+    "LimitedTimeEvent": [
       "Coop",
-      "Event",
-      "Event2",
       "SoloRaid"
+    ],
+    "StoryEvent": [
+      "Event",
+      "Event2"
     ],
     "Blablalink": [
       "BlaAuth",

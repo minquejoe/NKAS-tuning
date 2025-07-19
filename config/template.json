@@ -242,6 +242,19 @@
       "Storage": {}
     }
   },
+  "Interception": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "Interception",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "04:00"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
   "RookieArena": {
     "Scheduler": {
       "Enable": false,
@@ -295,19 +308,6 @@
       "Storage": {}
     }
   },
-  "Interception": {
-    "Scheduler": {
-      "Enable": false,
-      "NextRun": "1989-12-27 00:00:00",
-      "Command": "Interception",
-      "SuccessInterval": 0,
-      "FailureInterval": 120,
-      "ServerUpdate": "04:00"
-    },
-    "Storage": {
-      "Storage": {}
-    }
-  },
   "Coop": {
     "Scheduler": {
       "Enable": false,
@@ -319,6 +319,19 @@
     },
     "Coop": {
       "MatchDifficulty": "Normal"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "SoloRaid": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "SoloRaid",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "04:00"
     },
     "Storage": {
       "Storage": {}
@@ -367,19 +380,6 @@
       "Coop": false,
       "Shop": false,
       "Game": false
-    },
-    "Storage": {
-      "Storage": {}
-    }
-  },
-  "SoloRaid": {
-    "Scheduler": {
-      "Enable": false,
-      "NextRun": "1989-12-27 00:00:00",
-      "Command": "SoloRaid",
-      "SuccessInterval": 0,
-      "FailureInterval": 120,
-      "ServerUpdate": "04:00"
     },
     "Storage": {
       "Storage": {}

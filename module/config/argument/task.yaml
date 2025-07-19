@@ -53,6 +53,8 @@ RubbishShop:
   - Scheduler
   - RubbishShop
 
+# ==================== Ark ====================
+
 SimulationRoom:
   - Scheduler
   - Area
@@ -60,6 +62,9 @@ SimulationRoom:
 TribeTower:
   - Scheduler
   - Overcome
+
+Interception:
+  - Scheduler
 
 RookieArena:
   - Scheduler
@@ -73,12 +78,17 @@ ChampionArena:
   - Scheduler
   - CheerStrategy
 
-Interception:
-  - Scheduler
+# ==================== LimitedTimeEvent ====================
 
 Coop:
   - Scheduler
   - Coop
+
+SoloRaid:
+  - Scheduler
+  - SoloRaid
+
+# ==================== StoryEvent ====================
 
 Event:
   - Scheduler
@@ -87,10 +97,6 @@ Event:
 Event2:
   - Scheduler
   - Event
-
-SoloRaid:
-  - Scheduler
-  - SoloRaid
 
 # ==================== Blablalink ====================
 

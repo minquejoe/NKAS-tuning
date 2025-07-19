@@ -48,6 +48,15 @@ Menu:
   Daily:
     name: 日常
     help: ""
+  Ark:
+    name: 方舟
+    help: ""
+  LimitedTimeEvent:
+    name: 限时作战
+    help: ""
+  StoryEvent:
+    name: 剧情活动
+    help: ""
   Blablalink:
     name: 妮游社
     help: ""
