@@ -514,7 +514,7 @@ Event:
     help: "还没做"
   Shop:
     name: 商店
-    help: "还没做"
+    help: "依次购买除称号外的所有活动货币商品"
 Coop:
   _info:
     name: 协同作战

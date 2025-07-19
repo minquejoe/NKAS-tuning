@@ -1195,11 +1195,11 @@
         "type": "checkbox",
         "value": false
       },
-      "Game": {
+      "Shop": {
         "type": "checkbox",
         "value": false
       },
-      "Shop": {
+      "Game": {
         "type": "checkbox",
         "value": false
       }
@@ -1293,11 +1293,11 @@
         "type": "checkbox",
         "value": false
       },
-      "Game": {
+      "Shop": {
         "type": "checkbox",
         "value": false
       },
-      "Shop": {
+      "Game": {
         "type": "checkbox",
         "value": false
       }

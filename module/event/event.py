@@ -1,17 +1,13 @@
 import importlib
 from functools import cached_property
 
-import cv2
-
 from module.base.decorator import Config
 from module.base.timer import Timer
-from module.base.utils import crop, get_button_by_location
+from module.base.utils import get_button_by_location, sort_buttons_by_location
 from module.challenge.assets import *
 from module.coop.assets import *
 from module.coop.coop import Coop, CoopIsUnavailable
-
-# 活动引用
-from module.event.event_20250612.assets import *
+from module.event.assets import *
 from module.exception import (
     RequestHumanTakeover,
 )
@@ -848,6 +844,138 @@ class Event(UI):
     def coop(self):
         logger.info('Small event, skip coop')
 
+    def shop(self, skip_first_screenshot=True):
+        logger.hr('START EVENT SHOP')
+        click_timer = Timer(0.3)
+
+        # 进入商店页面
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                self.device.screenshot()
+
+            if (
+                click_timer.reached()
+                and self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30))
+                and self.appear_then_click(self.event_assets.SHOP, offset=10, interval=5)
+            ):
+                click_timer.reset()
+                continue
+
+            # 商店页面
+            if self.appear(EVENT_SHOP_CHECK, offset=10) and self.appear(
+                self.event_assets.SHOP_ITEM_LOAD_CHECK, offset=(30, 30)
+            ):
+                logger.info('Open event shop')
+                break
+
+        while 1:
+            self.device.screenshot()
+
+            # 当前页所有商品
+            items = self.event_assets.TEMPLATE_SHOP_MONEY.match_multi(
+                self.device.image, similarity=0.65, name='SHOP_ITEM'
+            )
+            # 按照坐标排序
+            items = sort_buttons_by_location(items)
+            logger.info(f'Find items: {len(items)}')
+            # SOLD_OUT的商品
+            sold_outs = TEMPLATE_SOLD_OUT.match_multi(self.device.image, similarity=0.7, name='SOLD_OUT')
+            logger.info(f'Find slod out items: {len(items)}')
+            # 过滤掉所有SOLD_OUT的商品
+            items = self.filter_sold_out_items(items, sold_outs)
+
+            # 过滤掉称号，一般是第一个
+            if items and self.appear(SHOP_ITEM_TITLE, offset=10, static=False):
+                items = items[1:]
+
+            logger.info(f'Find vaild items: {len(items)}')
+            if items:
+                while 1:
+                    self.device.screenshot()
+
+                    # 购买第一个商品
+                    if click_timer.reached() and self.appear(EVENT_SHOP_CHECK, offset=(30, 30)):
+                        self.device.click(items[0])
+                        click_timer.reset()
+                        continue
+
+                    # 商品弹窗
+                    if self.appear(SHOP_ITEM_CHECK, offset=10):
+                        click_timer.reset()
+                        break
+
+                quit = False
+                while 1:
+                    self.device.screenshot()
+
+                    # 退出
+                    if self.appear(EVENT_SHOP_CHECK, offset=10):
+                        if quit:
+                            logger.info('Money not enough, quiting')
+                            return
+                        else:
+                            logger.info('Item purchase completed, goto next')
+                            break
+
+                    # 取消
+                    if quit and click_timer.reached() and self.appear_then_click(SHOP_CANCEL, offset=30, interval=1):
+                        click_timer.reset()
+                        continue
+
+                    # 资金不足
+                    if self.appear(SHOP_MONEY_LACK, offset=30):
+                        quit = True
+                        continue
+
+                    # 点击max
+                    if click_timer.reached() and self.appear_then_click(
+                        SHOP_BUY_MAX, offset=30, threshold=0.99, interval=1
+                    ):
+                        click_timer.reset()
+                        continue
+
+                    # 购买
+                    if click_timer.reached() and self.appear_then_click(SHOP_BUY, offset=30, interval=1):
+                        click_timer.reset()
+                        continue
+
+                    # 点击领取
+                    if click_timer.reached() and self.appear_then_click(
+                        self.event_assets.RECEIVE, offset=30, interval=1, static=False
+                    ):
+                        click_timer.reset()
+                        continue
+            else:
+                # 当前页全部购买完成，滚动到下一页
+                logger.info('Scroll to next page')
+                self.ensure_sroll((360, 1100), (360, 480), speed=5, hold=1, count=1, delay=3)
+
+    def filter_sold_out_items(self, items, sold_outs):
+        """
+        根据售完标记的位置过滤商品列表
+        """
+        filtered_items = items.copy()
+
+        for sold_out in sold_outs:
+            so_x, so_y = sold_out.location
+            to_remove = []
+
+            for item in filtered_items:
+                item_x, item_y = item.location
+
+                x_in_range = so_x - 30 <= item_x <= so_x + 30
+                y_in_range = so_y <= item_y <= so_y + 120
+
+                if x_in_range and y_in_range:
+                    to_remove.append(item)
+
+            for item in to_remove:
+                filtered_items.remove(item)
+
+        return filtered_items
+
     def ensure_into_event(self, skip_first_screenshot=True):
         logger.hr('OPEN EVENT STORY')
         click_timer = Timer(0.3)
@@ -900,6 +1028,9 @@ class Event(UI):
                 self.coop()
 
             self.reward()
+
+            if self.config.Event_Shop:
+                self.shop()
 
         except EventSelectError:
             logger.error('The event stage/difficulty select wrong')

@@ -341,8 +341,8 @@
       "StoryPart": "Story_1",
       "StoryDifficulty": "Normal",
       "Coop": false,
-      "Game": false,
-      "Shop": false
+      "Shop": false,
+      "Game": false
     },
     "Storage": {
       "Storage": {}
@@ -365,8 +365,8 @@
       "StoryPart": "Story_1",
       "StoryDifficulty": "Normal",
       "Coop": false,
-      "Game": false,
-      "Shop": false
+      "Shop": false,
+      "Game": false
     },
     "Storage": {
       "Storage": {}

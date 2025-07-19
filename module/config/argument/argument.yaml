@@ -150,8 +150,8 @@ Event:
       'Hard'
     ]
   Coop: false
-  Game: false
   Shop: false
+  Game: false
 CheerStrategy:
   Enable: false
   Strategy:

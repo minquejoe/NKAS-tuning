@@ -432,3 +432,60 @@ def rgb2luma(image):
     image = cv2.cvtColor(image, cv2.COLOR_RGB2YUV)
     luma, _, _ = cv2.split(image)
     return luma
+
+def sort_buttons_by_location(buttons):
+    """
+    返回排序后的button列表
+    
+    排序规则:
+    - 首先按y坐标升序排序 (y越小越靠前)
+    - 如果两个按钮的y值相差在30像素内，则视为同一行
+    - 同一行内的按钮按x坐标升序排序 (x越小越靠前)
+    
+    返回:
+    排序后的按钮列表，如果列表为空则返回空列表
+    """
+    if not buttons:
+        return []
+    
+    # 第一步：按y坐标升序排序
+    sorted_buttons = sorted(buttons, key=lambda bn: bn.location[1])
+    
+    # 第二步：使用连通分量算法分组（基于y值相差≤30像素的条件）
+    groups = []  # 存储分组结果的列表
+    for bn in sorted_buttons:
+        found_groups = []  # 存储需要合并的分组索引
+        
+        # 检查当前按钮与所有现有分组的连通性
+        for idx, group in enumerate(groups):
+            for other_bn in group:
+                if abs(bn.location[1] - other_bn.location[1]) <= 30:
+                    found_groups.append(idx)
+                    break  # 找到一个连通分组即停止检查当前分组
+        
+        # 处理连通分组
+        if not found_groups:
+            # 无连通分组时创建新组
+            groups.append([bn])
+        else:
+            # 创建新合并组（包含当前按钮和所有连通分组）
+            new_group = [bn]
+            # 从后向前合并分组（避免索引变化问题）
+            for idx in sorted(found_groups, reverse=True):
+                new_group.extend(groups[idx])
+                del groups[idx]
+            groups.append(new_group)
+    
+    # 第三步：对每个分组内部排序（按x升序，x相同则按y升序）
+    for group in groups:
+        group.sort(key=lambda bn: (bn.location[0], bn.location[1]))
+    
+    # 第四步：对分组排序（按组内最小y值升序）
+    groups.sort(key=lambda group: min(bn.location[1] for bn in group))
+    
+    # 第五步：展平分组列表
+    result = []
+    for group in groups:
+        result.extend(group)
+    
+    return result

@@ -431,17 +431,24 @@ class Minitouch(Connection):
         self.minitouch_send()
 
     @retry
-    def swipe_minitouch(self, p1, p2, speed=15):
+    def swipe_minitouch(self, p1, p2, speed=15, hold=0):
         points = insert_swipe(p0=translate_tuple(p1), p3=translate_tuple(p2), speed=speed)
         builder = self.minitouch_builder
 
         builder.down(*points[0]).commit()
         self.minitouch_send()
 
-        for point in points[1:]:
+        for point in points[1:-1]:
             builder.move(*point).commit().wait(10)
         self.minitouch_send()
-
+        
+        builder.move(*points[-1]).commit()
+        self.minitouch_send()
+        
+        if hold:
+            builder.wait(hold * 1000)
+            self.minitouch_send()
+        
         builder.up().commit()
         self.minitouch_send()
 

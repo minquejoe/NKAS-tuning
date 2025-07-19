@@ -27,6 +27,8 @@ REWARD_MISSION_CHECK = Button(area={'cn': (123, 251, 257, 269)}, color={'cn': (1
 REWARD_MISSION_CLEARED = Button(area={'cn': (245, 641, 474, 673)}, color={'cn': (118, 128, 146)}, button={'cn': (245, 641, 474, 673)}, file={'cn': './assets/event/event_20250716/REWARD_MISSION_CLEARED.png'})
 REWARD_RECEIVE = Button(area={'cn': (493, 1135, 611, 1157)}, color={'cn': (107, 117, 212)}, button={'cn': (493, 1135, 611, 1157)}, file={'cn': './assets/event/event_20250716/REWARD_RECEIVE.png'})
 REWARD_RECEIVE_DONE = Button(area={'cn': (498, 1136, 609, 1155)}, color={'cn': (132, 132, 133)}, button={'cn': (498, 1136, 609, 1155)}, file={'cn': './assets/event/event_20250716/REWARD_RECEIVE_DONE.png'})
+SHOP = Button(area={'cn': (557, 1066, 594, 1089)}, color={'cn': (122, 150, 175)}, button={'cn': (557, 1066, 594, 1089)}, file={'cn': './assets/event/event_20250716/SHOP.png'})
+SHOP_ITEM_LOAD_CHECK = Button(area={'cn': (581, 1031, 601, 1057)}, color={'cn': (137, 136, 129)}, button={'cn': (581, 1031, 601, 1057)}, file={'cn': './assets/event/event_20250716/SHOP_ITEM_LOAD_CHECK.png'})
 SKIP = Button(area={'cn': (616, 22, 671, 41)}, color={'cn': (133, 134, 133)}, button={'cn': (616, 22, 671, 41)}, file={'cn': './assets/event/event_20250716/SKIP.png'})
 STORY_1_CHECK = Button(area={'cn': (314, 849, 426, 896)}, color={'cn': (150, 89, 57)}, button={'cn': (314, 849, 426, 896)}, file={'cn': './assets/event/event_20250716/STORY_1_CHECK.png'})
 STORY_1_HARD_STAGE_11 = Button(area={'cn': (415, 707, 520, 734)}, color={'cn': (167, 111, 67)}, button={'cn': (415, 707, 520, 734)}, file={'cn': './assets/event/event_20250716/STORY_1_HARD_STAGE_11.png'})
@@ -42,3 +44,4 @@ STORY_2_NORMAL = Button(area={'cn': (481, 1094, 505, 1193)}, color={'cn': (131, 
 STORY_2_NORMAL_STAGE_11 = Button(area={'cn': (90, 807, 361, 828)}, color={'cn': (192, 180, 157)}, button={'cn': (90, 807, 361, 828)}, file={'cn': './assets/event/event_20250716/STORY_2_NORMAL_STAGE_11.png'})
 STORY_STAGE_CHECK = Button(area={'cn': (138, 860, 234, 882)}, color={'cn': (177, 177, 177)}, button={'cn': (138, 860, 234, 882)}, file={'cn': './assets/event/event_20250716/STORY_STAGE_CHECK.png'})
 TEMPLATE_COOP_ENABLE = Template(file={'cn': './assets/event/event_20250716/TEMPLATE_COOP_ENABLE.png'})
+TEMPLATE_SHOP_MONEY = Template(file={'cn': './assets/event/event_20250716/TEMPLATE_SHOP_MONEY.png'})
