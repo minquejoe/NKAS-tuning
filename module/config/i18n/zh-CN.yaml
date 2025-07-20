@@ -520,7 +520,7 @@ Event:
     Hard: "困难"
   Game:
     name: 小游戏
-    help: "还没做"
+    help: "视情况适配小游戏，如果没有适配会自动跳过"
   Shop:
     name: 商店
     help: "依次购买除称号外的所有活动货币商品"

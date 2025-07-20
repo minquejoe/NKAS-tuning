@@ -31,6 +31,8 @@ from module.ui.assets import (
 from module.ui.page import *
 from module.ui.ui import UI
 
+from .game import game
+
 
 class EventSelectError(Exception):
     pass
@@ -1002,6 +1004,39 @@ class Event(UI):
 
         return filtered_items
 
+    def game(self, skip_first_screenshot=True):
+        logger.hr('START EVENT GAME')
+        if not self.config.mini_game:
+            logger.info('Game not support in this event')
+            return
+
+        click_timer = Timer(0.3)
+        # 进入小游戏页面
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                self.device.screenshot()
+
+            if (
+                click_timer.reached()
+                and self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30))
+                and self.appear_then_click(self.event_assets.MINI_GAME, offset=10, interval=5)
+            ):
+                click_timer.reset()
+                continue
+
+            if click_timer.reached() and self.appear_then_click(
+                self.event_assets.MINI_GAME_TOUCH, offset=10, interval=2
+            ):
+                click_timer.reset()
+                continue
+
+            if self.appear(self.event_assets.MINI_GAME_CHECK, offset=10):
+                break
+
+        return game(self, skip_first_screenshot)
+
     def ensure_into_event(self, skip_first_screenshot=True):
         logger.hr('OPEN EVENT STORY')
         click_timer = Timer(0.3)
@@ -1052,6 +1087,8 @@ class Event(UI):
                 self.story()
             if self.config.Event_Coop:
                 self.coop()
+            if self.config.Event_Game:
+                self.game()
 
             self.reward()
 
