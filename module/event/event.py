@@ -47,10 +47,11 @@ class ChallengeNotFoundError(Exception):
 
 
 class EventInfo:
-    def __init__(self, id, name, type):
+    def __init__(self, id, name, type, mini_game):
         self.id: str = id
         self.name: str = name
         self.type: int = type
+        self.mini_game: bool = mini_game
 
 
 class Event(UI):
