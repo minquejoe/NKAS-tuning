@@ -5,5 +5,5 @@ from module.base.template import Template
 # Don't modify it manually.
 
 CLAIM = Button(area={'cn': (487, 1060, 516, 1090)}, color={'cn': (73, 197, 255)}, button={'cn': (487, 1060, 516, 1090)}, file={'cn': './assets/cn/commission/CLAIM.png'})
-DISPATCH = Button(area={'cn': (290, 1061, 417, 1091)}, color={'cn': (158, 224, 255)}, button={'cn': (290, 1061, 417, 1091)}, file={'cn': './assets/cn/commission/DISPATCH.png'})
+DISPATCH = Button(area={'cn': (290, 1066, 425, 1086)}, color={'cn': (120, 212, 252)}, button={'cn': (290, 1066, 425, 1086)}, file={'cn': './assets/cn/commission/DISPATCH.png'})
 DISPATCH_CONFIRM = Button(area={'cn': (383, 1058, 504, 1095)}, color={'cn': (70, 196, 255)}, button={'cn': (383, 1058, 504, 1095)}, file={'cn': './assets/cn/commission/DISPATCH_CONFIRM.png'})

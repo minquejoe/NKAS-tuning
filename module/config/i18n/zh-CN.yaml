@@ -81,7 +81,7 @@ Task:
     name: 歼灭
     help: ""
   Commission:
-    name: 委托
+    name: 派遣
     help: ""
   Mailbox:
     name: 邮箱
