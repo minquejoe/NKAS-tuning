@@ -23,7 +23,7 @@ def game(self, skip_first_screenshot=True):
         if self.appear(self.event_assets.MINI_GAME_CLICK, offset=10):
             break
 
-    while 0:
+    while 1:
         self.device.screenshot()
 
         if self.appear(self.event_assets.MINI_GAME_START, offset=10):
