@@ -9,6 +9,7 @@ SHOP_BUY = Button(area={'cn': (470, 1041, 515, 1064)}, color={'cn': (120, 197, 2
 SHOP_BUY_MAX = Button(area={'cn': (586, 778, 621, 795)}, color={'cn': (106, 106, 106)}, button={'cn': (586, 778, 621, 795)}, file={'cn': './assets/cn/event/SHOP_BUY_MAX.png'})
 SHOP_CANCEL = Button(area={'cn': (245, 1041, 291, 1063)}, color={'cn': (148, 148, 146)}, button={'cn': (245, 1041, 291, 1063)}, file={'cn': './assets/cn/event/SHOP_CANCEL.png'})
 SHOP_ITEM_CHECK = Button(area={'cn': (312, 242, 407, 266)}, color={'cn': (142, 182, 222)}, button={'cn': (312, 242, 407, 266)}, file={'cn': './assets/cn/event/SHOP_ITEM_CHECK.png'})
+SHOP_ITEM_RED_CIRCLE = Button(area={'cn': (360, 435, 395, 474)}, color={'cn': (170, 80, 83)}, button={'cn': (360, 435, 395, 474)}, file={'cn': './assets/cn/event/SHOP_ITEM_RED_CIRCLE.png'})
 SHOP_ITEM_TITLE = Button(area={'cn': (407, 621, 482, 631)}, color={'cn': (89, 86, 80)}, button={'cn': (407, 621, 482, 631)}, file={'cn': './assets/cn/event/SHOP_ITEM_TITLE.png'})
 SHOP_MONEY_LACK = Button(area={'cn': (308, 631, 390, 651)}, color={'cn': (160, 160, 160)}, button={'cn': (308, 631, 390, 651)}, file={'cn': './assets/cn/event/SHOP_MONEY_LACK.png'})
 TEMPLATE_SOLD_OUT = Template(file={'cn': './assets/cn/event/TEMPLATE_SOLD_OUT.png'})

@@ -847,6 +847,7 @@ class Event(UI):
     def shop(self, skip_first_screenshot=True):
         logger.hr('START EVENT SHOP')
         click_timer = Timer(0.3)
+        restart_flag = False
 
         # 进入商店页面
         while 1:
@@ -864,15 +865,19 @@ class Event(UI):
                 continue
 
             # 商店页面
-            if self.appear(EVENT_SHOP_CHECK, offset=10) and self.appear(
+            if self.appear(EVENT_SHOP_CHECK, offset=(30, 30)) and self.appear(
                 self.event_assets.SHOP_ITEM_LOAD_CHECK, offset=(30, 30)
             ):
                 logger.info('Open event shop')
                 break
 
         while 1:
-            self.device.screenshot()
+            # 滑动到商店最上方
+            if restart_flag:
+                logger.info('Scroll to shop top')
+                self.ensure_sroll((360, 600), (360, 900), count=2, delay=3)
 
+            self.device.screenshot()
             # 当前页所有商品
             items = self.event_assets.TEMPLATE_SHOP_MONEY.match_multi(
                 self.device.image, similarity=0.65, name='SHOP_ITEM'
@@ -882,13 +887,19 @@ class Event(UI):
             logger.info(f'Find items: {len(items)}')
             # SOLD_OUT的商品
             sold_outs = TEMPLATE_SOLD_OUT.match_multi(self.device.image, similarity=0.7, name='SOLD_OUT')
-            logger.info(f'Find slod out items: {len(items)}')
+            logger.info(f'Find slod out items: {len(sold_outs)}')
             # 过滤掉所有SOLD_OUT的商品
             items = self.filter_sold_out_items(items, sold_outs)
 
             # 过滤掉称号，一般是第一个
+            title_detected = False
             if items and self.appear(SHOP_ITEM_TITLE, offset=10, static=False):
-                items = items[1:]
+                if not restart_flag:
+                    items = items[1:]
+                else:
+                    # 重启商店时不过滤
+                    restart_flag = False
+                title_detected = True
 
             logger.info(f'Find vaild items: {len(items)}')
             if items:
@@ -911,7 +922,7 @@ class Event(UI):
                     self.device.screenshot()
 
                     # 退出
-                    if self.appear(EVENT_SHOP_CHECK, offset=10):
+                    if self.appear(EVENT_SHOP_CHECK, offset=(30, 30)):
                         if quit:
                             logger.info('Money not enough, quiting')
                             return
@@ -919,8 +930,22 @@ class Event(UI):
                             logger.info('Item purchase completed, goto next')
                             break
 
+                    # 商品是红球并且称号没买，重新进入商店
+                    if (
+                        title_detected
+                        and self.appear(SHOP_ITEM_CHECK, offset=10)
+                        and self.appear(SHOP_ITEM_RED_CIRCLE, offset=10)
+                    ):
+                        logger.info('Title not purchased, restart shop')
+                        restart_flag = True
+                        continue
+
                     # 取消
-                    if quit and click_timer.reached() and self.appear_then_click(SHOP_CANCEL, offset=30, interval=1):
+                    if (
+                        (quit or restart_flag)
+                        and click_timer.reached()
+                        and self.appear_then_click(SHOP_CANCEL, offset=30, interval=1)
+                    ):
                         click_timer.reset()
                         continue
 
@@ -945,6 +970,7 @@ class Event(UI):
                     if click_timer.reached() and self.appear_then_click(
                         self.event_assets.RECEIVE, offset=30, interval=1, static=False
                     ):
+                        self.device.sleep(0.5)
                         click_timer.reset()
                         continue
             else:
