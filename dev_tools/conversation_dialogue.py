@@ -3,86 +3,99 @@ import re
 
 # 删除src src\s*=\s*(?:"([^"]+)"|'([^']+)'|([^\s>]+))
 
-# --- 配置 ---
-TARGET_CHARACTER_NAME = "索拉"
+TARGET_CHARACTER_NAME = "桃乐丝：机缘巧遇"
 INPUT_HTML_FILE = "module\conversation\dialogue_raw.html"
 OUTPUT_JSON_FILE = "module\conversation\dialogue.json"
 
-def parse_with_regex(html_content):
-    """
-    使用正则表达式解析HTML内容。
-    这种方法比纯字符串操作更健壮，能更好地应对微小的格式变化。
-    """
-    conversations = []
+def extract_dialogues(html_content):
+    # 正则模式匹配角色名称和对话块
+    character_pattern = r'([^:\n]+):?[^\n]*\n(.*?)(?=\n{2,}|\Z)'
+    # 匹配对话组
+    group_pattern = r'<div[^>]*class="conversation-group-list"[^>]*>(.*?)</div>\s*</div>'
+    # 匹配问题
+    question_pattern = r'<span[^>]*class="title-text"[^>]*>(.*?)</span>'
+    # 匹配错误答案 (dialogue-100)
+    false_answer_pattern = r'<div[^>]*class="dialogue-100"[^>]*>.*?<span[^>]*>(.*?)</span>'
+    # 匹配正确答案 (dialogue-120)
+    true_answer_pattern = r'<div[^>]*class="dialogue-120"[^>]*>.*?<span[^>]*>(.*?)</span>'
     
-    # 定义正则表达式模式
-    # - (.*?) 是一个非贪婪捕获组，用于抓取我们需要的内容。
-    # - re.DOTALL 标志让 . (点号) 可以匹配包括换行符在内的任意字符。
-    pattern = re.compile(
-        r'class="list-title">.*?<span.*?>(.*?)</span>.*?'  # 捕获组 1: question
-        r'class="dialogue-100">.*?<span.*?>(.*?)</span>.*?' # 捕获组 2: false_answer
-        r'class="dialogue-120">.*?<span.*?>(.*?)</span>',   # 捕获组 3: true_answer
-        re.DOTALL
-    )
+    dialogues_data = {}
     
-    # 查找所有匹配项
-    # findall会返回一个元组（tuple）的列表，每个元组包含所有捕获组的内容
-    matches = pattern.findall(html_content)
+    # 按角色分割内容
+    character_blocks = re.findall(character_pattern, html_content, re.DOTALL)
     
-    for match in matches:
-        # match[0] 是问题, match[1] 是 false 答案, match[2] 是 true 答案
-        question = match[0].strip()
-        false_answer = match[1].strip()
-        true_answer = match[2].strip()
+    for character, block in character_blocks:
+        character = character.strip()
+        # 提取对话组
+        groups = re.findall(group_pattern, block, re.DOTALL)
         
-        conversations.append({
-            "question": question,
-            "answer": {
-                "false": false_answer,
-                "true": true_answer
-            }
-        })
+        character_dialogues = []
+        for group in groups:
+            # 提取问题
+            question_match = re.search(question_pattern, group, re.DOTALL)
+            if not question_match:
+                continue
+            question = question_match.group(1).strip()
+            
+            # 提取错误答案
+            false_match = re.search(false_answer_pattern, group, re.DOTALL)
+            false_answer = false_match.group(1).strip() if false_match else ""
+            
+            # 提取正确答案
+            true_match = re.search(true_answer_pattern, group, re.DOTALL)
+            true_answer = true_match.group(1).strip() if true_match else ""
+            
+            character_dialogues.append({
+                "question": question,
+                "answer": {
+                    "false": false_answer,
+                    "true": true_answer
+                }
+            })
         
-    return conversations
+        if character_dialogues:
+            dialogues_data[character] = character_dialogues
+    
+    return dialogues_data
 
-# (下方的 update_json_file 和 main 函数与之前的版本相同，这里不再重复)
-def update_json_file(character_name, data_list):
-    existing_data = {}
+def update_json(dialogues_data, target_characters, filename):
+    # 尝试读取现有JSON数据
     try:
-        with open(OUTPUT_JSON_FILE, 'r', encoding='utf-8') as f:
+        with open(filename, 'r', encoding='utf-8') as f:
             existing_data = json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
-        pass
-
-    updated_data = {character_name: data_list}
-    for key, value in existing_data.items():
-        if key != character_name:
-            updated_data[key] = value
-            
-    with open(OUTPUT_JSON_FILE, 'w', encoding='utf-8') as f:
+        existing_data = {}
+    
+    # 创建更新后的数据
+    updated_data = {}
+    
+    # 先添加目标角色（按输入顺序）
+    for character in target_characters:
+        if character in dialogues_data:
+            updated_data[character] = dialogues_data[character]
+    
+    # 添加现有数据中的其他角色
+    for character, dialogues in existing_data.items():
+        if character not in updated_data:
+            updated_data[character] = dialogues
+    
+    # 写入文件
+    with open(filename, 'w', encoding='utf-8') as f:
         json.dump(updated_data, f, ensure_ascii=False, indent=2)
 
-def main():
-    try:
-        with open(INPUT_HTML_FILE, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
-    except FileNotFoundError:
-        print(f"错误: 输入文件 '{INPUT_HTML_FILE}' 未找到。")
-        return
-        
-    character_name_from_file = lines[0].strip()
-    html_content = "".join(lines[1:])
+# 使用示例
+if __name__ == "__main__":
+    # 读取HTML文件内容
+    with open(INPUT_HTML_FILE, 'r', encoding='utf-8') as f:
+        html_content = f.read()
     
-    if character_name_from_file == TARGET_CHARACTER_NAME:
-        print(f"找到目标角色 '{TARGET_CHARACTER_NAME}'，使用正则表达式处理...")
-        extracted_data = parse_with_regex(html_content)
-        if extracted_data:
-            update_json_file(TARGET_CHARACTER_NAME, extracted_data)
-            print(f"处理完成！数据已成功保存或更新到 '{OUTPUT_JSON_FILE}'。")
-        else:
-            print("警告: 未从HTML中提取到任何有效数据。")
-    else:
-        print(f"文件中的角色 '{character_name_from_file}' 不是目标角色 '{TARGET_CHARACTER_NAME}'，已跳过。")
-
-if __name__ == '__main__':
-    main()
+    # 指定要处理的角色（按优先级顺序）
+    target_characters = [TARGET_CHARACTER_NAME]
+    
+    # 提取对话数据
+    dialogues_data = extract_dialogues(html_content)
+    
+    # 更新JSON文件
+    update_json(dialogues_data, target_characters, OUTPUT_JSON_FILE)
+    
+    print(f"成功处理 {len(dialogues_data)} 个角色数据")
