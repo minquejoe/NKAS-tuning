@@ -21,6 +21,18 @@
 | **STORY_1_CHECK** | 故事1主页检查 | ✅ | <img src="..\..\assets\event\event_20250612\STORY_1_CHECK.png" width="200"> |
 | **STORY_1_NORMAL** | 故事1普通页面检查 | ✅ | <img src="..\..\assets\event\event_20250612\STORY_1_NORMAL.png" width="200"> |
 | **STORY_1_NORMAL_STAGE_11** | 故事1普通11关，需要打完11以后再截图 | ✅ | <img src="..\..\assets\event\event_20250612\STORY_1_NORMAL_STAGE_11.png" width="200"> |
+| **SHOP** | 从活动前往商店按钮 | ✅ | <img src="..\..\assets\event\event_20250716\SHOP.png" width="200"> |
+| **TEMPLATE_SHOP_MONEY** | 商品货币 | ✅ | <img src="..\..\assets\event\event_20250716\TEMPLATE_SHOP_MONEY.png" width="200"> |
+| **SHOP_ITEM_LOAD_CHECK** | 商店第一页最后一个商品的货币截图 | ✅ | <img src="..\..\assets\event\event_20250716\SHOP_ITEM_LOAD_CHECK.png" width="200"> |
+| **MINI_GAME** | 从活动前往小游戏按钮 | ✅ | <img src="..\..\assets\event\event_20250716\MINI_GAME.png" width="200"> |
+| **MINI_GAME_TOUCH** | 小游戏开屏点击按钮 | ✅ | <img src="..\..\assets\event\event_20250716\MINI_GAME_TOUCH.png" width="200"> |
+| **MINI_GAME_CHECK** | 小游戏页面检查 | ✅ | <img src="..\..\assets\event\event_20250716\MINI_GAME_CHECK.png" width="200"> |
+| **MINI_GAME_REWARD** | 小游戏每日奖励领取 | ✅ | <img src="..\..\assets\event\event_20250716\MINI_GAME_REWARD.png" width="200"> |
+| **MINI_GAME_REWARD_DONE** | 小游戏每日奖励领取完成 | ✅ | <img src="..\..\assets\event\event_20250716\MINI_GAME_REWARD_DONE.png" width="200"> |
+| **MINI_GAME_MISSION** | 小游戏任务按钮 | ✅ | <img src="..\..\assets\event\event_20250716\MINI_GAME_MISSION.png" width="200"> |
+| **MINI_GAME_MISSION_CLOSE** | 小游戏任务关闭 | ✅ | <img src="..\..\assets\event\event_20250716\MINI_GAME_MISSION_CLOSE.png" width="200"> |
+| **MINI_GAME_MISSION_DONE** | 小游戏任务奖励完成 | ✅ | <img src="..\..\assets\event\event_20250716\MINI_GAME_MISSION_DONE.png" width="200"> |
+| **MINI_GAME_MISSION_REWARD** | 小游戏任务奖励领取 | ✅ | <img src="..\..\assets\event\event_20250716\MINI_GAME_MISSION_REWARD.png" width="200"> |
 
 ### 签到
 | 图片 | 描述 | 使用状态 | 预览 |
@@ -91,6 +103,9 @@
 | **REWARD_RECEIVE_DONE** | 奖励领取完成 | ✅ | <img src="..\..\assets\event\event_20250703s\REWARD_RECEIVE_DONE.png" width="200"> |
 | **REWARD_CLOSED** | 关闭奖励页面 | ✅ | <img src="..\..\assets\event\event_20250703s\REWARD_CLOSED.png" width="200"> |
 | **CHALLENGE** | 从活动前往挑战按钮 | ✅ | <img src="..\..\assets\event\event_20250703s\CHALLENGE.png" width="200"> |
+| **SHOP** | 从活动前往商店按钮 | ✅ | <img src="..\..\assets\event\event_20250716\SHOP.png" width="200"> |
+| **TEMPLATE_SHOP_MONEY** | 商品货币 | ✅ | <img src="..\..\assets\event\event_20250716\TEMPLATE_SHOP_MONEY.png" width="200"> |
+| **SHOP_ITEM_LOAD_CHECK** | 商店第一页最后一个商品的货币截图 | ✅ | <img src="..\..\assets\event\event_20250716\SHOP_ITEM_LOAD_CHECK.png" width="200"> |
 
 ## 困难更新后需要截图
 | 图片 | 描述 | 使用状态 | 预览 |

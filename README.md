@@ -6,7 +6,7 @@
 
 胜利女神：NIKKE 自动日常脚本，支持除**国服**外的所有**中文**客户端（大概）。Fork自[NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
 
-GODDESS OF VICTORY: NIKKE automatic script, supports all **Chinese-language** clients except the **CN** client(probably). Forked from [NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
+GODDESS OF VICTORY: NIKKE automatic script, supports all clients **set to Chinese** except the **CN** client (presumably). Forked from [NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
 
 <p align="center">
   <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white">
@@ -46,7 +46,7 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
 
 #### 需要一个可正常运行nikke的安卓"模拟器"，并且可以使用adb远程连接，比如：蓝叠5国际版、云手机、ARM架构模拟器、ARM架构的Redroid/Waydroid
 
-#### 模拟器设置
+#### 模拟器准备
 1. 将设备设置为竖屏，分辨率`720*1280`，`240DPI`  
 2. 模拟器中安装`bin\deploy\app-uiautomator.apk`  
 3. 调整画质设置，参考常见问题最后一个(`光晕效果`和`颜色分级`一定要打开)  
@@ -65,7 +65,6 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
 ---
 
 ### 更新计划
-- [ ] 大型活动的小游戏
 - [ ] 模拟室快速
 - [ ] 半自动推图
 - [ ] 废铁商店优化，支持骨头货币
@@ -84,7 +83,7 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
 - [x] 协同作战普通摆烂
 - [x] 每日咨询、送礼
 - [x] 普通竞技场、特殊竞技场自动战斗
-- [x] 大型活动扫荡、挑战、签到、奖励、商店购买
+- [x] 大型活动扫荡、挑战、签到、奖励、商店购买、小游戏（个别）
 - [x] 小型活动扫荡、挑战、奖励、商店购买
 - [x] 个突
 - [x] 冠军竞技场
