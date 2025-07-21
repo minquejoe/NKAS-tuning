@@ -26,13 +26,9 @@ def game(self, skip_first_screenshot=True):
     while 1:
         self.device.screenshot()
 
-        if self.appear(self.event_assets.MINI_GAME_START, offset=10):
-            break
-
         # 结束
         if click_timer.reached() and self.appear_then_click(self.event_assets.MINI_GAME_BACK, offset=10, interval=2):
             logger.info('Event mini game done')
-            self.device.sleep(3)
             click_timer.reset()
             continue
 
@@ -60,16 +56,19 @@ def game(self, skip_first_screenshot=True):
             self.device.sleep(0.5)
             continue
 
+        if self.appear(self.event_assets.MINI_GAME_START, offset=10):
+            break
+
+    # 领取奖励
+    while 1:
+        self.device.screenshot()
+
         # 关闭窗口
         if click_timer.reached() and self.appear_then_click(
             self.event_assets.MINI_GAME_CLOSE, offset=10, interval=1, static=False
         ):
             click_timer.reset()
             continue
-
-    # 领取奖励
-    while 1:
-        self.device.screenshot()
 
         if (
             click_timer.reached()
