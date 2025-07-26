@@ -7,6 +7,7 @@ from module.ui.page import *
 
 def reward(self, skip_first_screenshot=True):
     logger.info('Receive daily reward')
+    confirm_timer = Timer(2, count=3)
     click_timer = Timer(0.3)
 
     while 1:
@@ -18,7 +19,13 @@ def reward(self, skip_first_screenshot=True):
         if self.appear(self.minigame_assets.MINI_GAME_CHECK, offset=10) and self.appear(
             self.minigame_assets.MINI_GAME_REWARD_DONE, offset=10
         ):
-            break
+            if not confirm_timer.started():
+                confirm_timer.start()
+
+            if confirm_timer.reached():
+                break
+        else:
+            confirm_timer.clear()
 
         if (
             click_timer.reached()

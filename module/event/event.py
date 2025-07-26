@@ -58,7 +58,8 @@ class Event(UI):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.event_assets = self.load_event_assets('assets')
-        self.minigame_assets = self.load_event_assets('assets_game')
+        if self.event.mini_game:
+            self.minigame_assets = self.load_event_assets('assets_game')
 
     def load_event_assets(self, module_name):
         """动态加载资源模块"""

@@ -6,7 +6,7 @@ from module.ui.page import *
 
 def start_game(self, skip_first_screenshot=True):
     logger.info('Open event mini game')
-    confirm_timer = Timer(3, count=3)
+    confirm_timer = Timer(2, count=3)
     click_timer = Timer(0.3)
 
     # 游戏开始
