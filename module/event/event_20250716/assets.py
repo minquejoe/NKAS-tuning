@@ -41,7 +41,7 @@ STORY_2_HARD_LOCKED = Button(area={'cn': (582, 1165, 672, 1182)}, color={'cn': (
 STORY_2_HARD_STAGE_11 = Button(area={'cn': (404, 588, 439, 664)}, color={'cn': (150, 150, 149)}, button={'cn': (404, 588, 439, 664)}, file={'cn': './assets/event/event_20250716/STORY_2_HARD_STAGE_11.png'})
 STORY_2_HARD_UNLOCK = Button(area={'cn': (343, 733, 438, 753)}, color={'cn': (157, 161, 163)}, button={'cn': (343, 733, 438, 753)}, file={'cn': './assets/event/event_20250716/STORY_2_HARD_UNLOCK.png'})
 STORY_2_NORMAL = Button(area={'cn': (499, 1185, 521, 1252)}, color={'cn': (181, 125, 126)}, button={'cn': (499, 1185, 521, 1252)}, file={'cn': './assets/event/event_20250716/STORY_2_NORMAL.png'})
-STORY_2_NORMAL_STAGE_11 = Button(area={'cn': (90, 807, 361, 828)}, color={'cn': (192, 180, 157)}, button={'cn': (90, 807, 361, 828)}, file={'cn': './assets/event/event_20250716/STORY_2_NORMAL_STAGE_11.png'})
+STORY_2_NORMAL_STAGE_11 = Button(area={'cn': (117, 938, 423, 955)}, color={'cn': (60, 121, 171)}, button={'cn': (117, 938, 423, 955)}, file={'cn': './assets/event/event_20250716/STORY_2_NORMAL_STAGE_11.png'})
 STORY_STAGE_CHECK = Button(area={'cn': (138, 860, 234, 882)}, color={'cn': (177, 177, 177)}, button={'cn': (138, 860, 234, 882)}, file={'cn': './assets/event/event_20250716/STORY_STAGE_CHECK.png'})
 TEMPLATE_COOP_ENABLE = Template(file={'cn': './assets/event/event_20250716/TEMPLATE_COOP_ENABLE.png'})
 TEMPLATE_SHOP_MONEY = Template(file={'cn': './assets/event/event_20250716/TEMPLATE_SHOP_MONEY.png'})
