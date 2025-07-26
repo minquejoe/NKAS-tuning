@@ -149,7 +149,7 @@ class Event(UI):
 
             # 点击领取
             if click_timer.reached() and self.appear_then_click(
-                self.event_assets.RECEIVE, offset=10, interval=1, static=False
+                RECEIVE, offset=10, interval=1, static=False
             ):
                 click_timer.reset()
                 continue
@@ -341,7 +341,14 @@ class Event(UI):
 
             # 点击领取
             if click_timer.reached() and self.appear_then_click(
-                self.event_assets.RECEIVE, offset=10, interval=1, static=False
+                RECEIVE, offset=10, interval=1, static=False
+            ):
+                click_timer.reset()
+                continue
+            
+            # 点击reward领取
+            if click_timer.reached() and self.appear_then_click(
+                RECEIVE_REWARD, offset=10, interval=1, static=False
             ):
                 click_timer.reset()
                 continue
@@ -424,7 +431,7 @@ class Event(UI):
 
             # 点击领取
             if click_timer.reached() and self.appear_then_click(
-                self.event_assets.RECEIVE, offset=10, interval=1, static=False
+                RECEIVE, offset=10, interval=1, static=False
             ):
                 click_timer.reset()
                 continue
@@ -971,7 +978,7 @@ class Event(UI):
 
                     # 点击领取
                     if click_timer.reached() and self.appear_then_click(
-                        self.event_assets.RECEIVE, offset=30, interval=1, static=False
+                        RECEIVE, offset=30, interval=1, static=False
                     ):
                         self.device.sleep(0.5)
                         click_timer.reset()

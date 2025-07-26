@@ -17,7 +17,6 @@ LOGIN_STAMP_CHECK = Button(area={'cn': (216, 169, 471, 214)}, color={'cn': (162,
 LOGIN_STAMP_DONE = Button(area={'cn': (495, 1192, 605, 1212)}, color={'cn': (94, 94, 94)}, button={'cn': (495, 1192, 605, 1212)}, file={'cn': './assets/event/event_20250716/LOGIN_STAMP_DONE.png'})
 LOGIN_STAMP_REWARD = Button(area={'cn': (491, 1192, 606, 1212)}, color={'cn': (220, 192, 134)}, button={'cn': (491, 1192, 606, 1212)}, file={'cn': './assets/event/event_20250716/LOGIN_STAMP_REWARD.png'})
 MAIN_GOTO_EVENT = Button(area={'cn': (590, 1088, 647, 1121)}, color={'cn': (174, 144, 130)}, button={'cn': (590, 1088, 647, 1121)}, file={'cn': './assets/event/event_20250716/MAIN_GOTO_EVENT.png'})
-RECEIVE = Button(area={'cn': (297, 811, 423, 832)}, color={'cn': (58, 59, 61)}, button={'cn': (297, 811, 423, 832)}, file={'cn': './assets/event/event_20250716/RECEIVE.png'})
 REWARD = Button(area={'cn': (648, 259, 679, 282)}, color={'cn': (166, 168, 177)}, button={'cn': (648, 259, 679, 282)}, file={'cn': './assets/event/event_20250716/REWARD.png'})
 REWARD_CHALLENGE_CHECK = Button(area={'cn': (485, 251, 567, 269)}, color={'cn': (154, 183, 215)}, button={'cn': (485, 251, 567, 269)}, file={'cn': './assets/event/event_20250716/REWARD_CHALLENGE_CHECK.png'})
 REWARD_CHALLENGE_HIDDEN = Button(area={'cn': (485, 252, 567, 269)}, color={'cn': (158, 170, 179)}, button={'cn': (485, 252, 567, 269)}, file={'cn': './assets/event/event_20250716/REWARD_CHALLENGE_HIDDEN.png'})

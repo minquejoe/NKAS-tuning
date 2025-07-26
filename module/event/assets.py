@@ -5,6 +5,8 @@ from module.base.template import Template
 # Don't modify it manually.
 
 EVENT_SHOP_CHECK = Button(area={'cn': (579, 369, 651, 386)}, color={'cn': (159, 159, 158)}, button={'cn': (579, 369, 651, 386)}, file={'cn': './assets/cn/event/EVENT_SHOP_CHECK.png'})
+RECEIVE = Button(area={'cn': (297, 811, 423, 832)}, color={'cn': (58, 59, 61)}, button={'cn': (297, 811, 423, 832)}, file={'cn': './assets/cn/event/RECEIVE.png'})
+RECEIVE_REWARD = Button(area={'cn': (310, 204, 419, 245)}, color={'cn': (145, 146, 148)}, button={'cn': (310, 204, 419, 245)}, file={'cn': './assets/cn/event/RECEIVE_REWARD.png'})
 SHOP_BUY = Button(area={'cn': (470, 1041, 515, 1064)}, color={'cn': (120, 197, 231)}, button={'cn': (470, 1041, 515, 1064)}, file={'cn': './assets/cn/event/SHOP_BUY.png'})
 SHOP_BUY_MAX = Button(area={'cn': (586, 778, 621, 795)}, color={'cn': (106, 106, 106)}, button={'cn': (586, 778, 621, 795)}, file={'cn': './assets/cn/event/SHOP_BUY_MAX.png'})
 SHOP_CANCEL = Button(area={'cn': (245, 1041, 291, 1063)}, color={'cn': (148, 148, 146)}, button={'cn': (245, 1041, 291, 1063)}, file={'cn': './assets/cn/event/SHOP_CANCEL.png'})

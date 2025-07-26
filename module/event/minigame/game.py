@@ -1,6 +1,7 @@
 import importlib
 
 from module.base.timer import Timer
+from module.event.assets import *
 from module.logger import logger
 from module.ui.page import *
 
@@ -37,9 +38,7 @@ def reward(self, skip_first_screenshot=True):
             continue
 
         # 点击领取
-        if click_timer.reached() and self.appear_then_click(
-            self.event_assets.RECEIVE, offset=10, interval=1, static=False
-        ):
+        if click_timer.reached() and self.appear_then_click(RECEIVE, offset=10, interval=1, static=False):
             click_timer.reset()
             continue
 
@@ -94,9 +93,7 @@ def mission(self, skip_first_screenshot=True):
             continue
 
         # 点击领取
-        if click_timer.reached() and self.appear_then_click(
-            self.event_assets.RECEIVE, offset=10, interval=1, static=False
-        ):
+        if click_timer.reached() and self.appear_then_click(RECEIVE, offset=10, interval=1, static=False):
             click_timer.reset()
             continue
 
