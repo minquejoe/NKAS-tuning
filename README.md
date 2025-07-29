@@ -52,8 +52,9 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
 3. 调整画质设置，参考常见问题最后一个(`光晕效果`和`颜色分级`一定要打开)  
 
 #### Windows
-1. 运行`updater.bat`，控制台窗口执行完成后打开`app\NikkeAutoScript.exe`  
-2. 在脚本设置中将`Serial`改为设备的adb连接地址，比如mumu `127.0.0.1:16384`，蓝叠 `127.0.0.1:5555`  
+1. 下载release中的7z压缩包，解压
+2. 运行`updater.bat`，控制台窗口执行完成后打开`app\NikkeAutoScript.exe`  
+3. 在脚本设置中将`Serial`改为设备的adb连接地址，比如mumu `127.0.0.1:16384`，蓝叠 `127.0.0.1:5555`  
 
 #### Linux
 0. 安装`git`、`docker`和`docker compose`
