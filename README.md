@@ -48,7 +48,7 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
 
 #### 模拟器准备
 1. 将设备设置为竖屏，分辨率`720*1280`，`240DPI`  
-2. 模拟器中安装`bin\deploy\app-uiautomator.apk`  
+2. 模拟器中安装源码目录下的`bin\deploy\app-uiautomator.apk`  
 3. 调整画质设置，参考常见问题最后一个(`光晕效果`和`颜色分级`一定要打开)  
 
 #### Windows
