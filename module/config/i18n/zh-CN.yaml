@@ -266,13 +266,16 @@ DailyRecruit:
 Conversation:
   _info:
     name: 咨询
-    help: ""
+    help: "准确率无法保证100%"
   QuickConsultation:
     name: 快速咨询
     help: "还没做"
   OnlyFavourite:
     name: 只咨询收藏
     help: ""
+  IgnoreBondMax:
+    name: 忽略好感等级
+    help: "即使好感满级仍然咨询，建议同时开启只咨询收藏，可以用来补咨询日志"
   WaitToCommunicate:
     name: 等待咨询的妮姬
     help: "请收藏想要咨询的妮姬\n

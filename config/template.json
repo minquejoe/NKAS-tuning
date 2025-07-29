@@ -165,7 +165,8 @@
       "ServerUpdate": "04:00"
     },
     "Conversation": {
-      "OnlyFavourite": false
+      "OnlyFavourite": false,
+      "IgnoreBondMax": false
     },
     "Storage": {
       "Storage": {}

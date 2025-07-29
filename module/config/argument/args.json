@@ -574,6 +574,10 @@
       "OnlyFavourite": {
         "type": "checkbox",
         "value": false
+      },
+      "IgnoreBondMax": {
+        "type": "checkbox",
+        "value": false
       }
     },
     "Storage": {

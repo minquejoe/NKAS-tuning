@@ -82,8 +82,8 @@ class Conversation(UI):
                 raise ConversationFavouriteDone
 
             # 咨询完成/好感最大值
-            if self.appear(COMMUNICATE_DONE, offset=5, threshold=0.95) or self.appear(
-                RANK_MAX_CHECK, offset=5, threshold=0.95
+            if self.appear(COMMUNICATE_DONE, offset=5, threshold=0.95) or (
+                self.appear(RANK_MAX_CHECK, offset=5, threshold=0.95) and not self.config.Conversation_IgnoreBondMax
             ):
                 if self._confirm_timer.reached():
                     logger.warning('Perhaps all selected NIKKE already had a conversation')
