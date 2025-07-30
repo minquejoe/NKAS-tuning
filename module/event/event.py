@@ -148,9 +148,7 @@ class Event(UI):
                 continue
 
             # 点击领取
-            if click_timer.reached() and self.appear_then_click(
-                RECEIVE, offset=10, interval=1, static=False
-            ):
+            if click_timer.reached() and self.appear_then_click(RECEIVE, offset=10, interval=1, static=False):
                 click_timer.reset()
                 continue
 
@@ -340,16 +338,12 @@ class Event(UI):
                 continue
 
             # 点击领取
-            if click_timer.reached() and self.appear_then_click(
-                RECEIVE, offset=10, interval=1, static=False
-            ):
+            if click_timer.reached() and self.appear_then_click(RECEIVE, offset=10, interval=1, static=False):
                 click_timer.reset()
                 continue
-            
+
             # 点击reward领取
-            if click_timer.reached() and self.appear_then_click(
-                RECEIVE_REWARD, offset=10, interval=1, static=False
-            ):
+            if click_timer.reached() and self.appear_then_click(RECEIVE_REWARD, offset=10, interval=1, static=False):
                 click_timer.reset()
                 continue
 
@@ -430,9 +424,7 @@ class Event(UI):
                 continue
 
             # 点击领取
-            if click_timer.reached() and self.appear_then_click(
-                RECEIVE, offset=10, interval=1, static=False
-            ):
+            if click_timer.reached() and self.appear_then_click(RECEIVE, offset=10, interval=1, static=False):
                 click_timer.reset()
                 continue
 
@@ -518,6 +510,7 @@ class Event(UI):
                     if click_timer.reached() and self.appear_then_click(
                         self.event_assets.STORY_2_HARD_UNLOCK, offset=10, interval=1
                     ):
+                        open_story = 'story_2_hard'
                         click_timer.reset()
                         continue
 
@@ -530,8 +523,10 @@ class Event(UI):
                     if self.appear(self.event_assets.STORY_2_HARD, threshold=10):
                         click_timer.reset()
                         break
+                self.device.sleep(2)
                 logger.info('Open event story 2')
 
+                self.device.screenshot()
                 # 困难难度关闭
                 if self.appear(self.event_assets.STORY_2_NORMAL, threshold=10) and self.appear(
                     self.event_assets.STORY_2_HARD_LOCKED, offset=10
@@ -580,7 +575,7 @@ class Event(UI):
                     break
 
         # 滑动到列表最下方检查倒数第二关
-        self.ensure_sroll_to_bottom(count=3)
+        self.ensure_sroll_to_bottom(x1=(680, 900), x2=(680, 460), count=3)
         self.device.screenshot()
         self.find_and_fight_stage(open_story)
 
@@ -689,7 +684,7 @@ class Event(UI):
                 break
 
         # 滑动到列表最下方检查倒数第二关
-        self.ensure_sroll_to_bottom(count=3)
+        self.ensure_sroll_to_bottom(x1=(680, 900), x2=(680, 460), count=3)
         self.device.screenshot()
         self.find_and_fight_stage(open_story)
 
@@ -977,9 +972,7 @@ class Event(UI):
                         continue
 
                     # 点击领取
-                    if click_timer.reached() and self.appear_then_click(
-                        RECEIVE, offset=30, interval=1, static=False
-                    ):
+                    if click_timer.reached() and self.appear_then_click(RECEIVE, offset=30, interval=1, static=False):
                         self.device.sleep(0.5)
                         click_timer.reset()
                         continue
