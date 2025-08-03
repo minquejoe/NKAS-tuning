@@ -124,6 +124,8 @@ WEB_THEME = Theme(
 
 logger = logging.getLogger('nkas')
 logger.setLevel(logging.DEBUG)
+# TODO 临时添加
+logger.propagate = False
 
 file_formatter = logging.Formatter(
     fmt='%(asctime)s.%(msecs)03d | %(levelname)s | %(message)s', datefmt='%Y-%m-%d %H:%M:%S'
@@ -133,6 +135,7 @@ web_formatter = logging.Formatter(fmt='%(asctime)s.%(msecs)03d │ %(message)s',
 
 stdout_console = console = Console()
 console_hdlr = RichHandler(
+    console=stdout_console,
     show_path=False,
     show_time=False,
     rich_tracebacks=True,

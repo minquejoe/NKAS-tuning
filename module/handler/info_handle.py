@@ -26,9 +26,9 @@ class InfoHandler(ModuleBase):
             self.device.sleep(1)
             return True
         # Daily Login, Memories Spring, Monthly Card, etc.
-        if self.appear_text_then_click('_领取奖励', interval=5):
+        if self.appear_text_then_click('_领取奖励', interval=3):
             return True
-        elif a := self.appear_text('_全部领取', interval=5):
+        elif a := self.appear_text('_全部领取', interval=3):
             x, y = a[0], a[1]
             b = get_color(
                 image=self.device.image,
@@ -122,8 +122,6 @@ class InfoHandler(ModuleBase):
             threshold=0.74,
             static=False,
         ) and self.appear_then_click(ANNOUNCEMENT, offset=(30, 30), interval=3, threshold=0.74, static=False):
-            return True
-        elif self._appear_text_then_click('不再显示', (20, 600), label='CLOSE_ANNOUNCEMENT'):
             return True
 
     def handle_download(self):

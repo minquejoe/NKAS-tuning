@@ -42,27 +42,27 @@ class Conversation(UI):
         return result
 
     def nikke_name(self) -> str:
+        model_type = self.config.Optimization_OcrModelType
         NIKKE_NAME = Ocr(
             [COMMUNICATE_NIKKE_NAME.area],
             name='NIKKE_NAME',
-            letter=(73, 73, 73),
-            threshold=128,
-            lang='nikke',
+            model_type=model_type,
+            lang='ch',
         )
 
-        return NIKKE_NAME.ocr(self.device.image)
+        return NIKKE_NAME.ocr(self.device.image)['text']
 
     def answer_text(self, button: Button) -> str:
         area = _area_offset(button.area, (45, -13, 545, 13))
+        model_type = self.config.Optimization_OcrModelType
         ANSWER = Ocr(
             [area],
             name='ANSWER',
-            letter=(255, 255, 255),
-            threshold=128,
-            lang='nikke',
+            model_type=model_type,
+            lang='ch',
         )
 
-        return ANSWER.ocr(self.device.image)
+        return ANSWER.ocr(self.device.image)['text']
 
     def get_next_target(self, skip_first_screenshot=True):
         # 是否进入到某个角色

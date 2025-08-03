@@ -19,14 +19,14 @@ class CoopIsUnavailable(Exception):
 class Coop(UI):
     @property
     def free_remain(self) -> int:
+        model_type = self.config.Optimization_OcrModelType
         FREE_REMAIN = Digit(
             [FREE_OPPORTUNITY_CHECK.area],
             name='FREE_REMAIN',
-            letter=(247, 247, 247),
-            threshold=128,
-            lang='cnocr_num',
+            model_type=model_type,
+            lang='num',
         )
-        return int(FREE_REMAIN.ocr(self.device.image))
+        return int(FREE_REMAIN.ocr(self.device.image)['text'])
 
     @property
     def free_opportunity_remain(self) -> bool:

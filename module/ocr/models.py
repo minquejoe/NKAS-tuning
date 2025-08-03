@@ -1,78 +1,127 @@
-from functools import cached_property
-
 import numpy as np
-
-from module.ocr.nikke_ocr import NikkeOcr
 
 
 class OcrModel:
-    @cached_property
-    def nikke(self):
-        """
-        base: cnocr-v2.3-densenet_lite_136-gru.ckpt
-        training data: https://github.com/megumiss/NIKKECnOCR/commit/983d2f3542541163dbd695dd497e2961bfd41841
-        epochs: 20
-        learning_rate: 3e-4
-        val-complete_match-epoch: 0.9731
-        """
-        return NikkeOcr(
-            rec_model_name='densenet_lite_136-gru',
-            root='./bin/cnocr_models/nikke',
-            model_name='/cnocr-v2.3-densenet_lite_136-gru-nikke.ckpt',
-            name='nikke',
-        )
+    def __init__(self):
+        self._paddle_cache = {}
+        self._paddle_num_cache = {}
 
-    @cached_property
-    def cnocr(self):
-        return NikkeOcr(
-            rec_model_name='densenet_lite_136-gru',
-            root='./bin/cnocr_models/cnocr',
-            model_name='/cnocr-v2.3-densenet_lite_136-gru.ckpt',
-            name='cnocr',
-        )
+    def paddle(self, model_type, interval):
+        if model_type not in self._paddle_cache:
+            from module.ocr.nikke_ocr import NIKKEOcr
 
-    @cached_property
-    def cnocr_num(self):
-        return NikkeOcr(
-            rec_model_name='number-densenet_lite_136-fc',
-            root='./bin/cnocr_models/cnocr',
-            model_name='/cnocr-v2.3-number-densenet_lite_136-fc-nikke.ckpt',
-            name='cnocr_num',
-        )
+            self._paddle_cache[model_type] = NIKKEOcr(
+                lang='ch',
+                model_type=model_type,
+                use_doc_orientation_classify=False,
+                use_doc_unwarping=False,
+                use_textline_orientation=False,
+                interval=interval,
+            )
+        return self._paddle_cache[model_type]
+
+    def paddle_num(self, model_type, interval):
+        if model_type not in self._paddle_num_cache:
+            from module.ocr.nikke_ocr import NIKKEOcr
+
+            self._paddle_num_cache[model_type] = NIKKEOcr(
+                lang='en',
+                model_type=model_type,
+                use_doc_orientation_classify=False,
+                use_doc_unwarping=False,
+                use_textline_orientation=False,
+                text_det_thresh=0.1,
+                text_det_unclip_ratio=6.0,
+                interval=interval,
+            )
+        return self._paddle_num_cache[model_type]
+
+    def get_model_by(self, lang='ch', model_type='mobile', interval=0):
+        if lang == 'ch':
+            return self.paddle(model_type=model_type, interval=interval)
+        elif lang in ('en', 'num'):
+            return self.paddle_num(model_type=model_type, interval=interval)
+        else:
+            raise ValueError(f'Unsupported lang: {lang}')
 
     def get_location(self, text, result):
-        if result:
-            merged_dict = {}
-            for dictionary in list(map(lambda x: {x['text']: x['position']}, result)):
-                merged_dict.update(dictionary)
+        """
+        获取目标文本在 OCR 结果中的中心坐标
 
-            r = None
-            _, text = self.get_similarity(list(map(lambda x: x['text'], result)), text, threshold=0.51)
+        Args:
+            text: 要查找的目标文本
+            result: _process_ocr_result 返回的结果字典
 
-            if _:
-                r = [merged_dict[text]]
+        Returns:
+            tuple: (x, y) 中心坐标，未找到返回 None
+        """
+        if not result or not result.get('details'):
+            return None
 
-            if r:
-                upper_left, bottom_right = r[0][0], r[0][2]
-                x, y = (np.array(upper_left) + np.array(bottom_right)) / 2
-                return x, y
+        # 构建文本到 bbox 的映射
+        text_bbox_map = {item['text']: item['bbox'] for item in result['details']}
+        all_texts = list(text_bbox_map.keys())
+
+        # 找到最相似的文本
+        ratio, matched_text = self.get_similarity(all_texts, text)
+        if not (ratio > 0 and matched_text in text_bbox_map):
+            return None
+
+        raw_bbox = text_bbox_map[matched_text]
+        if raw_bbox is None:
+            return None
+
+        # 转成 numpy array 方便判断维度
+        bbox = np.array(raw_bbox)
+
+        # bbox 可能两种形态：
+        # 1) 4×2 的点阵：[[x1, y1], [x2, y2], [x3, y3], [x4, y4]]
+        # 2) 1×4 的平铺：[x1, y1, x2, y2]
+        if bbox.ndim == 2 and bbox.shape == (4, 2):
+            ul = bbox[0]  # 左上
+            br = bbox[2]  # 右下
+        elif bbox.ndim == 1 and bbox.size == 4:
+            ul = bbox[:2]  # [x1, y1]
+            br = bbox[2:4]  # [x2, y2]
+        else:
+            return None
+
+        # 计算中心点
+        x = (int(ul[0]) + int(br[0])) / 2
+        y = (int(ul[1]) + int(br[1])) / 2
+        return x, y
 
     def get_similarity(self, texts, target, threshold=0.49):
+        """计算文本相似度
+
+        Args:
+            texts: 候选文本列表
+            target: 目标文本
+            threshold: 相似度阈值
+
+        Returns:
+            tuple: (相似度, 最匹配的文本)
+        """
         import difflib
 
+        # 处理目标文本中的下划线
+        clean_target = target.strip('_')
+
         max_ratio = 0
-        most_matched_name = ''
+        most_matched = ''
+
         for text in texts:
-            if '_' in target:
-                if target.strip('_') != text:
-                    continue
-            ratio = difflib.SequenceMatcher(None, text, target).quick_ratio()
+            # 下划线特殊处理
+            if '_' in target and clean_target == text:
+                return 1.0, text  # 完全匹配
+
+            ratio = difflib.SequenceMatcher(None, text, target).ratio()
             if ratio > max_ratio:
                 max_ratio = ratio
-                most_matched_name = text
-        if max_ratio < threshold:
-            return 0, ''
-        return max_ratio, most_matched_name
+                most_matched = text
+
+        # 返回超过阈值的结果
+        return (max_ratio, most_matched) if max_ratio >= threshold else (0, '')
 
 
 OCR_MODEL = OcrModel()
