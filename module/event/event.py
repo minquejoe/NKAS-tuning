@@ -483,7 +483,7 @@ class Event(UI):
 
                     # story1主页
                     if click_timer.reached() and self.appear_then_click(
-                        self.event_assets.STORY_1_CHECK, offset=10, interval=1
+                        self.event_assets.STORY_1_CHECK, offset=10, interval=3
                     ):
                         click_timer.reset()
                         continue
@@ -520,7 +520,7 @@ class Event(UI):
 
                     # story2主页
                     if click_timer.reached() and self.appear_then_click(
-                        self.event_assets.STORY_2_CHECK, offset=10, interval=1
+                        self.event_assets.STORY_2_CHECK, offset=10, interval=3
                     ):
                         click_timer.reset()
                         continue
@@ -637,7 +637,7 @@ class Event(UI):
 
                 # story主页
                 if click_timer.reached() and self.appear_then_click(
-                    self.event_assets.STORY_1_CHECK, offset=10, interval=1
+                    self.event_assets.STORY_1_CHECK, offset=10, interval=3
                 ):
                     click_timer.reset()
                     continue
