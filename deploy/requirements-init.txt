@@ -1,0 +1,15 @@
+filelock==3.18.0
+inflection==0.5.1
+markdown-it-py==2.2.0
+mdurl==0.1.2
+numpy==1.24.4
+opencv-python==4.6.0.66
+pillow==11.3.0
+Pygments==2.19.2
+pywebio==1.7.1
+PyYAML==6.0.2
+tornado==6.5.1
+rich==13.3.3
+ua-parser==1.0.1
+ua-parser-builtins==0.18.0.post1
+user-agents==2.2.0
