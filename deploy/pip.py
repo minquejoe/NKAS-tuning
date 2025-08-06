@@ -73,8 +73,8 @@ class PipManager(DeployConfig):
     @cached_property
     def set_required_dependency(self) -> t.Set[DataDependency]:
         data = []
-        regex = re.compile('(.*)==(.*)[ ]*#')
-        file = self.filepath('./requirements.txt')
+        regex = re.compile(r'^([^#\s]+)==([^#\s]+)')
+        file = self.filepath("RequirementsFile")
         try:
             with open(file, 'r', encoding='utf-8') as f:
                 for line in f.readlines():
