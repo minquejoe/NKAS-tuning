@@ -18,6 +18,8 @@ class ConfigModel:
     GitProxy: Optional[str] = None
 
     PythonExecutable: str = "./toolkit/python.exe"
+    PypiMirror: Optional[str] = None
+    InstallDependencies: bool = True
     RequirementsFile: str = "requirements.txt"
 
     AdbExecutable: str = "./toolkit/Lib/site-packages/adbutils/binaries/adb.exe"

@@ -8,6 +8,8 @@ Deploy:
 
   Python:
     PythonExecutable: './toolkit/python.exe'
+    PypiMirror: null
+    InstallDependencies: true
     RequirementsFile: 'requirements.txt'
 
   Adb:
