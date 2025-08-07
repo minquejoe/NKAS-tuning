@@ -81,7 +81,7 @@ class ManualConfig:
         {
             "event_id": "event_20250807",
             "event_name": "ABSOLUTE",
-            # 有story2的小型活动
+            # story1为小型活动的大型活动
             "event_type": 3,
             "mini_game": False
         },

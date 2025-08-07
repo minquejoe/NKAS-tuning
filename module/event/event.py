@@ -445,7 +445,7 @@ class Event(UI):
 
         logger.info('Event reward done')
 
-    @Config.when(EVENT_TYPE=1)
+    @Config.when(EVENT_TYPE=(1, 3))
     def story(self, skip_first_screenshot=True):
         logger.hr('START EVENT STORY')
         click_timer = Timer(0.3)
