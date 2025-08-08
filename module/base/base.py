@@ -84,7 +84,7 @@ class ModuleBase:
 
         return appear
 
-    def appear_then_click(self, button, offset=0, interval=0, threshold=None,
+    def appear_then_click(self, button, offset=0, click_offset=0, interval=0, threshold=None,
                           static=True, screenshot=False) -> bool:
 
         appear = self.appear(button, offset=offset, interval=interval, threshold=threshold, static=static)
@@ -92,7 +92,7 @@ class ModuleBase:
             if screenshot:
                 self.device.sleep(self.config.WAIT_BEFORE_SAVING_SCREEN_SHOT)
                 self.device.screenshot()
-            self.device.click(button)
+            self.device.click(button, click_offset)
 
         return appear
 

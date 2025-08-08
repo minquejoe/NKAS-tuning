@@ -19,7 +19,7 @@ class Control(Minitouch):
             'minitouch': self.click_minitouch,
         }
 
-    def click(self, button: Button, control_check=True):
+    def click(self, button: Button, click_offset=0, control_check=True):
         """Method to click a button.
 
         Args:
@@ -31,6 +31,14 @@ class Control(Minitouch):
 
         # x, y = random_rectangle_point(button.button)
         x, y = button.location
+        # 如果 click_offset 是单个数字，代表 x 和 y 都偏移同样的量
+        if isinstance(click_offset, (int, float)):
+            x += click_offset
+            y += click_offset
+        # 如果是 (offset_x, offset_y) 形式，分别偏移
+        elif isinstance(click_offset, (tuple, list)) and len(click_offset) == 2:
+            x += click_offset[0]
+            y += click_offset[1]
 
         x, y = ensure_int(x, y)
         logger.info(
