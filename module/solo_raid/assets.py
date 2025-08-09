@@ -14,7 +14,7 @@ ENEMY_DEFEATED = Button(area={'cn': (257, 387, 474, 429)}, color={'cn': (138, 14
 ENEMY_DEFEATED_CONFIRM = Button(area={'cn': (264, 842, 291, 864)}, color={'cn': (75, 193, 246)}, button={'cn': (264, 842, 291, 864)}, file={'cn': './assets/cn/solo_raid/ENEMY_DEFEATED_CONFIRM.png'})
 ENTER_FIGHT = Button(area={'cn': (494, 1078, 598, 1103)}, color={'cn': (244, 143, 127)}, button={'cn': (494, 1078, 598, 1103)}, file={'cn': './assets/cn/solo_raid/ENTER_FIGHT.png'})
 FIGHT_HISTORY = Button(area={'cn': (599, 786, 661, 801)}, color={'cn': (175, 174, 174)}, button={'cn': (599, 786, 661, 801)}, file={'cn': './assets/cn/solo_raid/FIGHT_HISTORY.png'})
-FREE_OPPORTUNITY_CHECK = Button(area={'cn': (398, 1134, 416, 1154)}, color={'cn': (125, 115, 73)}, button={'cn': (398, 1134, 416, 1154)}, file={'cn': './assets/cn/solo_raid/FREE_OPPORTUNITY_CHECK.png'})
+FREE_OPPORTUNITY_CHECK = Button(area={'cn': (266, 1130, 454, 1158)}, color={'cn': (105, 91, 62)}, button={'cn': (266, 1130, 454, 1158)}, file={'cn': './assets/cn/solo_raid/FREE_OPPORTUNITY_CHECK.png'})
 RAID_RESULT = Button(area={'cn': (288, 347, 441, 388)}, color={'cn': (141, 143, 143)}, button={'cn': (288, 347, 441, 388)}, file={'cn': './assets/cn/solo_raid/RAID_RESULT.png'})
 SOLO_RAID = Button(area={'cn': (42, 586, 84, 608)}, color={'cn': (156, 99, 37)}, button={'cn': (42, 586, 84, 608)}, file={'cn': './assets/cn/solo_raid/SOLO_RAID.png'})
 SOLO_RAID_CHECK = Button(area={'cn': (230, 555, 337, 573)}, color={'cn': (139, 106, 34)}, button={'cn': (230, 555, 337, 573)}, file={'cn': './assets/cn/solo_raid/SOLO_RAID_CHECK.png'})
