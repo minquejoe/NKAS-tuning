@@ -558,3 +558,10 @@ CheerStrategy:
     Most: "多数"
     Few: "少数"
     Random: "随机"
+Interception:
+  _info:
+    name: 异常拦截
+    help: ""
+  DropScreenshotPath:
+    name: 掉落截图路径
+    help: "会在路径下创建日期文件夹保存对应的掉落截图，不填写则不保存；例如：D:\\PCR\\NIKKE，Docker用户需要填写以/app/NIKKEAutoScript开始的文件夹"

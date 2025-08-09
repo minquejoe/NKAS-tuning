@@ -65,6 +65,7 @@ TribeTower:
 
 Interception:
   - Scheduler
+  - Interception
 
 RookieArena:
   - Scheduler

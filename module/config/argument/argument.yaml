@@ -162,3 +162,7 @@ CheerStrategy:
   Strategy:
     value: 'Most'
     option: [ 'Most','Few','Random' ]
+Interception:
+  DropScreenshotPath:
+    value: ''
+    type: textarea

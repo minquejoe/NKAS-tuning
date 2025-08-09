@@ -114,5 +114,8 @@ class GeneratedConfig:
     CheerStrategy_Enable = False
     CheerStrategy_Strategy = 'Most'  # Most, Few, Random
 
+    # Group `Interception`
+    Interception_DropScreenshotPath = None
+
     # Group `Storage`
     Storage_Storage = {}

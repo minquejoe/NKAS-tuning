@@ -872,6 +872,12 @@
         "display": "hide"
       }
     },
+    "Interception": {
+      "DropScreenshotPath": {
+        "type": "textarea",
+        "value": ""
+      }
+    },
     "Storage": {
       "Storage": {
         "type": "storage",

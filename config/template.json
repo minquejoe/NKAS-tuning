@@ -252,6 +252,9 @@
       "FailureInterval": 120,
       "ServerUpdate": "04:00"
     },
+    "Interception": {
+      "DropScreenshotPath": null
+    },
     "Storage": {
       "Storage": {}
     }
