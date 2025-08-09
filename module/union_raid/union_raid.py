@@ -132,7 +132,7 @@ class UnionRaid(UI):
                 click_timer.reached()
                 and self.appear(UNION_RAID_ENEMY_CHECK, offset=10)
                 and self.appear(RAID_TEAM_1_SELECTED, threshold=10)
-                and self.appear(RAID_TEAM_LOCKED, offset=10)
+                and self.appear(RAID_TEAM_LOCKED, offset=10, threshold=0.7)
                 and self.appear_then_click(RAID_TEAM_2, offset=10, interval=1)
             ):
                 click_timer.reset()
@@ -143,8 +143,30 @@ class UnionRaid(UI):
                 click_timer.reached()
                 and self.appear(UNION_RAID_ENEMY_CHECK, offset=10)
                 and self.appear(RAID_TEAM_2_SELECTED, threshold=10)
-                and self.appear(RAID_TEAM_LOCKED, offset=10)
+                and self.appear(RAID_TEAM_LOCKED, offset=10, threshold=0.7)
                 and self.appear_then_click(RAID_TEAM_3, offset=10, interval=1)
+            ):
+                click_timer.reset()
+                continue
+
+            # 切换队伍4
+            if (
+                click_timer.reached()
+                and self.appear(UNION_RAID_ENEMY_CHECK, offset=10)
+                and self.appear(RAID_TEAM_3_SELECTED, threshold=10)
+                and self.appear(RAID_TEAM_LOCKED, offset=10, threshold=0.7)
+                and self.appear_then_click(RAID_TEAM_4, offset=10, interval=1)
+            ):
+                click_timer.reset()
+                continue
+
+            # 切换队伍5
+            if (
+                click_timer.reached()
+                and self.appear(UNION_RAID_ENEMY_CHECK, offset=10)
+                and self.appear(RAID_TEAM_4_SELECTED, threshold=10)
+                and self.appear(RAID_TEAM_LOCKED, offset=10, threshold=0.7)
+                and self.appear_then_click(RAID_TEAM_5, offset=10, interval=1)
             ):
                 click_timer.reset()
                 continue
