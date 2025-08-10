@@ -28,7 +28,8 @@ class Resource:
         if s is None:
             s = server.server
         if isinstance(data, dict):
-            return data[s]
+            # TODO 修复语言/服务器资源选择
+            return data.get(s) or data.get('cn')
         else:
             return data
 
