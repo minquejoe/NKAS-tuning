@@ -6,6 +6,7 @@ from module.base.template import Template
 
 ENEMY_DEFEATED = Button(area={'cn': (357, 316, 475, 359)}, color={'cn': (136, 138, 138)}, button={'cn': (357, 316, 475, 359)}, file={'cn': './assets/cn/union_raid/ENEMY_DEFEATED.png'})
 ENEMY_DEFEATED_CONFIRM = Button(area={'cn': (263, 911, 293, 932)}, color={'cn': (77, 193, 246)}, button={'cn': (263, 911, 293, 932)}, file={'cn': './assets/cn/union_raid/ENEMY_DEFEATED_CONFIRM.png'})
+ENEMY_DEFEATED_CONFIRM_SKIP = Button(area={'cn': (400, 914, 427, 932)}, color={'cn': (231, 186, 146)}, button={'cn': (400, 914, 427, 932)}, file={'cn': './assets/cn/union_raid/ENEMY_DEFEATED_CONFIRM_SKIP.png'})
 ENTER_FIGHT = Button(area={'cn': (493, 1181, 604, 1208)}, color={'cn': (242, 135, 118)}, button={'cn': (493, 1181, 604, 1208)}, file={'cn': './assets/cn/union_raid/ENTER_FIGHT.png'})
 FREE_OPPORTUNITY_CHECK = Button(area={'cn': (304, 354, 415, 406)}, color={'cn': (68, 55, 36)}, button={'cn': (304, 354, 415, 406)}, file={'cn': './assets/cn/union_raid/FREE_OPPORTUNITY_CHECK.png'})
 RAID_RESULT = Button(area={'cn': (288, 347, 441, 388)}, color={'cn': (141, 143, 143)}, button={'cn': (288, 347, 441, 388)}, file={'cn': './assets/cn/union_raid/RAID_RESULT.png'})

@@ -86,7 +86,16 @@ class UnionRaid(UI):
             if (
                 click_timer.reached()
                 and self.appear(ENEMY_DEFEATED, offset=10)
-                and self.appear_then_click(ENEMY_DEFEATED_CONFIRM, offset=(200, 10), interval=2)
+                and self.appear_then_click(ENEMY_DEFEATED_CONFIRM_SKIP, offset=(10, 10), interval=2)
+            ):
+                click_timer.reset()
+                continue
+
+            # 结算弹窗
+            if (
+                click_timer.reached()
+                and self.appear(ENEMY_DEFEATED, offset=10)
+                and self.appear_then_click(ENEMY_DEFEATED_CONFIRM, offset=(10, 10), interval=2)
             ):
                 click_timer.reset()
                 continue
@@ -206,7 +215,16 @@ class UnionRaid(UI):
             if (
                 click_timer.reached()
                 and self.appear(ENEMY_DEFEATED, offset=10)
-                and self.appear_then_click(ENEMY_DEFEATED_CONFIRM, offset=(200, 10), interval=2)
+                and self.appear_then_click(ENEMY_DEFEATED_CONFIRM_SKIP, offset=(10, 10), interval=2)
+            ):
+                click_timer.reset()
+                continue
+
+            # 结算弹窗
+            if (
+                click_timer.reached()
+                and self.appear(ENEMY_DEFEATED, offset=10)
+                and self.appear_then_click(ENEMY_DEFEATED_CONFIRM, offset=(10, 10), interval=2)
             ):
                 click_timer.reset()
                 continue
