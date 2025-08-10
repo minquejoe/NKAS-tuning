@@ -14,6 +14,13 @@
           "com.gamamobi.nikke"
         ]
       },
+      "Language": {
+        "type": "select",
+        "value": "zh-cn",
+        "option": [
+          "zh-cn"
+        ]
+      },
       "ScreenshotMethod": {
         "type": "select",
         "value": "DroidCast",

@@ -3,6 +3,7 @@
     "Emulator": {
       "Serial": "auto",
       "PackageName": "com.proximabeta.nikke",
+      "Language": "zh-cn",
       "ScreenshotMethod": "DroidCast",
       "ControlMethod": "minitouch",
       "AdbRestart": false,

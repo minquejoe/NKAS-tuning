@@ -1,9 +1,9 @@
-server = 'cn'
+server = 'intl'
 
-VALID_SERVER = ['cn', 'tw']
+VALID_SERVER = ['intl', 'tw']
 
 VALID_PACKAGE = {
-    'com.proximabeta.nikke': 'cn',
+    'com.proximabeta.nikke': 'intl',
     'com.gamamobi.nikke': 'tw',
 }
 
@@ -26,14 +26,11 @@ def set_server(package_or_server: str):
     global server
     server = to_server(package_or_server)
 
-    from module.base.resource import release_resources
-    release_resources()
-
 
 def to_server(package_or_server: str) -> str:
     """
     Convert package/server to server.
-    To unknown packages, consider they are a CN channel servers.
+    To unknown packages, consider they are a intl channel servers.
     """
     if package_or_server in VALID_SERVER:
         return package_or_server
@@ -42,4 +39,4 @@ def to_server(package_or_server: str) -> str:
     elif package_or_server in VALID_CHANNEL_PACKAGE:
         return VALID_CHANNEL_PACKAGE[package_or_server][0]
     else:
-        return 'cn'
+        return 'intl'

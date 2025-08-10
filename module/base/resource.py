@@ -1,5 +1,5 @@
 from module.base.decorator import del_cached_property
-from module.config import server
+from module.config import language
 
 
 class Resource:
@@ -16,20 +16,19 @@ class Resource:
             del_cached_property(self, cache)
 
     @staticmethod
-    def parse_property(data, s=None):
+    def parse_property(data, l=None):
         """
         Parse properties of Button or Template object input.
         Such as `area`, `color` and `button`.
 
         Args:
             data: Dict or str
-            s (str): Load from given a server or load from global attribute `server.server`
+            l (str): Load from given a language or load from global attribute `language.language`
         """
-        if s is None:
-            s = server.server
+        if l is None:
+            l = language.language
         if isinstance(data, dict):
-            # TODO 修复语言/服务器资源选择
-            return data.get(s) or data.get('cn')
+            return data.get(l)
         else:
             return data
 

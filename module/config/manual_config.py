@@ -116,7 +116,3 @@ class ManualConfig:
     ]
 
     Error_ScreenshotLength = 1
-
-    @property
-    def SERVER(self):
-        return "cn"
