@@ -167,6 +167,9 @@ Task:
   SoloRaid:
     name: 单人突击
     help: ""
+  UnionRaid:
+    name: 联盟突袭
+    help: ""
 Emulator:
   _info:
     name: 模拟器设置
@@ -176,12 +179,20 @@ Emulator:
     help:
       "常见的模拟器 Serial 可以查询下方列表，填 \"auto\" 自动检测模拟器，多个模拟器正在运行或使用不支持自动检测的模拟器时无法使用 \"auto\"，必须手动填写 \n
       模拟器默认 Serial：\n
-      - 雷电模拟器 emulator-5554 或 127.0.0.1:5555"
+      - MuMu5.0/MuMu12 127.0.0.1:16384\n
+      - 雷电模拟器 emulator-5554 或 127.0.0.1:5555\n
+      - 蓝叠模拟器 127.0.0.1:5555"
   PackageName:
-    name: 游戏服务器
-    help: 模拟器上装有多个游戏客户端时，需要手动选择服务器
-    com.proximabeta.nikke: 国际服
+    name: 游戏客户端
+    help: 模拟器上装有多个游戏客户端时，需要手动选择客户端
+    com.proximabeta.nikke: 国际
     com.gamamobi.nikke: 港澳台
+  Language:
+    name: 游戏语言
+    help: 当前只支持简体中文
+    zh-cn: 简体中文
+    zh-tw: 繁体中文
+    en: English
   ScreenshotMethod:
     name: 模拟器截图方案
     help: ""
@@ -555,3 +566,10 @@ CheerStrategy:
     Most: "多数"
     Few: "少数"
     Random: "随机"
+Interception:
+  _info:
+    name: 异常拦截
+    help: ""
+  DropScreenshotPath:
+    name: 掉落截图路径
+    help: "会在路径下创建日期文件夹保存对应的掉落截图，不填写则不保存；例如：D:\\PCR\\NIKKE，Docker用户需要填写以/app/NIKKEAutoScript开始的文件夹"

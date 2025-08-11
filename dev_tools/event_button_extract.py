@@ -34,7 +34,7 @@ class ImageExtractor:
         #     self.load(server)
         self.load()
 
-    def get_file(self, genre='', server='cn'):
+    def get_file(self, genre='', language='zh-cn'):
         for ext in ['.png', '.gif']:
             file = f'{self.name}.{genre}{ext}' if genre else f'{self.name}{ext}'
             # TODO
@@ -77,31 +77,31 @@ class ImageExtractor:
         mean = tuple(np.rint(mean).astype(int))
         return bbox, mean
 
-    def load(self, server='cn'):
-        file = self.get_file(server=server)
+    def load(self, language='zh-cn'):
+        file = self.get_file(language=language)
         if os.path.exists(file):
             area, color = self.extract(file)
             button = area
-            override = self.get_file('AREA', server=server)
+            override = self.get_file('AREA', language=language)
             if os.path.exists(override):
                 area, _ = self.extract(override)
-            override = self.get_file('COLOR', server=server)
+            override = self.get_file('COLOR', language=language)
             if os.path.exists(override):
                 _, color = self.extract(override)
-            override = self.get_file('BUTTON', server=server)
+            override = self.get_file('BUTTON', language=language)
             if os.path.exists(override):
                 button, _ = self.extract(override)
 
-            self.area[server] = area
-            self.color[server] = color
-            self.button[server] = button
-            self.file[server] = file
+            self.area[language] = area
+            self.color[language] = color
+            self.button[language] = button
+            self.file[language] = file
         else:
-            logger.attr(server, f'{self.name} not found, use cn server assets')
-            self.area[server] = self.area['cn']
-            self.color[server] = self.color['cn']
-            self.button[server] = self.button['cn']
-            self.file[server] = self.file['cn']
+            logger.attr(language, f'{self.name} not found, use zh-cn language assets')
+            self.area[language] = self.area['zh-cn']
+            self.color[language] = self.color['zh-cn']
+            self.button[language] = self.button['zh-cn']
+            self.file[language] = self.file['zh-cn']
 
     @property
     def expression(self):

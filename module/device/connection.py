@@ -15,6 +15,7 @@ from module.base.decorator import Config, del_cached_property, run_once
 from module.base.timer import Timer
 from module.base.utils import ensure_time
 from module.config.deep import deep_get
+from module.config.language import set_language
 from module.config.server import VALID_CHANNEL_PACKAGE, VALID_PACKAGE, set_server
 from module.device.connection_attr import ConnectionAttr
 from module.device.env import IS_LINUX, IS_MACINTOSH, IS_WINDOWS
@@ -136,7 +137,9 @@ class Connection(ConnectionAttr):
         else:
             set_server(self.package)
         logger.attr('PackageName', self.package)
-        logger.attr('Server', self.config.SERVER)
+        self.language = self.config.Emulator_Language
+        set_language(self.language)
+        logger.attr('Language', self.language)
 
         self.check_mumu_app_keep_alive()
 

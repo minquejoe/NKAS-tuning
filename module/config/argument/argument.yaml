@@ -21,6 +21,9 @@ Emulator:
   PackageName:
     value: com.proximabeta.nikke
     option: [ com.proximabeta.nikke, com.gamamobi.nikke, ]
+  Language:
+    value: zh-cn
+    option: [ zh-cn ]
   ScreenshotMethod:
     value: DroidCast
     option: [ DroidCast, ]
@@ -162,3 +165,7 @@ CheerStrategy:
   Strategy:
     value: 'Most'
     option: [ 'Most','Few','Random' ]
+Interception:
+  DropScreenshotPath:
+    value: ''
+    type: textarea

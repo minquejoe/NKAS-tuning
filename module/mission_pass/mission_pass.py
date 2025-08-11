@@ -140,22 +140,24 @@ class MissionPass(UI):
                 self.ensure_sroll((640, 200), (500, 200), speed=40, count=1, delay=0.5)
             for _ in range(passs):
                 self.device.screenshot()
-                if self.appear(DOT, offset=(20,20)):
+                if self.appear(DOT, offset=(20, 20)):
                     find_dot = True
                     while 1:
                         self.device.screenshot()
-                        # 进入某个pass
-                        if (
-                            click_timer.reached()
-                            and self.appear(MAIN_CHECK, offset=30)
-                            and self.appear_then_click(DOT, offset=(20,20), interval=3)
-                        ):
-                            click_timer.reset()
-                            continue
+
                         # pass弹窗
                         if self.appear(PASS_CHECK, offset=30):
                             logger.info('Open misson pass')
                             break
+
+                        # 进入某个pass
+                        if (
+                            click_timer.reached()
+                            and self.appear(MAIN_CHECK, offset=30)
+                            and self.appear_then_click(DOT, offset=(20, 20), click_offset=(-20, 10), interval=3)
+                        ):
+                            click_timer.reset()
+                            continue
 
                     # 领取pass
                     self.receive()

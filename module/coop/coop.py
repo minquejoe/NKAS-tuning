@@ -24,7 +24,7 @@ class Coop(UI):
             [FREE_OPPORTUNITY_CHECK.area],
             name='FREE_REMAIN',
             model_type=model_type,
-            lang='num',
+            lang='ch',
         )
         return int(FREE_REMAIN.ocr(self.device.image)['text'])
 
@@ -55,6 +55,7 @@ class Coop(UI):
             if not coop_enter:
                 # 滑动banner查找协同作战
                 self.ensure_sroll((260, 150), (30, 150), speed=35, count=1, delay=0.5)
+                self.ensure_sroll((30, 150), (260, 150), speed=35, count=1, delay=0.5)
                 self.device.screenshot()
                 banner_first = Button(EVENT_BANNER.area, None, button=EVENT_BANNER.area)
                 banner_first._match_init = True
@@ -82,7 +83,7 @@ class Coop(UI):
 
                     # 回到第一个banner
                     if self.appear(banner_first, offset=10, threshold=0.8):
-                        if self.appear_then_click(COOP_BANNER_CHECK, offset=10, interval=2):
+                        if self.appear_then_click(COOP_BANNER_CHECK, offset=10, threshold=0.65, interval=2):
                             logger.info('Find coop in banner')
                             coop_enter = True
                             break
@@ -90,7 +91,7 @@ class Coop(UI):
                             logger.info('Not find coop in banner')
                             raise CoopIsUnavailable
 
-                    if self.appear_then_click(COOP_BANNER_CHECK, offset=10, interval=2):
+                    if self.appear_then_click(COOP_BANNER_CHECK, offset=10, threshold=0.65, interval=2):
                         logger.info('Find coop in banner')
                         coop_enter = True
                         break

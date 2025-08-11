@@ -1,3 +1,6 @@
+import os
+from datetime import datetime
+
 from module.base.timer import Timer
 from module.interception.assets import *
 from module.simulation_room.assets import AUTO_BURST, AUTO_SHOOT, END_FIGHTING, PAUSE
@@ -77,6 +80,9 @@ class Interception(UI):
                     continue
 
             if click_timer.reached() and self.appear_then_click(END_FIGHTING, offset=(5, 5), interval=2):
+                saved_path = self.save_drop_image(self.device.image, self.config.Interception_DropScreenshotPath)
+                if saved_path:
+                    print(f'Save drop image to: {saved_path}')
                 click_timer.reset()
                 confirm_timer.reset()
                 continue
@@ -87,6 +93,39 @@ class Interception(UI):
                 and confirm_timer.reached()
             ):
                 raise NoOpportunity
+
+    def save_drop_image(self, image, base_path):
+        """
+        保存掉落截图到日期子文件夹，并按当天次数自动编号
+        兼容 Linux/Windows
+        Args:
+            image: OpenCV 格式图片 (numpy.ndarray)
+            base_path: 基础保存路径
+        Returns:
+            save_path: 保存的完整文件路径
+        """
+        if not base_path:
+            return None
+
+        # 按日期生成子文件夹
+        today_str = datetime.now().strftime('%Y-%m-%d')
+        date_dir = os.path.join(base_path, today_str)
+
+        # 创建目录
+        os.makedirs(date_dir, exist_ok=True)
+
+        # 按当天已有数量生成编号
+        existing_files = [f for f in os.listdir(date_dir) if f.lower().endswith('.png')]
+        file_index = len(existing_files) + 1
+
+        # 生成文件路径
+        filename = f'drop_{file_index}.png'
+        save_path = os.path.join(date_dir, filename)
+
+        # 保存图片
+        from module.base.utils import save_image
+        save_image(image, save_path)
+        return save_path
 
     def run(self):
         self.ui_ensure(page_interception)

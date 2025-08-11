@@ -20,6 +20,7 @@ class GeneratedConfig:
     # Group `Emulator`
     Emulator_Serial = 'auto'
     Emulator_PackageName = 'com.proximabeta.nikke'  # com.proximabeta.nikke, com.gamamobi.nikke
+    Emulator_Language = 'zh-cn'  # zh-cn
     Emulator_ScreenshotMethod = 'DroidCast'  # DroidCast
     Emulator_ControlMethod = 'minitouch'  # minitouch
     Emulator_AdbRestart = False
@@ -113,6 +114,9 @@ class GeneratedConfig:
     # Group `CheerStrategy`
     CheerStrategy_Enable = False
     CheerStrategy_Strategy = 'Most'  # Most, Few, Random
+
+    # Group `Interception`
+    Interception_DropScreenshotPath = None
 
     # Group `Storage`
     Storage_Storage = {}
