@@ -47,8 +47,25 @@ class GiftBase(UI):
                 click_timer.reset()
                 continue
 
+            # 消费限制
+            if (
+                click_timer.reached()
+                and self.appear(CONSUMPTION_RESTRICTIONS, offset=10)
+                and self.appear_then_click(AGE_20, threshold=10, interval=2)
+            ):
+                click_timer.reset()
+                continue
+
+            if (
+                click_timer.reached()
+                and self.appear(CONSUMPTION_RESTRICTIONS, offset=10)
+                and self.appear_then_click(CONFIRM, threshold=10, interval=2)
+            ):
+                click_timer.reset()
+                continue
+
             # 打开礼礼包页面
-            if click_timer.reached() and self.appear_then_click(GOTO_GENERAL_GIFT, offset=(30, 30), interval=6):
+            if click_timer.reached() and self.appear_then_click(GOTO_GENERAL_GIFT, offset=(30, 30), interval=2):
                 click_timer.reset()
                 continue
 
