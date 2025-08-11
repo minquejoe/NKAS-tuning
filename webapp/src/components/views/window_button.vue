@@ -4,29 +4,38 @@
       <img id="LOGO" src="../../assets/img/Helm.png" alt="">
     </span>
     <span id="LOGO-TEXT">{{ packageJson.name }}</span>
-    <div @click="ToClose" class="win-button" id="Close">
+    <div @click="ToClose" class="win-button" id="Close" title="退出">
       <el-icon>
         <Close/>
       </el-icon>
     </div>
-    <div @click="ToFullScreen" class="win-button" id="FullScreen">
+    <div @click="ToFullScreen" class="win-button" id="FullScreen" title="全屏">
       <el-icon>
         <FullScreen/>
       </el-icon>
     </div>
-    <div @click="ToMin" class="win-button" id="Minus">
+    <div @click="ToMin" class="win-button" id="Minus" title="最小化">
       <el-icon>
         <Minus/>
+      </el-icon>
+    </div>
+    <div @click="ToTray" class="win-button" id="Tray" title="最小化到托盘">
+      <el-icon>
+        <ArrowDown/>
       </el-icon>
     </div>
   </div>
 </template>
 
 <script setup>
-import {Close, FullScreen, Minus} from '@element-plus/icons-vue'
+import {Close, FullScreen, Minus, ArrowDown} from '@element-plus/icons-vue'
 import packageJson from '../../../package.json'
 
 const ipcRenderer = require('electron').ipcRenderer;
+
+const ToTray = () => {
+  ipcRenderer.invoke('WindowToTray')
+}
 
 const ToMin = () => {
   ipcRenderer.invoke('WindowToMin')
@@ -68,7 +77,7 @@ const ToClose = () => {
   -webkit-app-region none
 
 
-#Minus, #FullScreen, #Close
+#Minus, #FullScreen, #Close, #Tray
   float right
   width 25px
   height 25px

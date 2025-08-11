@@ -1,7 +1,8 @@
+import datetime
 import subprocess
 import threading
 import time
-from typing import Tuple, List
+from typing import Generator, Tuple, List
 
 from deploy.config import ExecutionError
 from deploy.git import GitManager
@@ -11,6 +12,8 @@ from module.base.retry import retry
 from module.logger import logger
 from module.webui.process_manager import ProcessManager
 from module.webui.setting import State
+from module.webui.utils import TaskHandler
+from module.webui.utils import TaskHandler, get_next_time
 
 
 class Updater(GitManager, PipManager):
@@ -25,6 +28,15 @@ class Updater(GitManager, PipManager):
     def delay(self):
         self.read()
         return int(self.CheckUpdateInterval) * 60
+
+    @property
+    def schedule_time(self):
+        self.read()
+        t = self.AutoRestartTime
+        if t is not None:
+            return datetime.time.fromisoformat(t)
+        else:
+            return None
 
     @retry(ExecutionError, tries=3, delay=5, logger=None)
     def git_install(self):
@@ -76,9 +88,9 @@ class Updater(GitManager, PipManager):
         self.state = "checking"
         source = "origin"
         for _ in range(3):
-            '''
+            """
                 从上游仓库拉取最新的数据，但不进行合并
-            '''
+            """
             if self.execute(f'"{self.git}" fetch {source} {self.Branch}', allow_failure=True):
                 break
         else:
@@ -94,13 +106,13 @@ class Updater(GitManager, PipManager):
             )
             return False
 
-        '''
+        """
              当本地和上游仓库不一样时，会返回上游仓库最新的commit，如果一样，则返回None 
              git.exe log ..origin/main --pretty=format:"h---%an---%ad---%s" --date=iso -1
              
              返回上游仓库最新的commit
-             git.exe log origin/main --pretty=format:"h---%an---%ad---%s" --date=iso -1
-        '''
+             git.exe log origin/master --pretty=format:"h---%an---%ad---%s" --date=iso -1
+        """
         sha1, _, _, message = self.get_commit(f"..{source}/{self.Branch}")
 
         if sha1:
@@ -134,7 +146,7 @@ class Updater(GitManager, PipManager):
         if self.state == "cancel":
             self.state = 1
         self.state = "wait"
-        # self.event.set()
+        self.event.set()
         _instances = instances.copy()
         start_time = time.time()
         while _instances:
@@ -145,8 +157,8 @@ class Updater(GitManager, PipManager):
                     logger.info(f"Remains: {[nkas.config_name for nkas in _instances]}")
             if self.state == "cancel":
                 self.state = 1
-                # self.event.clear()
-                ProcessManager.restart_processes(instances, None)
+                self.event.clear()
+                ProcessManager.restart_processes(instances, self.event)
                 return
             time.sleep(0.25)
             if time.time() - start_time > 60 * 10:
@@ -173,7 +185,7 @@ class Updater(GitManager, PipManager):
         else:
             self.state = "failed"
             logger.warning("Update failed")
-            # self.event.clear()
+            self.event.clear()
             ProcessManager.restart_processes(instances, self.event)
             return False
 
@@ -187,6 +199,28 @@ class Updater(GitManager, PipManager):
 
         timer = threading.Timer(delay, trigger)
         timer.start()
+
+    def schedule_update(self) -> Generator:
+        th: TaskHandler
+        th = yield
+        if self.schedule_time is None:
+            th.remove_current_task()
+            yield
+        th._task.delay = get_next_time(self.schedule_time)
+        yield
+        while True:
+            self.check_update()
+            if self.state != 1:
+                th._task.delay = get_next_time(self.schedule_time)
+                yield
+                continue
+            if State.restart_event is None:
+                yield
+                continue
+            if not self.run_update():
+                self.state = "failed"
+            th._task.delay = get_next_time(self.schedule_time)
+            yield
 
     def cancel(self):
         self.state = "cancel"

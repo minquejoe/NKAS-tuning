@@ -48,8 +48,20 @@ Menu:
   Daily:
     name: 日常
     help: ""
-  Event:
-    name: 活动
+  Ark:
+    name: 方舟
+    help: ""
+  LimitedTimeEvent:
+    name: 限时作战
+    help: ""
+  StoryEvent:
+    name: 剧情活动
+    help: ""
+  Blablalink:
+    name: 妮游社
+    help: ""
+  Tools:
+    name: 工具
     help: ""
   Gift:
     name: 免费礼包
@@ -69,13 +81,19 @@ Task:
     name: 歼灭
     help: ""
   Commission:
-    name: 委托
+    name: 派遣
     help: ""
   Mailbox:
     name: 邮箱
     help: ""
   RookieArena:
     name: 新人竞技场
+    help: ""
+  SpecialArena:
+    name: 特殊竞技场
+    help: ""
+  ChampionArena:
+    name: 冠军竞技场
     help: ""
   Conversation:
     name: 咨询
@@ -92,9 +110,18 @@ Task:
   Daily:
     name: 日常
     help: ""
-  LIPass:
-    name: LIPass每日签到
-    help: "可在 https://pass.levelinfinite.com/rewards?lang=zh 兑换珠宝"
+  BlaAuth:
+    name: Cookie
+    help: ""
+  BlaDaily:
+    name: 妮游社日常
+    help: ""
+  BlaCDK:
+    name: 妮游社CDK
+    help: ""
+  BlaExchange:
+    name: 妮游社兑换
+    help: ""
   Interception:
     name: 异常拦截战
     help: "目前只打克拉肯"
@@ -119,20 +146,42 @@ Task:
   EventDaemon:
     name: 半自动活动
     help: "需要手动选择关卡"
+  DailyRecruit:
+    name: 每日抽卡
+    help: ""
+  Coop:
+    name: 协同作战
+    help: ""
+  TowerDaemon:
+    name: 自动爬塔
+    help: "自动爬普通企业塔，失败时自动停止"
+  CombatDaemon:
+    name: 半自动战斗
+    help: "半自动推图，剧情需要手动跳过（还没做）"
+  Event:
+    name: 剧情活动
+    help: ""
+  Event2:
+    name: 剧情活动2
+    help: ""
+  SoloRaid:
+    name: 单人突击
+    help: ""
 Emulator:
   _info:
     name: 模拟器设置
     help: ""
   Serial:
     name: 模拟器 Serial
-    help: "常见的模拟器 Serial 可以查询下方列表，填 \"auto\" 自动检测模拟器，多个模拟器正在运行或使用不支持自动检测的模拟器时无法使用 \"auto\"，必须手动填写 \n 
-    模拟器默认 Serial：\n
-  - 雷电模拟器 emulator-5554 或 127.0.0.1:5555"
+    help:
+      "常见的模拟器 Serial 可以查询下方列表，填 \"auto\" 自动检测模拟器，多个模拟器正在运行或使用不支持自动检测的模拟器时无法使用 \"auto\"，必须手动填写 \n
+      模拟器默认 Serial：\n
+      - 雷电模拟器 emulator-5554 或 127.0.0.1:5555"
   PackageName:
     name: 游戏服务器
     help: 模拟器上装有多个游戏客户端时，需要手动选择服务器
-    com_proximabeta_nikke: 国际服
-    com_gamamobi_nikke: 港澳台
+    com.proximabeta.nikke: 国际服
+    com.gamamobi.nikke: 港澳台
   ScreenshotMethod:
     name: 模拟器截图方案
     help: ""
@@ -154,6 +203,8 @@ Scheduler:
   Enable:
     name: 启用该功能
     help: ""
+    "True": "已启用"
+    "False": "False"
   NextRun:
     name: 下一次运行时间
     help: ""
@@ -173,6 +224,14 @@ Optimization:
   _info:
     name: 优化设置
     help: ""
+  AutoRedCircle:
+    name: 战斗时自动点击红圈
+    help: "需要设置中开启：同步点击位置和准星，当前支持特拦、爬塔，超过屏幕的红圈暂时无法处理"
+  OcrModelType:
+    name: OCR模型选择
+    help: "默认使用移动端模型，速度快，识别率稍低；服务端模型体积较大，速度很慢，识别率稍高"
+    mobile: 移动端
+    server: 服务端
   WhenTaskQueueEmpty:
     name: 当任务队列清空时
     help: ""
@@ -196,16 +255,38 @@ Reward:
   CollectSpecialArenaPoint:
     name: 收获特殊竞技场点数
     help: ""
+  CollectRanking:
+    name: 排名奖励领取
+    help: ""
+DailyRecruit:
+  _info:
+    name: 每日抽卡
+    help: ""
+  EventFreeRecruit:
+    name: 活动免费单抽
+    help: ""
+  SocialPointRecruit:
+    name: 友情点单抽
+    help: ""
 Conversation:
   _info:
     name: 咨询
+    help: "准确率无法保证100%"
+  QuickConsultation:
+    name: 快速咨询
+    help: "还没做"
+  OnlyFavourite:
+    name: 只咨询收藏
     help: ""
+  IgnoreBondMax:
+    name: 忽略好感等级
+    help: "即使好感满级仍然咨询，建议同时开启只咨询收藏，可以用来补咨询日志"
   WaitToCommunicate:
     name: 等待咨询的妮姬
     help: "请收藏想要咨询的妮姬\n
-           例如: '红莲 爱丽丝'，用一个空格分开\n
-           像 '梅里：海湾女神', '尼恩：蓝色海洋' 请填 '海湾女神', '蓝色海洋'
-          "
+      例如: '红莲 爱丽丝'，用一个空格分开\n
+      像 '梅里：海湾女神', '尼恩：蓝色海洋' 请填 '海湾女神', '蓝色海洋'
+      "
 Area:
   _info:
     name: 地区设置
@@ -213,23 +294,23 @@ Area:
   Difficulty:
     name: 难度
     help: ""
-    Level_1: 'Level-1'
-    Level_2: 'Level-2'
-    Level_3: 'Level-3'
-    Level_4: 'Level-4'
-    Level_5: 'Level-5'
+    Level_1: "Level-1"
+    Level_2: "Level-2"
+    Level_3: "Level-3"
+    Level_4: "Level-4"
+    Level_5: "Level-5"
   OnsetArea:
     name: 起始地区
     help: ""
-    A: 'A'
-    B: 'B'
-    C: 'C'
+    A: "A"
+    B: "B"
+    C: "C"
   EndingArea:
     name: 结束地区
     help: ""
-    A: 'A'
-    B: 'B'
-    C: 'C'
+    A: "A"
+    B: "B"
+    C: "C"
 Overcome:
   _info:
     name: 关卡设置
@@ -253,34 +334,36 @@ ArenaShop:
     help: ""
   priority:
     name: 优先购买
-    help: " 不填写则不购买 \n例如: 'ELECTRIC_CODE > MANUAL_SELECTION_BOX'，用一个大于号分开，可以选择的：\n
-                ELECTRIC_CODE: 电击代码\n
-                FIRE_CODE: 燃烧代码\n
-                IRON_CODE: 铁甲代码\n
-                WATER_CODE: 水冷代码\n
-                WIND_CODE: 风压代码\n
-                MANUAL_SELECTION_BOX: 代码自选箱\n
-                ORNAMENT: 简介装饰品\n
-                WEAPON: 公司武器熔炉\n
-             "
+    help:
+      " 不填写则不购买 \n例如: 'ELECTRIC_CODE > MANUAL_SELECTION_BOX'，用一个大于号分开，可以选择的：\n
+      ELECTRIC_CODE: 电击代码\n
+      FIRE_CODE: 燃烧代码\n
+      IRON_CODE: 铁甲代码\n
+      WATER_CODE: 水冷代码\n
+      WIND_CODE: 风压代码\n
+      MANUAL_SELECTION_BOX: 代码自选箱\n
+      ORNAMENT: 简介装饰品\n
+      WEAPON: 公司武器熔炉\n
+      "
 RubbishShop:
   _info:
     name: 废铁商店
     help: ""
   priority:
     name: 优先购买
-    help: " 不填写默认购买珠宝和芯尘盒 \n例如: 'GEM > CORE_DUST_CASE'，用一个大于号分开，可以选择的：\n
-             GEM: 珠宝\n
-             CORE_DUST_CASE: 芯尘盒\n
-             CREDIT_CASE: 信用点盒\n
-             BATTLE_DATA_SET_CASE: 战斗数据辑盒\n
-             GENERAL_TICKET: 指挥官通用券\n
-             ELYSION_TICKET: 极乐净土VIP券\n
-             MISSILIS_TICKET: 米西利斯VIP卡\n
-             TETRA_TICKET: 泰特拉VIP护理券\n
-             PILGRIM_TICKET: 朝圣者补给套组交换券\n
-             ABNORMAL_TICKET: 反常年券\n
-          "
+    help:
+      " 不填写默认购买珠宝和芯尘盒 \n例如: 'GEM > CORE_DUST_CASE'，用一个大于号分开，可以选择的：\n
+      GEM: 珠宝\n
+      CORE_DUST_CASE: 芯尘盒\n
+      CREDIT_CASE: 信用点盒\n
+      BATTLE_DATA_SET_CASE: 战斗数据辑盒\n
+      GENERAL_TICKET: 指挥官通用券\n
+      ELYSION_TICKET: 极乐净土VIP券\n
+      MISSILIS_TICKET: 米西利斯VIP卡\n
+      TETRA_TICKET: 泰特拉VIP护理券\n
+      PILGRIM_TICKET: 朝圣者补给套组交换券\n
+      ABNORMAL_TICKET: 反常年券\n
+      "
 Notification:
   _info:
     name: 通知设置
@@ -288,75 +371,187 @@ Notification:
   WhenDailyTaskCompleted:
     name: 当日常完成时，发送通知
     help: ""
-Event:
-  _info:
-    name: 活动设置
+  WhenDailyTaskCrashed:
+    name: 当日常出错时，发送通知
     help: ""
-  Event:
-    name: 活动
-    help: "会自动选取最新的活动"
-    event_1: 'OVER ZONE'
-    event_2: 'Bunny X 777'
-    event_3: "Queen's Order"
-    event_4: "Blue Water Island"
-    event_5: "NYA NYA PARADISE"
-  Event_Name:
-    name: 关卡名称
-    help: "例如 '1-11'"
-  Complete_Event:
-    name: 完成未完成的关卡
-    help: ""
-  Part:
-    name: Part
-    help: ""
-    story_1: 'Story 1'
-    story_2: 'Story 2'
-  Difficulty:
-    name: 难度
-    help: ""
-    normal: '普通'
-    hard: '困难'
+  OnePushConfig:
+    name: 推送设置
+    help: "使用 Onepush 推送一条错误信息（win不需要填写）。配置方法见文档：https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/Onepush-configuration-%5BCN%5D"
 Daily:
   _info:
     name: 每日任务
     help: ""
+  SendGift:
+    name: 送礼
+    help: "送一个最低稀有度的好感券给第一个好感未满的妮姬"
   EnhanceEquipment:
-    name: 强化背包内随机一个装备，会消耗 一个模组推进器 (蓝) 或 模组高级增强器 (紫)
-    help: ""
+    name: 强化装备
+    help: "强化背包内随机一个装备，会消耗 一个模组推进器 (蓝) 或 模组高级增强器 (紫)"
   CallReward:
-    name: 领取每日任务奖励前，再运行一次收获
-    help: ""
-Cookie:
-  _info:
-    name: Cookie
-    help: ""
-  lip_user_name:
-    name: lip_user_name
-    help: ""
-  lip_uid:
-    name: lip_uid
-    help: ""
-  lip_token:
-    name: lip_token
-    help: ""
-  lip_openid:
-    name: lip_openid
-    help: ""
-  lip_expire_time:
-    name: lip_expire_time
-    help: ""
-  lip_picture_url:
-    name: lip_picture_url
-    help: ""
+    name: 重复收获
+    help: "领取每日任务奖励前，再运行一次收获"
 CollectionItems:
   _info:
     name: 收藏品
     help: ""
   NIKKE:
     name: NIKKE
-    help: '没做完'
-    All: '随机'
-    Laplace: '拉普拉斯'
-    Frima: '普琳玛'
-    Diesel: '迪塞尔'
-    Exia: '艾可希雅'
+    help: "没做完"
+    All: "随机"
+    Laplace: "拉普拉斯"
+    Frima: "普琳玛"
+    Diesel: "迪塞尔"
+    Exia: "艾可希雅"
+OpponentSelection:
+  _info:
+    name: 对手选择设置
+    help: ""
+  Enable:
+    name: 启用该功能
+    help: "开启时会根据权重和选择策略选择对手, 关闭时会固定选择最下面的对手"
+  SortingWeight:
+    name: 排序权重
+    help:
+      "json字符串格式, 所有权重加和应为1, 如果只想启用某一个或几个可以将其他的权重数值为0\n
+      各项意义为Power: 战力, CommanderLevel: 指挥官等级, SynchroLevel: 同步器等级, Ranking: 排名"
+  SelectionStrategy:
+    name: 选择策略
+    help: ""
+    Max: "最高"
+    Middle: "中间"
+    Min: "最低"
+BlaDaily:
+  _info:
+    name: 每日任务
+    help: "社区每日签到、评论、点赞任务 https://www.blablalink.com"
+  Immediately:
+    name: 立即执行
+    help: ""
+  PostID:
+    name: 帖子ID
+    help: "要评论帖子的ID"
+  CommentID:
+    name: 评论ID
+    help: "要回复的某个评论的ID，此时必须填写帖子ID，ID可在F12中查看（页面ID显示有问题，不影响使用）"
+  Points:
+    name: 剩余金币数量
+    help: ""
+BlaAuth:
+  _info:
+    name: Cookie设置
+    help: ""
+  UserAgent:
+    name: 浏览器UA
+    help: ""
+  Cookie:
+    name: Cookie
+    help: ""
+  XCommonParams:
+    name: XCommonParams
+    help: "请求header中的x-common-params参数，需要包含openid"
+CDK:
+  _info:
+    name: CDK自动兑换
+    help: "默认会兑换blablalink中推荐的CDK"
+  Extra:
+    name: 额外CDK来源
+    help: "从第三方网站中获取最新的5个CDK，并自动兑换"
+  Source:
+    name: CDK额外来源
+    help: ""
+BlaExchange:
+  _info:
+    name: 金币兑换
+    help: ""
+  Priority:
+    name: 优先兑换
+    help:
+      "不填写则不购买 \n例如: 'Gem_×320 > Welcome_Gift_Core_Dust_×30'，用一个大于号分开，默认只换钻石：\n
+        Gem_×320: 珠寶 ×320\n
+        Welcome_Gift_Core_Dust_×30: 指揮官見面禮：芯塵 ×30\n
+        Gem_×30: 珠寶 ×30\n
+        Skill_Manual_I_×5: 技能手冊 I ×5\n
+        Ultra_Boost_Module_×5: 模組高級推進器 ×5\n
+        Code_Manual_Selection_Box_×5: 代碼手冊選擇寶箱 ×5\n
+        Gem_×60: 珠寶 ×60\n
+        Mid-Quality_Mold_×3: 中品質鑄模 ×3\n
+        Credit_Case_(1H)_x9: 信用點盒(1H) x9\n
+        Core_Dust_Case_(1H)_×3: 芯塵盒 (1H) ×3\n
+        Gem_×120: 珠寶 ×120\n
+        Mid-Quality_Mold_×8: 中品質鑄模 ×8\n
+        Battle_Data_Set_Case_(1H)_×6: 戰鬥數據輯盒 (1H) ×6\n
+        Core_Dust_Case_(1H)_×6: 芯塵盒 (1H) ×6\n
+        Skill_Manual_I_×30: 技能手冊 I ×30\n
+        Ultra_Boost_Module_×30: 模組高級推進器 ×30\n
+        Code_Manual_Selection_Box_×30: 代碼手冊選擇寶箱 ×30\n
+      "
+TowerDaemon:
+  _info:
+    name: 自动爬塔
+    help: "自动爬普通企业塔，失败时自动停止"
+CombatDaemon:
+  _info:
+    name: 半自动战斗
+    help: "半自动推图，能减少部分人工操作；需要手动导航到战斗开始界面，剧情需要手动跳过"
+Event:
+  _info:
+    name: 活动设置
+    help: ""
+  Event:
+    name: 当前活动
+    help: ""
+    event_20250807: "ABSOLUTE"
+    event_20250716: "BOOM! THE GHOST!"
+    event_20250612: "Memories Teller"
+    event_20250703l: "OuteR: Automata"
+    event_20250703s: "OVER THE HORIZON"
+  LoginStamp:
+    name: 签到印章
+    help: ""
+  Challenge:
+    name: 挑战
+    help: "需要提前设置好队伍"
+  Story:
+    name: 自动关卡
+    help: "倒数第二关快速战斗，需要打完当前开启关卡倒数第二关后开启。选择的关卡必须和当前开启的关卡一致"
+  Coop:
+    name: 协同作战
+    help: "大型活动内置协同作战普通难度摆烂"
+  StoryPart:
+    name: 关卡选择
+    help: ""
+    Story_1: "剧情1"
+    Story_2: "剧情2"
+  StoryDifficulty:
+    name: 关卡难度
+    help: ""
+    Normal: "普通"
+    Hard: "困难"
+  Game:
+    name: 小游戏
+    help: "视情况适配小游戏，如果没有适配会自动跳过"
+  Shop:
+    name: 商店
+    help: "依次购买除称号外的所有活动货币商品"
+Coop:
+  _info:
+    name: 协同作战
+    help: ""
+  MatchDifficulty:
+    name: 匹配难度
+    help: ""
+    Normal: "普通"
+    Challenge: "挑战"
+CheerStrategy:
+  _info:
+    name: 应援策略
+    help: ""
+  Enable:
+    name: 启用策略
+    help: "根据策略和当前的应援人数比例选择应援哪一方"
+  Strategy:
+    name: 选择策略
+    help: ""
+    Most: "多数"
+    Few: "少数"
+    Random: "随机"

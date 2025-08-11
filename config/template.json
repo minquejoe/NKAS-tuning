@@ -2,17 +2,21 @@
   "NKAS": {
     "Emulator": {
       "Serial": "auto",
-      "PackageName": "com_proximabeta_nikke",
+      "PackageName": "com.proximabeta.nikke",
       "ScreenshotMethod": "DroidCast",
       "ControlMethod": "minitouch",
       "AdbRestart": false,
       "ScreenshotInterval": 0.5
     },
     "Optimization": {
+      "AutoRedCircle": false,
+      "OcrModelType": "mobile",
       "WhenTaskQueueEmpty": "goto_main"
     },
     "Notification": {
-      "WhenDailyTaskCompleted": false
+      "WhenDailyTaskCompleted": false,
+      "WhenDailyTaskCrashed": false,
+      "OnePushConfig": "provider: null"
     },
     "Storage": {
       "Storage": {}
@@ -42,7 +46,8 @@
     },
     "Reward": {
       "CollectSocialPoint": true,
-      "CollectSpecialArenaPoint": true
+      "CollectSpecialArenaPoint": true,
+      "CollectRanking": true
     },
     "Storage": {
       "Storage": {}
@@ -90,22 +95,18 @@
       "Storage": {}
     }
   },
-  "LIPass": {
+  "DailyRecruit": {
     "Scheduler": {
       "Enable": false,
       "NextRun": "1989-12-27 00:00:00",
-      "Command": "LIPass",
+      "Command": "DailyRecruit",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
     },
-    "Cookie": {
-      "lip_user_name": null,
-      "lip_uid": null,
-      "lip_token": null,
-      "lip_openid": null,
-      "lip_expire_time": null,
-      "lip_picture_url": null
+    "DailyRecruit": {
+      "EventFreeRecruit": true,
+      "SocialPointRecruit": true
     },
     "Storage": {
       "Storage": {}
@@ -121,6 +122,7 @@
       "ServerUpdate": "05:00"
     },
     "Daily": {
+      "SendGift": false,
       "EnhanceEquipment": false,
       "CallReward": false
     },
@@ -162,6 +164,10 @@
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
+    },
+    "Conversation": {
+      "OnlyFavourite": false,
+      "IgnoreBondMax": false
     },
     "Storage": {
       "Storage": {}
@@ -237,6 +243,19 @@
       "Storage": {}
     }
   },
+  "Interception": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "Interception",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "05:00"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
   "RookieArena": {
     "Scheduler": {
       "Enable": false,
@@ -246,15 +265,68 @@
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
     },
+    "OpponentSelection": {
+      "Enable": false,
+      "SortingWeight": "{\"Power\":0.3, \"CommanderLevel\":0.2, \"SynchroLevel\":0.3, \"Ranking\":0.2}",
+      "SelectionStrategy": "Min"
+    },
     "Storage": {
       "Storage": {}
     }
   },
-  "Interception": {
+  "SpecialArena": {
     "Scheduler": {
       "Enable": false,
       "NextRun": "1989-12-27 00:00:00",
-      "Command": "Interception",
+      "Command": "SpecialArena",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "05:00"
+    },
+    "OpponentSelection": {
+      "Enable": false,
+      "SortingWeight": "{\"Power\":0.3, \"CommanderLevel\":0.2, \"SynchroLevel\":0.3, \"Ranking\":0.2}",
+      "SelectionStrategy": "Min"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "ChampionArena": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "ChampionArena",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "05:00"
+    },
+    "CheerStrategy": {
+      "Enable": false,
+      "Strategy": "Most"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "Coop": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "Coop",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "05:00"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "CombatDaemon": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "CombatDaemon",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"

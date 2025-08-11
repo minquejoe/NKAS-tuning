@@ -1,3 +1,4 @@
+import re
 from statistics import mean
 
 import cv2
@@ -255,6 +256,7 @@ def color_similar(color1, color2, threshold=10):
     # print(color1, color2)
     diff = np.array(color1).astype(int) - np.array(color2).astype(int)
     diff = np.max(np.maximum(diff, 0)) - np.min(np.minimum(diff, 0))
+    # print(diff)
     return diff <= threshold
 
 
@@ -359,3 +361,146 @@ def show_image(image, title='image', delay=0):
 
     cv2.imshow(title, image)
     cv2.waitKey(delay)
+
+def area_pad(area, pad=10):
+    """
+    Inner offset an area.
+
+    Args:
+        area: (upper_left_x, upper_left_y, bottom_right_x, bottom_right_y).
+        pad (int):
+
+    Returns:
+        tuple: (upper_left_x, upper_left_y, bottom_right_x, bottom_right_y).
+    """
+    upper_left_x, upper_left_y, bottom_right_x, bottom_right_y = area
+    return upper_left_x + pad, upper_left_y + pad, bottom_right_x - pad, bottom_right_y - pad
+
+def remove_punctuation(text: str) -> str:
+    """移除所有标点符号和空格"""
+    pattern = r'[^\w]'
+    return re.sub(pattern, '', text)
+
+def get_button_by_location(buttons, coord='y', order='descending'):
+    """
+    根据指定的坐标参数和排序顺序返回对应的button
+    
+    参数:
+    coord -- 排序坐标: 'x' 或 'y' (默认为 'y')
+    order -- 排序顺序: 'ascending' (升序) 或 'descending' (降序) (默认为 'descending')
+    
+    返回:
+    根据排序条件选定的button，如果列表为空则返回 None
+    """
+    if not buttons:
+        return None
+    
+    # 确定坐标索引
+    coord_index = 0 if coord == 'x' else 1
+    
+    # 确定比较函数
+    if order == 'ascending':
+        compare = lambda a, b: a < b
+    else:  # descending
+        compare = lambda a, b: a > b
+    
+    # 初始化最值对象
+    result_bn = buttons[0]
+    result_value = result_bn.location[coord_index]
+    
+    # 遍历所有对象
+    for bn in buttons[1:]:
+        current_value = bn.location[coord_index]
+        
+        # 根据比较函数更新结果
+        if compare(current_value, result_value):
+            result_value = current_value
+            result_bn = bn
+    
+    return result_bn
+
+def rgb2luma(image):
+    """
+    Convert RGB to the Y channel (Luminance) in YUV color space.
+
+    Args:
+        image (np.ndarray): Shape (height, width, channel)
+
+    Returns:
+        np.ndarray: Shape (height, width)
+    """
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2YUV)
+    luma, _, _ = cv2.split(image)
+    return luma
+
+def sort_buttons_by_location(buttons):
+    """
+    返回排序后的button列表
+    
+    排序规则:
+    - 首先按y坐标升序排序 (y越小越靠前)
+    - 如果两个按钮的y值相差在30像素内，则视为同一行
+    - 同一行内的按钮按x坐标升序排序 (x越小越靠前)
+    
+    返回:
+    排序后的按钮列表，如果列表为空则返回空列表
+    """
+    if not buttons:
+        return []
+    
+    # 第一步：按y坐标升序排序
+    sorted_buttons = sorted(buttons, key=lambda bn: bn.location[1])
+    
+    # 第二步：使用连通分量算法分组（基于y值相差≤30像素的条件）
+    groups = []  # 存储分组结果的列表
+    for bn in sorted_buttons:
+        found_groups = []  # 存储需要合并的分组索引
+        
+        # 检查当前按钮与所有现有分组的连通性
+        for idx, group in enumerate(groups):
+            for other_bn in group:
+                if abs(bn.location[1] - other_bn.location[1]) <= 30:
+                    found_groups.append(idx)
+                    break  # 找到一个连通分组即停止检查当前分组
+        
+        # 处理连通分组
+        if not found_groups:
+            # 无连通分组时创建新组
+            groups.append([bn])
+        else:
+            # 创建新合并组（包含当前按钮和所有连通分组）
+            new_group = [bn]
+            # 从后向前合并分组（避免索引变化问题）
+            for idx in sorted(found_groups, reverse=True):
+                new_group.extend(groups[idx])
+                del groups[idx]
+            groups.append(new_group)
+    
+    # 第三步：对每个分组内部排序（按x升序，x相同则按y升序）
+    for group in groups:
+        group.sort(key=lambda bn: (bn.location[0], bn.location[1]))
+    
+    # 第四步：对分组排序（按组内最小y值升序）
+    groups.sort(key=lambda group: min(bn.location[1] for bn in group))
+    
+    # 第五步：展平分组列表
+    result = []
+    for group in groups:
+        result.extend(group)
+    
+    return result
+
+def random_line_segments(p1, p2, n, random_range=(0, 0, 0, 0)):
+    """Cut a line into multiple segments.
+
+    Args:
+        p1: (x, y).
+        p2: (x, y).
+        n: Number of slice.
+        random_range: Add a random_range to points.
+
+    Returns:
+        list[tuple]: [(x0, y0), (x1, y1), (x2, y2)]
+    """
+    return [tuple((((n - index) * p1 + index * p2) / n).astype(int) + random_rectangle_point(random_range))
+            for index in range(0, n + 1)]

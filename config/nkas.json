@@ -2,17 +2,21 @@
   "NKAS": {
     "Emulator": {
       "Serial": "localhost:6603",
-      "PackageName": "com_proximabeta_nikke",
+      "PackageName": "com.proximabeta.nikke",
       "ScreenshotMethod": "DroidCast",
       "ControlMethod": "minitouch",
       "AdbRestart": false,
       "ScreenshotInterval": 0.5
     },
     "Optimization": {
+      "AutoRedCircle": false,
+      "OcrModelType": "mobile",
       "WhenTaskQueueEmpty": "close_game"
     },
     "Notification": {
-      "WhenDailyTaskCompleted": false
+      "WhenDailyTaskCompleted": false,
+      "WhenDailyTaskCrashed": true,
+      "OnePushConfig": "provider: smtp\nhost: smtp.qq.com\nuser: 905503222@qq.com\npassword: dtqyizmwhejxbbdd\nport: 465"
     },
     "Storage": {
       "Storage": {}
@@ -21,7 +25,7 @@
   "Restart": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-11-18 05:00:00",
+      "NextRun": "2025-08-11 05:55:56",
       "Command": "Restart",
       "SuccessInterval": 0,
       "FailureInterval": 0,
@@ -34,15 +38,16 @@
   "Reward": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-11-18 05:00:00",
+      "NextRun": "2025-08-11 20:00:00",
       "Command": "Reward",
       "SuccessInterval": "720-720",
       "FailureInterval": "720-720",
-      "ServerUpdate": "05:00"
+      "ServerUpdate": "05:00, 20:00"
     },
     "Reward": {
       "CollectSocialPoint": true,
-      "CollectSpecialArenaPoint": true
+      "CollectSpecialArenaPoint": true,
+      "CollectRanking": true
     },
     "Storage": {
       "Storage": {}
@@ -51,7 +56,7 @@
   "Destruction": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-11-18 05:00:00",
+      "NextRun": "2025-08-12 05:00:00",
       "Command": "Destruction",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -64,7 +69,7 @@
   "Commission": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-11-18 05:00:00",
+      "NextRun": "2025-08-12 05:00:00",
       "Command": "Commission",
       "SuccessInterval": "720-720",
       "FailureInterval": "720-720",
@@ -80,7 +85,7 @@
   "Mailbox": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-11-18 05:00:00",
+      "NextRun": "2025-08-12 05:00:00",
       "Command": "Mailbox",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -90,22 +95,18 @@
       "Storage": {}
     }
   },
-  "LIPass": {
+  "DailyRecruit": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-11-18 05:00:00",
-      "Command": "LIPass",
+      "NextRun": "2025-08-12 05:00:00",
+      "Command": "DailyRecruit",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
     },
-    "Cookie": {
-      "lip_user_name": "Player_Zd4n4Kgb",
-      "lip_uid": 907877,
-      "lip_token": "e91de44a97cc2f2c5e7801c945eed59a808ddf39",
-      "lip_openid": 14616719777631591736,
-      "lip_expire_time": 1732965235,
-      "lip_picture_url": "https%3A%2F%2Fsg-lipcommunity.playerinfinite.com%2Flip%2Fugc%2Fpublic%2Favatar%2Fgulan.jpg"
+    "DailyRecruit": {
+      "EventFreeRecruit": true,
+      "SocialPointRecruit": true
     },
     "Storage": {
       "Storage": {}
@@ -114,13 +115,14 @@
   "Daily": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-11-18 05:00:00",
+      "NextRun": "2025-08-12 05:00:00",
       "Command": "Daily",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
     },
     "Daily": {
+      "SendGift": true,
       "EnhanceEquipment": true,
       "CallReward": true
     },
@@ -131,11 +133,11 @@
   "MissionPass": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-11-18 05:00:00",
+      "NextRun": "2025-08-11 05:00:00",
       "Command": "MissionPass",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "05:00"
+      "ServerUpdate": "05:00, 20:00"
     },
     "Storage": {
       "Storage": {}
@@ -143,7 +145,7 @@
   },
   "Liberation": {
     "Scheduler": {
-      "Enable": true,
+      "Enable": false,
       "NextRun": "2024-11-18 05:00:00",
       "Command": "Liberation",
       "SuccessInterval": 0,
@@ -156,12 +158,16 @@
   },
   "Conversation": {
     "Scheduler": {
-      "Enable": false,
-      "NextRun": "2024-09-20 04:30:00",
+      "Enable": true,
+      "NextRun": "2025-08-12 05:00:00",
       "Command": "Conversation",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
+    },
+    "Conversation": {
+      "OnlyFavourite": false,
+      "IgnoreBondMax": false
     },
     "Storage": {
       "Storage": {}
@@ -170,7 +176,7 @@
   "Shop": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-11-18 05:00:00",
+      "NextRun": "2025-08-12 05:00:00",
       "Command": "Shop",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -190,7 +196,7 @@
   "RubbishShop": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-11-19 04:00:00",
+      "NextRun": "2025-08-12 04:00:00",
       "Command": "RubbishShop",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -206,7 +212,7 @@
   "SimulationRoom": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-11-18 05:00:00",
+      "NextRun": "2025-08-12 05:00:00",
       "Command": "SimulationRoom",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -224,27 +230,14 @@
   "TribeTower": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-11-18 05:00:00",
+      "NextRun": "2025-08-12 05:00:00",
       "Command": "TribeTower",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
     },
     "Overcome": {
-      "OnlyToCompleteDailyMission": false
-    },
-    "Storage": {
-      "Storage": {}
-    }
-  },
-  "RookieArena": {
-    "Scheduler": {
-      "Enable": false,
-      "NextRun": "2024-10-31 05:00:00",
-      "Command": "RookieArena",
-      "SuccessInterval": 0,
-      "FailureInterval": 120,
-      "ServerUpdate": "05:00"
+      "OnlyToCompleteDailyMission": true
     },
     "Storage": {
       "Storage": {}
@@ -253,11 +246,228 @@
   "Interception": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-11-18 05:00:00",
+      "NextRun": "2025-08-12 04:00:00",
       "Command": "Interception",
       "SuccessInterval": 0,
       "FailureInterval": 120,
+      "ServerUpdate": "04:00"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "RookieArena": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2025-08-12 05:00:00",
+      "Command": "RookieArena",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
       "ServerUpdate": "05:00"
+    },
+    "OpponentSelection": {
+      "Enable": false,
+      "SortingWeight": "{\"Power\":0.3, \"CommanderLevel\":0.2, \"SynchroLevel\":0.3, \"Ranking\":0.2}",
+      "SelectionStrategy": "Min"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "SpecialArena": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2025-08-12 05:00:00",
+      "Command": "SpecialArena",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "05:00"
+    },
+    "OpponentSelection": {
+      "Enable": false,
+      "SortingWeight": "{\"Power\":0.3, \"CommanderLevel\":0.2, \"SynchroLevel\":0.3, \"Ranking\":0.2}",
+      "SelectionStrategy": "Min"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "ChampionArena": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2025-08-12 05:00:00",
+      "Command": "ChampionArena",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "05:00"
+    },
+    "CheerStrategy": {
+      "Enable": true,
+      "Strategy": "Most"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "Coop": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2025-08-12 05:00:00",
+      "Command": "Coop",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "05:00"
+    },
+    "Coop": {
+      "MatchDifficulty": "Normal"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "SoloRaid": {
+    "Scheduler": {
+      "Enable": true,
+      "NextRun": "2025-08-12 05:00:00",
+      "Command": "SoloRaid",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "05:00"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "Event": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2025-08-10 05:00:00",
+      "Command": "Event",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "05:00"
+    },
+    "Event": {
+      "Event": "event_20250807",
+      "LoginStamp": true,
+      "Challenge": true,
+      "Story": false,
+      "StoryPart": "Story_1",
+      "StoryDifficulty": "Normal",
+      "Coop": false,
+      "Shop": true,
+      "Game": false
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "Event2": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "Event2",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "04:00"
+    },
+    "Event": {
+      "Event": "event_20250716",
+      "LoginStamp": true,
+      "Challenge": true,
+      "Story": false,
+      "StoryPart": "Story_1",
+      "StoryDifficulty": "Normal",
+      "Coop": false,
+      "Shop": true,
+      "Game": false
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "BlaAuth": {
+    "BlaAuth": {
+      "UserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+      "Cookie": null,
+      "XCommonParams": null
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "BlaDaily": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "BlaDaily",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "04:00"
+    },
+    "BlaDaily": {
+      "PostID": null,
+      "CommentID": null,
+      "Points": null
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "BlaCDK": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "BlaCDK",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "04:00, 16:00"
+    },
+    "CDK": {
+      "Extra": false,
+      "Source": "https://gamewith.jp/nikke/article/show/371014"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "BlaExchange": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "BlaExchange",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "04:00"
+    },
+    "BlaExchange": {
+      "Priority": "Gem_×320 > Gem_×120 > Gem_×60 > Gem_×30 > Welcome_Gift_Core_Dust_×30"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "TowerDaemon": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "TowerDaemon",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "04:00"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "CombatDaemon": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "CombatDaemon",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "04:00"
     },
     "Storage": {
       "Storage": {}
@@ -279,7 +489,7 @@
   "DailyGift": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-11-18 05:00:00",
+      "NextRun": "2025-08-12 05:00:00",
       "Command": "DailyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -292,7 +502,7 @@
   "WeeklyGift": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-11-19 04:00:00",
+      "NextRun": "2025-08-12 05:00:00",
       "Command": "WeeklyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -305,7 +515,7 @@
   "MonthlyGift": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2024-12-01 04:00:00",
+      "NextRun": "2025-09-01 05:00:00",
       "Command": "MonthlyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -313,11 +523,6 @@
     },
     "Storage": {
       "Storage": {}
-    }
-  },
-  "Event": {
-    "Event": {
-      "Event": "event_5"
     }
   }
 }

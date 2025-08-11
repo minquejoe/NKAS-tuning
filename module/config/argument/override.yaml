@@ -18,8 +18,17 @@ Reward:
       type: lock
     SuccessInterval: 720-720
     FailureInterval: 720-720
+    ServerUpdate: 04:00, 20:00
 
 Commission:
   Scheduler:
     SuccessInterval: 720-720
     FailureInterval: 720-720
+
+BlaCDK:
+  Scheduler:
+    ServerUpdate: 05:00, 16:00
+
+MissionPass:
+  Scheduler:
+    ServerUpdate: 05:00, 20:00

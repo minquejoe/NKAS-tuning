@@ -3,10 +3,10 @@ from datetime import datetime, timedelta
 
 class ManualConfig:
     SCHEDULER_PRIORITY = """
-       Restart > LIPass > Reward > Destruction > Mailbox > 
+       Restart > Reward > DailyRecruit > Destruction > Mailbox > 
        DailyGift > WeeklyGift > MonthlyGift > 
-       Commission > Shop > RubbishShop > Conversation > Interception > RookieArena > SimulationRoom > TribeTower > 
-       Daily > MissionPass > Liberation > EventDaemon
+       Commission > Shop > RubbishShop > Conversation > Interception > RookieArena > SpecialArena > ChampionArena > SimulationRoom > TribeTower > 
+       Daily > Event > Event2 > SoloRaid > Coop > MissionPass > Liberation > BlaDaily > BlaCDK > BlaExchange > TowerDaemon > CombatDaemon > EventDaemon
        """
 
     GENERAL_SHOP_PRIORITY = """GRATIS > CORE_DUST_CASE > ORNAMENT"""
@@ -79,49 +79,39 @@ class ManualConfig:
 
     EVENTS = [
         {
-            "event_id": "event_5",
-            "event_name": "NYA NYA PARADISE",
-            # small evnet
-            "event_type": 2,
-            "event_duration": timedelta(days=14),
-            # UTC+8 2023-07-06 21:00:00
-            "event_update_date": datetime(2023, 7, 6, 4),
+            "event_id": "event_20250807",
+            "event_name": "ABSOLUTE",
+            # story1为小型活动的大型活动
+            "event_type": 3,
+            "mini_game": False
         },
         {
-            "event_id": "event_4",
-            "event_name": "Blue Water Island",
-            # large evnet
+            "event_id": "event_20250716",
+            "event_name": "BOOM! THE GHOST!",
+            # 大型活动
             "event_type": 1,
-            "event_duration": timedelta(days=21),
-            # UTC+8 2023-06-15 17:00:00
-            "event_update_date": datetime(2023, 6, 15, 4),
+            "mini_game": True
         },
         {
-            "event_id": "event_3",
-            "event_name": "Queen's Order",
-            # small evnet
-            "event_type": 2,
-            "event_duration": timedelta(days=14),
-            # UTC+8 2023-06-1 19:00:00
-            "event_update_date": datetime(2023, 6, 1, 4),
-        },
-        {
-            "event_id": "event_2",
-            "event_name": "Bunny X 777",
-            # small evnet
-            "event_type": 2,
-            "event_duration": timedelta(days=14),
-            # UTC+8 2023-05-18 19:00:00
-            "event_update_date": datetime(2023, 5, 18, 4),
-        },
-        {
-            "event_id": "event_1",
-            "event_name": "OVER ZONE",
-            # large evnet
+            "event_id": "event_20250703l",
+            "event_name": "OuteR: Automata",
+            # 大型活动
             "event_type": 1,
-            "event_duration": timedelta(days=21),
-            # UTC+8 2023-04-27 06:00:00
-            "event_update_date": datetime(2023, 4, 27, 4),
+            "mini_game": False
+        },
+        {
+            "event_id": "event_20250703s",
+            "event_name": "OVER THE HORIZON",
+            # 小型活动
+            "event_type": 2,
+            "mini_game": False
+        },
+        {
+            "event_id": "event_20250612",
+            "event_name": "Memories Teller",
+            # 大型活动
+            "event_type": 1,
+            "mini_game": False
         },
     ]
 

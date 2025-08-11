@@ -45,24 +45,34 @@ class ProcessManager:
             config_name, func: str, q: queue.Queue, e: threading.Event = None
     ) -> None:
         set_func_logger(func=q.put)
-        '''
+        """
             从logger.py 93行
             重写Rich的RichHandler类
             将渲染后的log通过Queue().put(item)存入State.manager.Queue()中，进程共享渲染队列
-        '''
+        """
 
         set_file_logger(name=config_name)
-        NikkeAutoScript(config_name=config_name).loop()
+        
+        from module.config.config import NikkeConfig
+        NikkeConfig.stop_event = e
+        
+        try:
+            if e is not None:
+                NikkeAutoScript.stop_event = e
+            NikkeAutoScript(config_name=config_name).loop()
+            logger.info(f"[{config_name}] exited. Reason: Finish\n")
+        except Exception as e:
+            logger.exception(e)
 
     def start(self, func, ev: threading.Event = None) -> None:
         if not self.alive:
-            '''
+            """
              run_process(config_name, func: str, q: queue.Queue, e: threading.Event = None)
                 q: State.manager.Queue() 进程共享渲染队列
                 e: 进程同步标识
                 func(mod_name): 创建进程执行的方法，在Alas中，默认为执行
-                AzurLaneAutoScript(config_name='alas').loop()
-            '''
+                AzurLaneAutoScript(config_name='nkas').loop()
+            """
             self._process = Process(
                 target=ProcessManager.run_process,
                 args=(
@@ -78,9 +88,9 @@ class ProcessManager:
     def start_log_queue_handler(self):
         if self.thd_log_queue_handler and self.thd_log_queue_handler.is_alive():
             return
-        '''
+        """
            创建跟当前进程关联的日志处理线程，并运行
-        '''
+        """
         self.thd_log_queue_handler = threading.Thread(
             target=self._thread_log_queue_handler
         )
@@ -89,15 +99,15 @@ class ProcessManager:
     def _thread_log_queue_handler(self) -> None:
         while self.alive:
             try:
-                '''
+                """
                     从logger.py 93行
                     重写Rich的RichHandler类
                     将渲染后的log通过Queue().put(item)存入State.manager.Queue()中，进程共享渲染队列
-                '''
+                """
                 log = self._renderable_queue.get(timeout=1)
             except queue.Empty:
                 continue
-            '''
+            """
                 从进程共享渲染队列获取渲染后的日志
                 日志队列大于400时，截取第80个到最后一位
                 然后日志会通过在base.py中创建的WebIOTaskHandler，继承TaskHandler类的子任务处理器
@@ -109,7 +119,7 @@ class ProcessManager:
                 
                 TaskHandler会在后台不断执行put_log方法
                 然后日志会通过在webui/widgets.py中的put_log方法渲染到web界面
-            '''
+            """
             self.renderables.append(log)
             if len(self.renderables) > self.renderables_max_length:
                 self.renderables = self.renderables[self.renderables_reduce_length:]
@@ -129,7 +139,7 @@ class ProcessManager:
     ):
         """
         After update and reload, or failed to perform an update,
-        restart all alas that running before update
+        restart all nkas that running before update
         """
 
         """
@@ -164,7 +174,7 @@ class ProcessManager:
 
         """
             instances在热更新成功后，重新启动uvicorn时
-            在Alas中，为开始更新前保存到 ./config/reloadalas 中的实例名称(配置名称)
+            在Alas中，为开始更新前保存到 ./config/reloadnkas 中的实例名称(配置名称)
         """
         try:
             with open("./config/reloadnkas", mode="r") as f:
@@ -175,14 +185,14 @@ class ProcessManager:
             pass
 
         """
-            当实例非alas实例时
+            当实例非nkas实例时
             通过实例名称(配置名称)，读取存储在./config的配置，也就是mod名称(实例种类)
-            mod_name应该为alas，Daemon，AzurLaneUncensored，Benchmark，GameManager，maa，MaaCopilot
+            mod_name应该为nkas，Daemon，AzurLaneUncensored，Benchmark，GameManager，maa，MaaCopilot
             例如: maa1.maa.json 
             config_name为maa1，mod_name为maa
             
-            当有多个alas实例时，读取为实例名称(配置名称).json
-            这样get_config_mod会因为KeyError，返回 'alas'， 然后该实例在运行时，配置为实例名称(配置名称).json
+            当有多个nkas实例时，读取为实例名称(配置名称).json
+            这样get_config_mod会因为KeyError，返回 'nkas'， 然后该实例在运行时，配置为实例名称(配置名称).json
         """
         for process in _instances:
             logger.info(f"Starting [{process.config_name}]")

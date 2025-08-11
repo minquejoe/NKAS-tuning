@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 export const nkasPath = path.join(process.cwd(), '../')
-const file = fs.readFileSync(path.join(nkasPath, './config/deploy-template.yaml'), 'utf8');
+const file = fs.readFileSync(path.join(nkasPath, './config/deploy.yaml'), 'utf8');
 const config = yaml.parse(file);
 const PythonExecutable = config.Deploy.Python.PythonExecutable;
 

@@ -1,75 +1,121 @@
 # FROM
 
-https://github.com/takagisanmie/NIKKEAutoScript
+https://github.com/megumiss/NIKKEAutoScript
 
 # for myself
 - attention: change the app start setting in VENV, otherwise the app may not launch as expected!!!
+<div align="center">
+
+<img alt="LOGO" src="./webapp/src/assets/img/Helm.png" width="256" height="256" />
 
 # NIKKEAutoScript
 
-胜利女神：NIKKE 自动日常脚本
+胜利女神：NIKKE 自动日常脚本，支持除**国服**外的所有**中文**客户端（大概）。Fork自[NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
+
+GODDESS OF VICTORY: NIKKE automatic script, supports all clients **set to Chinese** except the **CN** client (presumably). Forked from [NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
+
+<p align="center">
+  <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white">
+  <img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux-blueviolet">
+  <img alt="license" src="https://img.shields.io/github/license/megumiss/NIKKEAutoScript">
+  <br/>
+  <img alt="commit" src="https://img.shields.io/github/commit-activity/m/megumiss/NIKKEAutoScript">
+  <img alt="stars" src="https://img.shields.io/github/stars/megumiss/NIKKEAutoScript?style=social">
+</p>
+
+</div>
+
+---
 
 ### 鸣谢
 
-------
-
 Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉  
-让我学到了，'草，Python还能这么写？'  
+让我学到了，"草，Python还能这么写？"  
 然后想到了自己写的最初版代码，那写的是什么shit😅😅😅  
 虽然现在写的NKAS依旧是shit😅😅😅
 
+---
+
+### 联合
+
+其他平台/方式的脚本：
+- [DoroHelper](https://github.com/1204244136/DoroHelper)（PC端+AutoHotkey）
+- [autoxjs-scripts](https://github.com/Zebartin/autoxjs-scripts)（安卓端+autojs）
+- [MNA](https://github.com/MAA-Nikke/MNA)（安卓端+MaaFramework）
+
+其他工具：
+- [Nikke-CDK-Tool](https://github.com/Small-tailqwq/Nikke-CDK-Tool)（CDK收集/兑换）
+
+---
+
 ### 如何使用
 
-------
--1.可以加入qq划水群 823265807  
-1.https://www.bluestacks.cn/ 在此页面下载并安装 蓝叠模拟器5.20.101.6503  
-2.模拟器`显示`设置竖屏，720*1280，240DPI，`图像`设置图像渲染器为Vulkan，界面渲染器为软件，`高级`打开Android调试  
-3.下载脚本和依赖，运行`updater.bat`(一般要开代理)，打开`NKAS\win-unpacked\NikkeAutoScript.exe`，在脚本设置中将`Serial`改为模拟器设置`高级 => Android调试`给出的127.0.0.1:xxxx  
-4.NIKKE画面设置如图(`光晕效果`和`颜色分级`一定要打开)，然后可以运行脚本了  
-![image](https://github.com/user-attachments/assets/5a8e340a-0736-4073-a1dc-b2d7c1fe13f0)
+详细安装指南请参阅 [Wiki安装教程](https://github.com/megumiss/NIKKEAutoScript/wiki/%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97)
 
-### 依赖相关
+---
 
-------
+### 更新计划
+- [ ] 模拟室快速
+- [ ] 半自动推图
+- [ ] 废铁商店优化，支持骨头货币
+- [ ] 超频
+- [ ] 自动打开模拟器
+- [ ] 修复uiautomator自动安装
+- [x] 通知优化
+- [x] 支持自动更新、定时更新
+- [x] 支持docker部署
 
-由于用到的依赖文件过大，所以将依赖和本体分开   
-如果是第一次使用，请下载python-3.9.13-embed-amd64.7z   
-并且解压在与updater.bat的同一级，保持文件夹名称为‘python-3.9.13-embed-amd64’
+### 支持功能
+- [x] 每日收获、歼灭、派遣
+- [x] 友情点、特殊竞技场点数领取
+- [x] 每日、周、月免费钻领取
+- [x] 普通商店、竞技场商店、废铁商店
+- [x] 每日企业塔，自动普通企业塔
+- [x] 异常拦截（只支持克拉肯），支持自动打红圈
+- [x] 自动模拟室
+- [x] 协同作战普通摆烂
+- [x] 每日咨询、送礼
+- [x] 普通竞技场、特殊竞技场自动战斗
+- [x] 大型活动扫荡、挑战、签到、奖励、商店购买、小游戏（个别）
+- [x] 小型活动扫荡、挑战、奖励、商店购买
+- [x] 个突
+- [x] 冠军竞技场
+- [x] 活动免费、友情点每日抽卡
+- [x] 邮箱领取
+- [x] 排名奖励领取
+- [x] 每日、每周任务奖励
+- [x] 每日pass领取
+- [x] blablalink社区每日任务，CDK自动兑换
 
-### 常见问题 （目前拥有的功能并非全部完善，在遇到问题时，还麻烦来github反馈 或者 在QQ群反馈）
-------
-#### Q1： 运行NikkeAutoScript.exe 提示  ‘Failed to load resource’
-#### A1： 可能是运行updater.bat时，没有完全更新成功，可以尝试重新解压后再次运行 updater.bat
-------
-#### Q2：主程序没有内容，只有顶部栏
-#### A2： 可能是缺失了某个依赖，可以通过CMD手动安装 requirements.txt 中的依赖
-------
-#### Q3：updater.bat 在运行后一闪而过
-#### A3： 这应该是无法访问Github时会出现的情况，可以在 config/deploy.yaml 的 GitProxy 字段中填写代理，或者更改hosts等
-------
-#### Q4：在咨询任务中，无法咨询任何NIKKE
-#### A4：请检查NIKKE的画质设置，确保选项拥有‘光晕效果’和‘颜色分级’两个选项，以及在游戏中收藏了想咨询的NIKKE
-------
-#### Q5：在运行某个任务时，没有正确点击
-#### A5：可能是模拟器的分辨率为1280 * 720，但在运行NIKKE时是以竖屏运行的，这样会导致点击到错误位置，请设置为720 * 1280后，再次尝试
-------
-#### Q6：更新界面只有None
-#### A6：这是因为没有初始化Git，请运行 updater.bat
-------
-#### Q7：主程序更新时，一直在转圈圈
-#### A7：同A3
-------
-#### Q8：运行调度器时出现'BaseError: /data/app/com.proximabeta.nikke-.......apk: no such file or directory'
-#### A8：这是因为模拟器的NIKKE是通过Google Play下载的，可以卸载后在QooApp下载，可以解决这个问题
-------
-#### Q9：进入付费商店时，提示'网络异常，读取商店结账资讯失败'
-#### A9：这很可能是因为模拟器的 Google Play 未登录账号，可以登录账号后再尝试
-------
-#### 推荐画面设置
-<img src="https://s2.loli.net/2024/05/06/Rjcx7EwWXlbKBot.png" alt="1.png" style="zoom: 50%;" />
+---
 
-### 预览
+### 常见问题
 
-------
+详细常见问题解答请参阅 [Wiki常见问题页面](https://github.com/megumiss/NIKKEAutoScript/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
 
+<<<<<<< HEAD
 ![](https://profile-counter.glitch.me/takagisanmie-NIKKEAutoScript/count.svg)
+=======
+> 💡 **寻求帮助**  
+> 如果在使用过程中遇到问题，您可以通过以下方式获取帮助：
+> - 在 [GitHub Issues](https://github.com/megumiss/NIKKEAutoScript/issues) 提交问题
+> - 加入官方 QQ 群：`823265807`（推荐国内用户使用）
+
+---
+
+### 推荐画面设置
+
+![推荐画面设置](https://raw.githubusercontent.com/megumiss/NIKKEAutoScript/master/doc/assets/setting.png)
+
+---
+
+### GUI预览
+
+![GUI预览](https://raw.githubusercontent.com/megumiss/NIKKEAutoScript/master/doc/assets/gui.png)
+
+---
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=megumiss/NIKKEAutoScript&type=Timeline)](https://www.star-history.com/#megumiss/NIKKEAutoScript&Timeline)
+>>>>>>> upstream/master

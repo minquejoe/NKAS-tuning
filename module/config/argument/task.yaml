@@ -25,9 +25,10 @@ Mailbox:
   - Scheduler
 
 # ==================== Daily ====================
-LIPass:
+
+DailyRecruit:
   - Scheduler
-  - Cookie
+  - DailyRecruit
 
 Daily:
   - Scheduler
@@ -41,6 +42,7 @@ Liberation:
 
 Conversation:
   - Scheduler
+  - Conversation
 
 Shop:
   - Scheduler
@@ -51,6 +53,8 @@ RubbishShop:
   - Scheduler
   - RubbishShop
 
+# ==================== Ark ====================
+
 SimulationRoom:
   - Scheduler
   - Area
@@ -59,10 +63,64 @@ TribeTower:
   - Scheduler
   - Overcome
 
-RookieArena:
+Interception:
   - Scheduler
 
-Interception:
+RookieArena:
+  - Scheduler
+  - OpponentSelection
+
+SpecialArena:
+  - Scheduler
+  - OpponentSelection
+
+ChampionArena:
+  - Scheduler
+  - CheerStrategy
+
+# ==================== LimitedTimeEvent ====================
+
+Coop:
+  - Scheduler
+  - Coop
+
+SoloRaid:
+  - Scheduler
+  - SoloRaid
+
+# ==================== StoryEvent ====================
+
+Event:
+  - Scheduler
+  - Event
+
+Event2:
+  - Scheduler
+  - Event
+
+# ==================== Blablalink ====================
+
+BlaAuth:
+  - BlaAuth
+
+BlaDaily:
+  - Scheduler
+  - BlaDaily
+
+BlaCDK:
+  - Scheduler
+  - CDK
+
+BlaExchange:
+  - Scheduler
+  - BlaExchange
+
+# ==================== Tools ====================
+
+TowerDaemon:
+  - Scheduler
+
+CombatDaemon:
   - Scheduler
 
 EventDaemon:

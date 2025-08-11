@@ -10,7 +10,7 @@ class Page:
         self.check_button = check_button
         self.links = {}
         (filename, line_number, function_name, text) = traceback.extract_stack()[-2]
-        self.name = text[:text.find('=')].strip()
+        self.name = text[: text.find('=')].strip()
 
     def __eq__(self, other):
         return self.name == other.name
@@ -149,3 +149,14 @@ page_outpost.link(button=OUTPOST_GOTO_COMMISSION, destination=page_commission)
 page_mailbox = Page(MAILBOX_CHECK)
 page_mailbox.link(button=MAILBOX_GOTO_MAIN, destination=page_main)
 page_main.link(button=MAIN_GOTO_MAILBOX, destination=page_mailbox)
+
+# recruit
+page_recruit = Page(RECRUIT_CHECK)
+page_recruit.link(button=TEAM_GOTO_MAIN, destination=page_main)
+page_main.link(button=MAIN_GOTO_RECRUIT, destination=page_recruit)
+
+# ranking
+page_ranking = Page(RANKING_CHECK)
+page_ranking.link(button=GOTO_BACK, destination=page_ark)
+page_ranking.link(button=GOTO_MAIN, destination=page_main)
+page_ark.link(button=ARK_GOTO_RANKING, destination=page_ranking)

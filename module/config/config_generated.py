@@ -10,7 +10,7 @@ class GeneratedConfig:
     """
 
     # Group `Scheduler`
-    Scheduler_Enable = False
+    Scheduler_Enable = False  # True, False
     Scheduler_NextRun = datetime.datetime(1989, 12, 27, 0, 0)
     Scheduler_Command = 'NKAS'
     Scheduler_SuccessInterval = 0
@@ -19,18 +19,25 @@ class GeneratedConfig:
 
     # Group `Emulator`
     Emulator_Serial = 'auto'
-    Emulator_PackageName = 'com_proximabeta_nikke'  # com_proximabeta_nikke, com_gamamobi_nikke
+    Emulator_PackageName = 'com.proximabeta.nikke'  # com.proximabeta.nikke, com.gamamobi.nikke
     Emulator_ScreenshotMethod = 'DroidCast'  # DroidCast
     Emulator_ControlMethod = 'minitouch'  # minitouch
     Emulator_AdbRestart = False
     Emulator_ScreenshotInterval = 0.5
 
     # Group `Optimization`
+    Optimization_AutoRedCircle = False
+    Optimization_OcrModelType = 'mobile'  # mobile, server
     Optimization_WhenTaskQueueEmpty = 'goto_main'  # stay_there, goto_main, close_game
 
     # Group `Reward`
     Reward_CollectSocialPoint = True
     Reward_CollectSpecialArenaPoint = True
+    Reward_CollectRanking = True
+
+    # Group `DailyRecruit`
+    DailyRecruit_EventFreeRecruit = True
+    DailyRecruit_SocialPointRecruit = True
 
     # Group `Area`
     Area_Difficulty = 'Level_1'  # Level_1, Level_2, Level_3, Level_4, Level_5
@@ -52,28 +59,60 @@ class GeneratedConfig:
 
     # Group `Notification`
     Notification_WhenDailyTaskCompleted = False
-
-    # Group `Event`
-    Event_Event_Name = None
-    Event_Complete_Event = False
-    Event_Event = 'event_5'  # event_5
-    Event_Part = 'story_1'  # story_1, story_2
-    Event_Difficulty = 'normal'  # normal, hard
+    Notification_WhenDailyTaskCrashed = False
+    Notification_OnePushConfig = 'provider: null'
 
     # Group `Daily`
+    Daily_SendGift = False
     Daily_EnhanceEquipment = False
     Daily_CallReward = False
 
-    # Group `Cookie`
-    Cookie_lip_user_name = None
-    Cookie_lip_uid = None
-    Cookie_lip_token = None
-    Cookie_lip_openid = None
-    Cookie_lip_expire_time = None
-    Cookie_lip_picture_url = None
-
     # Group `CollectionItems`
     CollectionItems_NIKKE = 'All'  # All, Laplace, Frima, Diesel, Exia
+
+    # Group `OpponentSelection`
+    OpponentSelection_Enable = False
+    OpponentSelection_SortingWeight = '{"Power":0.3, "CommanderLevel":0.2, "SynchroLevel":0.3, "Ranking":0.2}'
+    OpponentSelection_SelectionStrategy = 'Min'  # Max, Middle, Min
+
+    # Group `Conversation`
+    Conversation_OnlyFavourite = False
+    Conversation_IgnoreBondMax = False
+
+    # Group `BlaAuth`
+    BlaAuth_UserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36'
+    BlaAuth_Cookie = None
+    BlaAuth_XCommonParams = None
+
+    # Group `BlaDaily`
+    BlaDaily_PostID = None
+    BlaDaily_CommentID = None
+    BlaDaily_Points = None
+
+    # Group `Coop`
+    Coop_MatchDifficulty = 'Normal'  # Normal
+
+    # Group `CDK`
+    CDK_Extra = False
+    CDK_Source = 'https://gamewith.jp/nikke/article/show/371014'
+
+    # Group `BlaExchange`
+    BlaExchange_Priority = 'Gem_×320 > Gem_×120 > Gem_×60 > Gem_×30 > Welcome_Gift_Core_Dust_×30'
+
+    # Group `Event`
+    Event_Event = ''  # event_20250807, event_20250716, event_20250703s, event_20250703l, event_20250612
+    Event_LoginStamp = True
+    Event_Challenge = True
+    Event_Story = False
+    Event_StoryPart = 'Story_1'  # Story_1, Story_2
+    Event_StoryDifficulty = 'Normal'  # Normal, Hard
+    Event_Coop = False
+    Event_Shop = False
+    Event_Game = False
+
+    # Group `CheerStrategy`
+    CheerStrategy_Enable = False
+    CheerStrategy_Strategy = 'Most'  # Most, Few, Random
 
     # Group `Storage`
     Storage_Storage = {}

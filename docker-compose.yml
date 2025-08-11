@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+    NKAS:
+        network_mode: host
+        volumes:
+            - '.:/app/NIKKEAutoScript:rw'
+            - '/etc/localtime:/etc/localtime:ro'
+        container_name: 'nkas'
+        image: 'nkas'
+        build:
+            context: ./deploy/docker/
+            dockerfile: ./Dockerfile

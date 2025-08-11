@@ -1,0 +1,27 @@
+Deploy:
+  Git:
+    Repository: https://github.com/megumiss/NIKKEAutoScript
+    Branch: master
+    GitExecutable: /usr/bin/git
+    GitProxy: null
+    SSLVerify: true
+    AutoUpdate: true
+
+  Python:
+    PythonExecutable: /usr/local/bin/python
+    RequirementsFile: ./deploy/docker/requirements.txt
+
+  Adb:
+    AdbExecutable: /usr/bin/adb
+    ReplaceAdb: true
+    AutoConnect: true
+    InstallUiautomator2: true
+
+  Update:
+    EnableReload: true
+    CheckUpdateInterval: 5
+    AutoRestartTime: 03:50
+
+  Webui:
+    WebuiHost: 0.0.0.0
+    WebuiPort: 12271

@@ -1,6 +1,8 @@
 import copy
 import operator
 from datetime import datetime, timedelta
+import threading
+import time
 
 from module.base.filter import Filter
 from module.base.utils import ensure_time
@@ -55,6 +57,18 @@ def name_to_function(name):
 
 
 class NikkeConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher):
+    stop_event: threading.Event = None
+    bound = {}
+    
+    def __setattr__(self, key, value):
+        if key in self.bound:
+            path = self.bound[key]
+            self.modified[path] = value
+            if self.auto_update:
+                self.update()
+        else:
+            super().__setattr__(key, value)
+    
     def __init__(self, config_name, task=None):
         self.config_name = config_name
         self.data = {}
@@ -186,6 +200,9 @@ class NikkeConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher):
         for task in ["Event"]:
             # deep_set(self.data, keys=f"{task}.Event.Event", value=self.EVENTS[0].get('event_id'))
             self.modified[f"{task}.Event.Event"] = self.EVENTS[0].get('event_id')
+        for task in ["Event2"]:
+            # deep_set(self.data, keys=f"{task}.Event.Event", value=self.EVENTS[0].get('event_id'))
+            self.modified[f"{task}.Event.Event"] = self.EVENTS[1].get('event_id')
 
     def get_next(self):
         """
@@ -206,10 +223,10 @@ class NikkeConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher):
         if self.waiting_task:
             logger.info("No task pending")
             task = copy.deepcopy(self.waiting_task[0])
-            '''
+            """
                 Alas：囤积任务，延迟X分钟执行
                 task.next_run = (task.next_run + self.hoarding).replace(microsecond=0)
-            '''
+            """
             logger.attr("Task", task)
             return task
         else:
@@ -224,7 +241,7 @@ class NikkeConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher):
         now = datetime.now()
 
         # func 为json中的任务属性
-        '''
+        """
         {
             'Scheduler': 
                 {
@@ -242,42 +259,42 @@ class NikkeConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher):
         } 
         
         Reward (Enable, 1989-12-27 00:00:00)
-        '''
+        """
         for func in self.data.values():
             func = Function(func)
-            '''
+            """
                 跳过Scheduler.Enable为False的任务
-            '''
+            """
             if not func.enable:
                 continue
-            '''
+            """
                 从配置中获取的运行时间格式错误
-            '''
+            """
             if not isinstance(func.next_run, datetime):
                 error.append(func)
 
             elif func.next_run < now:
-                '''
+                """
                     当前时间 > 该任务的下次运行时间
-                '''
+                """
                 pending.append(func)
             else:
                 waiting.append(func)
 
-        '''
+        """
             任务优先级
-        '''
+        """
         f = Filter(regex=r"(.*)", attr=["command"])
         f.load(self.SCHEDULER_PRIORITY)
         if pending:
-            '''
+            """
                 待执行队列不进行排序，因为会影响到重启任务
-            '''
+            """
             pending = f.apply(pending)
         if waiting:
-            '''
+            """
                 等待队列按运行时间排序显示
-            '''
+            """
             waiting = f.apply(waiting)
             waiting = sorted(waiting, key=operator.attrgetter("next_run"))
         if error:
@@ -314,9 +331,9 @@ class NikkeConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher):
                 else self.Scheduler_FailureInterval
             )
             run.append(datetime.now() + ensure_delta(interval))
-        '''
+        """
             服务器更新时
-        '''
+        """
         if server_update is not None:
             if server_update is True:
                 server_update = self.Scheduler_ServerUpdate
@@ -375,3 +392,19 @@ class NikkeConfig(ConfigUpdater, ManualConfig, GeneratedConfig, ConfigWatcher):
         for arg, value in kwargs.items():
             self.overridden[arg] = value
             super().__setattr__(arg, value)
+
+    @property
+    def EVENT_TYPE(self):
+        return self.event_type
+
+    @property
+    def EVENT_MINI_GAME(self):
+        return self.mini_game
+
+    @property
+    def EVENT_ID(self):
+        return self.event_id
+
+    @property
+    def EVENT_COOP(self):
+        return self.Coop_EventCoop

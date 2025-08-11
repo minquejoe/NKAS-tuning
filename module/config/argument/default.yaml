@@ -4,6 +4,10 @@ Reward:
   Scheduler:
     Enable: true
 
+DailyRecruit:
+  Scheduler:
+    Enable: false
+
 Destroy:
   Scheduler:
     Enable: false
@@ -13,6 +17,14 @@ Commission:
     Enable: false
 
 RookieArena:
+  Scheduler:
+    Enable: false
+
+SpecialArena:
+  Scheduler:
+    Enable: false
+
+ChampionArena:
   Scheduler:
     Enable: false
 
@@ -53,5 +65,33 @@ WeeklyGift:
     Enable: false
 
 MonthlyGift:
+  Scheduler:
+    Enable: false
+
+BlaDaily:
+  Scheduler:
+    Enable: false
+
+BlaCDK:
+  Scheduler:
+    Enable: false
+
+BlaExchange:
+  Scheduler:
+    Enable: false
+
+Event:
+  Scheduler:
+    Enable: false
+
+Event2:
+  Scheduler:
+    Enable: false
+
+Coop:
+  Scheduler:
+    Enable: false
+
+SoloRaid:
   Scheduler:
     Enable: false

@@ -8,10 +8,10 @@
       },
       "PackageName": {
         "type": "select",
-        "value": "com_proximabeta_nikke",
+        "value": "com.proximabeta.nikke",
         "option": [
-          "com_proximabeta_nikke",
-          "com_gamamobi_nikke"
+          "com.proximabeta.nikke",
+          "com.gamamobi.nikke"
         ]
       },
       "ScreenshotMethod": {
@@ -38,6 +38,18 @@
       }
     },
     "Optimization": {
+      "AutoRedCircle": {
+        "type": "checkbox",
+        "value": false
+      },
+      "OcrModelType": {
+        "type": "select",
+        "value": "mobile",
+        "option": [
+          "mobile",
+          "server"
+        ]
+      },
       "WhenTaskQueueEmpty": {
         "type": "select",
         "value": "goto_main",
@@ -52,6 +64,15 @@
       "WhenDailyTaskCompleted": {
         "type": "checkbox",
         "value": false
+      },
+      "WhenDailyTaskCrashed": {
+        "type": "checkbox",
+        "value": false
+      },
+      "OnePushConfig": {
+        "type": "textarea",
+        "value": "provider: null",
+        "mode": "yaml"
       }
     },
     "Storage": {
@@ -68,6 +89,10 @@
       "Enable": {
         "type": "checkbox",
         "value": true,
+        "option": [
+          true,
+          false
+        ],
         "display": "disabled"
       },
       "NextRun": {
@@ -110,6 +135,10 @@
       "Enable": {
         "type": "lock",
         "value": true,
+        "option": [
+          true,
+          false
+        ],
         "display": "disabled"
       },
       "NextRun": {
@@ -134,7 +163,7 @@
       },
       "ServerUpdate": {
         "type": "input",
-        "value": "05:00",
+        "value": "05:00, 20:00",
         "display": "hide"
       }
     },
@@ -144,6 +173,10 @@
         "value": true
       },
       "CollectSpecialArenaPoint": {
+        "type": "checkbox",
+        "value": true
+      },
+      "CollectRanking": {
         "type": "checkbox",
         "value": true
       }
@@ -161,7 +194,11 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -202,7 +239,11 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -256,7 +297,11 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -293,11 +338,15 @@
       }
     }
   },
-  "LIPass": {
+  "DailyRecruit": {
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -306,7 +355,7 @@
       },
       "Command": {
         "type": "input",
-        "value": "LIPass",
+        "value": "DailyRecruit",
         "display": "hide"
       },
       "SuccessInterval": {
@@ -325,36 +374,14 @@
         "display": "hide"
       }
     },
-    "Cookie": {
-      "lip_user_name": {
-        "type": "input",
-        "value": "",
-        "valuetype": "str"
+    "DailyRecruit": {
+      "EventFreeRecruit": {
+        "type": "checkbox",
+        "value": true
       },
-      "lip_uid": {
-        "type": "input",
-        "value": "",
-        "valuetype": "str"
-      },
-      "lip_token": {
-        "type": "input",
-        "value": "",
-        "valuetype": "str"
-      },
-      "lip_openid": {
-        "type": "input",
-        "value": "",
-        "valuetype": "str"
-      },
-      "lip_expire_time": {
-        "type": "input",
-        "value": "",
-        "valuetype": "str"
-      },
-      "lip_picture_url": {
-        "type": "input",
-        "value": "",
-        "valuetype": "str"
+      "SocialPointRecruit": {
+        "type": "checkbox",
+        "value": true
       }
     },
     "Storage": {
@@ -370,7 +397,11 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -399,6 +430,10 @@
       }
     },
     "Daily": {
+      "SendGift": {
+        "type": "checkbox",
+        "value": false
+      },
       "EnhanceEquipment": {
         "type": "checkbox",
         "value": false
@@ -421,7 +456,11 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -445,7 +484,7 @@
       },
       "ServerUpdate": {
         "type": "input",
-        "value": "05:00",
+        "value": "05:00, 20:00",
         "display": "hide"
       }
     },
@@ -462,7 +501,11 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -503,7 +546,11 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -531,6 +578,16 @@
         "display": "hide"
       }
     },
+    "Conversation": {
+      "OnlyFavourite": {
+        "type": "checkbox",
+        "value": false
+      },
+      "IgnoreBondMax": {
+        "type": "checkbox",
+        "value": false
+      }
+    },
     "Storage": {
       "Storage": {
         "type": "storage",
@@ -544,7 +601,11 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -584,7 +645,7 @@
         "value": false
       },
       "priority": {
-        "type": "input",
+        "type": "textarea",
         "value": ""
       }
     },
@@ -601,7 +662,11 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -631,7 +696,7 @@
     },
     "RubbishShop": {
       "priority": {
-        "type": "input",
+        "type": "textarea",
         "value": ""
       }
     },
@@ -648,7 +713,11 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -720,7 +789,11 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -763,11 +836,60 @@
       }
     }
   },
+  "Interception": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Interception",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
   "RookieArena": {
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -795,6 +917,25 @@
         "display": "hide"
       }
     },
+    "OpponentSelection": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "SortingWeight": {
+        "type": "textarea",
+        "value": "{\"Power\":0.3, \"CommanderLevel\":0.2, \"SynchroLevel\":0.3, \"Ranking\":0.2}"
+      },
+      "SelectionStrategy": {
+        "type": "select",
+        "value": "Min",
+        "option": [
+          "Max",
+          "Middle",
+          "Min"
+        ]
+      }
+    },
     "Storage": {
       "Storage": {
         "type": "storage",
@@ -804,11 +945,15 @@
       }
     }
   },
-  "Interception": {
+  "SpecialArena": {
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -817,7 +962,71 @@
       },
       "Command": {
         "type": "input",
-        "value": "Interception",
+        "value": "SpecialArena",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "OpponentSelection": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "SortingWeight": {
+        "type": "textarea",
+        "value": "{\"Power\":0.3, \"CommanderLevel\":0.2, \"SynchroLevel\":0.3, \"Ranking\":0.2}"
+      },
+      "SelectionStrategy": {
+        "type": "select",
+        "value": "Min",
+        "option": [
+          "Max",
+          "Middle",
+          "Min"
+        ]
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "ChampionArena": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "ChampionArena",
         "display": "hide"
       },
       "SuccessInterval": {
@@ -836,6 +1045,601 @@
         "display": "hide"
       }
     },
+    "CheerStrategy": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Strategy": {
+        "type": "select",
+        "value": "Most",
+        "option": [
+          "Most",
+          "Few",
+          "Random"
+        ]
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "Coop": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Coop",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "Coop": {
+      "MatchDifficulty": {
+        "type": "select",
+        "value": "Normal",
+        "option": [
+          "Normal"
+        ]
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "SoloRaid": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "SoloRaid",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "Event": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Event",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "Event": {
+      "Event": {
+        "type": "select",
+        "value": "",
+        "option": [
+          "event_20250807",
+          "event_20250716",
+          "event_20250703s",
+          "event_20250703l",
+          "event_20250612"
+        ],
+        "display": "disabled"
+      },
+      "LoginStamp": {
+        "type": "checkbox",
+        "value": true
+      },
+      "Challenge": {
+        "type": "checkbox",
+        "value": true
+      },
+      "Story": {
+        "type": "checkbox",
+        "value": false
+      },
+      "StoryPart": {
+        "type": "select",
+        "value": "Story_1",
+        "option": [
+          "Story_1",
+          "Story_2"
+        ]
+      },
+      "StoryDifficulty": {
+        "type": "select",
+        "value": "Normal",
+        "option": [
+          "Normal",
+          "Hard"
+        ]
+      },
+      "Coop": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Shop": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Game": {
+        "type": "checkbox",
+        "value": false
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "Event2": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "Event2",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "Event": {
+      "Event": {
+        "type": "select",
+        "value": "",
+        "option": [
+          "event_20250807",
+          "event_20250716",
+          "event_20250703s",
+          "event_20250703l",
+          "event_20250612"
+        ],
+        "display": "disabled"
+      },
+      "LoginStamp": {
+        "type": "checkbox",
+        "value": true
+      },
+      "Challenge": {
+        "type": "checkbox",
+        "value": true
+      },
+      "Story": {
+        "type": "checkbox",
+        "value": false
+      },
+      "StoryPart": {
+        "type": "select",
+        "value": "Story_1",
+        "option": [
+          "Story_1",
+          "Story_2"
+        ]
+      },
+      "StoryDifficulty": {
+        "type": "select",
+        "value": "Normal",
+        "option": [
+          "Normal",
+          "Hard"
+        ]
+      },
+      "Coop": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Shop": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Game": {
+        "type": "checkbox",
+        "value": false
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "BlaAuth": {
+    "BlaAuth": {
+      "UserAgent": {
+        "type": "textarea",
+        "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+      },
+      "Cookie": {
+        "type": "textarea",
+        "value": ""
+      },
+      "XCommonParams": {
+        "type": "textarea",
+        "value": ""
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "BlaDaily": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "BlaDaily",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "BlaDaily": {
+      "PostID": {
+        "type": "input",
+        "value": "",
+        "valuetype": "str"
+      },
+      "CommentID": {
+        "type": "input",
+        "value": "",
+        "valuetype": "str"
+      },
+      "Points": {
+        "type": "input",
+        "value": "",
+        "display": "disabled"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "BlaCDK": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "BlaCDK",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00, 16:00",
+        "display": "hide"
+      }
+    },
+    "CDK": {
+      "Extra": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Source": {
+        "type": "textarea",
+        "value": "https://gamewith.jp/nikke/article/show/371014",
+        "display": "disabled"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "BlaExchange": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "BlaExchange",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "BlaExchange": {
+      "Priority": {
+        "type": "textarea",
+        "value": "Gem_×320 > Gem_×120 > Gem_×60 > Gem_×30 > Welcome_Gift_Core_Dust_×30"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "TowerDaemon": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "TowerDaemon",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "CombatDaemon": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "CombatDaemon",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
     "Storage": {
       "Storage": {
         "type": "storage",
@@ -849,7 +1653,11 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -890,7 +1698,11 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -931,7 +1743,11 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",
@@ -972,7 +1788,11 @@
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
-        "value": false
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
       },
       "NextRun": {
         "type": "datetime",

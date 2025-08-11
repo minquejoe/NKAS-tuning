@@ -11,17 +11,39 @@
       "Mailbox"
     ],
     "Daily": [
-      "LIPass",
+      "DailyRecruit",
       "Daily",
       "MissionPass",
       "Liberation",
       "Conversation",
       "Shop",
-      "RubbishShop",
+      "RubbishShop"
+    ],
+    "Ark": [
       "SimulationRoom",
       "TribeTower",
-      "RookieArena",
       "Interception",
+      "RookieArena",
+      "SpecialArena",
+      "ChampionArena"
+    ],
+    "LimitedTimeEvent": [
+      "Coop",
+      "SoloRaid"
+    ],
+    "StoryEvent": [
+      "Event",
+      "Event2"
+    ],
+    "Blablalink": [
+      "BlaAuth",
+      "BlaDaily",
+      "BlaCDK",
+      "BlaExchange"
+    ],
+    "Tools": [
+      "TowerDaemon",
+      "CombatDaemon",
       "EventDaemon"
     ],
     "Gift": [
