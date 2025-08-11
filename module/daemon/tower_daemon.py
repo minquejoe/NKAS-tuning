@@ -77,11 +77,11 @@ class TowerDaemon(UI):
                     click_timer.reset()
                     continue
 
-                if click_timer.reached() and self.appear_then_click(AUTO_SHOOT, offset=10, interval=5, threshold=0.8):
+                if click_timer.reached() and self.appear_then_click(AUTO_SHOOT, offset=10, threshold=0.9, interval=5):
                     click_timer.reset()
                     continue
 
-                if click_timer.reached() and self.appear_then_click(AUTO_BURST, offset=10, interval=5, threshold=0.8):
+                if click_timer.reached() and self.appear_then_click(AUTO_BURST, offset=10, threshold=0.9, interval=5):
                     click_timer.reset()
                     continue
 

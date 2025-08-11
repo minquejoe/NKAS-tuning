@@ -71,11 +71,11 @@ class EnemyEvent(EventBase):
                 click_timer.reset()
                 continue
 
-            if click_timer.reached() and self.appear_then_click(AUTO_SHOOT, offset=(30, 30), interval=5, threshold=0.8):
+            if click_timer.reached() and self.appear_then_click(AUTO_SHOOT, offset=(30, 30), threshold=0.9, interval=5):
                 click_timer.reset()
                 continue
 
-            if click_timer.reached() and self.appear_then_click(AUTO_BURST, offset=(30, 30), interval=5, threshold=0.8):
+            if click_timer.reached() and self.appear_then_click(AUTO_BURST, offset=(30, 30), threshold=0.9, interval=5):
                 click_timer.reset()
                 continue
 
