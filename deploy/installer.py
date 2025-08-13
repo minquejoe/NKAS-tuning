@@ -9,7 +9,7 @@ class Installer(GitManager, PipManager):
     def install(self):
         try:
             self.git_install()
-            self.git_init()
+            self.git_update()
             # self.alas_kill()
             self.pip_install()
             # self.app_update()

@@ -71,8 +71,8 @@ class GitManager(DeployConfig):
         logger.hr('Show Version', 1)
         self.execute(f'"{self.git}" --no-pager log --no-merges -1')
 
-    def git_init(self):
-        logger.hr('Init Repository', 0)
+    def git_update(self):
+        logger.hr('Update Repository', 0)
 
         # Check if git executable exists, if not, download and install
         if not os.path.exists(self.git):
