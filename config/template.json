@@ -168,7 +168,7 @@
     },
     "Conversation": {
       "OnlyFavourite": false,
-      "IgnoreBondMax": false
+      "OnlyLogsNotMax": false
     },
     "Storage": {
       "Storage": {}

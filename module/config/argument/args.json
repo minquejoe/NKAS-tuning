@@ -590,7 +590,7 @@
         "type": "checkbox",
         "value": false
       },
-      "IgnoreBondMax": {
+      "OnlyLogsNotMax": {
         "type": "checkbox",
         "value": false
       }

@@ -8,6 +8,7 @@ ANSWER_CHECK = Button(area={'zh-cn': (68, 852, 90, 902)}, color={'zh-cn': (9, 28
 CASE_CLOSED = Button(area={'zh-cn': (583, 637, 686, 647)}, color={'zh-cn': (103, 205, 250)}, button={'zh-cn': (583, 637, 686, 647)}, file={'zh-cn': './assets/zh-cn/conversation/CASE_CLOSED.png'})
 COMMUNICATE = Button(area={'zh-cn': (460, 1017, 559, 1064)}, color={'zh-cn': (87, 149, 207)}, button={'zh-cn': (460, 1017, 559, 1064)}, file={'zh-cn': './assets/zh-cn/conversation/COMMUNICATE.png'})
 COMMUNICATE_DONE = Button(area={'zh-cn': (462, 1023, 560, 1058)}, color={'zh-cn': (87, 88, 89)}, button={'zh-cn': (462, 1023, 560, 1058)}, file={'zh-cn': './assets/zh-cn/conversation/COMMUNICATE_DONE.png'})
+COMMUNICATE_LOGS_QUANTITY = Button(area={'zh-cn': (573, 794, 682, 864)}, color={'zh-cn': (228, 222, 223)}, button={'zh-cn': (573, 794, 682, 864)}, file={'zh-cn': './assets/zh-cn/conversation/COMMUNICATE_LOGS_QUANTITY.png'})
 COMMUNICATE_NIKKE_AVATAR = Button(area={'zh-cn': (554, 648, 679, 773)}, color={'zh-cn': (131, 113, 117)}, button={'zh-cn': (554, 648, 679, 773)}, file={'zh-cn': './assets/zh-cn/conversation/COMMUNICATE_NIKKE_AVATAR.png'})
 COMMUNICATE_NIKKE_NAME = Button(area={'zh-cn': (47, 771, 520, 825)}, color={'zh-cn': (196, 198, 199)}, button={'zh-cn': (47, 771, 520, 825)}, file={'zh-cn': './assets/zh-cn/conversation/COMMUNICATE_NIKKE_NAME.png'})
 COMMUNICATE_QUICKLY = Button(area={'zh-cn': (472, 952, 580, 988)}, color={'zh-cn': (254, 143, 101)}, button={'zh-cn': (472, 952, 580, 988)}, file={'zh-cn': './assets/zh-cn/conversation/COMMUNICATE_QUICKLY.png'})
