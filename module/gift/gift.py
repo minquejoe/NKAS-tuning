@@ -39,7 +39,7 @@ class GiftBase(UI):
                 self.device.screenshot()
 
             # 每月礼包
-            if self.appear(GENERAL_GIFT_CHECK, offset=(10, 10)) and self.appear(MONTHLY, offset=(10, 10)):
+            if self.appear(GENERAL_GIFT_CHECK, offset=(10, 10)) and self.appear(MONTHLY, offset=(100, 10)):
                 break
 
             # 打开商店
@@ -76,7 +76,7 @@ class GiftBase(UI):
 
             # 检查每月礼包
             if click_timer.reached() and self.appear(GENERAL_GIFT_CHECK, offset=(10, 10)):
-                self.ensure_sroll((590, 360), (300, 360), count=3, delay=0.4)
+                self.ensure_sroll((590, 360), (300, 360), count=1, delay=1)
                 click_timer.reset()
                 continue
 
@@ -97,12 +97,12 @@ class GiftBase(UI):
                 click_timer.reset()
                 continue
 
-            if click_timer.reached() and self.appear_then_click(button, offset=(30, 30), interval=2):
+            if click_timer.reached() and self.appear_then_click(button, offset=(100, 10), interval=2):
                 confirm_timer.reset()
                 click_timer.reset()
                 continue
 
-            if self.appear(check, offset=5, static=False) and confirm_timer.reached():
+            if self.appear(check, offset=(100, 10)) and confirm_timer.reached():
                 break
 
         skip_first_screenshot = True
