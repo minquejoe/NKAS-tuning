@@ -34,6 +34,6 @@ STORY_2_HARD_LOCKED = Button(area={'zh-cn': (585, 1159, 655, 1177)}, color={'zh-
 STORY_2_HARD_STAGE_11 = Button(area={'zh-cn': (404, 588, 439, 664)}, color={'zh-cn': (150, 150, 149)}, button={'zh-cn': (404, 588, 439, 664)}, file={'zh-cn': './assets/event/event_20250807/STORY_2_HARD_STAGE_11.png'})
 STORY_2_HARD_UNLOCK = Button(area={'zh-cn': (343, 733, 438, 753)}, color={'zh-cn': (157, 161, 163)}, button={'zh-cn': (343, 733, 438, 753)}, file={'zh-cn': './assets/event/event_20250807/STORY_2_HARD_UNLOCK.png'})
 STORY_2_NORMAL = Button(area={'zh-cn': (393, 1193, 418, 1261)}, color={'zh-cn': (94, 89, 90)}, button={'zh-cn': (393, 1193, 418, 1261)}, file={'zh-cn': './assets/event/event_20250807/STORY_2_NORMAL.png'})
-STORY_2_NORMAL_STAGE_11 = Button(area={'zh-cn': (317, 746, 404, 788)}, color={'zh-cn': (85, 117, 141)}, button={'zh-cn': (317, 746, 404, 788)}, file={'zh-cn': './assets/event/event_20250807/STORY_2_NORMAL_STAGE_11.png'})
+STORY_2_NORMAL_STAGE_11 = Button(area={'zh-cn': (199, 821, 229, 939)}, color={'zh-cn': (45, 36, 28)}, button={'zh-cn': (199, 821, 229, 939)}, file={'zh-cn': './assets/event/event_20250807/STORY_2_NORMAL_STAGE_11.png'})
 STORY_STAGE_CHECK = Button(area={'zh-cn': (138, 860, 234, 882)}, color={'zh-cn': (177, 177, 177)}, button={'zh-cn': (138, 860, 234, 882)}, file={'zh-cn': './assets/event/event_20250807/STORY_STAGE_CHECK.png'})
 TEMPLATE_SHOP_MONEY = Template(file={'zh-cn': './assets/event/event_20250807/TEMPLATE_SHOP_MONEY.png'})
