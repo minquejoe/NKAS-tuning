@@ -37,9 +37,15 @@ class Conversation(UI):
 
     @property
     def opportunity_remain(self):
-        result = OPPORTUNITY.appear_on(self.device.image, threshold=25)
-        logger.info(f'[Opportunity remain] {result}')
-        return result
+        model_type = self.config.Optimization_OcrModelType
+        OPPORTUNITY_REMAIN = Digit(
+            [OPPORTUNITY.area],
+            name='OPPORTUNITY_REMAIN',
+            model_type=model_type,
+            lang='ch',
+        )
+
+        return int(OPPORTUNITY_REMAIN.ocr(self.device.image)['text'])
 
     @property
     def nikke_name(self) -> str:
@@ -313,7 +319,7 @@ class Conversation(UI):
             return True
 
     def run(self):
-        self.ui_ensure(page_conversation, confirm_wait=1)
+        self.ui_ensure(page_conversation, confirm_wait=2)
         if self.ensure_opportunity_remain():
             self._confirm_timer.reset().start()
             try:

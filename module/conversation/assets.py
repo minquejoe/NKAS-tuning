@@ -16,7 +16,7 @@ DETAIL_CHECK = Button(area={'zh-cn': (514, 1173, 621, 1197)}, color={'zh-cn': (2
 FAVOURITE = Button(area={'zh-cn': (52, 663, 95, 705)}, color={'zh-cn': (252, 91, 76)}, button={'zh-cn': (52, 663, 95, 705)}, file={'zh-cn': './assets/zh-cn/conversation/FAVOURITE.png'})
 FAVOURITE_CHECK = Button(area={'zh-cn': (134, 371, 159, 400)}, color={'zh-cn': (254, 83, 69)}, button={'zh-cn': (134, 371, 159, 400)}, file={'zh-cn': './assets/zh-cn/conversation/FAVOURITE_CHECK.png'})
 GIFT = Button(area={'zh-cn': (160, 1018, 225, 1059)}, color={'zh-cn': (254, 177, 79)}, button={'zh-cn': (160, 1018, 225, 1059)}, file={'zh-cn': './assets/zh-cn/conversation/GIFT.png'})
-OPPORTUNITY = Button(area={'zh-cn': (83, 295, 183, 325)}, color={'zh-cn': (70, 192, 249)}, button={'zh-cn': (83, 295, 183, 325)}, file={'zh-cn': './assets/zh-cn/conversation/OPPORTUNITY.png'})
+OPPORTUNITY = Button(area={'zh-cn': (86, 291, 292, 324)}, color={'zh-cn': (56, 185, 246)}, button={'zh-cn': (86, 291, 292, 324)}, file={'zh-cn': './assets/zh-cn/conversation/OPPORTUNITY.png'})
 OPPORTUNITY_B = Button(area={'zh-cn': (506, 1068, 541, 1087)}, color={'zh-cn': (192, 191, 194)}, button={'zh-cn': (506, 1068, 541, 1087)}, file={'zh-cn': './assets/zh-cn/conversation/OPPORTUNITY_B.png'})
 RANK_INCREASE_CHECK = Button(area={'zh-cn': (233, 660, 389, 704)}, color={'zh-cn': (90, 50, 78)}, button={'zh-cn': (233, 660, 389, 704)}, file={'zh-cn': './assets/zh-cn/conversation/RANK_INCREASE_CHECK.png'})
 RANK_INCREASE_COMFIRM = Button(area={'zh-cn': (295, 1079, 387, 1096)}, color={'zh-cn': (145, 150, 152)}, button={'zh-cn': (295, 1079, 387, 1096)}, file={'zh-cn': './assets/zh-cn/conversation/RANK_INCREASE_COMFIRM.png'})
