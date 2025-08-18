@@ -15,7 +15,7 @@ class GeneratedConfig:
     Scheduler_Command = 'NKAS'
     Scheduler_SuccessInterval = 0
     Scheduler_FailureInterval = 120
-    Scheduler_ServerUpdate = '04:00'
+    Scheduler_ServerUpdate = '05:00'
 
     # Group `Emulator`
     Emulator_Serial = 'auto'
