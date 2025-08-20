@@ -134,7 +134,7 @@ class GitManager(DeployConfig):
         # 多镜像地址
         urls = [
             'https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/LatestRelease/PortableGit-2.50.1-64-bit.7z.exe',
-            'https://github.com/git-for-windows/git/releases/download/v2.50.1.windows.1/PortableGit-2.50.1-arm64.7z.exe',
+            'https://github.com/git-for-windows/git/releases/download/v2.50.1.windows.1/PortableGit-2.50.1-64-bit.7z.exe',
         ]
 
         exe_path = os.path.abspath(os.path.join(target_dir, 'PortableGit.exe'))
