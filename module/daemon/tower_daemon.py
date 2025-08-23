@@ -57,9 +57,10 @@ class TowerDaemon(UI):
 
             if self.appear(STAGE_INFO_CHECK, offset=10, static=False):
                 break
-        self.try_to_current_stage()
+
         self.device.stuck_record_clear()
         self.device.click_record_clear()
+        self.try_to_current_stage()
 
     def try_to_current_stage(self, skip_first_screenshot=True):
         logger.hr('CURRENT STAGE', 3)
