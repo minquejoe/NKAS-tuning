@@ -30,45 +30,59 @@ class GiftBase(UI):
             self.ensure_back()
 
     def ensure_into_shop(self, skip_first_screenshot=True):
-        confirm_timer = Timer(1, count=2).start()
         click_timer = Timer(0.3)
+
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
                 self.device.screenshot()
 
+            # 每月礼包
+            if self.appear(GENERAL_GIFT_CHECK, offset=(10, 10)) and self.appear(MONTHLY, offset=(100, 10)):
+                break
+
+            # 打开商店
             if click_timer.reached() and self.appear_then_click(MAIN_GOTO_CASH_SHOP, offset=(30, 30), interval=2):
-                confirm_timer.reset()
                 click_timer.reset()
                 continue
 
-            if click_timer.reached() and self.appear_then_click(
-                GOTO_GENERAL_GIFT, offset=(30, 30), interval=6, static=False
+            # 消费限制
+            if (
+                click_timer.reached()
+                and self.appear(CONSUMPTION_RESTRICTIONS, offset=10)
+                and self.appear_then_click(AGE_20, threshold=10, interval=2)
             ):
-                confirm_timer.reset()
-                click_timer.reset()
-                continue
-
-            if click_timer.reached() and self.handle_popup():
-                confirm_timer.reset()
                 click_timer.reset()
                 continue
 
             if (
                 click_timer.reached()
-                and self.appear(GENERAL_GIFT_CHECK, offset=(10, 10), static=False)
-                and not self.appear(MONTHLY, offset=(10, 10), static=False)
+                and self.appear(CONSUMPTION_RESTRICTIONS, offset=10)
+                and self.appear_then_click(CONFIRM, threshold=10, interval=2)
             ):
-                self.ensure_sroll((590, 360), (300, 360), count=1, delay=0.4)
-                confirm_timer.reset()
                 click_timer.reset()
                 continue
 
-            if self.appear(GENERAL_GIFT_CHECK, offset=(10, 10), static=False) and confirm_timer.reached():
-                break
+            # 打开礼礼包页面
+            if click_timer.reached() and self.appear_then_click(
+                GOTO_GENERAL_GIFT, offset=(120, 10), threshold=0.95, interval=2
+            ):
+                click_timer.reset()
+                continue
 
-            if click_timer.reached() and self.appear(FAILED_CHECK, offset=(30, 30), static=False):
+            # 操控妮姬的感觉
+            if click_timer.reached() and self.handle_popup():
+                click_timer.reset()
+                continue
+
+            # 检查每月礼包
+            if click_timer.reached() and self.appear(GENERAL_GIFT_CHECK, offset=(10, 10)):
+                self.ensure_sroll((590, 360), (300, 360), count=1, delay=1)
+                click_timer.reset()
+                continue
+
+            if self.appear(FAILED_CHECK, offset=(30, 30)):
                 raise NetworkError
 
     def receive_available_gift(self, button, check, skip_first_screenshot=True):
@@ -85,12 +99,12 @@ class GiftBase(UI):
                 click_timer.reset()
                 continue
 
-            if click_timer.reached() and self.appear_then_click(button, offset=(30, 30), interval=2):
+            if click_timer.reached() and self.appear_then_click(button, offset=(100, 10), interval=2):
                 confirm_timer.reset()
                 click_timer.reset()
                 continue
 
-            if self.appear(check, offset=5, static=False) and confirm_timer.reached():
+            if self.appear(check, offset=(100, 10)) and confirm_timer.reached():
                 break
 
         skip_first_screenshot = True

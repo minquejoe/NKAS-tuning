@@ -32,3 +32,11 @@ BlaCDK:
 MissionPass:
   Scheduler:
     ServerUpdate: 05:00, 20:00
+
+Liberation:
+  Scheduler:
+    ServerUpdate: 05:00, 20:00
+
+Liberation:
+  Scheduler:
+    ServerUpdate: 05:00, 20:00

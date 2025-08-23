@@ -14,6 +14,9 @@ https://github.com/megumiss/NIKKEAutoScript
 
 GODDESS OF VICTORY: NIKKE automatic script, supports all clients **set to Chinese** except the **CN** client (presumably). Forked from [NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
 
+**如果觉得有帮助，请帮我点个 ⭐ Star 支持一下！**  
+*If you find it helpful, please give it a ⭐ Star to support!*
+
 <p align="center">
   <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white">
   <img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux-blueviolet">
@@ -98,13 +101,27 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
 > 💡 **寻求帮助**  
 > 如果在使用过程中遇到问题，您可以通过以下方式获取帮助：
 > - 在 [GitHub Issues](https://github.com/megumiss/NIKKEAutoScript/issues) 提交问题
-> - 加入划水 QQ 群：`823265807`
+> - 加入划水 QQ 群：[823265807](https://qm.qq.com/q/ibQKuQI9Ko)
 
 ---
 
 ### GUI预览
 
 ![GUI预览](https://raw.githubusercontent.com/megumiss/NIKKEAutoScript/master/doc/assets/gui.png)
+
+---
+
+### 支持我
+
+如果喜欢本项目，可以送作者一杯蜜雪冰城🍦  
+
+您的支持就是作者开发和维护项目的动力🚀  
+
+<p>
+  <img src="https://raw.githubusercontent.com/megumiss/NIKKEAutoScript/master/doc/assets/wechat.png" alt="微信" width="200"/>
+  <img src="https://raw.githubusercontent.com/megumiss/NIKKEAutoScript/master/doc/assets/alipay.png" alt="支付宝" width="200"/>
+</p>
+
 
 ---
 

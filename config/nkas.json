@@ -26,7 +26,7 @@
   "Restart": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-18 22:12:13",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "Restart",
       "SuccessInterval": 0,
       "FailureInterval": 0,
@@ -39,7 +39,7 @@
   "Reward": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "Reward",
       "SuccessInterval": "720-720",
       "FailureInterval": "720-720",
@@ -57,7 +57,7 @@
   "Destruction": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "Destruction",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -70,7 +70,7 @@
   "Commission": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "Commission",
       "SuccessInterval": "720-720",
       "FailureInterval": "720-720",
@@ -86,7 +86,7 @@
   "Mailbox": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "Mailbox",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -99,7 +99,7 @@
   "DailyRecruit": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "DailyRecruit",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -116,7 +116,7 @@
   "Daily": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "Daily",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -134,7 +134,7 @@
   "MissionPass": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "MissionPass",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -151,7 +151,7 @@
       "Command": "Liberation",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "05:00"
+      "ServerUpdate": "05:00, 20:00"
     },
     "Storage": {
       "Storage": {}
@@ -160,7 +160,7 @@
   "Conversation": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "Conversation",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -168,7 +168,7 @@
     },
     "Conversation": {
       "OnlyFavourite": false,
-      "IgnoreBondMax": false
+      "OnlyLogsNotMax": false
     },
     "Storage": {
       "Storage": {}
@@ -177,7 +177,7 @@
   "Shop": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "Shop",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -197,7 +197,7 @@
   "RubbishShop": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-19 04:00:00",
+      "NextRun": "2025-08-26 04:00:00",
       "Command": "RubbishShop",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -213,7 +213,7 @@
   "SimulationRoom": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "SimulationRoom",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -231,7 +231,7 @@
   "TribeTower": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "TribeTower",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -247,7 +247,7 @@
   "Interception": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "Interception",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -263,7 +263,7 @@
   "RookieArena": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "RookieArena",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -281,7 +281,7 @@
   "SpecialArena": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "SpecialArena",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -299,7 +299,7 @@
   "ChampionArena": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "ChampionArena",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -316,7 +316,7 @@
   "Coop": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "Coop",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -332,7 +332,7 @@
   "SoloRaid": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "SoloRaid",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -506,7 +506,7 @@
   "DailyGift": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-17 05:00:00",
+      "NextRun": "2025-08-24 05:00:00",
       "Command": "DailyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -519,7 +519,7 @@
   "WeeklyGift": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-08-19 04:00:00",
+      "NextRun": "2025-08-26 04:00:00",
       "Command": "WeeklyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,

@@ -3,6 +3,7 @@ from datetime import datetime
 
 from module.base.timer import Timer
 from module.interception.assets import *
+from module.logger import logger
 from module.simulation_room.assets import AUTO_BURST, AUTO_SHOOT, END_FIGHTING, PAUSE
 from module.ui.page import page_interception
 from module.ui.ui import UI
@@ -64,12 +65,12 @@ class Interception(UI):
                 confirm_timer.reset()
                 continue
 
-            if click_timer.reached() and self.appear_then_click(AUTO_SHOOT, offset=(5, 5), interval=5, threshold=0.8):
+            if click_timer.reached() and self.appear_then_click(AUTO_SHOOT, offset=(5, 5), threshold=0.9, interval=5):
                 click_timer.reset()
                 confirm_timer.reset()
                 continue
 
-            if click_timer.reached() and self.appear_then_click(AUTO_BURST, offset=(5, 5), interval=5, threshold=0.8):
+            if click_timer.reached() and self.appear_then_click(AUTO_BURST, offset=(5, 5), threshold=0.9, interval=5):
                 click_timer.reset()
                 confirm_timer.reset()
                 continue
@@ -82,7 +83,7 @@ class Interception(UI):
             if click_timer.reached() and self.appear_then_click(END_FIGHTING, offset=(5, 5), interval=2):
                 saved_path = self.save_drop_image(self.device.image, self.config.Interception_DropScreenshotPath)
                 if saved_path:
-                    print(f'Save drop image to: {saved_path}')
+                    logger.info(f'Save drop image to: {saved_path}')
                 click_timer.reset()
                 confirm_timer.reset()
                 continue
@@ -124,6 +125,7 @@ class Interception(UI):
 
         # 保存图片
         from module.base.utils import save_image
+
         save_image(image, save_path)
         return save_path
 
