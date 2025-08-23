@@ -1214,7 +1214,7 @@
       },
       "ServerUpdate": {
         "type": "input",
-        "value": "04:00",
+        "value": "04:00, 16:00",
         "display": "hide"
       }
     },

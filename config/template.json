@@ -347,7 +347,7 @@
       "Command": "Coop",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "04:00, 16:00"
     },
     "Coop": {
       "MatchDifficulty": "Normal"
