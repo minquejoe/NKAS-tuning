@@ -19,7 +19,7 @@ class GeneratedConfig:
 
     # Group `Emulator`
     Emulator_Serial = 'auto'
-    Emulator_PackageName = 'com.proximabeta.nikke'  # com.proximabeta.nikke, com.gamamobi.nikke
+    Emulator_PackageName = 'com.proximabeta.nikke'  # com.proximabeta.nikke, com.gamamobi.nikke, com.proximabeta.nikke, com.gamamobi.nikke
     Emulator_Language = 'zh-cn'  # zh-cn
     Emulator_ScreenshotMethod = 'DroidCast'  # DroidCast
     Emulator_ControlMethod = 'minitouch'  # minitouch
@@ -131,6 +131,15 @@ class GeneratedConfig:
     Overclock_SkipRatioCheck = False
     Overclock_AlwaysReselect = False
     Overclock_ModifierList = 'ENEMY_WEAPON_UP_3\nENEMY_ARMOR_UP_3\nENEMY_VITALS_UP_3\nNO_RECYCLING\nAGGRESSIVE_TACTICS\nRUSH_HOUR_3\nRELEVANT_PERSONNEL_ONLY'
+
+    # Group `TowerDaemon`
+    TowerDaemon_Enable = True
+
+    # Group `CombatDaemon`
+    CombatDaemon_Enable = False
+
+    # Group `EventDaemon`
+    EventDaemon_Enable = False
 
     # Group `Storage`
     Storage_Storage = {}
