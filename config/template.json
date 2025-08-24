@@ -400,6 +400,7 @@
       "StoryDifficulty": "Normal",
       "Coop": false,
       "Shop": false,
+      "ShopDelayList": "TITLE",
       "Game": false
     },
     "Storage": {
@@ -424,6 +425,7 @@
       "StoryDifficulty": "Normal",
       "Coop": false,
       "Shop": false,
+      "ShopDelayList": "TITLE",
       "Game": false
     },
     "Storage": {

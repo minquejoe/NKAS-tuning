@@ -118,6 +118,7 @@ class GeneratedConfig:
     Event_StoryDifficulty = 'Normal'  # Normal, Hard
     Event_Coop = False
     Event_Shop = False
+    Event_ShopDelayList = 'TITLE'
     Event_Game = False
 
     # Group `CheerStrategy`

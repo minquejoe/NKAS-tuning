@@ -1413,6 +1413,10 @@
         "type": "checkbox",
         "value": false
       },
+      "ShopDelayList": {
+        "type": "textarea",
+        "value": "TITLE"
+      },
       "Game": {
         "type": "checkbox",
         "value": false
@@ -1513,6 +1517,10 @@
       "Shop": {
         "type": "checkbox",
         "value": false
+      },
+      "ShopDelayList": {
+        "type": "textarea",
+        "value": "TITLE"
       },
       "Game": {
         "type": "checkbox",

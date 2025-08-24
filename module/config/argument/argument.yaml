@@ -191,6 +191,9 @@ Event:
     display: disabled
   Coop: false
   Shop: false
+  ShopDelayList:
+    value: 'TITLE'
+    type: textarea
   Game: false
 CheerStrategy:
   Enable: false
