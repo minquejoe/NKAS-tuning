@@ -91,7 +91,7 @@ class ShopBase(UI):
                 raise NotEnoughMoneyError
 
             # 检查是否达到最大购买数量
-            if click_timer.reached() and self.appear_then_click(MAX, threshold=5, interval=1):
+            if click_timer.reached() and self.appear_then_click(MAX, offset=30, threshold=0.99, interval=1):
                 self.device.sleep(0.3)
                 click_timer.reset()
                 continue
