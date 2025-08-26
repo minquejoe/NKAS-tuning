@@ -301,3 +301,23 @@ class Button(Resource):
         if image is not None:
             button.load_color(image)
         return button
+
+def filter_buttons_in_area(
+    buttons: list[Button], x_range: tuple[int, int] = None, y_range: tuple[int, int] = None
+) -> list[Button]:
+    """
+    筛选在指定范围内的 Button
+    - 可以只指定 x_range 或 y_range
+    - 按 Button 的 area 来判断
+    """
+    filtered = []
+    for btn in buttons:
+        x1, y1, x2, y2 = btn.area
+        if x_range:
+            if x1 < x_range[0] or x2 > x_range[1]:
+                continue
+        if y_range:
+            if y1 < y_range[0] or y2 > y_range[1]:
+                continue
+        filtered.append(btn)
+    return filtered

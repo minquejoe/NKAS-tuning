@@ -1,6 +1,7 @@
 import importlib
 from functools import cached_property
 
+from module.base.button import filter_buttons_in_area
 from module.base.decorator import Config
 from module.base.timer import Timer
 from module.base.utils import get_button_by_location, sort_buttons_by_location
@@ -941,9 +942,12 @@ class Event(UI):
             items = self.event_assets.TEMPLATE_SHOP_MONEY.match_multi(
                 self.device.image, similarity=0.65, name='SHOP_ITEM'
             )
+            # 过滤掉非商店区域的商品
+            items = filter_buttons_in_area(items, y_range=(620, 1280))
             # 按照坐标排序
             items = sort_buttons_by_location(items)
             logger.info(f'Find items: {len(items)}')
+
             # SOLD_OUT的商品
             sold_outs = TEMPLATE_SOLD_OUT.match_multi(self.device.image, similarity=0.7, name='SOLD_OUT')
             logger.info(f'Find slod out items: {len(sold_outs)}')
