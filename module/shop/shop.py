@@ -248,7 +248,7 @@ class ShopBase(UI):
                     if click_timer.reached():
                         self.device.click(product.button)
                         img = self.device.image
-                        self.handle_purchase(product.button)
+                        self.handle_purchase(product.button, skip_first_screenshot=False)
                         self.device.image = img
                         logger.info(f'[Purchased] {product.name}')
 
