@@ -71,6 +71,7 @@ class Interception(UI):
         self.device.click_record_clear()
         self.device.stuck_record_clear()
 
+        end_fighting = False
         # 使用的队伍
         teamindex = getattr(self.config, f'InterceptionTeam_{self.config.Interception_Boss}') - 1
         while 1:
@@ -85,18 +86,14 @@ class Interception(UI):
                 click_timer.reset()
                 continue
 
-            if (
-                click_timer.reached()
-                and BATTLE_QUICKLY.match_appear_on(self.device.image, 10)
-                and self.appear_then_click(BATTLE_QUICKLY, offset=5)
-            ):
+            if click_timer.reached() and self.appear_then_click(BATTLE_QUICKLY, threshold=10):
+                end_fighting = False
+                self.device.sleep(1)
                 click_timer.reset()
                 continue
-            elif (
-                click_timer.reached()
-                and BATTLE.match_appear_on(self.device.image, 10)
-                and self.appear_then_click(BATTLE, offset=5)
-            ):
+
+            if click_timer.reached() and self.appear_then_click(BATTLE, threshold=10, interval=1):
+                end_fighting = False
                 click_timer.reset()
                 continue
 
@@ -114,14 +111,17 @@ class Interception(UI):
                     continue
 
             if click_timer.reached() and self.appear_then_click(END_FIGHTING, offset=(5, 5), interval=2):
+                end_fighting = True
                 saved_path = self.save_drop_image(self.device.image, self.config.Interception_DropScreenshotPath)
                 if saved_path:
                     logger.info(f'Save drop image to: {saved_path}')
                 click_timer.reset()
                 continue
 
-            if self.appear(ABNORMAL_INTERCEPTION_CHECK, offset=5, interval=2) and not BATTLE.match_appear_on(
-                self.device.image, 10
+            if (
+                end_fighting
+                and self.appear(ABNORMAL_INTERCEPTION_CHECK, offset=5)
+                and not BATTLE.match_appear_on(self.device.image, 10)
             ):
                 logger.info('There are no free opportunities')
                 raise NoOpportunity
