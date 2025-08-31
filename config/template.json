@@ -1,5 +1,8 @@
 {
   "NKAS": {
+    "Client": {
+      "Platform": "adb"
+    },
     "Emulator": {
       "Serial": "auto",
       "PackageName": "com.proximabeta.nikke",
@@ -13,6 +16,13 @@
       "Emulator": "auto",
       "name": null,
       "path": null
+    },
+    "WinClient": {
+      "TitleName": "NIKKE",
+      "ProcessName": "nikke.exe",
+      "LauncherPath": null,
+      "Path": null,
+      "Screens": false
     },
     "Optimization": {
       "AutoRedCircle": false,

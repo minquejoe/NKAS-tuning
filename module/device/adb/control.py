@@ -4,7 +4,7 @@ import numpy as np
 
 from module.base.button import Button
 from module.base.utils import ensure_int, point2str
-from module.device.method.minitouch import Minitouch
+from module.device.adb.method.minitouch import Minitouch
 from module.logger import logger
 
 
@@ -48,7 +48,7 @@ class Control(Minitouch):
             self.config.Emulator_ControlMethod)
         method(x, y)
 
-    def swipe(self, p1, p2, speed=15, hold=0, name='SWIPE', label='Swipe',
+    def swipe(self, p1, p2, speed=15, hold=0, method='swipe', name='SWIPE', label='Swipe',
             distance_check=True, handle_control_check=True):
         if handle_control_check:
             self.handle_control_check(name)

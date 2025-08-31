@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from functools import cached_property
 
 import inflection
+import pyuac
 
 from module.base.decorator import del_cached_property
 from module.config.config import NikkeConfig, TaskEnd
@@ -54,9 +55,17 @@ class NikkeAutoScript:
     @cached_property
     def device(self):
         try:
-            from module.device.device import Device
+            if self.config.Client_Platform == 'win':
+                if not pyuac.isUserAdmin():
+                    pyuac.runAsAdmin(False)
+                from module.device.win.device import Device
 
-            device = Device(config=self.config)
+                device = Device(config=self.config)
+            if self.config.Client_Platform == 'adb':
+                from module.device.adb.device import Device
+
+                device = Device(config=self.config)
+
             return device
         except RequestHumanTakeover:
             logger.critical('Request human takeover')

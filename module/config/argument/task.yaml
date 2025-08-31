@@ -5,8 +5,10 @@ NKAS:
   page: 'setting'
   tasks:
     NKAS:
+      - Client
       - Emulator
       - EmulatorInfo
+      - WinClient
       - Optimization
       - Notification
     Restart:

@@ -17,6 +17,9 @@ class GeneratedConfig:
     Scheduler_FailureInterval = 120
     Scheduler_ServerUpdate = '04:00'
 
+    # Group `Client`
+    Client_Platform = 'adb'  # adb, win
+
     # Group `Emulator`
     Emulator_Serial = 'auto'
     Emulator_PackageName = 'com.proximabeta.nikke'  # com.proximabeta.nikke, com.gamamobi.nikke, com.proximabeta.nikke, com.gamamobi.nikke
@@ -30,6 +33,13 @@ class GeneratedConfig:
     EmulatorInfo_Emulator = 'auto'  # auto, NoxPlayer, NoxPlayer64, BlueStacks4, BlueStacks5, BlueStacks4HyperV, BlueStacks5HyperV, LDPlayer3, LDPlayer4, LDPlayer9, MuMuPlayer, MuMuPlayerX, MuMuPlayer12, MEmuPlayer
     EmulatorInfo_name = None
     EmulatorInfo_path = None
+
+    # Group `WinClient`
+    WinClient_TitleName = 'NIKKE'
+    WinClient_ProcessName = 'nikke.exe'
+    WinClient_LauncherPath = None
+    WinClient_Path = None
+    WinClient_Screens = False
 
     # Group `Optimization`
     Optimization_AutoRedCircle = False
