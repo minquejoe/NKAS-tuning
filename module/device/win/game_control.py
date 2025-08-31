@@ -1,4 +1,5 @@
 import ctypes
+from ctypes import wintypes
 import os
 import subprocess
 import time
@@ -220,7 +221,7 @@ class WinClient:
 
     def change_resolution(self, client_width, client_height):
         """
-        设置窗口客户区大小为指定分辨率
+        设置窗口客户区大小为指定分辨率（兼容 DPI 缩放）
 
         参数:
             client_width: 客户区宽度(像素)
@@ -233,23 +234,41 @@ class WinClient:
                 logger.error('游戏窗口未找到')
                 raise Exception('游戏窗口未找到')
 
-            # 获取窗口矩形和客户区矩形
-            rect = win32gui.GetClientRect(hwnd)
-            window_rect = win32gui.GetWindowRect(hwnd)
+            # 获取窗口的 DPI（Win10+ 支持）
+            try:
+                GetDpiForWindow = ctypes.windll.user32.GetDpiForWindow
+                dpi = GetDpiForWindow(hwnd)
+            except Exception:
+                # 如果不支持，就用系统 DPI（一般是 96）
+                dpi = 96
+            logger.debug(f'窗口 DPI: {dpi}')
 
-            logger.debug(f'原始窗口矩形: {window_rect}, 客户区矩形: {rect}')
+            # 准备调用 AdjustWindowRectExForDpi
+            AdjustWindowRectExForDpi = ctypes.windll.user32.AdjustWindowRectExForDpi
+            AdjustWindowRectExForDpi.argtypes = [
+                ctypes.POINTER(wintypes.RECT),
+                wintypes.DWORD,
+                wintypes.BOOL,
+                wintypes.DWORD,
+                wintypes.UINT,
+            ]
+            AdjustWindowRectExForDpi.restype = wintypes.BOOL
 
-            # 计算边框宽度和高度
-            border_width = (window_rect[2] - window_rect[0] - rect[2]) // 2
-            border_height = (window_rect[3] - window_rect[1] - rect[3]) // 2
+            # 先构造一个客户区矩形
+            rect = wintypes.RECT(0, 0, client_width, client_height)
 
-            logger.debug(f'计算得到的边框宽度: {border_width}, 边框高度: {border_height}')
+            # 获取当前窗口的 style 和 ex_style
+            style = win32gui.GetWindowLong(hwnd, win32con.GWL_STYLE)
+            ex_style = win32gui.GetWindowLong(hwnd, win32con.GWL_EXSTYLE)
 
-            # 计算需要的窗口大小（包括边框）
-            window_width = client_width + 2 * border_width
-            window_height = client_height + 2 * border_height
+            # 调整矩形，使之包含边框和标题栏
+            success = AdjustWindowRectExForDpi(ctypes.byref(rect), style, False, ex_style, dpi)
+            if not success:
+                raise Exception('AdjustWindowRectExForDpi 调用失败')
 
-            logger.debug(f'需要设置的窗口大小: {window_width}x{window_height}')
+            window_width = rect.right - rect.left
+            window_height = rect.bottom - rect.top
+            logger.debug(f'需要设置的窗口矩形: {window_width}x{window_height}')
 
             # 设置窗口大小
             result = win32gui.SetWindowPos(
@@ -264,7 +283,7 @@ class WinClient:
             new_rect = win32gui.GetClientRect(hwnd)
             logger.debug(f'设置后的客户区大小: {new_rect[2]}x{new_rect[3]}')
 
-            if new_rect[2] != client_width and new_rect[3] != client_height:
+            if new_rect[2] != client_width or new_rect[3] != client_height:
                 logger.warning(
                     f'设置分辨率不完全匹配: 期望 {client_width}x{client_height}, 实际 {new_rect[2]}x{new_rect[3]}'
                 )
@@ -371,7 +390,7 @@ class WinClient:
             raise Exception('游戏分辨率获取失败')
         window_width, window_height = resolution
 
-        if window_width != target_width and window_height != target_height:
+        if window_width != target_width or window_height != target_height:
             logger.error(
                 f'游戏分辨率: {window_width}x{window_height} ≠ {target_width}x{target_height}，分辨率错误，请重试'
             )
