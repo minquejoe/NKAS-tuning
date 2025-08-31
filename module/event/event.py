@@ -746,9 +746,9 @@ class Event(UI):
 
                 # 关卡检查
                 if click_timer.reached() and self.appear_then_click(
-                    self.STORY_STAGE_11(open_story), offset=10, interval=1, static=False
+                    self.STORY_STAGE_11(open_story), offset=10, threshold=0.9, interval=1, static=False
                 ):
-                    # self.device.sleep(1)
+                    self.device.sleep(0.5)
                     click_timer.reset()
                     continue
 
