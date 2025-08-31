@@ -22,8 +22,10 @@ from .screenshot import Screenshot
 class ScreenshotSizeError(Exception):
     pass
 
+
 RETRY_TRIES = 5
 RETRY_DELAY = 3
+
 
 def retry(func):
     @wraps(func)
@@ -76,6 +78,7 @@ def retry(func):
         raise RequestHumanTakeover
 
     return retry_wrapper
+
 
 class Automation:
     config: NikkeConfig
@@ -245,8 +248,11 @@ class Automation:
             start_x, start_y = p1
             end_x, end_y = p2
 
-            # 计算垂直方向上的像素距离
-            pixel_distance = end_y - start_y
+            # 计算垂直或水平方向的像素距离
+            pixel_distance = end_y - start_y if abs(end_y - start_y) > abs(end_x - start_x) else end_x - start_x
+            if not pixel_distance:
+                pixel_distance = end_x - start_x
+
             # 计算需要滚动的次数
             scroll_count = round(abs(pixel_distance) / 65) - 1
             # 自动判断滚动方向
@@ -255,7 +261,18 @@ class Automation:
             self.mouse_move((start_x + end_x) // 2, (start_y + end_y) // 2)
             self.mouse_scroll(scroll_count, direction=direction)
         elif method == 'swipe':
-            p2 = p2[0] + self.window_offset[0], p2[1] * 1.5 + self.window_offset[1]
+            # 原始目标点
+            raw_p2 = (p2[0] + self.window_offset[0], p2[1] + self.window_offset[1])
+            dx, dy = raw_p2[0] - p1[0], raw_p2[1] - p1[1]
+
+            # 判断主要滑动方向
+            if abs(dx) > abs(dy):
+                # 水平滑动 -> 额外延伸 X 轴
+                p2 = (raw_p2[0] + dx * 0.5, raw_p2[1])
+            else:
+                # 垂直滑动 -> 额外延伸 Y 轴
+                p2 = (raw_p2[0], raw_p2[1] + dy * 0.5)
+
             self.mouse_swipe(p1, p2, speed=speed * 2, hold=hold)
         else:
             raise ValueError(f'未知的动作类型: {method}')
