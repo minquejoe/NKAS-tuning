@@ -74,6 +74,8 @@ WinClient:
     type: textarea
   Screens:
     value: false
+  ResolutionCompat:
+    value: false
 Optimization:
   AutoRedCircle: false
   OcrModelType:

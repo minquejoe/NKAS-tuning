@@ -40,6 +40,7 @@ class GeneratedConfig:
     WinClient_LauncherPath = None
     WinClient_Path = None
     WinClient_Screens = False
+    WinClient_ResolutionCompat = False
 
     # Group `Optimization`
     Optimization_AutoRedCircle = False

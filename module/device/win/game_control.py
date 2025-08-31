@@ -221,6 +221,64 @@ class WinClient:
 
     def change_resolution(self, client_width, client_height):
         """
+        设置窗口客户区大小为指定分辨率
+
+        参数:
+            client_width: 客户区宽度(像素)
+            client_height: 客户区高度(像素)
+        """
+        try:
+            # 查找窗口句柄
+            hwnd = win32gui.FindWindow(self.window_class, self.window_name)
+            if hwnd == 0:
+                logger.error('游戏窗口未找到')
+                raise Exception('游戏窗口未找到')
+
+            # 获取窗口矩形和客户区矩形
+            rect = win32gui.GetClientRect(hwnd)
+            window_rect = win32gui.GetWindowRect(hwnd)
+
+            logger.debug(f'原始窗口矩形: {window_rect}, 客户区矩形: {rect}')
+
+            # 计算边框宽度和高度
+            border_width = (window_rect[2] - window_rect[0] - rect[2]) // 2
+            border_height = (window_rect[3] - window_rect[1] - rect[3]) // 2
+
+            logger.debug(f'计算得到的边框宽度: {border_width}, 边框高度: {border_height}')
+
+            # 计算需要的窗口大小（包括边框）
+            window_width = client_width + 2 * border_width
+            window_height = client_height + 2 * border_height
+
+            logger.debug(f'需要设置的窗口大小: {window_width}x{window_height}')
+
+            # 设置窗口大小
+            result = win32gui.SetWindowPos(
+                hwnd, 0, 0, 0, window_width, window_height, win32con.SWP_NOMOVE | win32con.SWP_NOZORDER
+            )
+
+            if result == 0:
+                logger.error('设置窗口大小失败')
+                raise Exception('设置窗口大小失败')
+
+            # 验证设置是否成功
+            new_rect = win32gui.GetClientRect(hwnd)
+            logger.debug(f'设置后的客户区大小: {new_rect[2]}x{new_rect[3]}')
+
+            if new_rect[2] != client_width and new_rect[3] != client_height:
+                logger.warning(
+                    f'设置分辨率不完全匹配: 期望 {client_width}x{client_height}, 实际 {new_rect[2]}x{new_rect[3]}'
+                )
+            else:
+                logger.info(f'成功设置窗口客户区分辨率为: {client_width}x{client_height}')
+
+        except Exception as e:
+            logger.error(f'设置窗口分辨率时发生错误: {e}')
+            logger.error(f'目标分辨率: {client_width}x{client_height}')
+            raise Exception(f'无法设置窗口分辨率: {e}')
+
+    def change_resolution_compat(self, client_width, client_height):
+        """
         设置窗口客户区大小为指定分辨率（兼容 DPI 缩放）
 
         参数:

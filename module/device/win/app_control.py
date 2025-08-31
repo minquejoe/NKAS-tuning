@@ -93,7 +93,10 @@ class AppControl(WinClient):
                 else:
                     self.check_resolution(720, 1280)
                     time.sleep(1)
-                    self.change_resolution(720, 1280)
+                    if self.config.WinClient_ResolutionCompat:
+                        self.change_resolution_compat(720, 1280)
+                    else:
+                        self.change_resolution(720, 1280)
                     time.sleep(1)
                     self.check_resolution_ratio(720, 1280)
                     time.sleep(1)

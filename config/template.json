@@ -22,7 +22,8 @@
       "ProcessName": "nikke.exe",
       "LauncherPath": null,
       "Path": null,
-      "Screens": false
+      "Screens": false,
+      "ResolutionCompat": false
     },
     "Optimization": {
       "AutoRedCircle": false,
