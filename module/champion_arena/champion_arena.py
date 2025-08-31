@@ -146,6 +146,7 @@ class ChampionArena(UI, ArenaBase):
                 self.appear(PROGRESS_NEXT_SEASON, offset=(30, 30))
                 or self.appear(PROGRESS_TEAM, offset=(30, 30))
                 or self.appear(PROGRESS_FIGHTING, offset=(30, 30))
+                or self.appear(PROGRESS_RESULTING, offset=(30, 30))
             ):
                 logger.warning('Champion arena in preparation')
                 raise ChampionArenaIsUnavailable
