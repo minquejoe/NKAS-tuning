@@ -65,9 +65,11 @@ class ShopBase(UI):
         """
         处理购买逻辑。
         """
+        self.device.click_record_clear()
         confirm_timer = Timer(2, 3).start()
         _confirm_timer = Timer(1, 2).start()
         click_timer = Timer(0.3)
+        max_clicks = 0
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -91,7 +93,12 @@ class ShopBase(UI):
                 raise NotEnoughMoneyError
 
             # 检查是否达到最大购买数量
-            if click_timer.reached() and self.appear_then_click(MAX, offset=30, threshold=0.99, interval=1):
+            if (
+                click_timer.reached()
+                and max_clicks < 3
+                and self.appear_then_click(MAX, offset=30, threshold=0.99, interval=1)
+            ):
+                max_clicks += 1
                 self.device.sleep(0.3)
                 click_timer.reset()
                 continue
@@ -111,6 +118,7 @@ class ShopBase(UI):
                         self.device.screenshot()
                     self.handle_reward(1)
                     if self.appear(SHOP_CHECK, offset=(5, 5)) and _confirm_timer.reached():
+                        max_clicks = 0
                         return
 
     def process_purchase(self, products: SelectedGrids, check_price=False, refresh=False, skip_first_screenshot=True):

@@ -271,7 +271,7 @@ class Automation:
                 p2 = (raw_p2[0] + dx * 0.5, raw_p2[1])
             else:
                 # 垂直滑动 -> 额外延伸 Y 轴
-                p2 = (raw_p2[0], raw_p2[1] + dy * 0.5)
+                p2 = (raw_p2[0], raw_p2[1] + dy)
 
             self.mouse_swipe(p1, p2, speed=speed * 2, hold=hold)
         else:
