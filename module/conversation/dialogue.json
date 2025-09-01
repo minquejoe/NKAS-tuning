@@ -5949,7 +5949,7 @@
       }
     },
     {
-      "question": "'{AccountData.NickName}主人也这样想吗？'",
+      "question": "主人也这样想吗？",
       "answer": {
         "false": "嗯，我也很好奇爱德穿私服的样子。",
         "true": "我还是最喜欢爱德穿女仆装的样子。"
@@ -7940,7 +7940,7 @@
       "question": "我觉得用新的称谓来称呼对方更好。",
       "answer": {
         "false": "现在就很好。",
-        "true": "'{AccountData.NickName}？'"
+        "true": "？"
       }
     },
     {
