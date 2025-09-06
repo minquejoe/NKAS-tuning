@@ -472,6 +472,7 @@
       "ServerUpdate": "04:00"
     },
     "BlaDaily": {
+      "Immediately": false,
       "PostID": null,
       "CommentID": null,
       "Points": null
