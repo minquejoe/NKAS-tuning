@@ -992,17 +992,23 @@ class Event(UI):
                         break
 
                 quit = False
+                confirm_timer = Timer(1, count=3)
                 while 1:
                     self.device.screenshot()
 
                     # 退出
                     if self.appear(EVENT_SHOP_CHECK, offset=(30, 30)):
-                        if quit:
-                            logger.info('Money not enough, quiting')
-                            return
-                        else:
-                            logger.info('Item purchase completed, goto next')
-                            break
+                        if not confirm_timer.started():
+                            confirm_timer.start()
+                        if confirm_timer.reached():
+                            if quit:
+                                logger.info('Money not enough, quiting')
+                                return
+                            else:
+                                logger.info('Item purchase completed, goto next')
+                                break
+                    else:
+                        confirm_timer.clear()
 
                     # 商品在延迟购买列表中，跳过，返回商店主页
                     for i, item in enumerate(delay_list[:]):
