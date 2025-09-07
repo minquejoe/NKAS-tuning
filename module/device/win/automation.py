@@ -190,8 +190,6 @@ class Automation:
             raise ValueError(f'未知的动作类型: {action}')
 
     def long_click_minitouch(self, x, y, duration=1.0, action='hold'):
-        duration = int(duration * 1000)
-
         x = x * 2 * 0.9
         y = y / 2 * 1.12
 
