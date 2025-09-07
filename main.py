@@ -403,7 +403,8 @@ class NikkeAutoScript:
                     # 关闭启动器
                     self.device.app_stop('Launcher')
                     release_resources()
-                    del_cached_property(self, 'device')
+                    if self.config.Client_Platform == 'win':
+                        del_cached_property(self, 'device')
                     # self.device.release_during_wait()
                     if not self.wait_until(task.next_run):
                         del_cached_property(self, 'config')

@@ -88,7 +88,7 @@ class Login(LauncherOcr, Automation):
                 logger.info('点击登录')
 
         confirm_timer = Timer(60, count=20)
-        in_game = False
+        check_game = False
         while True:
             time.sleep(3)
 
@@ -96,12 +96,7 @@ class Login(LauncherOcr, Automation):
                 self.get_resolution()
                 super().screenshot()
             except Exception:
-                self.current_window = self.game
-                if self.check_program() and self.switch_to_program():
-                    in_game = True
-                    self.launcher_running = True
-                    logger.info('游戏登录成功')
-                    break
+                pass
             else:
                 if self.appear_text('账号格式错误', threshold=0.9):
                     logger.error('账号格式错误')
@@ -116,6 +111,7 @@ class Login(LauncherOcr, Automation):
                 if self.appear_text('游戏设置', threshold=0.9):
                     if self.appear_text_then_click('启动', threshold=0.9):
                         logger.info('点击启动')
+                        check_game = True
                         continue
                     if self.appear_text_then_click('更新', threshold=0.9):
                         logger.info('点击更新')
@@ -127,8 +123,14 @@ class Login(LauncherOcr, Automation):
                     logger.error('游戏登录超时，未知错误')
                     raise RequestHumanTakeover
 
-                if not in_game:
-                    self.current_window = self.launcher
+                if check_game:
+                    self.current_window = self.game
+                    if self.check_program() and self.switch_to_program():
+                        self.launcher_running = True
+                        logger.info('游戏登录成功')
+                        break
+                # 没进入游戏回退到 launcher
+                self.current_window = self.launcher
 
     def auto_type(self, text):
         # 切换为英文
