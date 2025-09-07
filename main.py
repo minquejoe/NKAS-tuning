@@ -7,12 +7,12 @@ from datetime import datetime, timedelta
 from functools import cached_property
 
 import inflection
-import pyuac
 
 from module.base.decorator import del_cached_property
 from module.config.config import NikkeConfig, TaskEnd
 from module.config.utils import deep_get, deep_set
 from module.exception import (
+    AccountError,
     GameNotRunningError,
     GamePageUnknownError,
     GameServerUnderMaintenance,
@@ -56,8 +56,6 @@ class NikkeAutoScript:
     def device(self):
         try:
             if self.config.Client_Platform == 'win':
-                if not pyuac.isUserAdmin():
-                    pyuac.runAsAdmin(False)
                 from module.device.win.device import Device
 
                 device = Device(config=self.config)
@@ -70,6 +68,9 @@ class NikkeAutoScript:
         except RequestHumanTakeover:
             logger.critical('Request human takeover')
             exit(1)
+        except AccountError:
+            logger.critical('Account or password setting error')
+            exit(1)
         except Exception as e:
             logger.exception(e)
             exit(1)
@@ -81,6 +82,9 @@ class NikkeAutoScript:
             self.__getattribute__(command)()
             return True
         except TaskEnd:
+            return True
+        except GameStart:
+            self.start()
             return True
         except GameNotRunningError as e:
             logger.warning(e)
@@ -393,8 +397,13 @@ class NikkeAutoScript:
                 method = self.config.Optimization_WhenTaskQueueEmpty
                 if method == 'close_game':
                     logger.info('Close game during wait')
+                    # 关闭游戏
                     self.device.app_stop()
+                    self.device.sleep(1)
+                    # 关闭启动器
+                    self.device.app_stop('Launcher')
                     release_resources()
+                    del_cached_property(self, 'device')
                     # self.device.release_during_wait()
                     if not self.wait_until(task.next_run):
                         del_cached_property(self, 'config')
