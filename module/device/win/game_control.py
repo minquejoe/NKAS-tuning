@@ -413,7 +413,7 @@ class WinClient:
     def ensure_resolution(self, client_width, client_height, retries=5, interval=1.0):
         """确保窗口分辨率被成功设置"""
         logger.info(f'持续设置窗口分辨率：[{self.current_window.name}]:{self.current_window.title}')
-        compat = getattr(self.config, f'PCClient_{self.current_window.title}ResolutionCompat', False)
+        compat = getattr(self.config, f'PCClient_{self.current_window.name}ResolutionCompat', False)
         for i in range(retries):
             if compat:
                 self.change_resolution_compat(client_width, client_height)
