@@ -531,7 +531,7 @@ class WinClient:
             logger.error(f'窗口分辨率: {window_width}x{window_height} ≠ {target_width}x{target_height}，分辨率错误')
             raise Exception('窗口分辨率错误')
         else:
-            logger.debug(f'窗口分辨率: {window_width}x{window_height}')
+            logger.info(f'窗口分辨率: {window_width}x{window_height}')
 
     @staticmethod
     def sleep(second):
