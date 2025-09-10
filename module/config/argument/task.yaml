@@ -131,7 +131,7 @@ Blablalink:
       - BlaDaily
     BlaCDK:
       - Scheduler
-      - BlaCDK
+      - CDK
     BlaExchange:
       - Scheduler
       - BlaExchange

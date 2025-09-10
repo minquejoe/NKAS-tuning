@@ -508,6 +508,10 @@
       "FailureInterval": 120,
       "ServerUpdate": "04:00, 16:00"
     },
+    "CDK": {
+      "Extra": false,
+      "Source": "https://gamewith.jp/nikke/article/show/371014"
+    },
     "Storage": {
       "Storage": {}
     }
