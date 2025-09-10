@@ -141,6 +141,8 @@ class GeneratedConfig:
     Event_Shop = False
     Event_ShopDelayList = 'TITLE'
     Event_Game = False
+    Event_GameStorySkip = False
+    Event_GameLoop = False
 
     # Group `CheerStrategy`
     CheerStrategy_Enable = False

@@ -232,6 +232,8 @@ Event:
     value: 'TITLE'
     type: textarea
   Game: false
+  GameStorySkip: false
+  GameLoop: false
 CheerStrategy:
   Enable: false
   Strategy:

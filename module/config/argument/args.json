@@ -1582,6 +1582,14 @@
       "Game": {
         "type": "checkbox",
         "value": false
+      },
+      "GameStorySkip": {
+        "type": "checkbox",
+        "value": false
+      },
+      "GameLoop": {
+        "type": "checkbox",
+        "value": false
       }
     },
     "Storage": {
@@ -1686,6 +1694,14 @@
         "value": "TITLE"
       },
       "Game": {
+        "type": "checkbox",
+        "value": false
+      },
+      "GameStorySkip": {
+        "type": "checkbox",
+        "value": false
+      },
+      "GameLoop": {
         "type": "checkbox",
         "value": false
       }

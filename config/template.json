@@ -439,7 +439,9 @@
       "Coop": false,
       "Shop": false,
       "ShopDelayList": "TITLE",
-      "Game": false
+      "Game": false,
+      "GameStorySkip": false,
+      "GameLoop": false
     },
     "Storage": {
       "Storage": {}
@@ -464,7 +466,9 @@
       "Coop": false,
       "Shop": false,
       "ShopDelayList": "TITLE",
-      "Game": false
+      "Game": false,
+      "GameStorySkip": false,
+      "GameLoop": false
     },
     "Storage": {
       "Storage": {}
