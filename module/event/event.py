@@ -615,7 +615,7 @@ class Event(UI):
                     break
 
         # 滑动到列表最下方检查倒数第二关
-        self.ensure_sroll_to_bottom(x1=(680, 900), x2=(680, 460), count=3)
+        self.ensure_sroll_to_bottom(x1=(680, 800), x2=(680, 460), count=3)
         self.device.screenshot()
         self.find_and_fight_stage(open_story)
 
@@ -732,7 +732,7 @@ class Event(UI):
                 break
 
         # 滑动到列表最下方检查倒数第二关
-        self.ensure_sroll_to_bottom(x1=(680, 900), x2=(680, 460), count=3)
+        self.ensure_sroll_to_bottom(x1=(680, 800), x2=(680, 460), count=3)
         self.device.screenshot()
         self.find_and_fight_stage(open_story)
 
