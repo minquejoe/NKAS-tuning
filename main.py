@@ -77,7 +77,8 @@ class NikkeAutoScript:
 
     def run(self, command, skip_first_screenshot=False):
         try:
-            if not skip_first_screenshot:
+            # 妮游社任务不需要device
+            if command not in self.config.INDEPENDENT_TASKS_UNDER and not skip_first_screenshot:
                 self.device.screenshot()
             self.__getattribute__(command)()
             return True
@@ -402,12 +403,14 @@ class NikkeAutoScript:
                 method = self.config.Optimization_WhenTaskQueueEmpty
                 if method == 'close_game':
                     logger.info('Close game during wait')
-                    # 关闭游戏
-                    self.device.app_stop()
-                    self.device.sleep(1)
-                    # 关闭启动器
-                    if self.config.Client_Platform == 'win':
-                        self.device.app_stop('Launcher')
+                    # 只运行妮游社任务时不会初始化device，不需要操作游戏
+                    if 'device' in self.__dict__:
+                        # 关闭游戏
+                        self.device.app_stop()
+                        self.device.sleep(1)
+                        # 关闭启动器
+                        if self.config.Client_Platform == 'win':
+                            self.device.app_stop('Launcher')
                     release_resources()
                     if self.config.Client_Platform == 'win':
                         del_cached_property(self, 'device')
@@ -421,7 +424,9 @@ class NikkeAutoScript:
                         continue
                 elif method == 'goto_main':
                     logger.info('Goto main page during wait')
-                    self.run('goto_main')
+                    # 只运行妮游社任务时不会初始化device，不需要操作游戏
+                    if 'device' in self.__dict__:
+                        self.run('goto_main')
                     release_resources()
                     # self.device.release_during_wait()
                     if not self.wait_until(task.next_run):
@@ -468,20 +473,23 @@ class NikkeAutoScript:
             #     self.config.task_call('Restart')
             # Get task
             task = self.get_next_task()
-            # Init device and change server
-            _ = self.device
-            self.device.config = self.config
-            # Skip first restart
-            if self.is_first_task and task == 'Restart':
-                logger.info('Skip task `Restart` at scheduler start')
-                self.config.task_delay(server_update=True)
-                del_cached_property(self, 'config')
-                continue
+            # 妮游社任务不需要device，不需要操作游戏
+            if task not in self.config.INDEPENDENT_TASKS:
+                # Init device and change server
+                _ = self.device
+                self.device.config = self.config
+                # Skip first restart
+                if self.is_first_task and task == 'Restart':
+                    logger.info('Skip task `Restart` at scheduler start')
+                    self.config.task_delay(server_update=True)
+                    del_cached_property(self, 'config')
+                    continue
 
-            # Run
-            logger.info(f'Scheduler: Start task `{task}`')
-            self.device.stuck_record_clear()
-            self.device.click_record_clear()
+                # Run
+                logger.info(f'Scheduler: Start task `{task}`')
+                self.device.stuck_record_clear()
+                self.device.click_record_clear()
+
             logger.hr(task, level=0)
             success = self.run(inflection.underscore(task))
             logger.info(f'Scheduler: End task `{task}`')
