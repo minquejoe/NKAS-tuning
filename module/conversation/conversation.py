@@ -7,11 +7,10 @@ from module.base.utils import (
 )
 from module.conversation.assets import *
 from module.conversation.dialogue import Dialogue
-from module.ui.assets import SKIP
 from module.handler.assets import AUTO_CLICK_CHECK, CONFIRM_B
 from module.logger import logger
 from module.ocr.ocr import Digit, Ocr
-from module.ui.assets import CONVERSATION_CHECK, GOTO_BACK
+from module.ui.assets import CONVERSATION_CHECK, GOTO_BACK, SKIP
 from module.ui.page import page_conversation
 from module.ui.ui import UI
 

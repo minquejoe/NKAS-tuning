@@ -599,15 +599,8 @@
   },
   "SemiCombat": {
     "SemiCombat": {
-      "Enable": false
-    },
-    "Storage": {
-      "Storage": {}
-    }
-  },
-  "SemiEvent": {
-    "SemiEvent": {
-      "Enable": false
+      "SkipStory": false,
+      "FightQuickly": false
     },
     "Storage": {
       "Storage": {}

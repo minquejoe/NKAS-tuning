@@ -30,6 +30,8 @@ class ModuleBase:
               """
         if isinstance(config, NikkeConfig):
             self.config = config
+            if task is not None:
+                self.config.init_task(task)
         elif isinstance(config, str):
             self.config = NikkeConfig(config, task=task)
         else:

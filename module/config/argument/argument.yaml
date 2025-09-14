@@ -275,13 +275,10 @@ AutoTower:
     value: true
     display: disabled
 SemiCombat:
-  Enable:
+  SkipStory:
     value: false
-    display: disabled
-SemiEvent:
-  Enable:
+  FightQuickly:
     value: false
-    display: disabled
 BlaCDKManual:
   CDK:
     value: ''

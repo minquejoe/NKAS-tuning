@@ -169,10 +169,8 @@ class GeneratedConfig:
     AutoTower_Enable = True
 
     # Group `SemiCombat`
-    SemiCombat_Enable = False
-
-    # Group `SemiEvent`
-    SemiEvent_Enable = False
+    SemiCombat_SkipStory = False
+    SemiCombat_FightQuickly = False
 
     # Group `BlaCDKManual`
     BlaCDKManual_CDK = None

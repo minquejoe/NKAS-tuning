@@ -161,7 +161,5 @@ Tool:
       - AutoTower
     SemiCombat:
       - SemiCombat
-    SemiEvent:
-      - SemiEvent
     BlaCDKManual:
       - BlaCDKManual

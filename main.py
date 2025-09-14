@@ -331,10 +331,10 @@ class NikkeAutoScript:
 
         AutoTower(config=self.config, device=self.device).run()
 
-    def semi_event(self):
-        from module.event.semi_event import SemiEvent
+    def semi_combat(self):
+        from module.daemon.semi_combat import SemiCombat
 
-        SemiEvent(config=self.config, device=self.device).run()
+        SemiCombat(config=self.config, device=self.device, task="SemiCombat").run()
 
     def event(self):
         from module.event.event import Event

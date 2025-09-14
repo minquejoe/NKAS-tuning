@@ -29,6 +29,7 @@ FIGHT_CLOSE = Button(area={'zh-cn': (692, 658, 713, 678)}, color={'zh-cn': (112,
 FIGHT_QUICKLY_CANCEL = Button(area={'zh-cn': (163, 975, 212, 998)}, color={'zh-cn': (146, 149, 148)}, button={'zh-cn': (163, 975, 212, 998)}, file={'zh-cn': './assets/zh-cn/ui/FIGHT_QUICKLY_CANCEL.png'})
 FIGHT_QUICKLY_CHECK = Button(area={'zh-cn': (334, 494, 367, 535)}, color={'zh-cn': (137, 140, 141)}, button={'zh-cn': (334, 494, 367, 535)}, file={'zh-cn': './assets/zh-cn/ui/FIGHT_QUICKLY_CHECK.png'})
 FIGHT_QUICKLY_DISABLE = Button(area={'zh-cn': (524, 1091, 613, 1112)}, color={'zh-cn': (120, 120, 119)}, button={'zh-cn': (524, 1091, 613, 1112)}, file={'zh-cn': './assets/zh-cn/ui/FIGHT_QUICKLY_DISABLE.png'})
+FIGHT_QUICKLY_ENABLE = Button(area={'zh-cn': (472, 1089, 515, 1112)}, color={'zh-cn': (252, 147, 101)}, button={'zh-cn': (472, 1089, 515, 1112)}, file={'zh-cn': './assets/zh-cn/ui/FIGHT_QUICKLY_ENABLE.png'})
 FIGHT_QUICKLY_FIGHT = Button(area={'zh-cn': (510, 974, 605, 999)}, color={'zh-cn': (97, 204, 251)}, button={'zh-cn': (510, 974, 605, 999)}, file={'zh-cn': './assets/zh-cn/ui/FIGHT_QUICKLY_FIGHT.png'})
 FIGHT_QUICKLY_MAX = Button(area={'zh-cn': (500, 888, 540, 911)}, color={'zh-cn': (76, 76, 76)}, button={'zh-cn': (500, 888, 540, 911)}, file={'zh-cn': './assets/zh-cn/ui/FIGHT_QUICKLY_MAX.png'})
 FIGHT_QUICKLY_MIN = Button(area={'zh-cn': (167, 891, 209, 908)}, color={'zh-cn': (103, 104, 103)}, button={'zh-cn': (167, 891, 209, 908)}, file={'zh-cn': './assets/zh-cn/ui/FIGHT_QUICKLY_MIN.png'})

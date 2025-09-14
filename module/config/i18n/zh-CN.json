@@ -183,11 +183,7 @@
       "help": ""
     },
     "SemiCombat": {
-      "name": "半自动战斗",
-      "help": ""
-    },
-    "SemiEvent": {
-      "name": "半自动活动",
+      "name": "半自动点击",
       "help": ""
     },
     "BlaCDKManual": {
@@ -860,22 +856,16 @@
   },
   "SemiCombat": {
     "_info": {
-      "name": "半自动战斗",
-      "help": "半自动推图，需要在剧情地图中时开启，支持普通和困难模式（还没做）"
+      "name": "半自动点击",
+      "help": "半自动点击，省去一些点击操作，可以自动点击战斗、快速战斗、跳过剧情、下一关卡、区域跳转等操作。需要手动选择关卡并提前配置好队伍"
     },
-    "Enable": {
-      "name": "可用",
+    "SkipStory": {
+      "name": "跳过剧情",
       "help": ""
-    }
-  },
-  "SemiEvent": {
-    "_info": {
-      "name": "半自动活动",
-      "help": "需要手动选择关卡（未测试）"
     },
-    "Enable": {
-      "name": "可用",
-      "help": ""
+    "FightQuickly": {
+      "name": "快速战斗",
+      "help": "当在需要用票的关卡时，需要关闭此项"
     }
   },
   "BlaCDKManual": {
