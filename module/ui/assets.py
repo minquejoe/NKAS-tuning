@@ -65,6 +65,7 @@ REWARD_GOTO_MAIN = Button(area={'zh-cn': (627, 166, 665, 203)}, color={'zh-cn': 
 ROOKIE_ARENA_CHECK = Button(area={'zh-cn': (199, 141, 518, 238)}, color={'zh-cn': (90, 94, 101)}, button={'zh-cn': (199, 141, 518, 238)}, file={'zh-cn': './assets/zh-cn/ui/ROOKIE_ARENA_CHECK.png'})
 SHOP_CHECK = Button(area={'zh-cn': (18, 37, 56, 57)}, color={'zh-cn': (121, 118, 115)}, button={'zh-cn': (18, 37, 56, 57)}, file={'zh-cn': './assets/zh-cn/ui/SHOP_CHECK.png'})
 SIMULATION_ROOM_CHECK = Button(area={'zh-cn': (264, 605, 462, 627)}, color={'zh-cn': (136, 140, 141)}, button={'zh-cn': (264, 605, 462, 627)}, file={'zh-cn': './assets/zh-cn/ui/SIMULATION_ROOM_CHECK.png'})
+SKIP = Button(area={'zh-cn': (616, 22, 671, 41)}, color={'zh-cn': (133, 134, 133)}, button={'zh-cn': (616, 22, 671, 41)}, file={'zh-cn': './assets/zh-cn/ui/SKIP.png'})
 SPECIAL_ARENA_CHECK = Button(area={'zh-cn': (204, 138, 524, 229)}, color={'zh-cn': (87, 90, 97)}, button={'zh-cn': (204, 138, 524, 229)}, file={'zh-cn': './assets/zh-cn/ui/SPECIAL_ARENA_CHECK.png'})
 SPECIAL_INTERCEPTION_CHECK = Button(area={'zh-cn': (73, 831, 260, 862)}, color={'zh-cn': (200, 199, 200)}, button={'zh-cn': (73, 831, 260, 862)}, file={'zh-cn': './assets/zh-cn/ui/SPECIAL_INTERCEPTION_CHECK.png'})
 TEAM_CHECK = Button(area={'zh-cn': (35, 305, 152, 320)}, color={'zh-cn': (200, 198, 199)}, button={'zh-cn': (35, 305, 152, 320)}, file={'zh-cn': './assets/zh-cn/ui/TEAM_CHECK.png'})

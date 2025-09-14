@@ -7,7 +7,7 @@ from module.base.utils import (
 )
 from module.conversation.assets import *
 from module.conversation.dialogue import Dialogue
-from module.event_daemon.assets import SKIP
+from module.ui.assets import SKIP
 from module.handler.assets import AUTO_CLICK_CHECK, CONFIRM_B
 from module.logger import logger
 from module.ocr.ocr import Digit, Ocr
