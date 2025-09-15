@@ -15,7 +15,7 @@ from module.ocr.ocr import Ocr
 class ModuleBase:
     config: NikkeConfig
 
-    def __init__(self, config, device=None, task=None):
+    def __init__(self, config, device=None, task=None, independent=False):
         """
               Args:
                   config (NikkeConfig, str):
@@ -44,7 +44,7 @@ class ModuleBase:
             from module.device.win.device import Device as DeviceClass
 
         # 妮游社任务不需要device
-        if task not in self.config.INDEPENDENT_TASKS_CONFIG_INIT:
+        if not independent:
             if isinstance(device, DeviceClass):
                 self.device = device
             elif device is None:
