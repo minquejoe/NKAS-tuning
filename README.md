@@ -49,6 +49,12 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
 
 ---
 
+### 演示地址
+
+👉 [点击这里查看演示](https://www.bilibili.com/video/BV1YMbrzFE4g)
+
+---
+
 ### 如何使用
 
 详细安装指南请参阅 [Wiki安装教程](https://github.com/megumiss/NIKKEAutoScript/wiki/安装指南)
