@@ -608,6 +608,14 @@
       "Storage": {}
     }
   },
+  "Highlights": {
+    "Highlights": {
+      "AutoSwitch": true
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
   "BlaCDKManual": {
     "BlaCDKManual": {
       "CDK": null
