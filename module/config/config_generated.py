@@ -38,6 +38,7 @@ class GeneratedConfig:
     PCClient_Screens = False
     PCClient_GameResolutionCompat = False
     PCClient_CloseAutoHdr = True
+    PCClient_ScreenRotate = False
     PCClient_Account = None
     PCClient_Password = None
 
@@ -179,6 +180,9 @@ class GeneratedConfig:
 
     # Group `Highlights`
     Highlights_AutoSwitch = True
+
+    # Group `ScreenRotate`
+    ScreenRotate_Orientation = 0  # 0, 1
 
     # Group `Storage`
     Storage_Storage = {}

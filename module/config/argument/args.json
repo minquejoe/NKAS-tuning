@@ -202,6 +202,10 @@
         "type": "checkbox",
         "value": true
       },
+      "ScreenRotate": {
+        "type": "checkbox",
+        "value": false
+      },
       "Account": {
         "type": "input",
         "value": ""
@@ -2157,6 +2161,26 @@
         "type": "input",
         "value": "",
         "valuetype": "str"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "ScreenRotate": {
+    "ScreenRotate": {
+      "Orientation": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1
+        ]
       }
     },
     "Storage": {
