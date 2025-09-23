@@ -6,6 +6,8 @@ from module.base.template import Template
 
 AUTO_BURST = Button(area={'zh-cn': (82, 36, 149, 51)}, color={'zh-cn': (51, 61, 56)}, button={'zh-cn': (82, 36, 149, 51)}, file={'zh-cn': './assets/zh-cn/simulation_room/AUTO_BURST.png'})
 AUTO_SHOOT = Button(area={'zh-cn': (20, 27, 53, 60)}, color={'zh-cn': (31, 42, 37)}, button={'zh-cn': (20, 27, 53, 60)}, file={'zh-cn': './assets/zh-cn/simulation_room/AUTO_SHOOT.png'})
+BIOS_UPDATE = Button(area={'zh-cn': (358, 494, 436, 508)}, color={'zh-cn': (230, 133, 129)}, button={'zh-cn': (358, 494, 436, 508)}, file={'zh-cn': './assets/zh-cn/simulation_room/BIOS_UPDATE.png'})
+BIOS_UPDATE_CLOSE = Button(area={'zh-cn': (614, 490, 636, 511)}, color={'zh-cn': (165, 64, 59)}, button={'zh-cn': (614, 490, 636, 511)}, file={'zh-cn': './assets/zh-cn/simulation_room/BIOS_UPDATE_CLOSE.png'})
 BOSS_EVENT_CHECK = Button(area={'zh-cn': (367, 733, 442, 764)}, color={'zh-cn': (48, 47, 35)}, button={'zh-cn': (367, 733, 442, 764)}, file={'zh-cn': './assets/zh-cn/simulation_room/BOSS_EVENT_CHECK.png'})
 CANCEL = Button(area={'zh-cn': (118, 1030, 148, 1057)}, color={'zh-cn': (197, 198, 202)}, button={'zh-cn': (118, 1030, 148, 1057)}, file={'zh-cn': './assets/zh-cn/simulation_room/CANCEL.png'})
 CHOOSE_INITIAL_EFFECT_CHECK = Button(area={'zh-cn': (136, 273, 573, 309)}, color={'zh-cn': (221, 222, 223)}, button={'zh-cn': (136, 273, 573, 309)}, file={'zh-cn': './assets/zh-cn/simulation_room/CHOOSE_INITIAL_EFFECT_CHECK.png'})
