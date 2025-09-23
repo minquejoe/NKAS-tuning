@@ -328,6 +328,7 @@ class SimulationRoom(UI):
                 and self.appear(BIOS_UPDATE, offset=10)
                 and self.appear_then_click(BIOS_UPDATE_CLOSE, offset=10, interval=1)
             ):
+                self.device.sleep(0.5)
                 click_timer.reset()
                 continue
 
