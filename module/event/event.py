@@ -240,13 +240,13 @@ class Event(UI):
                 break
 
             # 战斗结束
-            if click_timer.reached() and self.appear(END_FIGHTING, offset=10):
+            if click_timer.reached() and self.appear(END_FIGHTING, offset=30):
                 while 1:
                     self.device.screenshot()
-                    if not self.appear(END_FIGHTING, offset=10):
+                    if not self.appear(END_FIGHTING, offset=30):
                         click_timer.reset()
                         break
-                    if self.appear_then_click(END_FIGHTING, offset=10, interval=1):
+                    if self.appear_then_click(END_FIGHTING, offset=30, interval=1):
                         click_timer.reset()
                         continue
                 break
@@ -758,13 +758,13 @@ class Event(UI):
                 self.device.screenshot()
 
                 # 战斗结束
-                if click_timer.reached() and self.appear(END_FIGHTING, offset=10):
+                if click_timer.reached() and self.appear(END_FIGHTING, offset=30):
                     while 1:
                         self.device.screenshot()
-                        if not self.appear(END_FIGHTING, offset=10):
+                        if not self.appear(END_FIGHTING, offset=30):
                             click_timer.reset()
                             break
-                        if self.appear_then_click(END_FIGHTING, offset=10, interval=1):
+                        if self.appear_then_click(END_FIGHTING, offset=30, interval=1):
                             click_timer.reset()
                             continue
                     break
@@ -1132,6 +1132,15 @@ class Event(UI):
 
             if click_timer.reached() and self.appear_then_click(
                 self.minigame_assets.MINI_GAME_TOUCH, offset=10, interval=2
+            ):
+                click_timer.reset()
+                continue
+
+            # 跳过对话
+            if (
+                self.config.Event_GameStorySkip
+                and click_timer.reached()
+                and self.appear_then_click(self.event_assets.SKIP, offset=10, interval=1)
             ):
                 click_timer.reset()
                 continue
