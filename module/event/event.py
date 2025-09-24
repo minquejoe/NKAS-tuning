@@ -752,7 +752,7 @@ class Event(UI):
 
     def find_and_fight_stage(self, open_story):
         click_timer = Timer(0.3)
-        if self.appear(self.STORY_STAGE_11(open_story), offset=10, static=False):
+        if self.appear(self.STORY_STAGE_11(open_story), offset=10, threshold=0.9, static=False):
             max_clicks = 0
             while 1:
                 self.device.screenshot()
@@ -1159,6 +1159,7 @@ class Event(UI):
         logger.hr('OPEN EVENT STORY')
         click_timer = Timer(0.3)
         confirm_timer = Timer(30, count=20).start()
+        event_timer = Timer(3, count=5)
 
         while 1:
             if skip_first_screenshot:
@@ -1167,7 +1168,12 @@ class Event(UI):
                 self.device.screenshot()
 
             if self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30)):
-                break
+                if not event_timer.started():
+                    event_timer.start()
+                if event_timer.reached():
+                    break
+            else:
+                event_timer.clear()
 
             if (
                 click_timer.reached()
