@@ -99,30 +99,50 @@ class Event(UI):
     def back_to_event(self):
         logger.info('Back to event')
         click_timer = Timer(0.3)
+        event_timer = Timer(3, count=5)
 
         # 回到活动主页
         while 1:
             self.device.screenshot()
 
             if self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30)):
-                break
+                if not event_timer.started():
+                    event_timer.start()
+                if event_timer.reached():
+                    break
+            else:
+                event_timer.clear()
 
-            if click_timer.reached() and self.appear_then_click(GOTO_BACK, offset=10, interval=2):
+            if (
+                click_timer.reached()
+                and not self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30))
+                and self.appear_then_click(GOTO_BACK, offset=10, interval=2)
+            ):
                 click_timer.reset()
                 continue
 
     def back_to_event_from_coop(self):
         logger.info('Back to event')
         click_timer = Timer(0.3)
+        event_timer = Timer(3, count=5)
 
         # 回到活动主页
         while 1:
             self.device.screenshot()
 
             if not self.appear(self.event_assets.COOP_SELECT_CHECK, offset=(30, 30)):
-                break
+                if not event_timer.started():
+                    event_timer.start()
+                if event_timer.reached():
+                    break
+            else:
+                event_timer.clear()
 
-            if click_timer.reached() and self.appear_then_click(GOTO_BACK, offset=10, interval=2):
+            if (
+                click_timer.reached()
+                and self.appear(self.event_assets.COOP_SELECT_CHECK, offset=(30, 30))
+                and self.appear_then_click(GOTO_BACK, offset=10, interval=2)
+            ):
                 click_timer.reset()
                 continue
 
@@ -151,6 +171,7 @@ class Event(UI):
                 break
 
         # 签到
+        event_timer = Timer(3, count=5)
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -159,7 +180,12 @@ class Event(UI):
 
             # 返回活动页面
             if self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30)):
-                break
+                if not event_timer.started():
+                    event_timer.start()
+                if event_timer.reached():
+                    break
+            else:
+                event_timer.clear()
 
             # 返回
             if (
@@ -307,25 +333,7 @@ class Event(UI):
                 logger.error('Challenge stage fight failed')
                 raise RequestHumanTakeover
 
-        while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.screenshot()
-
-            # 返回活动页面
-            if self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30)):
-                break
-
-            # 返回
-            if (
-                click_timer.reached()
-                and self.appear(CHALLENGE_CHECK, offset=10)
-                and self.appear_then_click(GOTO_BACK, offset=10, interval=2)
-            ):
-                click_timer.reset()
-                continue
-
+        self.back_to_event()
         logger.info('Event challenge done')
 
     @Config.when(EVENT_TYPE=1)
@@ -635,18 +643,7 @@ class Event(UI):
         self.find_and_fight_stage(open_story)
 
         # 回到活动主页
-        while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.screenshot()
-
-            if self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30)):
-                break
-
-            if click_timer.reached() and self.appear_then_click(GOTO_BACK, offset=10, interval=2):
-                click_timer.reset()
-                continue
+        self.back_to_event()
 
     @Config.when(EVENT_TYPE=2)
     def story(self, skip_first_screenshot=True):
@@ -752,18 +749,7 @@ class Event(UI):
         self.find_and_fight_stage(open_story)
 
         # 回到活动主页
-        while 1:
-            if skip_first_screenshot:
-                skip_first_screenshot = False
-            else:
-                self.device.screenshot()
-
-            if self.appear(self.event_assets.STORY_1_CHECK, offset=10):
-                break
-
-            if click_timer.reached() and self.appear_then_click(GOTO_BACK, offset=10, interval=2):
-                click_timer.reset()
-                continue
+        self.back_to_event()
 
     def find_and_fight_stage(self, open_story):
         click_timer = Timer(0.3)
