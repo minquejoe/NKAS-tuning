@@ -173,7 +173,9 @@ class Commission(UI):
 
                 # 选择收藏品（这里取的是删除旧收藏品之后的第一个）
                 if self.appear(ITEM_LIST_CHECK, offset=10) and nikke_list:
-                    if self.appear_then_click(self.get_item_button(nikke_list[0]), offset=10, click_offset=(150, 0)):
+                    if self.appear_then_click(
+                        self.get_item_button(nikke_list[0]), offset=10, click_offset=(150, 0), static=False
+                    ):
                         logger.info(f'Select new favorite item: {nikke_list[0]}')
                         select_times += 1
                         click_timer.reset()
