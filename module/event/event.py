@@ -7,7 +7,7 @@ from module.base.timer import Timer
 from module.base.utils import get_button_by_location, sort_buttons_by_location
 from module.challenge.assets import *
 from module.coop.assets import *
-from module.coop.coop import Coop, CoopIsUnavailable
+from module.coop.coop import Coop, CoopIsUnavailable, NoOpportunityRemain
 from module.event.assets import *
 from module.exception import (
     RequestHumanTakeover,
@@ -122,7 +122,7 @@ class Event(UI):
                 continue
 
     def back_to_event_from_coop(self):
-        logger.info('Back to event')
+        logger.info('Back to event from coop')
         click_timer = Timer(0.3)
         event_timer = Timer(3, count=5)
 
@@ -913,12 +913,17 @@ class Event(UI):
 
         _coop = Coop(self.config, self.device)
         if _coop.free_opportunity_remain and not _coop.dateline:
-            _coop.start_coop()
+            try:
+                _coop.start_coop()
+            except NoOpportunityRemain:
+                logger.info('There are no free opportunities')
+                pass
         else:
             logger.info('There are no coop free opportunities')
 
         # 回到活动主页
         self.back_to_event()
+        self.back_to_event_from_coop()
 
     @Config.when(EVENT_TYPE=(2, 3))
     def coop(self):
