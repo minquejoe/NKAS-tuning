@@ -180,12 +180,6 @@ BlaAuth:
     type: textarea
 BlaDaily:
   Immediately: false
-  PostID:
-    value: ''
-    valuetype: str
-  CommentID:
-    value: ''
-    valuetype: str
   Points:
     value: ''
     display: disabled

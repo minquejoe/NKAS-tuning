@@ -1791,16 +1791,6 @@
         "type": "checkbox",
         "value": false
       },
-      "PostID": {
-        "type": "input",
-        "value": "",
-        "valuetype": "str"
-      },
-      "CommentID": {
-        "type": "input",
-        "value": "",
-        "valuetype": "str"
-      },
       "Points": {
         "type": "input",
         "value": "",
