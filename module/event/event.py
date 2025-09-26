@@ -212,7 +212,14 @@ class Event(UI):
                 continue
 
             # 点击跳过
-            if click_timer.reached() and self.appear_then_click(self.event_assets.SKIP, offset=10, interval=1):
+            if click_timer.reached() and self.appear_then_click(
+                self.event_assets.SKIP, offset=(30, 10), threshold=0.65, interval=1
+            ):
+                click_timer.reset()
+                continue
+
+            # 点击确认
+            if click_timer.reached() and self.appear_then_click(NEW_NIKKE_CONFIRM, offset=30, interval=1):
                 click_timer.reset()
                 continue
 

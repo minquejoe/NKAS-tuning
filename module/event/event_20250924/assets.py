@@ -42,5 +42,4 @@ STORY_2_HARD_UNLOCK = Button(area={'zh-cn': (343, 733, 438, 753)}, color={'zh-cn
 STORY_2_NORMAL = Button(area={'zh-cn': (453, 1180, 479, 1227)}, color={'zh-cn': (128, 138, 49)}, button={'zh-cn': (453, 1180, 479, 1227)}, file={'zh-cn': './assets/event/event_20250924/STORY_2_NORMAL.png'})
 STORY_2_NORMAL_STAGE_11 = Button(area={'zh-cn': (185, 671, 215, 764)}, color={'zh-cn': (28, 22, 20)}, button={'zh-cn': (185, 671, 215, 764)}, file={'zh-cn': './assets/event/event_20250924/STORY_2_NORMAL_STAGE_11.png'})
 STORY_STAGE_CHECK = Button(area={'zh-cn': (138, 860, 234, 882)}, color={'zh-cn': (177, 177, 177)}, button={'zh-cn': (138, 860, 234, 882)}, file={'zh-cn': './assets/event/event_20250924/STORY_STAGE_CHECK.png'})
-TEMPLATE_COOP_ENABLE = Template(file={'zh-cn': './assets/event/event_20250924/TEMPLATE_COOP_ENABLE.png'})
 TEMPLATE_SHOP_MONEY = Template(file={'zh-cn': './assets/event/event_20250924/TEMPLATE_SHOP_MONEY.png'})
