@@ -50,7 +50,7 @@ class Coop(UI):
     @property
     def dateline(self) -> bool:
         date = self.coop_date
-        if date == '时间到' or '小时' not in date:
+        if date == '时间到' or '小时' or '剩余' not in date:
             logger.info('[Coop has expired]')
             return True
         else:
