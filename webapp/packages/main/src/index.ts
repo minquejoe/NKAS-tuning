@@ -1,19 +1,11 @@
 import { app, Menu, Tray, BrowserWindow, ipcMain, globalShortcut } from 'electron';
 import { URL } from 'url';
 import { PyShell } from '/@/pyshell';
-import { webuiArgs, webuiPath, dpiScaling, webuiUrl } from '/@/config';
+import { webuiArgs, webuiPath, dpiScaling, webuiUrl, nkasPath } from '/@/config';
+import { GLOBAL_SHORTCUTS } from '/@/shortcuts';
 
+const fs = require('fs');
 const path = require('path');
-
-// === 全局快捷键常量定义 ===
-const GLOBAL_SHORTCUTS = {
-  START: 'F9',
-  STOP: 'F10',
-  RESTART: 'F11',
-  DEV_TOOLS: 'Ctrl+Shift+I',
-  REFRESH: 'Ctrl+R',
-  HARD_REFRESH: 'Ctrl+Shift+R'
-};
 
 // 检查单实例锁
 const isSingleInstance = app.requestSingleInstanceLock();
@@ -216,17 +208,36 @@ async function handleRestart() {
   await (response as any).json();
 }
 
+async function handleUpdate() {
+  const response = await customFetch(`${webuiUrl}/api/update`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' }
+  });
+
+  await (response as any).json();
+}
+
+async function handleRotate() {
+  const response = await customFetch(`${webuiUrl}/api/rotate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' }
+  });
+
+  await (response as any).json();
+}
+
 // === 专用快捷键注册函数 ===
 function registerGlobalShortcuts() {
   // 始终生效的全局快捷键
   const globalShortcuts = [
     { key: 'START', accelerator: GLOBAL_SHORTCUTS.START, handler: handleStart },
     { key: 'STOP', accelerator: GLOBAL_SHORTCUTS.STOP, handler: handleStop },
-    { key: 'RESTART', accelerator: GLOBAL_SHORTCUTS.RESTART, handler: handleRestart }
+    { key: 'RESTART', accelerator: GLOBAL_SHORTCUTS.RESTART, handler: handleRestart },
+    { key: 'UPDATE', accelerator: GLOBAL_SHORTCUTS.UPDATE, handler: handleUpdate },
+    { key: 'ROTATE', accelerator: GLOBAL_SHORTCUTS.ROTATE, handler: handleRotate }
   ];
 
   globalShortcuts.forEach(({ key, accelerator, handler }) => {
-    // 确保不重复注册
     if (globalShortcut.isRegistered(accelerator)) {
       globalShortcut.unregister(accelerator);
     }
@@ -239,7 +250,7 @@ function registerGlobalShortcuts() {
     }
   });
 
-  // 条件生效的快捷键（始终注册但条件执行）
+  // 条件生效的快捷键
   const conditionalShortcuts = [
     { 
       accelerator: GLOBAL_SHORTCUTS.DEV_TOOLS, 
@@ -281,9 +292,8 @@ function registerGlobalShortcuts() {
 app.whenReady()
   .then(() => {
     createWindow();
-    registerGlobalShortcuts(); // 统一注册所有快捷键
+    registerGlobalShortcuts(); // 注册快捷键
     
-    // 开发环境检查更新
     if (import.meta.env.PROD) {
       import('electron-updater')
         .then(({ autoUpdater }) => autoUpdater.checkForUpdatesAndNotify())
