@@ -151,7 +151,7 @@ class AppControl(WinClient, Login):
                 # 检查是否已进入游戏
                 if self.switch_to_program():
                     logger.info('游戏已在运行，检查分辨率')
-                    self.ensure_resolution(720, 1280)
+                    self.ensure_resolution(720, 1280, self.config.PCClient_GameWindowPosition)
                     self.check_resolution(720, 1280)
                     break
 
@@ -176,7 +176,7 @@ class AppControl(WinClient, Login):
                     logger.error('切换到游戏超时')
                     raise RequestHumanTakeover
                 # 设置游戏分辨率
-                self.ensure_resolution(720, 1280)
+                self.ensure_resolution(720, 1280, self.config.PCClient_GameWindowPosition)
                 self.check_resolution(720, 1280)
 
                 break

@@ -293,16 +293,58 @@ class WinClient:
             logger.error(f'启动脚本时发生错误：{str(e)}')
             return False
 
-    def change_resolution(self, client_width, client_height):
+    def calculate_window_position(self, window_width, window_height, position='center'):
         """
-        设置窗口客户区大小为指定分辨率
+        根据位置模式计算窗口放置的坐标
+
+        参数:
+            window_width: 窗口宽度（含边框）
+            window_height: 窗口高度（含边框）
+            position: 位置模式，支持 center/left/right/topleft/topright
+
+        返回:
+            (x, y): 窗口左上角坐标
+        """
+        self.screen_resolution = pyautogui.size()
+        screen_width, screen_height = self.screen_resolution
+
+        if position == 'center':
+            x = (screen_width - window_width) // 2
+            y = (screen_height - window_height) // 2
+        elif position == 'left':
+            x = 0
+            y = (screen_height - window_height) // 2
+        elif position == 'right':
+            x = screen_width - window_width
+            y = (screen_height - window_height) // 2
+        elif position == 'topleft':
+            x, y = 0, 0
+        elif position == 'topright':
+            x = screen_width - window_width
+            y = 0
+        else:
+            # 默认居中
+            x = (screen_width - window_width) // 2
+            y = (screen_height - window_height) // 2
+
+        # 防止窗口超出屏幕边缘
+        x = max(0, min(x, screen_width - window_width))
+        y = max(0, min(y, screen_height - window_height))
+
+        return x, y
+
+    def change_resolution(self, client_width, client_height, position='center'):
+        """
+        设置窗口客户区大小为指定分辨率，并调整位置
 
         参数:
             client_width: 客户区宽度(像素)
             client_height: 客户区高度(像素)
+            position: 窗口位置（center/left/right/topleft/topright）
         """
         logger.info(
-            f'设置窗口分辨率：[{self.current_window.name}]:{self.current_window.title} {client_width}x{client_height}'
+            f'设置窗口分辨率：[{self.current_window.name}]:{self.current_window.title} '
+            f'{client_width}x{client_height}, 位置={position}'
         )
         try:
             # 查找窗口句柄
@@ -328,11 +370,9 @@ class WinClient:
 
             logger.debug(f'需要设置的窗口大小: {window_width}x{window_height}')
 
-            # 设置窗口大小
-            result = win32gui.SetWindowPos(
-                hwnd, 0, 0, 0, window_width, window_height, win32con.SWP_NOMOVE | win32con.SWP_NOZORDER
-            )
-
+            # 计算位置
+            x, y = self.calculate_window_position(window_width, window_height, position)
+            result = win32gui.SetWindowPos(hwnd, 0, x, y, window_width, window_height, win32con.SWP_NOZORDER)
             if result == 0:
                 logger.error('设置窗口大小失败')
                 raise Exception('设置窗口大小失败')
@@ -352,16 +392,18 @@ class WinClient:
             logger.error(f'设置分辨率时发生错误: {e}')
             raise Exception(f'无法设置分辨率: {e}')
 
-    def change_resolution_compat(self, client_width, client_height):
+    def change_resolution_compat(self, client_width, client_height, position='center'):
         """
-        设置窗口客户区大小为指定分辨率（兼容 DPI 缩放）
+        设置窗口客户区大小为指定分辨率（兼容 DPI 缩放），并调整位置
 
         参数:
             client_width: 客户区宽度(像素)
             client_height: 客户区高度(像素)
+            position: 窗口位置（center/left/right/topleft/topright）
         """
         logger.info(
-            f'设置窗口分辨率[兼容模式]：[{self.current_window.name}]:{self.current_window.title} {client_width}x{client_height}'
+            f'设置窗口分辨率[兼容模式]：[{self.current_window.name}]:{self.current_window.title} '
+            f'{client_width}x{client_height}, 位置={position}'
         )
         try:
             # 查找窗口句柄
@@ -406,11 +448,9 @@ class WinClient:
             window_height = rect.bottom - rect.top
             logger.debug(f'需要设置的窗口矩形: {window_width}x{window_height}')
 
-            # 设置窗口大小
-            result = win32gui.SetWindowPos(
-                hwnd, 0, 0, 0, window_width, window_height, win32con.SWP_NOMOVE | win32con.SWP_NOZORDER
-            )
-
+            # 计算位置
+            x, y = self.calculate_window_position(window_width, window_height, position)
+            result = win32gui.SetWindowPos(hwnd, 0, x, y, window_width, window_height, win32con.SWP_NOZORDER)
             if result == 0:
                 logger.error('设置窗口大小失败')
                 raise Exception('设置窗口大小失败')
@@ -430,15 +470,15 @@ class WinClient:
             logger.error(f'设置分辨率时发生错误: {e}')
             raise Exception(f'无法设置分辨率: {e}')
 
-    def ensure_resolution(self, client_width, client_height, retries=5, interval=1.0, stable_time=5.0):
+    def ensure_resolution(self, client_width, client_height, position, retries=5, interval=1.0, stable_time=5.0):
         """确保窗口分辨率被成功设置，并保持一段时间"""
         logger.info(f'持续设置窗口分辨率：[{self.current_window.name}]:{self.current_window.title}')
         compat = getattr(self.config, f'PCClient_{self.current_window.name}ResolutionCompat', False)
         for i in range(retries):
             if compat:
-                self.change_resolution_compat(client_width, client_height)
+                self.change_resolution_compat(client_width, client_height, position)
             else:
-                self.change_resolution(client_width, client_height)
+                self.change_resolution(client_width, client_height, position)
             time.sleep(interval)
             hwnd = win32gui.FindWindow(self.current_window.class_name, self.current_window.title)
             if hwnd:

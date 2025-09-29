@@ -68,6 +68,9 @@ PCClient:
     value: false
   CloseAutoHdr: true
   ScreenRotate: false
+  GameWindowPosition:
+    value: center
+    option: [ center, left, right, topleft, topright ]
   Account:
     value: ''
   Password:

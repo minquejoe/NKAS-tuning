@@ -206,6 +206,17 @@
         "type": "checkbox",
         "value": false
       },
+      "GameWindowPosition": {
+        "type": "select",
+        "value": "center",
+        "option": [
+          "center",
+          "left",
+          "right",
+          "topleft",
+          "topright"
+        ]
+      },
       "Account": {
         "type": "input",
         "value": ""

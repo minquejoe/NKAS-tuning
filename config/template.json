@@ -53,6 +53,7 @@
       "GameResolutionCompat": false,
       "CloseAutoHdr": true,
       "ScreenRotate": false,
+      "GameWindowPosition": "center",
       "Account": null,
       "Password": null
     },
