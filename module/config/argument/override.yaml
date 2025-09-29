@@ -39,4 +39,8 @@ Liberation:
 
 Liberation:
   Scheduler:
-    ServerUpdate: 05:00, 20:00
+    ServerUpdate: 04:00, 20:00
+
+Coop:
+  Scheduler:
+    ServerUpdate: 05:00, 16:00

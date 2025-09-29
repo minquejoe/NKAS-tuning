@@ -17,14 +17,42 @@ class GeneratedConfig:
     Scheduler_FailureInterval = 120
     Scheduler_ServerUpdate = '05:00'
 
+    # Group `Client`
+    Client_Platform = 'adb'  # adb, win
+
     # Group `Emulator`
     Emulator_Serial = 'auto'
-    Emulator_PackageName = 'com.proximabeta.nikke'  # com.proximabeta.nikke, com.gamamobi.nikke
+    Emulator_PackageName = 'com.proximabeta.nikke'  # com.proximabeta.nikke, com.gamamobi.nikke, com.proximabeta.nikke, com.gamamobi.nikke
     Emulator_Language = 'zh-cn'  # zh-cn
     Emulator_ScreenshotMethod = 'DroidCast'  # DroidCast
     Emulator_ControlMethod = 'minitouch'  # minitouch
     Emulator_AdbRestart = False
     Emulator_ScreenshotInterval = 0.5
+
+    # Group `EmulatorInfo`
+    EmulatorInfo_Emulator = 'auto'  # auto, NoxPlayer, NoxPlayer64, BlueStacks4, BlueStacks5, BlueStacks4HyperV, BlueStacks5HyperV, LDPlayer3, LDPlayer4, LDPlayer9, MuMuPlayer, MuMuPlayerX, MuMuPlayer12, MEmuPlayer
+    EmulatorInfo_name = None
+    EmulatorInfo_path = None
+
+    # Group `PCClient`
+    PCClient_Screens = False
+    PCClient_GameResolutionCompat = False
+    PCClient_CloseAutoHdr = True
+    PCClient_ScreenRotate = False
+    PCClient_GameWindowPosition = 'center'  # center, left, right, topleft, topright
+    PCClient_Account = None
+    PCClient_Password = None
+
+    # Group `PCClientInfo`
+    PCClientInfo_Client = 'intl'  # intl, hmt
+    PCClientInfo_Language = 'zh-cn'  # zh-cn
+    PCClientInfo_ScreenshotInterval = 0.3
+    PCClientInfo_LauncherTitleName = None
+    PCClientInfo_LauncherProcessName = None
+    PCClientInfo_LauncherPath = None
+    PCClientInfo_GameTitleName = None
+    PCClientInfo_GameProcessName = None
+    PCClientInfo_GamePath = None
 
     # Group `Optimization`
     Optimization_AutoRedCircle = False
@@ -40,6 +68,9 @@ class GeneratedConfig:
     DailyRecruit_EventFreeRecruit = True
     DailyRecruit_SocialPointRecruit = True
 
+    # Group `SimulationRoom`
+    SimulationRoom_QuickSimulation = True
+
     # Group `Area`
     Area_Difficulty = 'Level_1'  # Level_1, Level_2, Level_3, Level_4, Level_5
     Area_OnsetArea = 'A'  # A, B, C
@@ -50,13 +81,15 @@ class GeneratedConfig:
 
     # Group `GeneralShop`
     GeneralShop_enable = True
+    GeneralShop_priority = 'GRATIS > CORE_DUST_CASE > ORNAMENT'
 
     # Group `ArenaShop`
     ArenaShop_enable = False
     ArenaShop_priority = None
 
     # Group `RubbishShop`
-    RubbishShop_priority = None
+    RubbishShop_priority = 'GEM > CORE_DUST_CASE'
+    RubbishShop_bonePriority = None
 
     # Group `Notification`
     Notification_WhenDailyTaskCompleted = False
@@ -69,7 +102,8 @@ class GeneratedConfig:
     Daily_CallReward = False
 
     # Group `CollectionItems`
-    CollectionItems_NIKKE = 'All'  # All, Laplace, Frima, Diesel, Exia
+    CollectionItems_Enable = False
+    CollectionItems_Priority = None
 
     # Group `OpponentSelection`
     OpponentSelection_Enable = False
@@ -86,8 +120,7 @@ class GeneratedConfig:
     BlaAuth_XCommonParams = None
 
     # Group `BlaDaily`
-    BlaDaily_PostID = None
-    BlaDaily_CommentID = None
+    BlaDaily_Immediately = False
     BlaDaily_Points = None
 
     # Group `Coop`
@@ -101,7 +134,7 @@ class GeneratedConfig:
     BlaExchange_Priority = 'Gem_×320 > Gem_×120 > Gem_×60 > Gem_×30 > Welcome_Gift_Core_Dust_×30'
 
     # Group `Event`
-    Event_Event = ''  # event_20250807, event_20250716, event_20250703s, event_20250703l, event_20250612
+    Event_Event = ''  # event_20250924, event_20250904, event_20250807, event_20250716, event_20250703s, event_20250703l, event_20250612
     Event_LoginStamp = True
     Event_Challenge = True
     Event_Story = False
@@ -109,14 +142,49 @@ class GeneratedConfig:
     Event_StoryDifficulty = 'Normal'  # Normal, Hard
     Event_Coop = False
     Event_Shop = False
+    Event_ShopDelayList = 'TITLE'
     Event_Game = False
+    Event_GameStorySkip = False
+    Event_GameLoop = False
 
     # Group `CheerStrategy`
     CheerStrategy_Enable = False
     CheerStrategy_Strategy = 'Most'  # Most, Few, Random
 
     # Group `Interception`
+    Interception_Boss = 'Kraken'  # Kraken, Indivilia, Harvester, MirrorContainer, Ultra
     Interception_DropScreenshotPath = None
+
+    # Group `InterceptionTeam`
+    InterceptionTeam_Kraken = 1  # 1, 2, 3, 4, 5
+    InterceptionTeam_Indivilia = 2  # 1, 2, 3, 4, 5
+    InterceptionTeam_Harvester = 3  # 1, 2, 3, 4, 5
+    InterceptionTeam_MirrorContainer = 4  # 1, 2, 3, 4, 5
+    InterceptionTeam_Ultra = 5  # 1, 2, 3, 4, 5
+
+    # Group `Overclock`
+    Overclock_SkipRatioCheck = False
+    Overclock_AlwaysReselect = False
+    Overclock_ModifierList = 'ENEMY_WEAPON_UP_3\nENEMY_ARMOR_UP_3\nENEMY_VITALS_UP_3\nNO_RECYCLING\nAGGRESSIVE_TACTICS\nRUSH_HOUR_3\nRELEVANT_PERSONNEL_ONLY'
+
+    # Group `AutoTower`
+    AutoTower_Enable = True
+
+    # Group `SemiCombat`
+    SemiCombat_SkipStory = False
+    SemiCombat_FightQuickly = False
+
+    # Group `BlaCDKManual`
+    BlaCDKManual_CDK = None
+
+    # Group `Highlights`
+    Highlights_AutoSwitch = True
+
+    # Group `ScreenRotate`
+    ScreenRotate_Orientation = 0  # 0, 1
+
+    # Group `Synchro`
+    Synchro_UseBox = True
 
     # Group `Storage`
     Storage_Storage = {}

@@ -24,7 +24,5 @@ Deploy:
   Webui:
     WebuiHost: localhost
     WebuiPort: 12271
-
-
-
-
+    Language: zh-CN
+    Theme: dark

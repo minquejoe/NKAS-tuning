@@ -5,6 +5,7 @@ from module.base.template import Template
 # Don't modify it manually.
 
 EVENT_SHOP_CHECK = Button(area={'zh-cn': (579, 369, 651, 386)}, color={'zh-cn': (159, 159, 158)}, button={'zh-cn': (579, 369, 651, 386)}, file={'zh-cn': './assets/zh-cn/event/EVENT_SHOP_CHECK.png'})
+FIELD_CHANGE = Button(area={'zh-cn': (396, 741, 420, 763)}, color={'zh-cn': (32, 170, 174)}, button={'zh-cn': (396, 741, 420, 763)}, file={'zh-cn': './assets/zh-cn/event/FIELD_CHANGE.png'})
 RECEIVE = Button(area={'zh-cn': (297, 811, 423, 832)}, color={'zh-cn': (58, 59, 61)}, button={'zh-cn': (297, 811, 423, 832)}, file={'zh-cn': './assets/zh-cn/event/RECEIVE.png'})
 RECEIVE_REWARD = Button(area={'zh-cn': (310, 204, 419, 245)}, color={'zh-cn': (145, 146, 148)}, button={'zh-cn': (310, 204, 419, 245)}, file={'zh-cn': './assets/zh-cn/event/RECEIVE_REWARD.png'})
 SHOP_BUY = Button(area={'zh-cn': (470, 1041, 515, 1064)}, color={'zh-cn': (120, 197, 231)}, button={'zh-cn': (470, 1041, 515, 1064)}, file={'zh-cn': './assets/zh-cn/event/SHOP_BUY.png'})
@@ -12,6 +13,8 @@ SHOP_BUY_MAX = Button(area={'zh-cn': (586, 778, 621, 795)}, color={'zh-cn': (106
 SHOP_CANCEL = Button(area={'zh-cn': (245, 1041, 291, 1063)}, color={'zh-cn': (148, 148, 146)}, button={'zh-cn': (245, 1041, 291, 1063)}, file={'zh-cn': './assets/zh-cn/event/SHOP_CANCEL.png'})
 SHOP_ITEM_CHECK = Button(area={'zh-cn': (312, 242, 407, 266)}, color={'zh-cn': (142, 182, 222)}, button={'zh-cn': (312, 242, 407, 266)}, file={'zh-cn': './assets/zh-cn/event/SHOP_ITEM_CHECK.png'})
 SHOP_ITEM_RED_CIRCLE = Button(area={'zh-cn': (360, 435, 395, 474)}, color={'zh-cn': (170, 80, 83)}, button={'zh-cn': (360, 435, 395, 474)}, file={'zh-cn': './assets/zh-cn/event/SHOP_ITEM_RED_CIRCLE.png'})
-SHOP_ITEM_TITLE = Button(area={'zh-cn': (407, 621, 482, 631)}, color={'zh-cn': (89, 86, 80)}, button={'zh-cn': (407, 621, 482, 631)}, file={'zh-cn': './assets/zh-cn/event/SHOP_ITEM_TITLE.png'})
+SHOP_ITEM_TITLE = Button(area={'zh-cn': (348, 442, 374, 475)}, color={'zh-cn': (136, 130, 121)}, button={'zh-cn': (348, 442, 374, 475)}, file={'zh-cn': './assets/zh-cn/event/SHOP_ITEM_TITLE.png'})
 SHOP_MONEY_LACK = Button(area={'zh-cn': (308, 631, 390, 651)}, color={'zh-cn': (160, 160, 160)}, button={'zh-cn': (308, 631, 390, 651)}, file={'zh-cn': './assets/zh-cn/event/SHOP_MONEY_LACK.png'})
+TEMPLATE_COOP_COMING_SOON = Template(file={'zh-cn': './assets/zh-cn/event/TEMPLATE_COOP_COMING_SOON.png'})
+TEMPLATE_COOP_ICON = Template(file={'zh-cn': './assets/zh-cn/event/TEMPLATE_COOP_ICON.png'})
 TEMPLATE_SOLD_OUT = Template(file={'zh-cn': './assets/zh-cn/event/TEMPLATE_SOLD_OUT.png'})

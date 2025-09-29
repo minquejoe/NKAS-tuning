@@ -47,8 +47,9 @@ class EnemyEvent(EventBase):
 
             if click_timer.reached():
                 if not self.appear(TARGET_HP_CHECK, offset=(30, 30)) and (
-                    self.appear(ENEMY_CHECK, offset=(30, 30), interval=5, static=False)
-                    or self.appear(BOSS_EVENT_CHECK, offset=(30, 30), interval=5, static=False)
+                    self.appear(ENEMY_CHECK, offset=(30, 30), static=False)
+                    or self.appear(BOSS_EVENT_CHECK, offset=(30, 30), static=False)
+                    or self.appear(SPECIAL_EVENT_CHECK, offset=(30, 30), static=False)
                 ):
                     self.device.click_minitouch(*self.button)
                     logger.info('Click %s @ %s' % (point2str(*self.button), 'ENEMY_EVENT'))
@@ -79,7 +80,20 @@ class EnemyEvent(EventBase):
                 click_timer.reset()
                 continue
 
-            if click_timer.reached() and self.appear_then_click(END_FIGHTING, offset=(30, 30), interval=5):
+            # 红圈
+            if self.config.Optimization_AutoRedCircle and self.appear(PAUSE, offset=(5, 5)):
+                if self.handle_red_circles():
+                    continue
+
+            if click_timer.reached() and self.appear(END_FIGHTING, offset=30):
+                while 1:
+                    self.device.screenshot()
+                    if not self.appear(END_FIGHTING, offset=30):
+                        click_timer.reset()
+                        break
+                    if self.appear_then_click(END_FIGHTING, offset=30, interval=1):
+                        click_timer.reset()
+                        continue
                 click_timer.reset()
                 continue
 
@@ -130,8 +144,11 @@ class HealingEvent(EventBase):
                 click_timer.reset()
                 continue
 
-            if self.appear(RESET_TIME_IN, offset=(5, 5), static=False) and confirm_timer.reached():
+            if (
+                self.appear(RESET_TIME_IN, offset=10) or self.appear(OVERCLOCK_RESET_TIME_IN, offset=10)
+            ) and confirm_timer.reached():
                 break
+
         logger.info('The healing event ended')
 
 
@@ -198,8 +215,14 @@ class RandomEvent(EventBase):
                         continue
 
                     if (
-                        self.appear(RESET_TIME_IN, offset=(30, 30), static=False)
-                        and self.appear(SIMULATION_CHECK, offset=(30, 30), static=False)
+                        (
+                            self.appear(RESET_TIME_IN, offset=(30, 30), static=False)
+                            or self.appear(OVERCLOCK_RESET_TIME_IN, offset=(30, 30), static=False)
+                        )
+                        and (
+                            self.appear(SIMULATION_CHECK, offset=(30, 30), static=False)
+                            or self.appear(OVERCLOCK_SIMULATION_CHECK, offset=(30, 30), static=False)
+                        )
                         and confirm_timer.reached()
                     ):
                         return
@@ -235,15 +258,27 @@ class RandomEvent(EventBase):
                         continue
 
                     if (
-                        self.appear(RESET_TIME_IN, offset=(30, 30), static=False)
-                        and self.appear(SIMULATION_CHECK, offset=(30, 30), static=False)
+                        (
+                            self.appear(RESET_TIME_IN, offset=(30, 30), static=False)
+                            or self.appear(OVERCLOCK_RESET_TIME_IN, offset=(30, 30), static=False)
+                        )
+                        and (
+                            self.appear(SIMULATION_CHECK, offset=(30, 30), static=False)
+                            or self.appear(OVERCLOCK_SIMULATION_CHECK, offset=(30, 30), static=False)
+                        )
                         and confirm_timer.reached()
                     ):
                         return
 
             if (
-                self.appear(RESET_TIME_IN, offset=(30, 30), static=False)
-                and self.appear(SIMULATION_CHECK, offset=(30, 30), static=False)
+                (
+                    self.appear(RESET_TIME_IN, offset=(30, 30), static=False)
+                    or self.appear(OVERCLOCK_RESET_TIME_IN, offset=(30, 30), static=False)
+                )
+                and (
+                    self.appear(SIMULATION_CHECK, offset=(30, 30), static=False)
+                    or self.appear(OVERCLOCK_SIMULATION_CHECK, offset=(30, 30), static=False)
+                )
                 and confirm_timer.reached()
             ):
                 return
@@ -278,8 +313,14 @@ class RandomEvent(EventBase):
                     continue
 
                 if (
-                    self.appear(RESET_TIME_IN, offset=(30, 30), static=False)
-                    and self.appear(SIMULATION_CHECK, offset=(30, 30), static=False)
+                    (
+                        self.appear(RESET_TIME_IN, offset=(30, 30), static=False)
+                        or self.appear(OVERCLOCK_RESET_TIME_IN, offset=(30, 30), static=False)
+                    )
+                    and (
+                        self.appear(SIMULATION_CHECK, offset=(30, 30), static=False)
+                        or self.appear(OVERCLOCK_SIMULATION_CHECK, offset=(30, 30), static=False)
+                    )
                     and confirm_timer.reached()
                 ):
                     return
@@ -349,15 +390,27 @@ class ImprovementEvent(EventBase):
                         continue
 
                     if (
-                        self.appear(RESET_TIME_IN, offset=(30, 30), static=False)
-                        and self.appear(SIMULATION_CHECK, offset=(30, 30), static=False)
+                        (
+                            self.appear(RESET_TIME_IN, offset=(30, 30), static=False)
+                            or self.appear(OVERCLOCK_RESET_TIME_IN, offset=(30, 30), static=False)
+                        )
+                        and (
+                            self.appear(SIMULATION_CHECK, offset=(30, 30), static=False)
+                            or self.appear(OVERCLOCK_SIMULATION_CHECK, offset=(30, 30), static=False)
+                        )
                         and confirm_timer.reached()
                     ):
                         return
 
             if (
-                self.appear(RESET_TIME_IN, offset=(30, 30), static=False)
-                and self.appear(SIMULATION_CHECK, offset=(30, 30), static=False)
+                (
+                    self.appear(RESET_TIME_IN, offset=(30, 30), static=False)
+                    or self.appear(OVERCLOCK_RESET_TIME_IN, offset=(30, 30), static=False)
+                )
+                and (
+                    self.appear(SIMULATION_CHECK, offset=(30, 30), static=False)
+                    or self.appear(OVERCLOCK_SIMULATION_CHECK, offset=(30, 30), static=False)
+                )
                 and confirm_timer.reached()
             ):
                 return
@@ -392,8 +445,14 @@ class ImprovementEvent(EventBase):
                     continue
 
                 if (
-                    self.appear(RESET_TIME_IN, offset=(30, 30), static=False)
-                    and self.appear(SIMULATION_CHECK, offset=(30, 30), static=False)
+                    (
+                        self.appear(RESET_TIME_IN, offset=(30, 30), static=False)
+                        or self.appear(OVERCLOCK_RESET_TIME_IN, offset=(30, 30), static=False)
+                    )
+                    and (
+                        self.appear(SIMULATION_CHECK, offset=(30, 30), static=False)
+                        or self.appear(OVERCLOCK_SIMULATION_CHECK, offset=(30, 30), static=False)
+                    )
                     and confirm_timer.reached()
                 ):
                     return

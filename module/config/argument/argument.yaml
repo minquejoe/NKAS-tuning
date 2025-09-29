@@ -14,6 +14,10 @@ Scheduler:
   ServerUpdate:
     value: 05:00
     display: hide
+Client:
+  Platform:
+    value: adb
+    option: [ adb, win ]
 Emulator:
   Serial:
     value: auto
@@ -32,6 +36,67 @@ Emulator:
     option: [ minitouch, ]
   AdbRestart: false
   ScreenshotInterval: 0.5
+EmulatorInfo:
+  Emulator:
+    value: auto
+    option: [
+      auto,
+      NoxPlayer,
+      NoxPlayer64,
+      BlueStacks4,
+      BlueStacks5,
+      BlueStacks4HyperV,
+      BlueStacks5HyperV,
+      LDPlayer3,
+      LDPlayer4,
+      LDPlayer9,
+      MuMuPlayer,
+      MuMuPlayerX,
+      MuMuPlayer12,
+      MEmuPlayer,
+    ]
+  name:
+    value: null
+    type: textarea
+  path:
+    value: null
+    type: textarea
+PCClient:
+  Screens:
+    value: false
+  GameResolutionCompat:
+    value: false
+  CloseAutoHdr: true
+  ScreenRotate: false
+  GameWindowPosition:
+    value: center
+    option: [ center, left, right, topleft, topright ]
+  Account:
+    value: ''
+  Password:
+    value: ''
+PCClientInfo:
+  Client:
+    value: intl
+    option: [ intl, hmt ]
+  Language:
+    value: zh-cn
+    option: [ zh-cn ]
+  ScreenshotInterval: 0.3
+  LauncherTitleName:
+    value: ''
+  LauncherProcessName:
+    value: ''
+  LauncherPath:
+    value: ''
+    type: textarea
+  GameTitleName:
+    value: ''
+  GameProcessName:
+    value: ''
+  GamePath:
+    value: ''
+    type: textarea
 Optimization:
   AutoRedCircle: false
   OcrModelType:
@@ -47,6 +112,8 @@ Reward:
 DailyRecruit:
   EventFreeRecruit: true
   SocialPointRecruit: true
+SimulationRoom:
+  QuickSimulation: true
 Area:
   Difficulty:
     value: 'Level_1'
@@ -61,6 +128,9 @@ Overcome:
   OnlyToCompleteDailyMission: false
 GeneralShop:
   enable: true
+  priority:
+    value: 'GRATIS > CORE_DUST_CASE > ORNAMENT'
+    type: textarea
 ArenaShop:
   enable: false
   priority:
@@ -68,6 +138,9 @@ ArenaShop:
     type: textarea
 RubbishShop:
   priority:
+    value: 'GEM > CORE_DUST_CASE'
+    type: textarea
+  bonePriority:
     value: ''
     type: textarea
 Notification:
@@ -82,9 +155,10 @@ Daily:
   EnhanceEquipment: false
   CallReward: false
 CollectionItems:
-  NIKKE:
-    value: 'All'
-    option: [ 'All','Laplace','Frima','Diesel','Exia' ]
+  Enable: false
+  Priority:
+    value: ''
+    type: textarea
 OpponentSelection:
   Enable: false
   SortingWeight:
@@ -108,12 +182,7 @@ BlaAuth:
     value: ''
     type: textarea
 BlaDaily:
-  PostID:
-    value: ''
-    valuetype: str
-  CommentID:
-    value: ''
-    valuetype: str
+  Immediately: false
   Points:
     value: ''
     display: disabled
@@ -135,6 +204,8 @@ Event:
   Event:
     value: ''
     option: [
+      'event_20250924',
+      'event_20250904',
       'event_20250807',
       'event_20250716',
       'event_20250703s',
@@ -151,21 +222,79 @@ Event:
       'Story_1',
       'Story_2'
     ]
+    display: disabled
   StoryDifficulty:
     value: 'Normal'
     option: [
       'Normal',
       'Hard'
     ]
+    display: disabled
   Coop: false
   Shop: false
+  ShopDelayList:
+    value: 'TITLE'
+    type: textarea
   Game: false
+  GameStorySkip: false
+  GameLoop: false
 CheerStrategy:
   Enable: false
   Strategy:
     value: 'Most'
     option: [ 'Most','Few','Random' ]
 Interception:
+  Boss:
+    value: 'Kraken'
+    option: [ 'Kraken', 'Indivilia', 'Harvester', 'MirrorContainer', 'Ultra' ]
   DropScreenshotPath:
     value: ''
     type: textarea
+InterceptionTeam:
+  Kraken:
+    value: 1
+    option: [ 1, 2, 3, 4, 5 ]
+  Indivilia:
+    value: 2
+    option: [ 1, 2, 3, 4, 5 ]
+  Harvester:
+    value: 3
+    option: [ 1, 2, 3, 4, 5 ]
+  MirrorContainer:
+    value: 4
+    option: [ 1, 2, 3, 4, 5 ]
+  Ultra:
+    value: 5
+    option: [ 1, 2, 3, 4, 5 ]
+Overclock:
+  # DisableFirst: false
+  SkipRatioCheck: false
+  AlwaysReselect: false
+  ModifierList:
+    value: "ENEMY_WEAPON_UP_3\nENEMY_ARMOR_UP_3\nENEMY_VITALS_UP_3\nNO_RECYCLING\nAGGRESSIVE_TACTICS\nRUSH_HOUR_3\nRELEVANT_PERSONNEL_ONLY"
+    type: textarea
+AutoTower:
+  Enable:
+    value: true
+    display: disabled
+SemiCombat:
+  SkipStory:
+    value: false
+  FightQuickly:
+    value: false
+BlaCDKManual:
+  CDK:
+    value: ''
+    valuetype: str
+Highlights:
+  AutoSwitch:
+    value: true
+    display: disabled
+ScreenRotate:
+  Orientation:
+    value: 0
+    option: [ 0, 1 ]
+Synchro:
+  UseBox:
+    value: true
+    display: disabled
