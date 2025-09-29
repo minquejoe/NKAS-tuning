@@ -11,6 +11,7 @@
     "Notification": {
       "WhenDailyTaskCompleted": false,
       "WhenDailyTaskCrashed": false,
+      "WinOnePush": false,
       "OnePushConfig": "provider: null"
     },
     "Storage": {

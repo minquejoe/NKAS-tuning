@@ -130,6 +130,7 @@ class NikkeAutoScript:
                     self.config.Notification_OnePushConfig,
                     title=f'NKAS <{self.config_name}> crashed',
                     content=f'<{self.config_name}> GamePageUnknownError',
+                    always=self.config.Notification_WinOnePush,
                 )
             # 设置屏幕方向
             if self.config.PCClient_ScreenRotate:
@@ -143,6 +144,7 @@ class NikkeAutoScript:
                     self.config.Notification_OnePushConfig,
                     title=f'NKAS <{self.config_name}> crashed',
                     content=f'<{self.config_name}> GameServerUnderMaintenance',
+                    always=self.config.Notification_WinOnePush,
                 )
             # 设置屏幕方向
             if self.config.PCClient_ScreenRotate:
@@ -155,6 +157,7 @@ class NikkeAutoScript:
                     self.config.Notification_OnePushConfig,
                     title=f'NKAS <{self.config_name}> crashed',
                     content=f'<{self.config_name}> RequestHumanTakeover',
+                    always=self.config.Notification_WinOnePush,
                 )
             # 设置屏幕方向
             if self.config.PCClient_ScreenRotate:
@@ -168,6 +171,7 @@ class NikkeAutoScript:
                     self.config.Notification_OnePushConfig,
                     title=f'NKAS <{self.config_name}> crashed',
                     content=f'<{self.config_name}> Exception occured',
+                    always=self.config.Notification_WinOnePush,
                 )
             # 设置屏幕方向
             if self.config.PCClient_ScreenRotate:
@@ -584,6 +588,7 @@ class NikkeAutoScript:
                         self.config.Notification_OnePushConfig,
                         title=f'NKAS <{self.config_name}> crashed',
                         content=f'<{self.config_name}> RequestHumanTakeover\nTask `{task}` failed 3 or more times.',
+                        always=self.config.Notification_WinOnePush,
                     )
                 # 设置屏幕方向
                 if self.config.Client_Platform == 'win' and self.config.PCClient_ScreenRotate:

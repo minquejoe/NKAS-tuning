@@ -94,6 +94,7 @@ class GeneratedConfig:
     # Group `Notification`
     Notification_WhenDailyTaskCompleted = False
     Notification_WhenDailyTaskCrashed = False
+    Notification_WinOnePush = False
     Notification_OnePushConfig = 'provider: null'
 
     # Group `Daily`

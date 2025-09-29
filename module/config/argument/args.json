@@ -42,6 +42,10 @@
         "type": "checkbox",
         "value": false
       },
+      "WinOnePush": {
+        "type": "checkbox",
+        "value": false
+      },
       "OnePushConfig": {
         "type": "textarea",
         "value": "provider: null",

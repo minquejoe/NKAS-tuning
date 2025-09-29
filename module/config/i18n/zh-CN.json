@@ -569,9 +569,13 @@
       "name": "当日常出错时，发送通知",
       "help": ""
     },
+    "WinOnePush": {
+      "name": "Win额外推送",
+      "help": "开启后，如果是 Windows 平台会使用 OnePush 再推送一条消息"
+    },
     "OnePushConfig": {
       "name": "推送设置",
-      "help": "使用 Onepush 推送一条错误信息（win不需要填写）。配置方法见文档：https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/Onepush-configuration-%5BCN%5D"
+      "help": "使用 Onepush 推送一条错误信息。配置方法见文档：https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/Onepush-configuration-%5BCN%5D"
     }
   },
   "Daily": {

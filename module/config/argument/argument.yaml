@@ -146,6 +146,7 @@ RubbishShop:
 Notification:
   WhenDailyTaskCompleted: false
   WhenDailyTaskCrashed: false
+  WinOnePush: false
   OnePushConfig:
     type: textarea
     mode: yaml
