@@ -26,7 +26,7 @@ if not "%config_name%"=="" (
 ) else (
     REM --- 如果未传入 config_name，则发送 F9 快捷键 ---
     echo Activating window and sending F9 key...
-    powershell -ExecutionPolicy Bypass -Command "$wshell = New-Object -ComObject wscript.shell; if ($wshell.AppActivate('NIKKEAutoScript')) { Start-Sleep -Milliseconds 500; $wshell.SendKeys('{F9}') }"
+    powershell -ExecutionPolicy Bypass -Command "$wshell = New-Object -ComObject wscript.shell; $wshell.AppActivate('NIKKEAutoScript'); Start-Sleep -Milliseconds 500; $wshell.SendKeys('{F9}')"
 )
 
 echo Script finished.
