@@ -358,7 +358,7 @@ class Event(UI):
             if (
                 click_timer.reached()
                 and self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30))
-                and self.appear_then_click(self.event_assets.REWARD, offset=10, interval=1)
+                and self.appear_then_click(self.event_assets.REWARD, offset=10, interval=3)
             ):
                 click_timer.reset()
                 continue
@@ -443,7 +443,7 @@ class Event(UI):
             if (
                 click_timer.reached()
                 and self.appear(self.event_assets.EVENT_CHECK, offset=(30, 30))
-                and self.appear_then_click(self.event_assets.REWARD, offset=10, interval=1)
+                and self.appear_then_click(self.event_assets.REWARD, offset=10, interval=3)
             ):
                 click_timer.reset()
                 continue
