@@ -1021,7 +1021,7 @@
       "Manage": "管理"
     },
     "AppManage": {
-      "PageTitle": "管理配置文件（未经测试 随缘使用）",
+      "PageTitle": "管理配置文件",
       "TitleNew": "添加新配置",
       "NewName": "新的配置文件名",
       "CopyFrom": "从现有的配置中复制",
