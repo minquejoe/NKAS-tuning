@@ -148,7 +148,7 @@ class Event(UI):
 
     @Config.when(EVENT_TYPE=1)
     def login_stamp(self, skip_first_screenshot=True):
-        logger.hr('START EVENT LOGIN STAMP')
+        logger.hr('START EVENT LOGIN STAMP', 2)
         click_timer = Timer(0.3)
 
         # 进入签到页面
@@ -228,11 +228,11 @@ class Event(UI):
 
     @Config.when(EVENT_TYPE=(2, 3))
     def login_stamp(self):
-        logger.hr('START EVENT LOGIN STAMP')
+        logger.hr('START EVENT LOGIN STAMP', 2)
         logger.info('Small event, skip loginstamp')
 
     def challenge(self, skip_first_screenshot=True):
-        logger.hr('START EVENT CHALLENGE')
+        logger.hr('START EVENT CHALLENGE', 2)
         click_timer = Timer(0.3)
 
         # 进入挑战页面
@@ -345,7 +345,7 @@ class Event(UI):
 
     @Config.when(EVENT_TYPE=1)
     def reward(self, skip_first_screenshot=True):
-        logger.hr('START EVENT REWARD')
+        logger.hr('START EVENT REWARD', 2)
         click_timer = Timer(0.3)
 
         # 进入任务页面
@@ -430,7 +430,7 @@ class Event(UI):
 
     @Config.when(EVENT_TYPE=(2, 3))
     def reward(self, skip_first_screenshot=True):
-        logger.hr('START EVENT REWARD')
+        logger.hr('START EVENT REWARD', 2)
         click_timer = Timer(0.3)
 
         # 进入任务页面
@@ -487,7 +487,7 @@ class Event(UI):
 
     @Config.when(EVENT_TYPE=(1, 3))
     def story(self, skip_first_screenshot=True):
-        logger.hr('START EVENT STORY')
+        logger.hr('START EVENT STORY', 2)
         click_timer = Timer(0.3)
 
         logger.info('Finding opened event story')
@@ -654,7 +654,7 @@ class Event(UI):
 
     @Config.when(EVENT_TYPE=2)
     def story(self, skip_first_screenshot=True):
-        logger.hr('START EVENT STORY')
+        logger.hr('START EVENT STORY', 2)
         click_timer = Timer(0.3)
 
         open_story = 'story_1_normal'
@@ -832,7 +832,7 @@ class Event(UI):
     @Config.when(EVENT_TYPE=1)
     def coop(self, skip_first_screenshot=True):
         """进入协同作战页面"""
-        logger.hr('EVENT COOP START')
+        logger.hr('EVENT COOP START', 2)
         click_timer = Timer(0.3)
         confirm_timer = Timer(1, count=3)
 
@@ -852,8 +852,13 @@ class Event(UI):
                 click_timer.reset()
                 continue
 
+            # 最后阶段的协同未开启
+            if self.appear(LAST_COOP_LOCK, offset=10):
+                logger.warning('Last Coop is not enabled')
+                return
+
             # 协同未在开启时间
-            if click_timer.reached() and self.appear(self.event_assets.COOP_LOCK, offset=10):
+            if self.appear(self.event_assets.COOP_LOCK, offset=10):
                 logger.warning('Coop is not enabled')
                 self.back_to_event_from_coop()
                 return
@@ -934,7 +939,7 @@ class Event(UI):
 
     @Config.when(EVENT_TYPE=(2, 3))
     def coop(self):
-        logger.hr('EVENT COOP START')
+        logger.hr('EVENT COOP START', 2)
         logger.info('Small event, skip coop')
 
     @cached_property
@@ -958,7 +963,7 @@ class Event(UI):
             raise
 
     def shop(self, skip_first_screenshot=True):
-        logger.hr('START EVENT SHOP')
+        logger.hr('START EVENT SHOP', 2)
         click_timer = Timer(0.3)
         restart_flag = False
         delay_list = self.shop_delay_list
@@ -1142,7 +1147,7 @@ class Event(UI):
 
     @Config.when(EVENT_MINI_GAME=True)
     def game(self, skip_first_screenshot=True):
-        logger.hr('START EVENT GAME')
+        logger.hr('START EVENT GAME', 2)
         click_timer = Timer(0.3)
 
         # 进入小游戏页面
@@ -1182,11 +1187,11 @@ class Event(UI):
 
     @Config.when(EVENT_MINI_GAME=False)
     def game(self):
-        logger.hr('START EVENT GAME')
+        logger.hr('START EVENT GAME', 2)
         logger.info('Game not support in this event')
 
     def ensure_into_event(self, skip_first_screenshot=True):
-        logger.hr('OPEN EVENT STORY')
+        logger.hr('OPEN EVENT STORY', 2)
         click_timer = Timer(0.3)
         confirm_timer = Timer(30, count=20).start()
         event_timer = Timer(3, count=5)
