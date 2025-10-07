@@ -25,6 +25,8 @@ class ManualConfig:
         "CREDIT_CASE": 3,
         "CREDIT": 1,
         "BATTLE_DATA_SET_CASE": 2,
+        "GROWTH_SET": 4,
+        "ORNAMENT": 1,
         "GENERAL_TICKET": 1,
         "ELYSION_TICKET": 1,
         "MISSILIS_TICKET": 1,
@@ -42,6 +44,8 @@ class ManualConfig:
         "CREDIT_CASE": 2660,
         # 6x100, 5x575
         "BATTLE_DATA_SET_CASE": 3475,
+        "GROWTH_SET": 2700,
+        "ORNAMENT": 500,
         "GENERAL_TICKET": 400,
         "ELYSION_TICKET": 600,
         "MISSILIS_TICKET": 600,
