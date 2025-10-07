@@ -63,7 +63,7 @@ class Blablalink(UI):
         super().__init__(config, independent=True)
         self.session = requests.Session()
         self.common_headers = self.base_headers.copy()
-        self._cdk_temp_path = Path('./tmp/cdk_history.json')  # 临时文件路径
+        self._cdk_temp_path = Path(f'./tmp/{config.config_name}/cdk_history.json')  # 临时文件路径
         self._prepare_config()
 
     def _prepare_config(self):
@@ -660,11 +660,15 @@ class Blablalink(UI):
 
             if result.get('code') == 0 and result.get('msg') == 'ok':
                 logger.info(f'Successfully redeemed CDK: {cdk}')
+                # 将CDK追加到临时文件
+                self._append_cdks_to_temp([cdk])
                 return True
 
             # 处理不同的错误情况
             msg = result.get('msg', 'CDK Exchange err')
             logger.error(f'Failed to redeem CDK {cdk}: {msg}')
+            # 将CDK追加到临时文件
+            self._append_cdks_to_temp([cdk])
             return False
         except Exception as e:
             logger.error(f'Exception when redeeming CDK {cdk}: {str(e)}')
