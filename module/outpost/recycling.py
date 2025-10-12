@@ -174,4 +174,4 @@ class Recycling(UI):
         except NoEnoughItems:
             logger.info('No enough items left, upgrade done')
 
-        self.config.task_delay(server_update=True)
+        self.config.task_delay(target=self.next_tuesday)
