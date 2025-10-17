@@ -131,7 +131,7 @@ class SimulationRoom(UI):
 
     def choose_effect(self, skip_first_screenshot=True):
         logger.hr('Choose an effect', 3)
-        confirm_timer = Timer(2, count=2).start()
+        confirm_timer = Timer(2, count=5)
         click_timer = Timer(0.3)
         click_timer_2 = Timer(6)
 
@@ -144,7 +144,6 @@ class SimulationRoom(UI):
                     self.device.screenshot()
 
                 if click_timer_2.reached():
-                    confirm_timer.reset()
                     click_timer_2.reset()
                     self.device.click_minitouch(*button)
                     logger.info('Click %s @ %s' % (point2str(*button), 'EFFECT'))
@@ -153,15 +152,16 @@ class SimulationRoom(UI):
                 if click_timer.reached() and self.appear_then_click(
                     CONFIRM_B, offset=(30, 30), interval=6, static=False
                 ):
-                    confirm_timer.reset()
                     click_timer.reset()
                     continue
 
-                if (
-                    not self.appear(SELECT_REWARD_EFFECT_CHECK, offset=(30, 30), static=False)
-                    and confirm_timer.reached()
-                ):
-                    break
+                if not self.appear(SELECT_REWARD_EFFECT_CHECK, offset=(30, 30), static=False):
+                    if not confirm_timer.started():
+                        confirm_timer.start()
+                    if confirm_timer.reached():
+                        break
+                else:
+                    confirm_timer.clear()
         else:
             logger.warning('The own effect count has already reached its limit')
             while 1:
