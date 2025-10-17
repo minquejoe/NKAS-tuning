@@ -173,23 +173,24 @@ class SimulationRoom(UI):
                 if click_timer.reached() and self.appear_then_click(
                     NOT_CHOOSE, offset=(30, 30), interval=5, static=False
                 ):
-                    confirm_timer.reset()
                     click_timer.reset()
                     continue
 
                 if click_timer.reached() and self.appear(SKIP_CHECK, offset=(30, 30), interval=5, static=False):
                     self.device.click_minitouch(530, 800)
                     logger.info('Click %s @ %s' % (point2str(530, 800), 'SKIP'))
-                    confirm_timer.reset()
                     click_timer.reset()
                     continue
 
-                if (
-                    not self.appear(SELECT_REWARD_EFFECT_CHECK, offset=(30, 30), static=False)
-                    and confirm_timer.reached()
-                ):
-                    return
+                if not self.appear(SELECT_REWARD_EFFECT_CHECK, offset=(30, 30), static=False):
+                    if not confirm_timer.started():
+                        confirm_timer.start()
+                    if confirm_timer.reached():
+                        return
+                else:
+                    confirm_timer.clear()
 
+        confirm_timer = Timer(2, count=4).start()
         if self.appear(REPEATED_EFFECT_CHECK, offset=(5, 5), static=False):
             logger.warning('The selected effect has been in the own effect list')
             while 1:
