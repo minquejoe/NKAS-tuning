@@ -7,9 +7,11 @@
 # NIKKEAutoScript
 
 
-胜利女神：NIKKE 自动日常脚本，支持所有设置为**简体中文**的 PC/模拟器客户端（**国服除外**）。Fork 自 [NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
+胜利女神：NIKKE 自动日常脚本，支持所有设置为**简体中文**的 PC/模拟器客户端（**国服除外**）。Fork 自 [NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)  
+GODDESS OF VICTORY: NIKKE automatic daily script, supporting all PC/Emulator clients set to **Simplified Chinese (zh\_CN)**, **except the Chinese server (CN)**. Forked from [NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
 
 **如果觉得有帮助，请帮我点个 ⭐ Star 支持一下！**  
+*If you find it helpful, please give it a ⭐ Star to support!*
 
 <p align="center">
   <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white">
@@ -125,7 +127,7 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
   <img src="https://raw.githubusercontent.com/megumiss/NIKKEAutoScript/master/doc/assets/alipay.png" alt="Alipay" width="200"/>
 </p>
 
-**国际用户支持请使用** [🌍 UniFans](https://app.unifans.io/c/megumiss)
+**For international supporters:** [🌍 UniFans](https://app.unifans.io/c/megumiss)
 
 ---
 
