@@ -20,6 +20,7 @@ from module.exception import (
     GameStuckError,
     GameTooManyClickError,
     RequestHumanTakeover,
+    ScreenResolutionNotEnough,
     ScreenshotError,
 )
 from module.logger import logger
@@ -80,19 +81,25 @@ class NikkeAutoScript:
         except RequestHumanTakeover:
             # 设置屏幕方向
             if self.config.Client_Platform == 'win' and self.config.PCClient_ScreenRotate:
-                self.device.screen_rotate()
+                self.device.screen_rotate(self.config.PCClient_ScreenNumber)
             logger.critical('Request human takeover')
             exit(1)
         except AccountError:
             # 设置屏幕方向
             if self.config.Client_Platform == 'win' and self.config.PCClient_ScreenRotate:
-                self.device.screen_rotate()
+                self.device.screen_rotate(self.config.PCClient_ScreenNumber)
             logger.critical('Account or password setting error')
+            exit(1)
+        except ScreenResolutionNotEnough:
+            # 设置屏幕方向
+            if self.config.Client_Platform == 'win' and self.config.PCClient_ScreenRotate:
+                self.device.screen_rotate(self.config.PCClient_ScreenNumber)
+            logger.critical('Screen resolution not enough')
             exit(1)
         except Exception as e:
             # 设置屏幕方向
             if self.config.Client_Platform == 'win' and self.config.PCClient_ScreenRotate:
-                self.device.screen_rotate()
+                self.device.screen_rotate(self.config.PCClient_ScreenNumber)
             logger.exception(e)
             exit(1)
 
@@ -134,7 +141,7 @@ class NikkeAutoScript:
                 )
             # 设置屏幕方向
             if self.config.PCClient_ScreenRotate:
-                self.device.screen_rotate()
+                self.device.screen_rotate(self.config.PCClient_ScreenNumber)
             exit(1)
         except GameServerUnderMaintenance as e:
             logger.error(e)
@@ -148,7 +155,7 @@ class NikkeAutoScript:
                 )
             # 设置屏幕方向
             if self.config.PCClient_ScreenRotate:
-                self.device.screen_rotate()
+                self.device.screen_rotate(self.config.PCClient_ScreenNumber)
             exit(1)
         except RequestHumanTakeover:
             logger.critical('Request human takeover')
@@ -161,7 +168,7 @@ class NikkeAutoScript:
                 )
             # 设置屏幕方向
             if self.config.PCClient_ScreenRotate:
-                self.device.screen_rotate()
+                self.device.screen_rotate(self.config.PCClient_ScreenNumber)
             exit(1)
         except Exception as e:
             logger.exception(e)
@@ -175,7 +182,7 @@ class NikkeAutoScript:
                 )
             # 设置屏幕方向
             if self.config.PCClient_ScreenRotate:
-                self.device.screen_rotate()
+                self.device.screen_rotate(self.config.PCClient_ScreenNumber)
             exit(1)
 
     def save_error_log(self):
@@ -482,7 +489,7 @@ class NikkeAutoScript:
                     if self.config.Client_Platform == 'win':
                         # 设置屏幕方向
                         if self.config.PCClient_ScreenRotate:
-                            self.device.screen_rotate()
+                            self.device.screen_rotate(self.config.PCClient_ScreenNumber)
                         del_cached_property(self, 'device')
                     # self.device.release_during_wait()
                     if not self.wait_until(task.next_run):
@@ -501,7 +508,7 @@ class NikkeAutoScript:
                     # self.device.release_during_wait()
                     # 设置屏幕方向
                     if self.config.Client_Platform == 'win' and self.config.PCClient_ScreenRotate:
-                        self.device.screen_rotate()
+                        self.device.screen_rotate(self.config.PCClient_ScreenNumber)
                     if not self.wait_until(task.next_run):
                         del_cached_property(self, 'config')
                         continue
@@ -511,7 +518,7 @@ class NikkeAutoScript:
                     # self.device.release_during_wait()
                     # 设置屏幕方向
                     if self.config.Client_Platform == 'win' and self.config.PCClient_ScreenRotate:
-                        self.device.screen_rotate()
+                        self.device.screen_rotate(self.config.PCClient_ScreenNumber)
                     if not self.wait_until(task.next_run):
                         del_cached_property(self, 'config')
                         continue
@@ -521,7 +528,7 @@ class NikkeAutoScript:
                     # self.device.release_during_wait()
                     # 设置屏幕方向
                     if self.config.Client_Platform == 'win' and self.config.PCClient_ScreenRotate:
-                        self.device.screen_rotate()
+                        self.device.screen_rotate(self.config.PCClient_ScreenNumber)
                     if not self.wait_until(task.next_run):
                         del_cached_property(self, 'config')
                         continue
@@ -597,7 +604,7 @@ class NikkeAutoScript:
                     )
                 # 设置屏幕方向
                 if self.config.Client_Platform == 'win' and self.config.PCClient_ScreenRotate:
-                    self.device.screen_rotate()
+                    self.device.screen_rotate(self.config.PCClient_ScreenNumber)
                 exit(1)
 
             if success:

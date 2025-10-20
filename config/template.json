@@ -51,7 +51,8 @@
     },
     "PCClient": {
       "Screens": false,
-      "GameResolutionCompat": false,
+      "ScreenNumber": 0,
+      "GameResolutionCompat": true,
       "CloseAutoHdr": true,
       "ScreenRotate": false,
       "GameWindowPosition": "center",

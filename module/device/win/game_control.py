@@ -1,4 +1,11 @@
 import ctypes
+
+from module.exception import ScreenResolutionNotEnough
+
+try:
+    ctypes.windll.shcore.SetProcessDpiAwareness(2)  # PROCESS_PER_MONITOR_DPI_AWARE
+except Exception:
+    pass
 import os
 import subprocess
 import time
@@ -7,10 +14,10 @@ from dataclasses import dataclass, field
 from typing import Literal, Optional, Tuple
 
 import psutil
-import pyautogui
 import win32api
 import win32con
 import win32gui
+from desktopmagic.screengrab_win32 import getDisplayRects
 from numpy import ndarray
 
 from module.base.utils import ensure_time
@@ -97,7 +104,7 @@ class WinClient:
         - termination_timeout (int, optional): 终止进程前等待的超时时间（秒）。
 
         返回值:
-        - bool: 如果成功终止进程则返回True，否则返回False。
+        - bool: 如果成功终止进程则返回True, 否则返回False。
         """
         system_username = os.getlogin()  # 获取当前系统用户名
         # 遍历所有运行中的进程
@@ -140,12 +147,12 @@ class WinClient:
         return False
 
     @staticmethod
-    def screen_rotate(orientation=0):
+    def screen_rotate(screen_n=0, orientation=0):
         """
         设置屏幕方向
         orientation: 0=横屏, 1=竖屏(90), 2=横屏翻转, 3=竖屏(270)
         """
-        device = win32api.EnumDisplayDevices(None, 0)
+        device = win32api.EnumDisplayDevices(None, screen_n)
         dm = win32api.EnumDisplaySettings(device.DeviceName, win32con.ENUM_CURRENT_SETTINGS)
 
         # 如果当前方向和目标方向不一样
@@ -293,9 +300,9 @@ class WinClient:
             logger.error(f'启动脚本时发生错误：{str(e)}')
             return False
 
-    def calculate_window_position(self, window_width, window_height, position='center'):
+    def calculate_window_position(self, screen_n, window_width, window_height, position='center'):
         """
-        根据位置模式计算窗口放置的坐标
+        根据位置模式计算窗口放置的坐标（支持多显示器）
 
         参数:
             window_width: 窗口宽度（含边框）
@@ -303,40 +310,55 @@ class WinClient:
             position: 位置模式，支持 center/left/right/topleft/topright
 
         返回:
-            (x, y): 窗口左上角坐标
+            (x, y): 窗口左上角坐标 (coordenadas virtuais)
         """
-        self.screen_resolution = pyautogui.size()
-        screen_width, screen_height = self.screen_resolution
+        all_screens = getDisplayRects()
+
+        # Garantir que o número do monitor seja válido
+        if not (0 <= screen_n < len(all_screens)):
+            logger.warning(
+                f'Número do monitor {screen_n} inválido. Total de monitores: {len(all_screens)}. Usando monitor 0.'
+            )
+            screen_n = 0
+
+        target_screen = all_screens[screen_n]
+        screen_left, screen_top, screen_right, screen_bottom = target_screen
+
+        screen_width = screen_right - screen_left
+        screen_height = screen_bottom - screen_top
 
         if position == 'center':
-            x = (screen_width - window_width) // 2
-            y = (screen_height - window_height) // 2
+            x_rel = (screen_width - window_width) // 2
+            y_rel = (screen_height - window_height) // 2
         elif position == 'left':
-            x = 0
-            y = (screen_height - window_height) // 2
+            x_rel = 0
+            y_rel = (screen_height - window_height) // 2
         elif position == 'right':
-            x = screen_width - window_width
-            y = (screen_height - window_height) // 2
+            x_rel = screen_width - window_width
+            y_rel = (screen_height - window_height) // 2
         elif position == 'topleft':
-            x, y = 0, 0
+            x_rel, y_rel = 0, 0
         elif position == 'topright':
-            x = screen_width - window_width
-            y = 0
+            x_rel = screen_width - window_width
+            y_rel = 0
         else:
-            # 默认居中
-            x = (screen_width - window_width) // 2
-            y = (screen_height - window_height) // 2
+            # Padrão é 'center'
+            x_rel = (screen_width - window_width) // 2
+            y_rel = (screen_height - window_height) // 2
 
-        # 防止窗口超出屏幕边缘
-        x = max(0, min(x, screen_width - window_width))
-        y = max(0, min(y, screen_height - window_height))
+        # Calcular coordenadas absolutas (virtuais)
+        x = screen_left + x_rel
+        y = screen_top + y_rel
+
+        # Prevenir que a janela saia dos limites do monitor alvo
+        x = max(screen_left, min(x, screen_right - window_width))
+        y = max(screen_top, min(y, screen_bottom - window_height))
 
         return x, y
 
-    def change_resolution(self, client_width, client_height, position='center'):
+    def change_resolution(self, screen_n, client_width, client_height, position='center'):
         """
         设置窗口客户区大小为指定分辨率，并调整位置
-
         参数:
             client_width: 客户区宽度(像素)
             client_height: 客户区高度(像素)
@@ -352,12 +374,9 @@ class WinClient:
             if hwnd == 0:
                 logger.error('窗口未找到')
                 raise Exception('窗口未找到')
-
             rect = win32gui.GetClientRect(hwnd)
             window_rect = win32gui.GetWindowRect(hwnd)
-
             logger.debug(f'原始窗口矩形: {window_rect}, 客户区矩形: {rect}')
-
             # 计算边框宽度和高度
             border_width = (window_rect[2] - window_rect[0] - rect[2]) // 2
             border_height = (window_rect[3] - window_rect[1] - rect[3]) // 2
@@ -371,7 +390,7 @@ class WinClient:
             logger.debug(f'需要设置的窗口大小: {window_width}x{window_height}')
 
             # 计算位置
-            x, y = self.calculate_window_position(window_width, window_height, position)
+            x, y = self.calculate_window_position(screen_n, window_width, window_height, position)
             result = win32gui.SetWindowPos(hwnd, 0, x, y, window_width, window_height, win32con.SWP_NOZORDER)
             if result == 0:
                 logger.error('设置窗口大小失败')
@@ -387,16 +406,16 @@ class WinClient:
                 )
             else:
                 logger.info(f'成功设置客户区分辨率为: {client_width}x{client_height}')
-
         except Exception as e:
             logger.error(f'设置分辨率时发生错误: {e}')
             raise Exception(f'无法设置分辨率: {e}')
 
-    def change_resolution_compat(self, client_width, client_height, position='center'):
+    def change_resolution_compat(self, screen_n, client_width, client_height, position='center'):
         """
-        设置窗口客户区大小为指定分辨率（兼容 DPI 缩放），并调整位置
+        设置窗口客户区大小为指定分辨率，并调整位置
 
         参数:
+            screen_n: 屏幕编号
             client_width: 客户区宽度(像素)
             client_height: 客户区高度(像素)
             position: 窗口位置（center/left/right/topleft/topright）
@@ -417,9 +436,8 @@ class WinClient:
                 GetDpiForWindow = ctypes.windll.user32.GetDpiForWindow
                 dpi = GetDpiForWindow(hwnd)
             except Exception:
-                # 如果不支持，就用系统 DPI（一般是 96）
-                dpi = 96
-            logger.debug(f'窗口 DPI: {dpi}')
+                dpi = 96  # 不支持时默认 96
+            logger.info(f'窗口 DPI: {dpi / 96 * 100}%')
 
             # 准备调用 AdjustWindowRectExForDpi
             AdjustWindowRectExForDpi = ctypes.windll.user32.AdjustWindowRectExForDpi
@@ -432,8 +450,8 @@ class WinClient:
             ]
             AdjustWindowRectExForDpi.restype = wintypes.BOOL
 
-            # 先构造一个客户区矩形
-            rect = wintypes.RECT(0, 0, client_width, client_height)
+            # 先构造一个客户区矩形，考虑 DPI 缩放
+            rect = wintypes.RECT(0, 0, int(client_width), int(client_height))
 
             # 获取当前窗口的 style 和 ex_style
             style = win32gui.GetWindowLong(hwnd, win32con.GWL_STYLE)
@@ -446,16 +464,16 @@ class WinClient:
 
             window_width = rect.right - rect.left
             window_height = rect.bottom - rect.top
-            logger.debug(f'需要设置的窗口矩形: {window_width}x{window_height}')
+            logger.debug(f'需要设置的窗口矩形（含边框）: {window_width}x{window_height}')
 
-            # 计算位置
-            x, y = self.calculate_window_position(window_width, window_height, position)
+            # 计算窗口位置
+            x, y = self.calculate_window_position(screen_n, window_width, window_height, position)
             result = win32gui.SetWindowPos(hwnd, 0, x, y, window_width, window_height, win32con.SWP_NOZORDER)
             if result == 0:
                 logger.error('设置窗口大小失败')
                 raise Exception('设置窗口大小失败')
 
-            # 验证设置是否成功
+            # 验证客户区大小
             new_rect = win32gui.GetClientRect(hwnd)
             logger.debug(f'设置后的客户区大小: {new_rect[2]}x{new_rect[3]}')
 
@@ -470,15 +488,17 @@ class WinClient:
             logger.error(f'设置分辨率时发生错误: {e}')
             raise Exception(f'无法设置分辨率: {e}')
 
-    def ensure_resolution(self, client_width, client_height, position, retries=5, interval=1.0, stable_time=5.0):
+    def ensure_resolution(
+        self, screen_n, client_width, client_height, position, retries=5, interval=1.0, stable_time=5.0
+    ):
         """确保窗口分辨率被成功设置，并保持一段时间"""
         logger.info(f'持续设置窗口分辨率：[{self.current_window.name}]:{self.current_window.title}')
         compat = getattr(self.config, f'PCClient_{self.current_window.name}ResolutionCompat', False)
         for i in range(retries):
             if compat:
-                self.change_resolution_compat(client_width, client_height, position)
+                self.change_resolution_compat(screen_n, client_width, client_height, position)
             else:
-                self.change_resolution(client_width, client_height, position)
+                self.change_resolution(screen_n, client_width, client_height, position)
             time.sleep(interval)
             hwnd = win32gui.FindWindow(self.current_window.class_name, self.current_window.title)
             if hwnd:
@@ -517,7 +537,9 @@ class WinClient:
                     return
                 set_game_resolution(width, height, is_fullscreen)
                 logger.debug(
-                    f'修改游戏分辨率: {self.game_resolution[0]}x{self.game_resolution[1]} ({"全屏" if self.game_resolution[2] else "窗口"}) --> {width}x{height} ({"全屏" if is_fullscreen else "窗口"})'
+                    f'修改游戏分辨率: {self.game_resolution[0]}x{self.game_resolution[1]} '
+                    f'({"全屏" if self.game_resolution[2] else "窗口"}) --> '
+                    f'{width}x{height} ({"全屏" if is_fullscreen else "窗口"})'
                 )
         except FileNotFoundError:
             logger.debug('指定的注册表项未找到')
@@ -530,7 +552,8 @@ class WinClient:
             if self.game_resolution:
                 set_game_resolution(self.game_resolution[0], self.game_resolution[1], self.game_resolution[2])
                 logger.debug(
-                    f'恢复游戏分辨率: {self.game_resolution[0]}x{self.game_resolution[1]} ({"全屏" if self.game_resolution[2] else "窗口"})'
+                    f'恢复游戏分辨率: {self.game_resolution[0]}x{self.game_resolution[1]} '
+                    f'({"全屏" if self.game_resolution[2] else "窗口"})'
                 )
         except Exception as e:
             logger.error(f'写入注册表值时发生错误: {e}')
@@ -557,27 +580,48 @@ class WinClient:
         except Exception as e:
             logger.warning(f'恢复游戏自动 HDR 设置时发生错误：{e}')
 
-    def check_screen_resolution(self, target_width: int, target_height: int) -> None:
-        """
-        检查桌面分辨率是否符合要求。
+    def get_physical_resolutions(self):
+        """返回所有屏幕的分辨率"""
+        monitors = win32api.EnumDisplayMonitors()
+        resolutions = []
+        for i, (hMonitor, hDC, (left, top, right, bottom)) in enumerate(monitors):
+            width = right - left
+            height = bottom - top
+            resolutions.append((width, height))
+        return resolutions
 
-        如果桌面分辨率小于目标分辨率，则记录错误并抛出异常。
-
-        参数:
-            target_width (int): 目标分辨率的宽度。
-            target_height (int): 目标分辨率的高度。
+    def check_screen_resolution(self, screen_n, target_width: int, target_height: int) -> None:
         """
-        logger.info('检查桌面分辨率')
-        self.screen_resolution = pyautogui.size()
-        screen_width, screen_height = self.screen_resolution
-        if screen_width < target_width or screen_height < target_height:
-            logger.error(f'桌面分辨率: {screen_width}x{screen_height}，目标分辨率: {target_width}x{target_height}')
-            logger.error(
-                f'显示器横向分辨率必须大于 {target_width}，竖向分辨率必须大于 {target_height}；请在设置中开启 屏幕旋转 或者竖屏使用，或者更换更大的显示器/使用uu远程超级屏/使用 HDMI/VGA 显卡欺骗器'
-            )
-            raise Exception('桌面分辨率过低，请在设置中开启屏幕旋转')
-        else:
-            logger.debug(f'桌面分辨率: {screen_width}x{screen_height}')
+        检查指定屏幕的分辨率是否符合要求。
+        如果小于目标分辨率，则记录错误并抛出异常。
+        """
+        logger.info(f'检查屏幕 {screen_n} 分辨率')
+
+        try:
+            monitors = self.get_physical_resolutions()
+            if not monitors:
+                raise Exception('未检测到任何显示器')
+
+            if screen_n >= len(monitors):
+                raise Exception(f'屏幕编号 {screen_n} 超出范围（共 {len(monitors)} 个屏幕）')
+
+            screen_width, screen_height = monitors[screen_n]
+            logger.info(f'屏幕 {screen_n} 分辨率: {screen_width}x{screen_height}')
+
+            if screen_width < target_width or screen_height < target_height:
+                logger.error(
+                    f'屏幕 {screen_n} 分辨率: {screen_width}x{screen_height}，目标: {target_width}x{target_height}'
+                )
+                logger.error(
+                    f'屏幕 {screen_n} 分辨率不足，请开启旋转屏幕/将屏幕设置为纵向/更换高分辨率显示器，'
+                    f'或使用显卡欺骗器/UU超级屏/虚拟扩展屏幕。'
+                )
+                raise ScreenResolutionNotEnough
+            else:
+                logger.debug(f'屏幕 {screen_n} 分辨率符合要求')
+        except Exception as e:
+            logger.error(f'检查分辨率时发生错误: {e}')
+            raise
 
     def check_resolution(self, target_width: int, target_height: int) -> None:
         """
