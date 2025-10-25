@@ -7,8 +7,8 @@
 # NIKKEAutoScript
 
 
-胜利女神：NIKKE 自动日常脚本，支持所有设置为**简体中文**的 PC/模拟器客户端（**国服除外**）。Fork 自 [NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)  
-GODDESS OF VICTORY: NIKKE automatic daily script, supporting all PC/Emulator clients set to **Simplified Chinese (zh\_CN)**, **except the Chinese server (CN)**. Forked from [NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
+胜利女神：NIKKE 自动日常脚本，支持所有 PC/模拟器客户端（**国服除外**）。Fork 自 [NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)  
+GODDESS OF VICTORY: NIKKE automatic daily script, supporting all PC/Emulator clients, **except the Chinese server (CN)**. Forked from [NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
 
 **如果觉得有帮助，请帮我点个 ⭐ Star 支持一下！**  
 *If you find it helpful, please give it a ⭐ Star to support!*
@@ -74,7 +74,11 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
 
 ---
 
-### 支持功能，当前所有计划中的功能已做完
+### 支持语言
+- [ ] English **(In Progress)**
+- [x] 简体中文
+
+### 支持功能
 - [x] PC客户端/模拟器支持，PC端多屏幕支持
 - [x] 模拟器自动启动，PC客户端自动启动，任务自动启动
 - [x] 每日收获、歼灭、派遣、收藏品自选
@@ -101,13 +105,12 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
 - [x] 支持docker部署
 - [x] Hosts修改
 
-### 更新计划，可能会做
+### 更新计划
 - [ ] ~~修复uiautomator自动安装~~
 - [ ] pjjc监控/提醒/反打（没明确需求？）
 - [ ] dashboard（写了一半）
 - [ ] ~~自动/手动账号切换（代码架构限制可能做不了）~~
 - [ ] 模拟室刷buff（很麻烦）
-- [ ] English Support
 
 ---
 

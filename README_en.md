@@ -6,7 +6,7 @@
 
 # NIKKEAutoScript
 
-GODDESS OF VICTORY: NIKKE automatic daily script, supporting all PC and emulator clients set to **Simplified Chinese (zh_CN)**, **excluding the Chinese mainland server (CN)**.  
+GODDESS OF VICTORY: NIKKE automatic daily script, supporting all PC and emulator clients, **excluding the Chinese mainland server (CN)**.  
 Forked from [NIKKEAutoScript](https://github.com/takagisanmie/NIKKEAutoScript)
 
 **If you find this project helpful, please give it a ⭐ Star to support!**
@@ -75,7 +75,12 @@ Detailed answers can be found here:
 
 ---
 
-### Supported Features (All planned features completed)
+### Supported Languages
+
+- [ ] English **(In Progress)**
+- [x] 简体中文
+
+### Supported Features
 
 - [x] PC client/emulator support, multi-monitor support on PC  
 - [x] Automatic startup of emulator, automatic startup of PC client, automatic startup of tasks  
@@ -103,14 +108,13 @@ Detailed answers can be found here:
 - [x] Docker deployment support  
 - [x] Hosts file modification  
 
-### Planned Updates (May be implemented later)
+### Planned Updates
 
 - [ ] ~~Fix uiautomator auto installation~~  
 - [ ] pjjc monitoring/notifications/counteractions (pending demand)  
 - [ ] Dashboard (in progress)  
 - [ ] ~~Auto/manual account switching (may not be possible due to architecture)~~  
 - [ ] Simulation room buff farming (complex)  
-- [ ] English Support  
 
 ---
 
