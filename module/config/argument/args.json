@@ -2274,9 +2274,8 @@
   "BlaCDKManual": {
     "BlaCDKManual": {
       "CDK": {
-        "type": "input",
-        "value": "",
-        "valuetype": "str"
+        "type": "textarea",
+        "value": ""
       }
     },
     "Storage": {

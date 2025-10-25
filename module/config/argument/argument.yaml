@@ -288,7 +288,7 @@ SemiCombat:
 BlaCDKManual:
   CDK:
     value: ''
-    valuetype: str
+    type: textarea
 Highlights:
   AutoSwitch:
     value: true

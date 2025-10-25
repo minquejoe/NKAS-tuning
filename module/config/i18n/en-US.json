@@ -928,7 +928,7 @@
     },
     "CDK": {
       "name": "CDK",
-      "help": "Paste CDK into the input box, save settings, then start to redeem"
+      "help": "Paste the CDKs into the input box, one per line. After the prompt says the settings have been saved successfully, click Start to redeem."
     }
   },
   "Highlights": {
