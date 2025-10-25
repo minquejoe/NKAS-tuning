@@ -71,6 +71,7 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
 > 如果在使用过程中遇到问题，您可以通过以下方式获取帮助：
 > - 在 [GitHub Issues](https://github.com/megumiss/NIKKEAutoScript/issues) 提交问题
 > - 加入划水 QQ 群：[823265807](https://qm.qq.com/q/ibQKuQI9Ko)
+> - 加入tg群组：[Telegram](https://t.me/+D-Pguv_oapwyMjhl)
 
 ---
 
