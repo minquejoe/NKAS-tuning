@@ -257,6 +257,12 @@
       "help": "",
       "adb": "ADB (Emulator)",
       "win": "Windows (PC)"
+    },
+    "Language": {
+      "name": "Game Language",
+      "help": "",
+      "zh-CN": "简体中文",
+      "en-US": "English"
     }
   },
   "Emulator": {
@@ -273,11 +279,6 @@
       "help": "If multiple game clients are installed on the emulator, select the correct one manually",
       "com.proximabeta.nikke": "International",
       "com.gamamobi.nikke": "Hong Kong/Taiwan"
-    },
-    "Language": {
-      "name": "Game Language",
-      "help": "Currently only Simplified Chinese is supported",
-      "zh-CN": "Simplified Chinese"
     },
     "ScreenshotMethod": {
       "name": "Emulator Screenshot Method",
@@ -389,11 +390,6 @@
       "help": "Launcher and game title/process will be auto-filled based on selected client. Clear related launcher/game title/process settings before switching.",
       "intl": "International",
       "hmt": "Hong Kong/Taiwan"
-    },
-    "Language": {
-      "name": "Game Language",
-      "help": "Currently only Simplified Chinese is supported",
-      "zh-CN": "Simplified Chinese"
     },
     "ScreenshotInterval": {
       "name": "Screenshot Interval",

@@ -1,7 +1,8 @@
 {
   "NKAS": {
     "Client": {
-      "Platform": "adb"
+      "Platform": "adb",
+      "Language": "zh-CN"
     },
     "Optimization": {
       "AutoRedCircle": false,
@@ -22,7 +23,6 @@
     "Emulator": {
       "Serial": "auto",
       "PackageName": "com.proximabeta.nikke",
-      "Language": "zh-CN",
       "ScreenshotMethod": "DroidCast",
       "ControlMethod": "minitouch",
       "AdbRestart": false,
@@ -40,7 +40,6 @@
   "PCClient": {
     "PCClientInfo": {
       "Client": "intl",
-      "Language": "zh-CN",
       "ScreenshotInterval": 0.3,
       "LauncherTitleName": null,
       "LauncherProcessName": null,

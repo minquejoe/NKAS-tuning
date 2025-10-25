@@ -3,6 +3,7 @@ import time
 
 import psutil
 
+from module.base.langs import Langs
 from module.config.config import NikkeConfig
 from module.config.language import set_language
 from module.config.server import set_server
@@ -46,7 +47,7 @@ class AppControl(WinClient, Login):
 
         # 启动器信息
         if not self.config.PCClientInfo_LauncherPath:
-            logger.error('必须填写启动器路径')
+            logger.error('Launcher path must be specified')
             raise RequestHumanTakeover
         launcher_path = os.path.normpath(self.config.PCClientInfo_LauncherPath)
         launcher_process = (
@@ -101,6 +102,9 @@ class AppControl(WinClient, Login):
             self.screen_rotate(self.config.PCClient_ScreenNumber, 1)
             time.sleep(3)
 
+        self.language = self.config.Client_Language
+        Langs.use(self.language)
+
         # 启动流程
         self.app_start()
         logger.attr('Process', self.current_window.process)
@@ -109,7 +113,6 @@ class AppControl(WinClient, Login):
         self.package = self.config.PCClientInfo_Client
         set_server(self.package)
         logger.attr('Client', self.package)
-        self.language = self.config.PCClientInfo_Language
         set_language(self.language)
         logger.attr('Language', self.language)
 
@@ -151,7 +154,7 @@ class AppControl(WinClient, Login):
             try:
                 # 检查是否已进入游戏
                 if self.switch_to_program():
-                    logger.info('游戏已在运行，检查分辨率')
+                    logger.info('Game is already running, verifying resolution')
                     self.ensure_resolution(
                         self.config.PCClient_ScreenNumber, 720, 1280, self.config.PCClient_GameWindowPosition
                     )
@@ -161,11 +164,11 @@ class AppControl(WinClient, Login):
                 # 启动启动器
                 self.current_window = self.launcher
                 if not self.switch_to_program() and not self.start_program():
-                    logger.error('启动器启动失败')
+                    logger.error('Launcher failed to start')
                     raise RequestHumanTakeover
                 # 切换到启动器前台
                 if not wait_until(lambda: self.switch_to_program(), 30):
-                    logger.error('切换到启动器超时')
+                    logger.error('Timeout while switching to launcher')
                     raise RequestHumanTakeover
                 # 设置启动器分辨率
                 # self.ensure_resolution(PROGRAM_LAUNCHER, 900, 600)
@@ -176,7 +179,7 @@ class AppControl(WinClient, Login):
                 self.login()
                 # 切换到游戏前台
                 if not wait_until(lambda: self.switch_to_program(), 60):
-                    logger.error('切换到游戏超时')
+                    logger.error('Timeout while switching to game')
                     raise RequestHumanTakeover
                 # 设置游戏分辨率
                 self.ensure_resolution(
@@ -189,7 +192,7 @@ class AppControl(WinClient, Login):
                 # 直接退出
                 raise AccountError
             except Exception as e:
-                logger.error(f'启动错误：{e}，尝试重试 {retry + 1}/{MAX_RETRY}')
+                logger.error(f'Startup error: {e}, retrying {retry + 1}/{MAX_RETRY}')
                 self.current_window = self.game
                 self.stop_program()
                 # 启动器打开失败
