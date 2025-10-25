@@ -1023,7 +1023,7 @@ class Event(UI):
             # 滑动到商店最上方
             if restart_flag:
                 logger.info('Scroll to shop top')
-                self.ensure_sroll((360, 600), (360, 900), speed=30, count=5, delay=2)
+                self.ensure_sroll_to_top((360, 600), (360, 900), speed=30, count=3, delay=2)
                 restart_flag = False
 
             self.device.screenshot()
@@ -1146,7 +1146,7 @@ class Event(UI):
                 logger.info('Scroll to next page')
                 self.device.stuck_record_clear()
                 self.device.click_record_clear()
-                self.ensure_sroll((360, 1100), (360, 480), speed=5, hold=1, count=1, delay=3, method='scroll')
+                self.ensure_sroll((360, 1100), (360, 480), speed=5, count=1, delay=3, method='scroll')
 
     def filter_sold_out_items(self, items, sold_outs):
         """
