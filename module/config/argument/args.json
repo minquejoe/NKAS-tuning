@@ -8,6 +8,14 @@
           "adb",
           "win"
         ]
+      },
+      "Language": {
+        "type": "select",
+        "value": "zh-CN",
+        "option": [
+          "zh-CN",
+          "en-US"
+        ]
       }
     },
     "Optimization": {
@@ -76,13 +84,6 @@
           "com.gamamobi.nikke",
           "com.proximabeta.nikke",
           "com.gamamobi.nikke"
-        ]
-      },
-      "Language": {
-        "type": "select",
-        "value": "zh-CN",
-        "option": [
-          "zh-CN"
         ]
       },
       "ScreenshotMethod": {
@@ -155,13 +156,6 @@
         "option": [
           "intl",
           "hmt"
-        ]
-      },
-      "Language": {
-        "type": "select",
-        "value": "zh-CN",
-        "option": [
-          "zh-CN"
         ]
       },
       "ScreenshotInterval": {

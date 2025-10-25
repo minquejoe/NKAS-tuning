@@ -3,6 +3,7 @@ import time
 
 import psutil
 
+from module.base.langs import Langs
 from module.config.config import NikkeConfig
 from module.config.language import set_language
 from module.config.server import set_server
@@ -101,6 +102,9 @@ class AppControl(WinClient, Login):
             self.screen_rotate(self.config.PCClient_ScreenNumber, 1)
             time.sleep(3)
 
+        self.language = self.config.Client_Language
+        Langs.use(self.language)
+
         # 启动流程
         self.app_start()
         logger.attr('Process', self.current_window.process)
@@ -109,7 +113,6 @@ class AppControl(WinClient, Login):
         self.package = self.config.PCClientInfo_Client
         set_server(self.package)
         logger.attr('Client', self.package)
-        self.language = self.config.PCClientInfo_Language
         set_language(self.language)
         logger.attr('Language', self.language)
 

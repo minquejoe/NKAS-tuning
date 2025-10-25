@@ -257,6 +257,12 @@
       "help": "",
       "adb": "ADB (模拟器)",
       "win": "Windows (PC端)"
+    },
+    "Language": {
+      "name": "游戏语言",
+      "help": "",
+      "zh-CN": "简体中文",
+      "en-US": "English"
     }
   },
   "Emulator": {
@@ -273,11 +279,6 @@
       "help": "模拟器上装有多个游戏客户端时，需要手动选择客户端",
       "com.proximabeta.nikke": "国际",
       "com.gamamobi.nikke": "港澳台"
-    },
-    "Language": {
-      "name": "游戏语言",
-      "help": "当前只支持简体中文",
-      "zh-CN": "简体中文"
     },
     "ScreenshotMethod": {
       "name": "模拟器截图方案",
@@ -389,11 +390,6 @@
       "help": "启动器、游戏的标题、进程会根据选择的客户端自动填写，切换该选项前需要先清空下方的启动器和游戏的进程、标题相关配置",
       "intl": "国际",
       "hmt": "港澳台"
-    },
-    "Language": {
-      "name": "游戏语言",
-      "help": "当前只支持简体中文",
-      "zh-CN": "简体中文"
     },
     "ScreenshotInterval": {
       "name": "截图间隔",

@@ -18,6 +18,9 @@ Client:
   Platform:
     value: adb
     option: [ adb, win ]
+  Language:
+    value: zh-CN
+    option: [ zh-CN, en-US ]
 Emulator:
   Serial:
     value: auto
@@ -25,9 +28,6 @@ Emulator:
   PackageName:
     value: com.proximabeta.nikke
     option: [ com.proximabeta.nikke, com.gamamobi.nikke, ]
-  Language:
-    value: zh-CN
-    option: [ zh-CN ]
   ScreenshotMethod:
     value: DroidCast
     option: [ DroidCast, ]
@@ -81,9 +81,6 @@ PCClientInfo:
   Client:
     value: intl
     option: [ intl, hmt ]
-  Language:
-    value: zh-CN
-    option: [ zh-CN ]
   ScreenshotInterval: 0.3
   LauncherTitleName:
     value: ''
