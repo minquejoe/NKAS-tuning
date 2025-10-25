@@ -391,9 +391,13 @@
       "intl": "International",
       "hmt": "Hong Kong/Taiwan"
     },
-    "ScreenshotInterval": {
-      "name": "Screenshot Interval",
-      "help": ""
+    "AutoFillName": {
+      "name": "Auto Fill Fields",
+      "help": "Automatically fills in the launcher and game title and process information"
+    },
+    "LauncherPath": {
+      "name": "Launcher Path",
+      "help": "Game launcher path. Required. Example: E:\\NIKKE\\Launcher\\nikke_launcher.exe"
     },
     "LauncherTitleName": {
       "name": "Launcher Title",
@@ -403,9 +407,9 @@
       "name": "Launcher Process",
       "help": "Launcher process name; usually no manual input required"
     },
-    "LauncherPath": {
-      "name": "Launcher Path",
-      "help": "Game launcher path. Required. Example: E:\\NIKKE\\Launcher\\nikke_launcher.exe"
+    "GamePath": {
+      "name": "Game Path",
+      "help": "Game path; usually auto-filled based on launcher path. Manually change if auto-filled path is incorrect"
     },
     "GameTitleName": {
       "name": "Game Title",
@@ -415,9 +419,9 @@
       "name": "Game Process",
       "help": "Game process name; usually no manual input required"
     },
-    "GamePath": {
-      "name": "Game Path",
-      "help": "Game path; usually auto-filled based on launcher path. Manually change if auto-filled path is incorrect"
+    "ScreenshotInterval": {
+      "name": "Screenshot Interval",
+      "help": ""
     }
   },
   "Optimization": {

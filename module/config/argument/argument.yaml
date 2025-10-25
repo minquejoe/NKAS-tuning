@@ -81,21 +81,22 @@ PCClientInfo:
   Client:
     value: intl
     option: [ intl, hmt ]
-  ScreenshotInterval: 0.3
+  AutoFillName: true
+  LauncherPath:
+    value: ''
+    type: textarea
   LauncherTitleName:
     value: ''
   LauncherProcessName:
     value: ''
-  LauncherPath:
+  GamePath:
     value: ''
     type: textarea
   GameTitleName:
     value: ''
   GameProcessName:
     value: ''
-  GamePath:
-    value: ''
-    type: textarea
+  ScreenshotInterval: 0.3
 Optimization:
   AutoRedCircle: false
   OcrModelType:

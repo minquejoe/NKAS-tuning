@@ -391,9 +391,13 @@
       "intl": "国际",
       "hmt": "港澳台"
     },
-    "ScreenshotInterval": {
-      "name": "截图间隔",
-      "help": ""
+    "AutoFillName": {
+      "name": "自动填充字段",
+      "help": "自动填充启动器、游戏的标题、进程信息"
+    },
+    "LauncherPath": {
+      "name": "启动器路径",
+      "help": "游戏启动器路径，必填，例如：E:\\NIKKE\\Launcher\\nikke_launcher.exe"
     },
     "LauncherTitleName": {
       "name": "启动器标题",
@@ -403,9 +407,9 @@
       "name": "启动器进程",
       "help": "启动进程的名称，一般无需手动填写"
     },
-    "LauncherPath": {
-      "name": "启动器路径",
-      "help": "游戏启动器路径，必填，例如：E:\\NIKKE\\Launcher\\nikke_launcher.exe"
+    "GamePath": {
+      "name": "游戏路径",
+      "help": "游戏路径，一般无需手动填写，会根据启动器路径自动填写，如果自动填写的路径错误请手动更改"
     },
     "GameTitleName": {
       "name": "游戏标题",
@@ -415,9 +419,9 @@
       "name": "游戏进程",
       "help": "游戏进程的名称，一般无需手动填写"
     },
-    "GamePath": {
-      "name": "游戏路径",
-      "help": "游戏路径，一般无需手动填写，会根据启动器路径自动填写，如果自动填写的路径错误请手动更改"
+    "ScreenshotInterval": {
+      "name": "截图间隔",
+      "help": ""
     }
   },
   "Optimization": {

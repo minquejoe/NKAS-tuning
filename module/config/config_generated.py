@@ -46,13 +46,14 @@ class GeneratedConfig:
 
     # Group `PCClientInfo`
     PCClientInfo_Client = 'intl'  # intl, hmt
-    PCClientInfo_ScreenshotInterval = 0.3
+    PCClientInfo_AutoFillName = True
+    PCClientInfo_LauncherPath = None
     PCClientInfo_LauncherTitleName = None
     PCClientInfo_LauncherProcessName = None
-    PCClientInfo_LauncherPath = None
+    PCClientInfo_GamePath = None
     PCClientInfo_GameTitleName = None
     PCClientInfo_GameProcessName = None
-    PCClientInfo_GamePath = None
+    PCClientInfo_ScreenshotInterval = 0.3
 
     # Group `Optimization`
     Optimization_AutoRedCircle = False
