@@ -40,13 +40,14 @@
   "PCClient": {
     "PCClientInfo": {
       "Client": "intl",
-      "ScreenshotInterval": 0.3,
+      "AutoFillName": true,
+      "LauncherPath": null,
       "LauncherTitleName": null,
       "LauncherProcessName": null,
-      "LauncherPath": null,
+      "GamePath": null,
       "GameTitleName": null,
       "GameProcessName": null,
-      "GamePath": null
+      "ScreenshotInterval": 0.3
     },
     "PCClient": {
       "Screens": false,

@@ -498,12 +498,14 @@ class Blablalink(UI):
 
         # 3. 构建待兑换列表
         if cdk:
-            # 单CDK模式
+            # 支持多CDK模式
+            candidate_cdks = [line.strip() for line in cdk.splitlines() if line.strip()]
             unredeemed_cdks = []
-            if cdk not in redeemed_cdks and cdk not in temp_cdks:
-                unredeemed_cdks.append(cdk)
-            else:
-                logger.info(f'CDK {cdk} already redeemed or recorded, skipping')
+            for code in candidate_cdks:
+                if code not in redeemed_cdks and code not in temp_cdks:
+                    unredeemed_cdks.append(code)
+                else:
+                    logger.info(f'CDK {code} already redeemed or recorded, skipping')
         else:
             # 批量模式：官方 + 额外来源
             unredeemed_cdks = self.get_official_cdks().copy()

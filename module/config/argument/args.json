@@ -158,9 +158,13 @@
           "hmt"
         ]
       },
-      "ScreenshotInterval": {
-        "type": "input",
-        "value": 0.3
+      "AutoFillName": {
+        "type": "checkbox",
+        "value": true
+      },
+      "LauncherPath": {
+        "type": "textarea",
+        "value": ""
       },
       "LauncherTitleName": {
         "type": "input",
@@ -170,7 +174,7 @@
         "type": "input",
         "value": ""
       },
-      "LauncherPath": {
+      "GamePath": {
         "type": "textarea",
         "value": ""
       },
@@ -182,9 +186,9 @@
         "type": "input",
         "value": ""
       },
-      "GamePath": {
-        "type": "textarea",
-        "value": ""
+      "ScreenshotInterval": {
+        "type": "input",
+        "value": 0.3
       }
     },
     "PCClient": {
@@ -2274,9 +2278,8 @@
   "BlaCDKManual": {
     "BlaCDKManual": {
       "CDK": {
-        "type": "input",
-        "value": "",
-        "valuetype": "str"
+        "type": "textarea",
+        "value": ""
       }
     },
     "Storage": {

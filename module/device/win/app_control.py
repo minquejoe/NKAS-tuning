@@ -50,18 +50,33 @@ class AppControl(WinClient, Login):
             logger.error('Launcher path must be specified')
             raise RequestHumanTakeover
         launcher_path = os.path.normpath(self.config.PCClientInfo_LauncherPath)
-        launcher_process = (
-            self.config.PCClientInfo_LauncherProcessName or LAUNCHER_PROCESS[self.config.PCClientInfo_Client]
-        )
-        launcher_window_title = (
-            self.config.PCClientInfo_LauncherTitleName or LAUNCHER_TITLE[self.config.PCClientInfo_Client]
-        )
-        launcher_window_class = 'TWINCONTROL'
 
-        # 游戏信息
-        # game_path = os.path.normpath(self.config.PCClientInfo_GamePath)
-        game_process = self.config.PCClientInfo_GameProcessName or GAME_PROCESS[self.config.PCClientInfo_Client]
-        game_window_title = self.config.PCClientInfo_GameTitleName or GAME_TITLE[self.config.PCClientInfo_Client]
+        if self.config.PCClientInfo_AutoFillName:
+            # 使用固定的 GAME_ / LAUNCHER_ 信息
+            launcher_process = LAUNCHER_PROCESS[self.config.PCClientInfo_Client]
+            launcher_window_title = LAUNCHER_TITLE[self.config.PCClientInfo_Client]
+            game_process = GAME_PROCESS[self.config.PCClientInfo_Client]
+            game_window_title = GAME_TITLE[self.config.PCClientInfo_Client]
+        else:
+            # 使用配置中自定义值
+            launcher_process = (
+                self.config.PCClientInfo_LauncherProcessName
+                or LAUNCHER_PROCESS[self.config.PCClientInfo_Client]
+            )
+            launcher_window_title = (
+                self.config.PCClientInfo_LauncherTitleName
+                or LAUNCHER_TITLE[self.config.PCClientInfo_Client]
+            )
+            game_process = (
+                self.config.PCClientInfo_GameProcessName
+                or GAME_PROCESS[self.config.PCClientInfo_Client]
+            )
+            game_window_title = (
+                self.config.PCClientInfo_GameTitleName
+                or GAME_TITLE[self.config.PCClientInfo_Client]
+            )
+
+        launcher_window_class = 'TWINCONTROL'
         game_window_class = 'UnityWndClass'
 
         # 创建 Window 对象

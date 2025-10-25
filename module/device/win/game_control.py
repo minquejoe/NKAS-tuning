@@ -17,6 +17,7 @@ import psutil
 import win32api
 import win32con
 import win32gui
+import win32process
 from desktopmagic.screengrab_win32 import getDisplayRects
 from numpy import ndarray
 
@@ -184,15 +185,52 @@ class WinClient:
                 raise Exception('Failed to set window foreground')
 
     def switch_to_program(self) -> bool:
-        """将程序窗口切换到前台"""
+        """将程序窗口切换到前台，并精确匹配进程路径"""
         logger.info(f'Switching window to foreground: [{self.current_window.name}]:{self.current_window.title}')
+
+        matched_hwnd = None
         try:
-            hwnd = win32gui.FindWindow(self.current_window.class_name, self.current_window.title)
-            if hwnd == 0:
-                logger.warning('Window not found')
+            # 遍历所有顶层窗口，查找所有符合条件的窗口句柄
+            def enum_windows_callback(hwnd, hwnd_list):
+                try:
+                    title = win32gui.GetWindowText(hwnd)
+                    class_name = win32gui.GetClassName(hwnd)
+                    if not title or not win32gui.IsWindowVisible(hwnd):
+                        return
+
+                    if class_name == self.current_window.class_name and title == self.current_window.title:
+                        hwnd_list.append(hwnd)
+                except Exception:
+                    pass
+
+            hwnd_list = []
+            win32gui.EnumWindows(enum_windows_callback, hwnd_list)
+            if not hwnd_list:
+                logger.warning('No matching window found by title/class.')
                 return False
-            self.set_foreground_window_with_retry(hwnd)
-            logger.info('Window switched to foreground')
+            logger.debug(f'Found {len(hwnd_list)} matching windows, checking process path...')
+
+            # 按路径匹配窗口
+            for hwnd in hwnd_list:
+                try:
+                    _, pid = win32process.GetWindowThreadProcessId(hwnd)
+                    process = psutil.Process(pid)
+                    exe_path = process.exe()
+
+                    if hasattr(self.current_window, 'path') and self.current_window.path:
+                        if exe_path.lower() == self.current_window.path.lower():
+                            matched_hwnd = hwnd
+                            logger.debug(f'Matched window PID={pid}, Path={exe_path}')
+                            break
+                except Exception as e:
+                    logger.warning(f'Failed to check process path for window: {e}')
+            if not matched_hwnd:
+                logger.warning('No window matched expected process path.')
+                return False
+
+            # 切换到目标窗口
+            self.set_foreground_window_with_retry(matched_hwnd)
+            logger.info('Window switched to foreground successfully.')
             return True
         except Exception as e:
             logger.error(f'Error activating window: {e}')
@@ -513,7 +551,9 @@ class WinClient:
                             logger.warning('Resolution changed during stability check, retrying...')
                             break
                     else:
-                        logger.info(f'Resolution successfully maintained at {client_width}x{client_height} for over {stable_time} seconds')
+                        logger.info(
+                            f'Resolution successfully maintained at {client_width}x{client_height} for over {stable_time} seconds'
+                        )
                         return True
                     # 如果 break 了就继续外层 for 循环
                 else:
@@ -641,7 +681,9 @@ class WinClient:
         window_width, window_height = resolution
 
         if window_width != target_width or window_height != target_height:
-            logger.error(f'Window resolution: {window_width}x{window_height} ≠ {target_width}x{target_height}, resolution error')
+            logger.error(
+                f'Window resolution: {window_width}x{window_height} ≠ {target_width}x{target_height}, resolution error'
+            )
             raise Exception('Window resolution error')
         else:
             logger.info(f'Window resolution: {window_width}x{window_height}')
