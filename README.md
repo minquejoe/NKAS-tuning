@@ -131,7 +131,13 @@ Alas的所有开发者，到现在我还是觉得Alas的源码不明觉厉
   <img src="https://raw.githubusercontent.com/megumiss/NIKKEAutoScript/master/doc/assets/alipay.png" alt="Alipay" width="200"/>
 </p>
 
-**For international supporters:** [🌍 UniFans](https://app.unifans.io/c/megumiss)
+**For international supporters:**
+
+<p>
+  <img src="https://raw.githubusercontent.com/megumiss/NIKKEAutoScript/master/doc/assets/alipayremit.png" alt="Alipay Remit" width="200"/>
+</p>
+
+Support: Hanpass PandaRemit WireBarley GmoneyTrans Debunk PayForex koala transfer Sendly GME
 
 ---
 

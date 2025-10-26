@@ -134,7 +134,13 @@
   <img src="https://raw.githubusercontent.com/megumiss/NIKKEAutoScript/master/doc/assets/alipay.png" alt="Alipay" width="200"/>
 </p>
 
-**海外からの支援はこちら：** [🌍 UniFans](https://app.unifans.io/c/megumiss)
+**海外からの支援はこちら：**
+
+<p>
+  <img src="https://raw.githubusercontent.com/megumiss/NIKKEAutoScript/master/doc/assets/alipayremit.png" alt="Alipay Remit" width="200"/>
+</p>
+
+対応サービス: Hanpass PandaRemit WireBarley GmoneyTrans Debunk PayForex koala transfer Sendly GME
 
 ---
 

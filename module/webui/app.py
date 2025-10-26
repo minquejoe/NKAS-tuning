@@ -1179,16 +1179,21 @@ class NKASGUI(Frame):
             ).style("text-align: center")
             # 本地图片
             put_html("""
-                <p style="text-align:center">
-                    <img src="/static/assets/wechat.png" alt="微信" width="200"/>
-                    <img src="/static/assets/alipay.png" alt="支付宝" width="200"/>
-                </p>
+            <div style="text-align:center">
+                <div style="display:inline-block; margin: 5px;">
+                    <img src="/static/assets/wechat.png" alt="WeChat" width="200"/><br/>
+                    <small>WeChat Pay (微信)</small>
+                </div>
+                <div style="display:inline-block; margin: 5px;">
+                    <img src="/static/assets/alipay.png" alt="Alipay" width="200"/><br/>
+                    <small>Alipay (支付宝)</small>
+                </div>
+                <div style="display:inline-block; margin: 5px;">
+                    <img src="/static/assets/alipayremit.png" alt="Alipay Remit" width="200"/><br/>
+                    <small>Alipay Remit (For international)</small>
+                </div>
+            </div>
             """)
-            put_markdown(
-                """
-            **For international supporters:** https://app.unifans.io/c/megumiss
-            """
-            ).style("text-align: center")
 
         if lang.TRANSLATE_MODE:
             lang.reload()
