@@ -398,6 +398,7 @@ class WinClient:
         """
         设置窗口客户区大小为指定分辨率，并调整位置
         参数:
+            screen_n: 屏幕编号
             client_width: 客户区宽度(像素)
             client_height: 客户区高度(像素)
             position: 窗口位置（center/left/right/topleft/topright）
@@ -424,11 +425,42 @@ class WinClient:
             # 计算需要的窗口大小（包括边框）
             window_width = client_width + 2 * border_width
             window_height = client_height + 2 * border_height
-
             logger.debug(f'Required window size: {window_width}x{window_height}')
 
-            # 计算位置
+            # 获取指定屏幕的工作区
+            monitors = win32api.EnumDisplayMonitors()
+            if screen_n >= len(monitors):
+                raise ValueError(f'screen_n {screen_n} out of range, {len(monitors)} monitors detected')
+            monitor_handle = monitors[screen_n][0]
+            monitor_info = win32api.GetMonitorInfo(monitor_handle)
+            work_area = monitor_info['Work']  # (left, top, right, bottom)
+            logger.debug(f'Work area of screen {screen_n} (excluding taskbar): {work_area}')
+
+            # 计算窗口位置
             x, y = self.calculate_window_position(screen_n, window_width, window_height, position)
+
+            # 如果窗口底部超出工作区，则上移 delta
+            if y + window_height > work_area[3]:
+                delta = (y + window_height) - work_area[3]
+                y = max(work_area[1], y - delta)
+                logger.debug(f'Adjusted Y position upward by {delta}px to avoid taskbar overlap')
+
+            # 如果窗口顶部超出工作区，则下移
+            if y < work_area[1]:
+                delta = work_area[1] - y
+                y += delta
+                logger.debug(f'Adjusted Y position downward by {delta}px to fit work area')
+
+            # 横向边界检查
+            if x + window_width > work_area[2]:
+                delta = (x + window_width) - work_area[2]
+                x = max(work_area[0], x - delta)
+                logger.debug(f'Adjusted X position leftward by {delta}px to fit work area')
+            if x < work_area[0]:
+                delta = work_area[0] - x
+                x += delta
+                logger.debug(f'Adjusted X position rightward by {delta}px to fit work area')
+
             result = win32gui.SetWindowPos(hwnd, 0, x, y, window_width, window_height, win32con.SWP_NOZORDER)
             if result == 0:
                 logger.error('Failed to set window size')
@@ -450,8 +482,7 @@ class WinClient:
 
     def change_resolution_compat(self, screen_n, client_width, client_height, position='center'):
         """
-        设置窗口客户区大小为指定分辨率，并调整位置
-
+        设置窗口客户区大小为指定分辨率，并调整位置（兼容模式）
         参数:
             screen_n: 屏幕编号
             client_width: 客户区宽度(像素)
@@ -504,8 +535,38 @@ class WinClient:
             window_height = rect.bottom - rect.top
             logger.debug(f'Required window rect (with border): {window_width}x{window_height}')
 
-            # 计算窗口位置
+            # 获取指定屏幕的工作区
+            monitors = win32api.EnumDisplayMonitors()
+            if screen_n >= len(monitors):
+                raise ValueError(f'screen_n {screen_n} out of range, {len(monitors)} monitors detected')
+            monitor_handle = monitors[screen_n][0]
+            monitor_info = win32api.GetMonitorInfo(monitor_handle)
+            work_area = monitor_info['Work']
+            logger.debug(f'Work area of screen {screen_n} (excluding taskbar): {work_area}')
+
+            # 计算窗口位置（基于工作区中心）
             x, y = self.calculate_window_position(screen_n, window_width, window_height, position)
+            # 如果窗口底部超出工作区，则自动上移
+            if y + window_height > work_area[3]:
+                delta = (y + window_height) - work_area[3]
+                y = max(work_area[1], y - delta)
+                logger.debug(f'Adjusted Y position upward by {delta}px to avoid taskbar overlap')
+            # 如果窗口顶部超出工作区，则下移
+            if y < work_area[1]:
+                delta = work_area[1] - y
+                y += delta
+                logger.debug(f'Adjusted Y position downward by {delta}px to fit work area')
+
+            # 横向边界
+            if x + window_width > work_area[2]:
+                delta = (x + window_width) - work_area[2]
+                x = max(work_area[0], x - delta)
+                logger.debug(f'Adjusted X position leftward by {delta}px to fit work area')
+            if x < work_area[0]:
+                delta = work_area[0] - x
+                x += delta
+                logger.debug(f'Adjusted X position rightward by {delta}px to fit work area')
+
             result = win32gui.SetWindowPos(hwnd, 0, x, y, window_width, window_height, win32con.SWP_NOZORDER)
             if result == 0:
                 logger.error('Failed to set window size')
