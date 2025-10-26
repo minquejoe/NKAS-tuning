@@ -12,6 +12,10 @@ class LangMeta(type):
         "LANUCHER_ACCOUNT_CONFIGURATION_ERROR": {"en-US": "Account configuration error", "zh-CN": "暂未设置密码", "ja-JP": ""},
         "LANUCHER_INCORRECT_PASSWORD": {"en-US": "Incorrect password", "zh-CN": "密码错误", "ja-JP": ""},
         "LANUCHER_GAME_SETTING": {"en-US": "GAME SETTINGS", "zh-CN": "游戏设置", "ja-JP": ""},
+        # 协同作战/coop/
+        "COOP_TIMELINE_HOUR": {"en-US": "H", "zh-CN": "小时", "ja-JP": ""},
+        "COOP_TIMELINE_LEFT": {"en-US": "Left", "zh-CN": "剩余", "ja-JP": ""},
+        "COOP_TIMELINE_TIMEOUT": {"en-US": "Times Up", "zh-CN": "时间到", "ja-JP": ""},
     }
     _current_lang = "zh-CN"
 

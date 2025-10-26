@@ -1,3 +1,4 @@
+from module.base.langs import Langs
 from module.base.timer import Timer
 from module.base.utils import crop
 from module.coop.assets import *
@@ -50,7 +51,9 @@ class Coop(UI):
     @property
     def dateline(self) -> bool:
         date = self.coop_date
-        if date == '时间到' or ('小时' not in date and '剩余' not in date):
+        if date == Langs.COOP_TIMELINE_TIMEOUT or (
+            Langs.COOP_TIMELINE_HOUR not in date and Langs.COOP_TIMELINE_LEFT not in date
+        ):
             logger.info('[Coop has expired]')
             return True
         return False
