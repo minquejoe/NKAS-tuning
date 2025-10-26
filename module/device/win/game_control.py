@@ -217,15 +217,20 @@ class WinClient:
                     process = psutil.Process(pid)
                     exe_path = process.exe()
 
+                    # 每个候选窗口的信息
+                    logger.debug(f'Checking window HWND={hwnd}, PID={pid}, Path={exe_path}')
                     if hasattr(self.current_window, 'path') and self.current_window.path:
-                        if exe_path.lower() == self.current_window.path.lower():
+                        expected_path = self.current_window.path
+                        if exe_path.lower() == expected_path.lower():
                             matched_hwnd = hwnd
-                            logger.debug(f'Matched window PID={pid}, Path={exe_path}')
+                            logger.info(f'Path matched: {exe_path}')
                             break
+                        else:
+                            logger.debug(f'Path mismatch:\nExpected: {expected_path}\nActual:   {exe_path}')
                 except Exception as e:
                     logger.warning(f'Failed to check process path for window: {e}')
             if not matched_hwnd:
-                logger.warning('No window matched expected process path.')
+                logger.error(f'No window matched expected process path={self.current_window.path}')
                 return False
 
             # 切换到目标窗口
