@@ -1,6 +1,7 @@
 import ctypes
 import time
 
+from module.base.langs import Langs
 from module.base.timer import Timer
 from module.config.account import load_account
 from module.device.win.automation import Automation
@@ -29,10 +30,10 @@ class Login(LauncherOcr, Automation):
                     break
             else:
                 self.switch_to_program()
-                if self.appear_text('电子邮件账号', threshold=0.9):
+                if self.appear_text(Langs.LANUCHER_EMAIL, threshold=0.9):
                     need_login = True
                     break
-                if self.appear_text('启动', threshold=0.9) or self.appear_text('更新', threshold=0.9):
+                if self.appear_text(Langs.LANUCHER_LAUNCH, threshold=0.9) or self.appear_text(Langs.LANUCHER_UPDATE, threshold=0.9):
                     break
             finally:
                 if not confirm_timer.started():
@@ -49,8 +50,8 @@ class Login(LauncherOcr, Automation):
             # 判断输入框是否存在邮箱
             text = self.ocr_text()
             # 忘记密码的坐标，取x轴
-            pass_loc = self.get_location('忘记密码', text)
-            email_loc, email_area = self.check_extra_fields(text, '电子邮件账号', '密码')
+            pass_loc = self.get_location(Langs.LANUCHER_FORGET_PASSWORD, text)
+            email_loc, email_area = self.check_extra_fields(text, Langs.LANUCHER_EMAIL, Langs.LANUCHER_PASSWORD)
             if email_loc:
                 # 输入框尾部
                 self.click_minitouch(pass_loc[0], (email_area[1] + email_area[3]) / 2)
@@ -68,24 +69,24 @@ class Login(LauncherOcr, Automation):
                 self.click_minitouch(pass_loc[0], (email_area[1] + email_area[3]) / 2)
                 self.auto_type(account)
                 logger.info('Account input completed')
-            elif self.appear_text_then_click('电子邮件账号', threshold=0.9, interval=1):
+            elif self.appear_text_then_click(Langs.LANUCHER_EMAIL, threshold=0.9, interval=1):
                 time.sleep(0.3)
                 self.auto_type(account)
                 logger.info('Account input completed')
 
             # 输入密码
-            if self.appear_text_then_click('密码', threshold=0.9, interval=1):
+            if self.appear_text_then_click(Langs.LANUCHER_PASSWORD, threshold=0.9, interval=1):
                 time.sleep(0.3)
                 self.auto_type(password)
                 logger.info('Password input completed')
 
             # 点击保持登录
-            if self.appear_text_then_click('保持登录', threshold=0.9, interval=1):
+            if self.appear_text_then_click(Langs.LANUCHER_STAY_LOGGED_IN, threshold=0.9, interval=1):
                 time.sleep(0.3)
                 logger.info('Clicked Keep me logged in')
 
             # 点击登录
-            if self.appear_text_then_click('登录', threshold=0.9, interval=1):
+            if self.appear_text_then_click(Langs.LANUCHER_LOGIN, threshold=0.9, interval=1):
                 logger.info('Clicked Login')
 
         confirm_timer = Timer(60, count=20)
@@ -99,22 +100,22 @@ class Login(LauncherOcr, Automation):
             except Exception:
                 pass
             else:
-                if self.appear_text('账号格式错误', threshold=0.9):
+                if self.appear_text(Langs.LANUCHER_INCORRECT_ACCOUNT_FORMAT, threshold=0.9):
                     logger.error('Invalid account format')
                     raise AccountError
-                if self.appear_text('暂未设置密码', threshold=0.9):
+                if self.appear_text(Langs.LANUCHER_ACCOUNT_CONFIGURATION_ERROR, threshold=0.9):
                     logger.error('Account configuration error')
                     raise AccountError
-                if self.appear_text('密码错误', threshold=0.9):
+                if self.appear_text(Langs.LANUCHER_INCORRECT_PASSWORD, threshold=0.9):
                     logger.error('Incorrect password')
                     raise AccountError
 
-                if self.appear_text('游戏设置', threshold=0.9):
-                    if self.appear_text_then_click('启动', threshold=0.9):
+                if self.appear_text(Langs.LANUCHER_GAME_SETTING, threshold=0.9):
+                    if self.appear_text_then_click(Langs.LANUCHER_LAUNCH, threshold=0.9):
                         logger.info('Clicked Start')
                         check_game = True
                         continue
-                    if self.appear_text_then_click('更新', threshold=0.9):
+                    if self.appear_text_then_click(Langs.LANUCHER_UPDATE, threshold=0.9):
                         logger.info('Clicked Update')
                         continue
             finally:
