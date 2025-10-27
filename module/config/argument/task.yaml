@@ -55,6 +55,8 @@ Daily:
     RubbishShop:
       - Scheduler
       - RubbishShop
+    EpisodeViewing:
+      - Scheduler
 
 # ==================== Outpost ====================
 

@@ -27,7 +27,8 @@
       "MissionPass",
       "Conversation",
       "Shop",
-      "RubbishShop"
+      "RubbishShop",
+      "EpisodeViewing"
     ]
   },
   "Outpost": {

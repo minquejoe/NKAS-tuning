@@ -94,6 +94,10 @@
       "name": "Rubbish Shop",
       "help": ""
     },
+    "EpisodeViewing": {
+      "name": "Episode Viewing",
+      "help": ""
+    },
     "Commission": {
       "name": "Commission",
       "help": ""

@@ -275,6 +275,11 @@ class NikkeAutoScript:
 
         Conversation(config=self.config, device=self.device).run()
 
+    def episode_viewing(self):
+        from module.episode_viewing.episode_viewing import EpisodeViewing
+
+        EpisodeViewing(config=self.config, device=self.device).run()
+
     def rookie_arena(self):
         from module.rookie_arena.rookie_arena import RookieArena
 
