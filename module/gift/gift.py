@@ -13,6 +13,10 @@ class NetworkError(Exception):
     pass
 
 
+class GiftNotFound(Exception):
+    pass
+
+
 class GiftBase(UI):
     def _run(self, button, check):
         if not self.appear(CASH_SHOP_CHECK, offset=(10, 10)):
@@ -28,6 +32,8 @@ class GiftBase(UI):
             logger.error('Cannot access the cash shop under the current network')
             logger.error("If you haven't logged into Google Play, please log in and try again.")
             self.ensure_back()
+        except GiftNotFound:
+            pass
 
     def ensure_into_shop(self, skip_first_screenshot=True):
         logger.info('Open cash shop')
@@ -114,6 +120,7 @@ class GiftBase(UI):
 
     def ensure_into_shop_limited_time(self, skip_first_screenshot=True):
         logger.info('Open cash shop limited')
+        confirm_timer = Timer(2, count=3)
         click_timer = Timer(0.3)
 
         while 1:
@@ -122,10 +129,20 @@ class GiftBase(UI):
             else:
                 self.device.screenshot()
 
-            # 限时礼包检查
+            # STEPUP礼包检查
             if self.appear(LIMITED_GIFT_CHECK, offset=10):
-                logger.info('Open cash shop limited done')
-                break
+                if self.appear(STEPUP, offset=(600, 10)):
+                    logger.info('Open cash shop limited done')
+                    break
+                # 没有找到STEPUP按钮
+                if not self.appear(STEPUP, offset=(600, 10)):
+                    if not confirm_timer.started():
+                        confirm_timer.start()
+                    if confirm_timer.reached():
+                        logger.warning('StepUp gift allready closed')
+                        raise GiftNotFound
+                else:
+                    confirm_timer.clear()
 
             # 打开礼包页面
             if click_timer.reached() and self.appear_then_click(
