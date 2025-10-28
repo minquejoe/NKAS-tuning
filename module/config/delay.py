@@ -65,28 +65,3 @@ def next_month() -> datetime:
     
     # 2. 移除时区信息，使其变为 naive 并返回
     return local_time_aware.replace(tzinfo=None)
-
-# --- 示例 ---
-# 假设你的本地时区是 UTC-6，当前北京时间是 2025-10-31 10:00 (周五)
-# (此时本地时间是 2025-10-30 20:00)
-
-print(f"Beijing TZ: {BEIJING_TZ}")
-print(f"Local TZ:   {datetime.now().astimezone().tzinfo}")
-print("---")
-
-# 1. next_month 示例
-# 目标：北京时间 2025-11-01 04:00 (+08:00)
-# 对应本地 (UTC-6) 时间：2025-10-31 14:00 (-06:00)
-# 返回 Naive 结果：
-next_month_result = next_month()
-print(f"Next Month (naive local): {next_month_result}")
-print(f"Type: {type(next_month_result)}, TZInfo: {next_month_result.tzinfo}")
-
-
-# 2. next_tuesday 示例
-# 目标：北京时间 2025-11-04 04:00 (+08:00)
-# 对应本地 (UTC-6) 时间：2025-11-03 14:00 (-06:00)
-# 返回 Naive 结果：
-next_tuesday_result = next_tuesday()
-print(f"Next Tuesday (naive local): {next_tuesday_result}")
-print(f"Type: {type(next_tuesday_result)}, TZInfo: {next_tuesday_result.tzinfo}")

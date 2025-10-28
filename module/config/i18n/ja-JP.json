@@ -114,6 +114,10 @@
       "name": "リサイクルルーム",
       "help": ""
     },
+    "OutpostStory": {
+      "name": "基地プロット",
+      "help": ""
+    },
     "SimulationRoom": {
       "name": "シミュレーションルーム",
       "help": ""

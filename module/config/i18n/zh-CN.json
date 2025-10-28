@@ -114,6 +114,10 @@
       "name": "循环室",
       "help": ""
     },
+    "OutpostStory": {
+      "name": "基地剧情",
+      "help": ""
+    },
     "SimulationRoom": {
       "name": "模拟室",
       "help": ""

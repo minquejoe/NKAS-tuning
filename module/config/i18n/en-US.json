@@ -114,6 +114,10 @@
       "name": "Recycling",
       "help": ""
     },
+    "OutpostStory": {
+      "name": "Outpost Story",
+      "help": ""
+    },
     "SimulationRoom": {
       "name": "Simulation Room",
       "help": ""
