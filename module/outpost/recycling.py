@@ -22,7 +22,7 @@ class Recycling(UI):
         levels = merge_buttons(levels, x_threshold=30, y_threshold=30)
 
         for level in levels:
-            if level.location[1] > 500 and level.location[1] < 550:
+            if level.location[1] > 350 and level.location[1] < 650:
                 logger.info('Skip common upgrade')
                 continue
             logger.hr('Recycling special upgrade', 3)
