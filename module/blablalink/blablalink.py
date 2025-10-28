@@ -9,6 +9,7 @@ from typing import Dict, Tuple
 
 import requests
 
+from module.config.delay import next_month, next_tuesday
 from module.config.utils import deep_get
 from module.exception import RequestHumanTakeover
 from module.logger import logger
@@ -20,26 +21,6 @@ class MissingHeader(Exception):
 
 
 class Blablalink(UI):
-    diff = datetime.now(timezone.utc).astimezone().utcoffset() - timedelta(hours=8)
-
-    @cached_property
-    def next_month(self) -> datetime:
-        local_now = datetime.now()
-        next_month = local_now.month % 12 + 1
-        next_year = local_now.year + 1 if next_month == 1 else local_now.year
-        return (
-            local_now.replace(
-                year=next_year,
-                month=next_month,
-                day=1,
-                hour=4,
-                minute=0,
-                second=0,
-                microsecond=0,
-            )
-            + self.diff
-        )
-
     # 基本头部信息
     base_headers = {
         'accept': 'application/json, text/plain, */*',
@@ -892,22 +873,35 @@ class Blablalink(UI):
 
     def run(self, task):
         """
-        默认情况下，任务在 4:00–8:00 时间段执行时会自动推迟到 8 点以后；
+        默认情况下，任务在北京时间 4:00–8:00 执行时会推迟到 8 点以后；
         开启 immediate 选项后，任务将立即执行，不再延迟。
         """
         try:
-            local_now = datetime.now()
-            target_time = local_now.replace(hour=8, minute=0, second=0, microsecond=0)
+            beijing_tz = timezone(timedelta(hours=8))
+            utc_now = datetime.now(timezone.utc)
+            beijing_now = utc_now.astimezone(beijing_tz)
 
-            # 情况1：4–8点之间，推迟到 8 点 + 随机分钟（除非 immediate）
-            if 4 <= local_now.hour < 8 and not self.config.BlaDaily_Immediately:
+            target_time = beijing_now.replace(hour=8, minute=0, second=0, microsecond=0)
+
+            # 情况1：北京时间 4–8点之间，推迟到 8 点 + 随机分钟
+            BEIJING_TZ = timezone(timedelta(hours=8))  # 北京时区
+            utc_now = datetime.now(timezone.utc)
+            beijing_now = utc_now.astimezone(BEIJING_TZ)
+            if 4 <= beijing_now.hour < 8 and not self.config.BlaDaily_Immediately:
+                # 计算北京时间 8 点
+                target_beijing = beijing_now.replace(hour=8, minute=0, second=0, microsecond=0)
+                # 增加随机分钟（例如 5～30 分钟）
                 random_minutes = random.randint(5, 30)
-                target_time = target_time + timedelta(minutes=random_minutes)
-                self.config.task_delay(target=target_time)
+                target_beijing += timedelta(minutes=random_minutes)
+                # 将目标时间从北京时间(aware)转换为本地时区(aware)
+                local_target_aware = target_beijing.astimezone(None)
+                # 移除时区信息，变为 naive datetime（本地时间）
+                local_target = local_target_aware.replace(tzinfo=None)
+                self.config.task_delay(target=local_target)
                 return
 
             # 情况2：立即执行（00–04点，>=8点，或 immediate=True）
-            if self.config.BlaDaily_Immediately or local_now.hour < 4 or local_now >= target_time:
+            if self.config.BlaDaily_Immediately or beijing_now.hour < 4 or beijing_now >= target_time:
                 if task == 'daily':
                     self.daily()
                     self.config.task_delay(server_update=True)
@@ -916,7 +910,7 @@ class Blablalink(UI):
                     self.config.task_delay(server_update=True)
                 elif task == 'exchange':
                     self.exchange()
-                    self.config.task_delay(target=self.next_month)
+                    self.config.task_delay(target=next_month())
                 return
         except MissingHeader:
             logger.error('Please check all parameters settings')
