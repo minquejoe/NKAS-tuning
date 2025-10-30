@@ -156,6 +156,7 @@ class GeneratedConfig:
 
     # Group `Interception`
     Interception_Boss = 'Kraken'  # Kraken, Indivilia, Harvester, MirrorContainer, Ultra
+    Interception_AchieveLevel = 1  # 1, 2, 3, 4, 5, 6, 7, 8, 9
     Interception_DropScreenshotPath = None
 
     # Group `InterceptionTeam`
