@@ -114,6 +114,7 @@ DailyRecruit:
   SocialPointRecruit: true
 SimulationRoom:
   QuickSimulation: true
+  Immediately: false
 Area:
   Difficulty:
     value: 'Level_1'

@@ -318,7 +318,8 @@
       "ServerUpdate": "04:00"
     },
     "SimulationRoom": {
-      "QuickSimulation": true
+      "QuickSimulation": true,
+      "Immediately": false
     },
     "Area": {
       "Difficulty": "Level_1",

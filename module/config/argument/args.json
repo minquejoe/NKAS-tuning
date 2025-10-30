@@ -1105,6 +1105,10 @@
       "QuickSimulation": {
         "type": "checkbox",
         "value": true
+      },
+      "Immediately": {
+        "type": "checkbox",
+        "value": false
       }
     },
     "Area": {

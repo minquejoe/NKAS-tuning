@@ -71,6 +71,7 @@ class GeneratedConfig:
 
     # Group `SimulationRoom`
     SimulationRoom_QuickSimulation = True
+    SimulationRoom_Immediately = False
 
     # Group `Area`
     Area_Difficulty = 'Level_1'  # Level_1, Level_2, Level_3, Level_4, Level_5
