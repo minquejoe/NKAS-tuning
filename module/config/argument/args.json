@@ -1309,6 +1309,21 @@
           "Ultra"
         ]
       },
+      "AchieveLevel": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
       "DropScreenshotPath": {
         "type": "textarea",
         "value": ""

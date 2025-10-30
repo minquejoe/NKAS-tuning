@@ -375,6 +375,7 @@
     },
     "Interception": {
       "Boss": "Kraken",
+      "AchieveLevel": 1,
       "DropScreenshotPath": null
     },
     "InterceptionTeam": {
