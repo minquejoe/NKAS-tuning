@@ -131,7 +131,8 @@
     },
     "DailyRecruit": {
       "EventFreeRecruit": true,
-      "SocialPointRecruit": true
+      "SocialPointRecruit": true,
+      "ScreenshotPath": null
     },
     "Storage": {
       "Storage": {}

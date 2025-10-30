@@ -485,6 +485,10 @@
     "SocialPointRecruit": {
       "name": "友情点单抽",
       "help": ""
+    },
+    "ScreenshotPath": {
+      "name": "抽卡截图路径",
+      "help": "会在路径下保存抽卡截图，不填写则不保存；例如：D:\\PCR\\NIKKE，Docker用户需要填写以/app/NIKKEAutoScript开始的文件夹"
     }
   },
   "SimulationRoom": {
