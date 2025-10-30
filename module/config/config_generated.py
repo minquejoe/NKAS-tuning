@@ -19,11 +19,11 @@ class GeneratedConfig:
 
     # Group `Client`
     Client_Platform = 'adb'  # adb, win
+    Client_Language = 'zh-CN'  # zh-CN, en-US
 
     # Group `Emulator`
     Emulator_Serial = 'auto'
     Emulator_PackageName = 'com.proximabeta.nikke'  # com.proximabeta.nikke, com.gamamobi.nikke, com.proximabeta.nikke, com.gamamobi.nikke
-    Emulator_Language = 'zh-cn'  # zh-cn
     Emulator_ScreenshotMethod = 'DroidCast'  # DroidCast
     Emulator_ControlMethod = 'minitouch'  # minitouch
     Emulator_AdbRestart = False
@@ -36,7 +36,8 @@ class GeneratedConfig:
 
     # Group `PCClient`
     PCClient_Screens = False
-    PCClient_GameResolutionCompat = False
+    PCClient_ScreenNumber = 0  # 0, 1, 2, 3, 4, 5
+    PCClient_GameResolutionCompat = True
     PCClient_CloseAutoHdr = True
     PCClient_ScreenRotate = False
     PCClient_GameWindowPosition = 'center'  # center, left, right, topleft, topright
@@ -45,14 +46,14 @@ class GeneratedConfig:
 
     # Group `PCClientInfo`
     PCClientInfo_Client = 'intl'  # intl, hmt
-    PCClientInfo_Language = 'zh-cn'  # zh-cn
-    PCClientInfo_ScreenshotInterval = 0.3
+    PCClientInfo_AutoFillName = True
+    PCClientInfo_LauncherPath = None
     PCClientInfo_LauncherTitleName = None
     PCClientInfo_LauncherProcessName = None
-    PCClientInfo_LauncherPath = None
+    PCClientInfo_GamePath = None
     PCClientInfo_GameTitleName = None
     PCClientInfo_GameProcessName = None
-    PCClientInfo_GamePath = None
+    PCClientInfo_ScreenshotInterval = 0.3
 
     # Group `Optimization`
     Optimization_AutoRedCircle = False
@@ -70,6 +71,7 @@ class GeneratedConfig:
 
     # Group `SimulationRoom`
     SimulationRoom_QuickSimulation = True
+    SimulationRoom_Immediately = False
 
     # Group `Area`
     Area_Difficulty = 'Level_1'  # Level_1, Level_2, Level_3, Level_4, Level_5
@@ -94,6 +96,7 @@ class GeneratedConfig:
     # Group `Notification`
     Notification_WhenDailyTaskCompleted = False
     Notification_WhenDailyTaskCrashed = False
+    Notification_WinOnePush = False
     Notification_OnePushConfig = 'provider: null'
 
     # Group `Daily`
@@ -134,7 +137,7 @@ class GeneratedConfig:
     BlaExchange_Priority = 'Gem_×320 > Gem_×120 > Gem_×60 > Gem_×30 > Welcome_Gift_Core_Dust_×30'
 
     # Group `Event`
-    Event_Event = ''  # event_20250924, event_20250904, event_20250807, event_20250716, event_20250703s, event_20250703l, event_20250612
+    Event_Event = ''  # event_20251030, event_20251016, event_20250924, event_20250904, event_20250807, event_20250716, event_20250703s, event_20250703l, event_20250612
     Event_LoginStamp = True
     Event_Challenge = True
     Event_Story = False
@@ -173,6 +176,7 @@ class GeneratedConfig:
     # Group `SemiCombat`
     SemiCombat_SkipStory = False
     SemiCombat_FightQuickly = False
+    SemiCombat_MainStoryMark = False
 
     # Group `BlaCDKManual`
     BlaCDKManual_CDK = None
@@ -185,6 +189,10 @@ class GeneratedConfig:
 
     # Group `Synchro`
     Synchro_UseBox = True
+
+    # Group `Hosts`
+    Hosts_Action = 'Add'  # Add, Delete
+    Hosts_Hosts = '# 通用\n18.155.202.10 cloud.nikke-kr.com\n43.132.85.192 nikke-en.com\n43.132.85.192 nikke-jp.com\n43.132.85.192 nikke-kr.com\n# 国际 Global\n43.152.186.163 global-lobby.nikke-kr.com\n43.152.186.163 global-match.nikke-kr.com\n# 日本 JP\n# 43.152.186.163 jp-lobby.nikke-kr.com\n# 43.152.186.163 jp-match.nikke-kr.com\n# 韩国 KR\n# 43.152.186.163 kr-lobby.nikke-kr.com\n# 43.152.186.163 kr-match.nikke-kr.com\n# 东南亚 SEA\n# 43.152.186.163 sea-lobby.nikke-kr.com\n# 43.152.186.163 sea-match.nikke-kr.com\n# 港澳台 HK/MC/TW\n# 43.152.186.163 hmt-lobby.nikke-kr.com\n# 43.152.186.163 hmt-match.nikke-kr.com\n# 北美 NA\n# 175.97.131.54 us-match.nikke-kr.com\n# 175.97.131.54 us-lobby.nikke-kr.com'
 
     # Group `Storage`
     Storage_Storage = {}

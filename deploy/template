@@ -13,16 +13,39 @@ Deploy:
   Adb:
     AdbExecutable: /usr/bin/adb
     ReplaceAdb: true
+    # Brute-force connect to all available emulator instances
+    # [In most cases] Use true
     AutoConnect: true
+    # Re-install uiautomator2
+    # [In most cases] Use true
     InstallUiautomator2: true
 
   Update:
+    # Use auto update and builtin updater feature
+    # This may cause problem https://github.com/LmeSzinc/AzurLaneAutoScript/issues/876
     EnableReload: true
+    # Check update every X minute
+    # [Disable] 0
+    # [Default] 5
     CheckUpdateInterval: 5
+    # Scheduled restart time
+    # If there are updates, NKAS will automatically restart and update at this time every day
+    # and run all nkas instances that running before restarted
+    # [Disable] null
+    # [Default] 03:50
     AutoRestartTime: 03:50
 
   Webui:
     WebuiHost: localhost
     WebuiPort: 12271
+    # Language to use on web ui
+    # 'zh-CN' for Chinese simplified
     Language: zh-CN
+    # Theme of web ui
+    # 'dark' for dark theme
     Theme: dark
+    # --run. Auto-run specified config when startup
+    # 'null' default no specified config
+    # '["nkas"]' specified "nkas" config
+    # '["nkas","nkas2"]' specified "nkas" "nkas2" configs
+    Run: null
