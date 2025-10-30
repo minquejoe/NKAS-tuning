@@ -3,6 +3,6 @@ Version=1.0
 Name=NKAS GUI
 Comment=Open NKAS gui and backend.
 Exec=/home/orangepi/NIKKEAutoScript/desktopAPP/open.sh
-Icon=/home/orangepi/NIKKEAutoScript/webapp/src/assets/img/Helm.png
+Icon=/home/orangepi/NIKKEAutoScript/assets/gui/icon/nkas.ico
 Terminal=false
 Type=Application

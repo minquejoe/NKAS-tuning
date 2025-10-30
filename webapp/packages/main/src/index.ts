@@ -292,8 +292,12 @@ function registerGlobalShortcuts() {
 app.whenReady()
   .then(() => {
     createWindow();
-    registerGlobalShortcuts(); // 注册快捷键
-    
+    registerGlobalShortcuts();
+
+    // —— 直接载入并弹出，不用等 Python 日志 ——  
+    loadURL();
+    mainWindow?.show();
+
     if (import.meta.env.PROD) {
       import('electron-updater')
         .then(({ autoUpdater }) => autoUpdater.checkForUpdatesAndNotify())
@@ -301,10 +305,3 @@ app.whenReady()
     }
   })
   .catch(e => console.error('Failed create window:', e));
-
-// === 资源清理 ===
-app.on('will-quit', () => {
-  globalShortcut.unregisterAll();
-  console.log('[GlobalShortcut] All shortcuts unregistered');
-  nkas.kill(() => {});
-});

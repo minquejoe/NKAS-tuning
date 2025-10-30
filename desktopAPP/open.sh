@@ -10,5 +10,5 @@ exec bash"
 # Open the second terminal and run the npm command
 gnome-terminal -- bash -c "
 cd /home/orangepi/NIKKEAutoScript/webapp;
-npm run dev;
+npm run watch;
 exec bash"

@@ -1,14 +1,17 @@
 Deploy:
   Git:
-    Repository: https://github.com/minquejoe/NKAS-tunning.git
-    Branch: main
+    Repository: https://gitee.com/megumiss/NIKKEAutoScript
+    Branch: master
     GitExecutable: /usr/bin/git
-    GitProxy: http://tbox12:20171
+    GitProxy: null
+    SSLVerify: true
     AutoUpdate: true
 
   Python:
-    PythonExecutable: ./VENV/bin/python
-    RequirementsFile: requirements.txt
+    PythonExecutable: /usr/local/bin/python
+    PypiMirror: https://mirrors.aliyun.com/pypi/simple
+    InstallDependencies: true
+    RequirementsFile: ./deploy/docker/requirements.txt
 
   Adb:
     AdbExecutable: /usr/bin/adb
@@ -22,7 +25,7 @@ Deploy:
     AutoRestartTime: 03:50
 
   Webui:
-    WebuiHost: localhost
+    WebuiHost: 0.0.0.0
     WebuiPort: 12271
     Language: zh-CN
     Theme: dark

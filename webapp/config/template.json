@@ -4,14 +4,14 @@
       "Platform": "adb"
     },
     "Optimization": {
-      "AutoRedCircle": true,
+      "AutoRedCircle": false,
       "OcrModelType": "mobile",
-      "WhenTaskQueueEmpty": "close_game"
+      "WhenTaskQueueEmpty": "goto_main"
     },
     "Notification": {
       "WhenDailyTaskCompleted": false,
-      "WhenDailyTaskCrashed": true,
-      "OnePushConfig": "provider: smtp\nhost: smtp.qq.com\nuser: 905503222@qq.com\npassword: dtqyizmwhejxbbdd\nport: 465"
+      "WhenDailyTaskCrashed": false,
+      "OnePushConfig": "provider: null"
     },
     "Storage": {
       "Storage": {}
@@ -19,7 +19,7 @@
   },
   "Emulator": {
     "Emulator": {
-      "Serial": "localhost:6603",
+      "Serial": "auto",
       "PackageName": "com.proximabeta.nikke",
       "Language": "zh-cn",
       "ScreenshotMethod": "DroidCast",
@@ -64,7 +64,7 @@
   "Restart": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "Restart",
       "SuccessInterval": 0,
       "FailureInterval": 0,
@@ -77,11 +77,11 @@
   "Reward": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "Reward",
       "SuccessInterval": "720-720",
       "FailureInterval": "720-720",
-      "ServerUpdate": "05:00, 20:00"
+      "ServerUpdate": "05:00"
     },
     "Reward": {
       "CollectSocialPoint": true,
@@ -94,8 +94,8 @@
   },
   "Destruction": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "Destruction",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -105,10 +105,26 @@
       "Storage": {}
     }
   },
+  "Commission": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "Commission",
+      "SuccessInterval": "720-720",
+      "FailureInterval": "720-720",
+      "ServerUpdate": "05:00"
+    },
+    "CollectionItems": {
+      "NIKKE": "All"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
   "Mailbox": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "Mailbox",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -120,8 +136,8 @@
   },
   "DailyRecruit": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "DailyRecruit",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -137,17 +153,17 @@
   },
   "Daily": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "Daily",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
     },
     "Daily": {
-      "SendGift": true,
-      "EnhanceEquipment": true,
-      "CallReward": true
+      "SendGift": false,
+      "EnhanceEquipment": false,
+      "CallReward": false
     },
     "Storage": {
       "Storage": {}
@@ -155,9 +171,22 @@
   },
   "MissionPass": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "MissionPass",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "05:00"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "Liberation": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "Liberation",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00, 20:00"
@@ -168,12 +197,12 @@
   },
   "Conversation": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-31 04:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "Conversation",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Conversation": {
       "OnlyFavourite": false,
@@ -185,8 +214,8 @@
   },
   "Shop": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "Shop",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -197,8 +226,8 @@
       "priority": "GRATIS > CORE_DUST_CASE > ORNAMENT"
     },
     "ArenaShop": {
-      "enable": true,
-      "priority": "ELECTRIC_CODE > FIRE_CODE >IRON_CODE > WATER_CODE > WIND_CODE > MANUAL_SELECTION_BOX"
+      "enable": false,
+      "priority": null
     },
     "Storage": {
       "Storage": {}
@@ -206,15 +235,15 @@
   },
   "RubbishShop": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-11-04 04:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "RubbishShop",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
     },
     "RubbishShop": {
-      "priority": "GEM > CORE_DUST_CASE > CREDIT_CASE > BATTLE_DATA_SET_CASE",
+      "priority": "GEM > CORE_DUST_CASE",
       "bonePriority": null
     },
     "Storage": {
@@ -223,12 +252,12 @@
   },
   "Commission": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "Commission",
       "SuccessInterval": "720-720",
       "FailureInterval": "720-720",
-      "ServerUpdate": "05:00"
+      "ServerUpdate": "04:00"
     },
     "CollectionItems": {
       "Enable": false,
@@ -241,11 +270,11 @@
   "Liberation": {
     "Scheduler": {
       "Enable": false,
-      "NextRun": "2024-11-18 05:00:00",
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "Liberation",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "05:00, 20:00"
+      "ServerUpdate": "04:00, 20:00"
     },
     "Storage": {
       "Storage": {}
@@ -258,7 +287,7 @@
       "Command": "Synchro",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "04:00"
+      "ServerUpdate": "05:00"
     },
     "Synchro": {
       "UseBox": true
@@ -274,7 +303,7 @@
       "Command": "Recycling",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "05:00"
+      "ServerUpdate": "04:00"
     },
     "Storage": {
       "Storage": {}
@@ -282,8 +311,8 @@
   },
   "SimulationRoom": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "SimulationRoom",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -293,9 +322,9 @@
       "QuickSimulation": true
     },
     "Area": {
-      "Difficulty": "Level_5",
-      "OnsetArea": "C",
-      "EndingArea": "C"
+      "Difficulty": "Level_1",
+      "OnsetArea": "A",
+      "EndingArea": "A"
     },
     "Storage": {
       "Storage": {}
@@ -321,15 +350,15 @@
   },
   "TribeTower": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "TribeTower",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
     },
     "Overcome": {
-      "OnlyToCompleteDailyMission": true
+      "OnlyToCompleteDailyMission": false
     },
     "Storage": {
       "Storage": {}
@@ -337,8 +366,8 @@
   },
   "Interception": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "Interception",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -361,8 +390,8 @@
   },
   "RookieArena": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "RookieArena",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -379,8 +408,8 @@
   },
   "SpecialArena": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "SpecialArena",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -397,15 +426,15 @@
   },
   "ChampionArena": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "ChampionArena",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
     },
     "CheerStrategy": {
-      "Enable": true,
+      "Enable": false,
       "Strategy": "Most"
     },
     "Storage": {
@@ -415,11 +444,11 @@
   "Coop": {
     "Scheduler": {
       "Enable": false,
-      "NextRun": "2025-09-04 05:00:00",
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "Coop",
       "SuccessInterval": 0,
       "FailureInterval": 120,
-      "ServerUpdate": "05:00, 16:00"
+      "ServerUpdate": "05:00"
     },
     "Coop": {
       "MatchDifficulty": "Normal"
@@ -430,8 +459,8 @@
   },
   "SoloRaid": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "SoloRaid",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -457,21 +486,21 @@
   "Event": {
     "Scheduler": {
       "Enable": false,
-      "NextRun": "2025-08-10 05:00:00",
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "Event",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
     },
     "Event": {
-      "Event": "event_20250924",
+      "Event": "",
       "LoginStamp": true,
       "Challenge": true,
       "Story": false,
       "StoryPart": "Story_1",
       "StoryDifficulty": "Normal",
       "Coop": false,
-      "Shop": true,
+      "Shop": false,
       "ShopDelayList": "TITLE",
       "Game": false,
       "GameStorySkip": false,
@@ -491,14 +520,14 @@
       "ServerUpdate": "05:00"
     },
     "Event": {
-      "Event": "event_20250904",
+      "Event": "",
       "LoginStamp": true,
       "Challenge": true,
       "Story": false,
-      "StoryPart": "Story_2",
-      "StoryDifficulty": "Hard",
+      "StoryPart": "Story_1",
+      "StoryDifficulty": "Normal",
       "Coop": false,
-      "Shop": true,
+      "Shop": false,
       "ShopDelayList": "TITLE",
       "Game": false,
       "GameStorySkip": false,
@@ -583,8 +612,8 @@
   },
   "DailyGift": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "DailyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -596,8 +625,8 @@
   },
   "WeeklyGift": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-11-04 04:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "WeeklyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -609,8 +638,8 @@
   },
   "MonthlyGift": {
     "Scheduler": {
-      "Enable": true,
-      "NextRun": "2025-11-01 04:00:00",
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
       "Command": "MonthlyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,
