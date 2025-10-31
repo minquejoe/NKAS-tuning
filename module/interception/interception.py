@@ -60,7 +60,7 @@ class Interception(UI):
             else:
                 self.device.screenshot()
 
-            if self.appear(ABNORMAL_INTERCEPTION_CHECK, offset=(30, 10)):
+            if self.appear(ABNORMAL_INTERCEPTION_CHECK, offset=(10, 30)):
                 break
 
             if click_timer.reached() and self.appear(
@@ -90,7 +90,7 @@ class Interception(UI):
         self.device.sleep(0.5)
 
         end_fighting = False
-        if self.appear(ABNORMAL_INTERCEPTION_CHECK, offset=(30, 10)) and not BATTLE.match_appear_on(
+        if self.appear(ABNORMAL_INTERCEPTION_CHECK, offset=(10, 30)) and not BATTLE.match_appear_on(
             self.device.image, 10
         ):
             end_fighting = True
@@ -102,7 +102,7 @@ class Interception(UI):
             # 切换队伍
             if (
                 click_timer.reached()
-                and self.appear(ABNORMAL_INTERCEPTION_CHECK, offset=(30, 10))
+                and self.appear(ABNORMAL_INTERCEPTION_CHECK, offset=(10, 30))
                 and self.appear_then_click(self.teams[teamindex], threshold=10, interval=1)
             ):
                 click_timer.reset()
@@ -161,7 +161,7 @@ class Interception(UI):
 
             if (
                 end_fighting
-                and self.appear(ABNORMAL_INTERCEPTION_CHECK, offset=(30, 10))
+                and self.appear(ABNORMAL_INTERCEPTION_CHECK, offset=(10, 30))
                 and not self.appear(BATTLE, threshold=10)
             ):
                 logger.info('There are no free opportunities')

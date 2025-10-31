@@ -112,6 +112,9 @@ Reward:
 DailyRecruit:
   EventFreeRecruit: true
   SocialPointRecruit: true
+  ScreenshotPath:
+    value: ''
+    type: textarea
 SimulationRoom:
   QuickSimulation: true
   Immediately: false

@@ -485,6 +485,10 @@
     "SocialPointRecruit": {
       "name": "Social Point Single Pull",
       "help": ""
+    },
+    "ScreenshotPath": {
+      "name": "Recruit Screenshot Path",
+      "help": "Gacha screenshots will be saved in the specified path. Leave blank to disable saving. For example: D:\\PCR\\NIKKE. Docker users must specify a folder starting with /app/NIKKEAutoScript."
     }
   },
   "SimulationRoom": {

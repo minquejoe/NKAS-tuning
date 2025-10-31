@@ -485,6 +485,10 @@
     "SocialPointRecruit": {
       "name": "友情ポイント単発募集",
       "help": ""
+    },
+    "ScreenshotPath": {
+      "name": "ガチャスクリーンショットのパス",
+      "help": "ガチャのスクリーンショットは指定したパスに保存されます。未入力の場合は保存されません。例：D:\\PCR\\NIKKE。Dockerユーザーは /app/NIKKEAutoScript で始まるフォルダを指定する必要があります。"
     }
   },
   "SimulationRoom": {

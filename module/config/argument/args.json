@@ -488,6 +488,10 @@
       "SocialPointRecruit": {
         "type": "checkbox",
         "value": true
+      },
+      "ScreenshotPath": {
+        "type": "textarea",
+        "value": ""
       }
     },
     "Storage": {
