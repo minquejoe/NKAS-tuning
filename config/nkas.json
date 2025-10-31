@@ -1,7 +1,8 @@
 {
   "NKAS": {
     "Client": {
-      "Platform": "adb"
+      "Platform": "adb",
+      "Language": "zh-CN"
     },
     "Optimization": {
       "AutoRedCircle": true,
@@ -11,6 +12,7 @@
     "Notification": {
       "WhenDailyTaskCompleted": false,
       "WhenDailyTaskCrashed": true,
+      "WinOnePush": false,
       "OnePushConfig": "provider: smtp\nhost: smtp.qq.com\nuser: 905503222@qq.com\npassword: dtqyizmwhejxbbdd\nport: 465"
     },
     "Storage": {
@@ -21,7 +23,6 @@
     "Emulator": {
       "Serial": "localhost:6603",
       "PackageName": "com.proximabeta.nikke",
-      "Language": "zh-cn",
       "ScreenshotMethod": "DroidCast",
       "ControlMethod": "minitouch",
       "AdbRestart": false,
@@ -39,17 +40,18 @@
   "PCClient": {
     "PCClientInfo": {
       "Client": "intl",
-      "Language": "zh-cn",
-      "ScreenshotInterval": 0.3,
+      "AutoFillName": true,
+      "LauncherPath": null,
       "LauncherTitleName": null,
       "LauncherProcessName": null,
-      "LauncherPath": null,
+      "GamePath": null,
       "GameTitleName": null,
       "GameProcessName": null,
-      "GamePath": null
+      "ScreenshotInterval": 0.3
     },
     "PCClient": {
       "Screens": false,
+      "ScreenNumber": 0,
       "GameResolutionCompat": false,
       "CloseAutoHdr": true,
       "ScreenRotate": false,
@@ -64,7 +66,7 @@
   "Restart": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "NextRun": "2025-10-30 22:36:58",
       "Command": "Restart",
       "SuccessInterval": 0,
       "FailureInterval": 0,
@@ -221,6 +223,19 @@
       "Storage": {}
     }
   },
+  "EpisodeViewing": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "EpisodeViewing",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "04:00"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
   "Commission": {
     "Scheduler": {
       "Enable": true,
@@ -280,6 +295,19 @@
       "Storage": {}
     }
   },
+  "OutpostStory": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "OutpostStory",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "04:00"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
   "SimulationRoom": {
     "Scheduler": {
       "Enable": true,
@@ -290,7 +318,8 @@
       "ServerUpdate": "05:00"
     },
     "SimulationRoom": {
-      "QuickSimulation": true
+      "QuickSimulation": true,
+      "Immediately": false
     },
     "Area": {
       "Difficulty": "Level_5",
@@ -346,6 +375,7 @@
     },
     "Interception": {
       "Boss": "Kraken",
+      "AchieveLevel": 1,
       "DropScreenshotPath": null
     },
     "InterceptionTeam": {
@@ -464,7 +494,7 @@
       "ServerUpdate": "05:00"
     },
     "Event": {
-      "Event": "event_20250924",
+      "Event": "event_20251030",
       "LoginStamp": true,
       "Challenge": true,
       "Story": false,
@@ -491,7 +521,7 @@
       "ServerUpdate": "05:00"
     },
     "Event": {
-      "Event": "event_20250904",
+      "Event": "event_20250924",
       "LoginStamp": true,
       "Challenge": true,
       "Story": false,
@@ -631,7 +661,8 @@
   "SemiCombat": {
     "SemiCombat": {
       "SkipStory": false,
-      "FightQuickly": false
+      "FightQuickly": false,
+      "MainStoryMark": false
     },
     "Storage": {
       "Storage": {}
@@ -656,6 +687,15 @@
   "ScreenRotate": {
     "ScreenRotate": {
       "Orientation": 0
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "UpdateHosts": {
+    "Hosts": {
+      "Action": "Add",
+      "Hosts": "# 通用\n18.155.202.10 cloud.nikke-kr.com\n43.132.85.192 nikke-en.com\n43.132.85.192 nikke-jp.com\n43.132.85.192 nikke-kr.com\n# 国际 Global\n43.152.186.163 global-lobby.nikke-kr.com\n43.152.186.163 global-match.nikke-kr.com\n# 日本 JP\n# 43.152.186.163 jp-lobby.nikke-kr.com\n# 43.152.186.163 jp-match.nikke-kr.com\n# 韩国 KR\n# 43.152.186.163 kr-lobby.nikke-kr.com\n# 43.152.186.163 kr-match.nikke-kr.com\n# 东南亚 SEA\n# 43.152.186.163 sea-lobby.nikke-kr.com\n# 43.152.186.163 sea-match.nikke-kr.com\n# 港澳台 HK/MC/TW\n# 43.152.186.163 hmt-lobby.nikke-kr.com\n# 43.152.186.163 hmt-match.nikke-kr.com\n# 北美 NA\n# 175.97.131.54 us-match.nikke-kr.com\n# 175.97.131.54 us-lobby.nikke-kr.com"
     },
     "Storage": {
       "Storage": {}
