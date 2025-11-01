@@ -489,6 +489,10 @@
         "type": "checkbox",
         "value": true
       },
+      "Ordinary150GemRecruit": {
+        "type": "checkbox",
+        "value": false
+      },
       "ScreenshotPath": {
         "type": "textarea",
         "value": ""

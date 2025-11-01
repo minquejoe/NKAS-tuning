@@ -132,6 +132,7 @@
     "DailyRecruit": {
       "EventFreeRecruit": true,
       "SocialPointRecruit": true,
+      "Ordinary150GemRecruit": false,
       "ScreenshotPath": null
     },
     "Storage": {

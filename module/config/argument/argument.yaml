@@ -112,6 +112,7 @@ Reward:
 DailyRecruit:
   EventFreeRecruit: true
   SocialPointRecruit: true
+  Ordinary150GemRecruit: false
   ScreenshotPath:
     value: ''
     type: textarea
