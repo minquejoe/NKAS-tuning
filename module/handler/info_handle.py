@@ -107,7 +107,7 @@ class InfoHandler(ModuleBase):
 
     def handle_server(self):
         if self.appear(SERVER_CHECK, offset=(30, 30), static=False) and self.appear_then_click(
-            CONFIRM_A, offset=(30, 30), interval=3, static=False
+            CONFIRM_A, offset=(30, 30), threshold=0.7, interval=3, static=False
         ):
             return True
 
