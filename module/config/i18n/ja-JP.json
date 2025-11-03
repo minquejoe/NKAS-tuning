@@ -490,6 +490,10 @@
       "name": "Ordinary 150Gems Recruit",
       "help": "通常募集での毎日1回の150ジュエルガチャ"
     },
+    "SSRNotifyPush": {
+      "name": "SSR排出通知",
+      "help": ""
+    },
     "ScreenshotPath": {
       "name": "ガチャスクリーンショットのパス",
       "help": "ガチャのスクリーンショットは指定したパスに保存されます。未入力の場合は保存されません。例：D:\\PCR\\NIKKE。Dockerユーザーは /app/NIKKEAutoScript で始まるフォルダを指定する必要があります。"

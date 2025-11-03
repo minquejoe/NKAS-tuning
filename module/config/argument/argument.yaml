@@ -113,6 +113,7 @@ DailyRecruit:
   EventFreeRecruit: true
   SocialPointRecruit: true
   Ordinary150GemRecruit: false
+  SSRNotifyPush: false
   ScreenshotPath:
     value: ''
     type: textarea

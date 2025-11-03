@@ -493,6 +493,10 @@
         "type": "checkbox",
         "value": false
       },
+      "SSRNotifyPush": {
+        "type": "checkbox",
+        "value": false
+      },
       "ScreenshotPath": {
         "type": "textarea",
         "value": ""

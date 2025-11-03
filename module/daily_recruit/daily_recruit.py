@@ -6,6 +6,7 @@ from module.base.timer import Timer
 from module.base.utils import point2str
 from module.daily_recruit.assets import *
 from module.logger import logger
+from module.notify import handle_notify
 from module.reward.assets import *
 from module.ui.page import *
 from module.ui.ui import UI
@@ -52,6 +53,14 @@ class DailyRecruit(UI):
         save_image(image, save_path)
 
         return save_path
+
+    def notify_push(self, type):
+        handle_notify(
+            self.config.Notification_OnePushConfig,
+            title=f'NKAS <{self.config_name}> Recruit',
+            content=f'{type} SSR got!',
+            always=self.config.Notification_WinOnePush,
+        )
 
     def event_free_recruit(self, skip_first_screenshot=True):
         logger.hr('Event free recruit', 2)
@@ -107,9 +116,13 @@ class DailyRecruit(UI):
                 continue
             # 确认
             if self.appear(RECRUIT_CONFIRM, offset=(30, 30), static=False):
+                # 截图保存
                 saved_path = self.save_drop_image(self.device.image, self.config.DailyRecruit_ScreenshotPath)
                 if saved_path:
                     logger.info(f'Save recruit image to: {saved_path}')
+                # 推送通知
+                if self.config.DailyRecruit_SSRNotifyPush and self.appear(RECRUIT_NIKKE_SSR, threshold=10):
+                    self.notify_push('EventFree')
 
                 while 1:
                     self.device.screenshot()
@@ -189,9 +202,13 @@ class DailyRecruit(UI):
                 continue
             # 确认
             if self.appear(RECRUIT_CONFIRM, offset=30, static=False):
+                # 截图保存
                 saved_path = self.save_drop_image(self.device.image, self.config.DailyRecruit_ScreenshotPath)
                 if saved_path:
                     logger.info(f'Save recruit image to: {saved_path}')
+                # 推送通知
+                if self.config.DailyRecruit_SSRNotifyPush and self.appear(RECRUIT_NIKKE_SSR, threshold=10):
+                    self.notify_push('150Gem')
 
                 while 1:
                     self.device.screenshot()
@@ -262,9 +279,13 @@ class DailyRecruit(UI):
                 continue
             # 确认
             if self.appear(RECRUIT_CONFIRM, offset=(30, 30), static=False):
+                # 截图保存
                 saved_path = self.save_drop_image(self.device.image, self.config.DailyRecruit_ScreenshotPath)
                 if saved_path:
                     logger.info(f'Save recruit image to: {saved_path}')
+                # 推送通知
+                if self.config.DailyRecruit_SSRNotifyPush and self.appear(RECRUIT_NIKKE_SSR, threshold=10):
+                    self.notify_push('SocialPoint')
 
                 while 1:
                     self.device.screenshot()

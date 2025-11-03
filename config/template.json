@@ -133,6 +133,7 @@
       "EventFreeRecruit": true,
       "SocialPointRecruit": true,
       "Ordinary150GemRecruit": false,
+      "SSRNotifyPush": false,
       "ScreenshotPath": null
     },
     "Storage": {

@@ -490,6 +490,10 @@
       "name": "Ordinary 150Gems Recruit",
       "help": "Daily 150-gem gacha in ordinary recruit"
     },
+    "SSRNotifyPush": {
+      "name": "SSR Drop Notification",
+      "help": ""
+    },
     "ScreenshotPath": {
       "name": "Recruit Screenshot Path",
       "help": "Gacha screenshots will be saved in the specified path. Leave blank to disable saving. For example: D:\\PCR\\NIKKE. Docker users must specify a folder starting with /app/NIKKEAutoScript."

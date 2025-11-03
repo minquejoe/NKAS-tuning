@@ -69,6 +69,7 @@ class GeneratedConfig:
     DailyRecruit_EventFreeRecruit = True
     DailyRecruit_SocialPointRecruit = True
     DailyRecruit_Ordinary150GemRecruit = False
+    DailyRecruit_SSRNotifyPush = False
     DailyRecruit_ScreenshotPath = None
 
     # Group `SimulationRoom`
