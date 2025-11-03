@@ -126,7 +126,7 @@ class MissionPass(UI):
         self.config.PASS_LIMIT = 1
         if self.appear(CHANGE, offset=5, static=False) or self.appear(EXPAND, offset=5, static=False):
             # 第一个banner
-            self.ensure_sroll((640, pass_scrol_y), (500, pass_scrol_y), method='swipe', speed=30, count=1, delay=0.5)
+            self.ensure_sroll((650, pass_scrol_y), (500, pass_scrol_y), method='swipe', speed=40, count=1, delay=0.5)
             self.device.screenshot()
             banner_first = Button(PASS_BANNER_DYNAMIC.area, None, button=PASS_BANNER_DYNAMIC.area)
             banner_first._match_init = True
@@ -140,7 +140,7 @@ class MissionPass(UI):
                 tmp_image = self.device.image
                 # 滑动到下一个pass
                 self.ensure_sroll(
-                    (640, pass_scrol_y), (500, pass_scrol_y), method='swipe', speed=30, count=1, delay=0.5
+                    (650, pass_scrol_y), (500, pass_scrol_y), method='swipe', speed=40, count=1, delay=0.5
                 )
                 # 比较banner是否变化
                 while 1:
@@ -167,7 +167,7 @@ class MissionPass(UI):
             # 每次都检查所有的pass
             if not passs == 1:
                 self.ensure_sroll(
-                    (640, pass_scrol_y), (500, pass_scrol_y), method='swipe', speed=30, count=1, delay=0.5
+                    (650, pass_scrol_y), (500, pass_scrol_y), method='swipe', speed=40, count=1, delay=0.5
                 )
             for _ in range(passs * 2):
                 self.device.screenshot()
@@ -200,7 +200,7 @@ class MissionPass(UI):
                         break
                     tmp_image = self.device.image
                     self.ensure_sroll(
-                        (640, pass_scrol_y), (500, pass_scrol_y), method='swipe', speed=30, count=1, delay=0.5
+                        (650, pass_scrol_y), (500, pass_scrol_y), method='swipe', speed=40, count=1, delay=0.5
                     )
                     # 比较banner是否变化
                     while 1:
