@@ -1332,6 +1332,10 @@
           9
         ]
       },
+      "QuickBattleOnly": {
+        "type": "checkbox",
+        "value": false
+      },
       "DropScreenshotPath": {
         "type": "textarea",
         "value": ""

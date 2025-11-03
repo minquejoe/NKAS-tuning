@@ -123,11 +123,19 @@ class Interception(UI):
                 click_timer.reset()
                 continue
 
-            if click_timer.reached():
-                if self.appear_then_click(BATTLE, threshold=10, interval=1):
-                    end_fighting = False
-                    click_timer.reset()
-                    continue
+            #  开启了只快速战斗
+            if (
+                self.config.Interception_QuickBattleOnly
+                and self.appear(BATTLE, threshold=10)
+                and not self.appear(BATTLE_QUICKLY, threshold=5)
+            ):
+                logger.warning(f'Quick battle only: {self.config.Interception_QuickBattleOnly}, skip battle')
+                return
+
+            if click_timer.reached() and self.appear_then_click(BATTLE, threshold=10, interval=1):
+                end_fighting = False
+                click_timer.reset()
+                continue
 
             if click_timer.reached() and self.appear_then_click(AUTO_SHOOT, offset=(5, 5), threshold=0.9, interval=5):
                 click_timer.reset()

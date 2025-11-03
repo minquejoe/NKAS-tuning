@@ -378,6 +378,7 @@
     "Interception": {
       "Boss": "Kraken",
       "AchieveLevel": 1,
+      "QuickBattleOnly": false,
       "DropScreenshotPath": null
     },
     "InterceptionTeam": {

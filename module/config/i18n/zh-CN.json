@@ -857,6 +857,10 @@
       "8": "8",
       "9": "9"
     },
+    "QuickBattleOnly": {
+      "name": "只快速战斗",
+      "help": "只进行快速战斗，快速战斗不可用时会自动跳过，适合每周一手动打拦截的用户"
+    },
     "DropScreenshotPath": {
       "name": "掉落截图路径",
       "help": "会在路径下创建日期文件夹保存对应的掉落截图，不填写则不保存；例如：D:\\PCR\\NIKKE，Docker用户需要填写以/app/NIKKEAutoScript开始的文件夹"

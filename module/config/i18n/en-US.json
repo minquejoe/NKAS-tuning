@@ -857,6 +857,10 @@
       "8": "8",
       "9": "9"
     },
+    "QuickBattleOnly": {
+      "name": "Quick Battle Only",
+      "help": "Only performs quick battles. When quick battle is unavailable, it will automatically skip. Suitable for users who manually play Interception on Mondays."
+    },
     "DropScreenshotPath": {
       "name": "Drop Screenshot Path",
       "help": "Creates dated folders under the path to save drop screenshots. Empty to disable. Example: D:\\\\PCR\\\\NIKKE. Docker users should use a path starting with /app/NIKKEAutoScript"
