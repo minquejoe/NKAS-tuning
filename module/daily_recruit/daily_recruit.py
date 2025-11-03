@@ -57,7 +57,7 @@ class DailyRecruit(UI):
     def notify_push(self, type):
         handle_notify(
             self.config.Notification_OnePushConfig,
-            title=f'NKAS <{self.config_name}> Recruit',
+            title=f'NKAS <{self.config.config_name}> Recruit',
             content=f'{type} SSR got!',
             always=self.config.Notification_WinOnePush,
         )
