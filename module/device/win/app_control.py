@@ -53,7 +53,7 @@ class AppControl(WinClient, Login):
         launcher_path = os.path.normpath(self.config.PCClientInfo_LauncherPath)
 
         #  英文路径
-        if not re.match(r'^[A-Za-z0-9_:/\\.\- ]+$', launcher_path):
+        if not re.match(r'^[A-Za-z0-9_:/\\.\- ()]+$', launcher_path):
             logger.error(
                 f'Please install the game in an English path and enter the correct path, '
                 f'current path: [{launcher_path}]'
