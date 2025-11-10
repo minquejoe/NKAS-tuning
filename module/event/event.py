@@ -1013,7 +1013,7 @@ class Event(UI):
 
             # 商店页面
             if self.appear(EVENT_SHOP_CHECK, offset=(30, 30)) and self.appear(
-                self.event_assets.SHOP_ITEM_LOAD_CHECK, offset=(30, 30)
+                self.event_assets.SHOP_ITEM_LOAD_CHECK, threshold=0.65, offset=(30, 30)
             ):
                 logger.info('Open event shop')
                 break
