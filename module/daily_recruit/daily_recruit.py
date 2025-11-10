@@ -128,7 +128,7 @@ class DailyRecruit(UI):
                     self.device.screenshot()
                     if not self.appear(RECRUIT_CONFIRM, offset=(30, 30), static=False):
                         break
-                    if self.appear_then_click(RECRUIT_CONFIRM, offset=(30, 30), interval=2, static=False):
+                    if self.appear_then_click(RECRUIT_CONFIRM, offset=(30, 30), interval=3, static=False):
                         continue
 
                 confirm_timer.reset()
@@ -214,7 +214,7 @@ class DailyRecruit(UI):
                     self.device.screenshot()
                     if not self.appear(RECRUIT_CONFIRM, offset=30, static=False):
                         break
-                    if self.appear_then_click(RECRUIT_CONFIRM, offset=30, interval=2, static=False):
+                    if self.appear_then_click(RECRUIT_CONFIRM, offset=30, interval=3, static=False):
                         continue
 
                 click_timer.reset()
@@ -291,7 +291,7 @@ class DailyRecruit(UI):
                     self.device.screenshot()
                     if not self.appear(RECRUIT_CONFIRM, offset=(30, 30), static=False):
                         break
-                    if self.appear_then_click(RECRUIT_CONFIRM, offset=(30, 30), interval=2, static=False):
+                    if self.appear_then_click(RECRUIT_CONFIRM, offset=(30, 30), interval=3, static=False):
                         continue
 
                 confirm_timer.reset()
