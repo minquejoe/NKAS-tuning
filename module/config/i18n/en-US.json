@@ -1002,7 +1002,7 @@
   "Synchro": {
     "_info": {
       "name": "Synchro",
-      "help": ""
+      "help": "Only supports synchro above level 200"
     },
     "UseBox": {
       "name": "Use Box",
