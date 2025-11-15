@@ -1036,11 +1036,11 @@
   "SurfaceDaily": {
     "_info": {
       "name": "Setting",
-      "help": "May be unstable; requires all mission locations in Area 1 to be unlocked. For first-time use, it is recommended to move squads back to the base and ensure no missions are already active."
+      "help": "May be unstable. For first-time use, it is recommended to move squads 1, 2, and 3 back to the base and ensure no missions are already active."
     },
     "AutoPlace": {
       "name": "Automatic squad deployment",
-      "help": "Automatically deploys squads 1, 2, and 3 to mission points. "
+      "help": "Automatically deploys squads 1, 2, and 3 to mission points. When disabled, squads must be manually moved to the mission locations."
     },
     "Heal": {
       "name": "Auto Heal",

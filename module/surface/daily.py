@@ -210,6 +210,8 @@ class SurfaceDaily(UI):
 
             return False, None
 
+        if not self.config.SurfaceDaily_AutoPlace:
+            played_all = True
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
