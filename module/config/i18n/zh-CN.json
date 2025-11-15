@@ -28,6 +28,10 @@
       "name": "剧情活动",
       "help": ""
     },
+    "Surface": {
+      "name": "地面(BETA)",
+      "help": ""
+    },
     "Blablalink": {
       "name": "妮游社",
       "help": ""
@@ -164,6 +168,10 @@
     },
     "Event2": {
       "name": "剧情活动2",
+      "help": ""
+    },
+    "SurfaceDaily": {
+      "name": "地面每日",
       "help": ""
     },
     "BlaAuth": {
@@ -1023,6 +1031,20 @@
     "Hosts": {
       "name": "Hosts",
       "help": "将下面未被注释的内容追加到系统Hosts文件中，只支持Windows；默认启用国际服，更换服务器请取消对应服务器的注释，建议只开启自己所在服务器的Hosts，内容可根据自己实际情况修改"
+    }
+  },
+  "SurfaceDaily": {
+    "_info": {
+      "name": "设置",
+      "help": "可能不稳定；需要开启区域1的所有任务地点，首次使用建议将队伍移动到基地并且没有已经开启的任务"
+    },
+    "AutoPlace": {
+      "name": "自动放置队伍",
+      "help": "自动将1 2 3队放置到任务点"
+    },
+    "Heal": {
+      "name": "自动恢复",
+      "help": "还没做"
     }
   },
   "Storage": {

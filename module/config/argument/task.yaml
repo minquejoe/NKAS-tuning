@@ -134,6 +134,16 @@ StoryEvent:
       - Scheduler
       - Event
 
+# ==================== Surface ====================
+
+Surface:
+  menu: 'collapse'
+  page: 'setting'
+  tasks:
+    SurfaceDaily:
+      - Scheduler
+      - SurfaceDaily
+
 # ==================== Blablalink ====================
 
 Blablalink:

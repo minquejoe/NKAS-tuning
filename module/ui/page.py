@@ -1,5 +1,6 @@
 import traceback
 
+from module.handler.assets import CONFIRM_B
 from module.ui.assets import *
 
 
@@ -185,3 +186,18 @@ page_outpost.link(button=OUTPOST_GOTO_RECYCLING, destination=page_recycling_faci
 page_recycling_facility.link(button=FACILITY_ENTER, destination=page_recycling)
 page_recycling.link(button=GOTO_BACK, destination=page_recycling_facility)
 page_recycling_facility.link(button=FACILITY_BACK, destination=page_outpost)
+
+# campaign select
+page_campaign_select = Page(CAMPAIGN_SELECT_CHECK)
+page_campaign_select.link(button=CAMPAIGN_SELECT_CLOSE, destination=page_main)
+page_main.link(button=MAIN_GOTO_CAMPAIGN_SELECT, destination=page_campaign_select)
+
+# surface
+page_surface = Page(SURFACE_CHECK)
+# surface back
+page_surface_back = Page(SURFACE_BACK_CHECK)
+page_surface.link(button=GOTO_BACK, destination=page_surface_back)
+page_campaign_select.link(button=CAMPAIGN_SELECT_GOTO_SURFACE, destination=page_surface)
+
+page_surface_back.link(button=CONFIRM_B, destination=page_main)
+page_surface_back.link(button=SURFACE_BACK_CANCEL, destination=page_surface)

@@ -28,6 +28,10 @@
       "name": "Story Event",
       "help": ""
     },
+    "Surface": {
+      "name": "Surface Exploration(BETA)",
+      "help": ""
+    },
     "Blablalink": {
       "name": "BlaBlaLink",
       "help": ""
@@ -164,6 +168,10 @@
     },
     "Event2": {
       "name": "Story Event 2",
+      "help": ""
+    },
+    "SurfaceDaily": {
+      "name": "Surface Daily",
       "help": ""
     },
     "BlaAuth": {
@@ -1023,6 +1031,20 @@
     "Hosts": {
       "name": "Hosts",
       "help": "Append uncommented entries below to system Hosts file (Windows only). International servers enabled by default. Uncomment desired servers. It's recommended to only enable hosts for your server and adjust as needed."
+    }
+  },
+  "SurfaceDaily": {
+    "_info": {
+      "name": "Setting",
+      "help": "May be unstable; requires all mission locations in Area 1 to be unlocked. For first-time use, it is recommended to move squads back to the base and ensure no missions are already active."
+    },
+    "AutoPlace": {
+      "name": "Automatic squad deployment",
+      "help": "Automatically deploys squads 1, 2, and 3 to mission points. "
+    },
+    "Heal": {
+      "name": "Auto Heal",
+      "help": "Not done yet"
     }
   },
   "Storage": {
