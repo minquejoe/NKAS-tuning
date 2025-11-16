@@ -188,7 +188,7 @@ class SurfaceDaily(UI):
             """
             squad_loc = self.appear_location(globals()[f'SQUAD_{squad}_IN_SURFACE'], offset=(150, 100), static=False)
             if squad_loc:
-                match, idx = is_squad_at_target(squad_loc, target_points, SQUAD_POS_OFFSET, SQUAD_POS_TOL)
+                match, idx = is_squad_at_target(squad_loc, [target_points[squad - 1]], SQUAD_POS_OFFSET, SQUAD_POS_TOL)
                 if match:
                     logger.info(f'[Check] Squad {squad} number icon at target #{idx + 1}')
                     return True, idx
@@ -203,7 +203,9 @@ class SurfaceDaily(UI):
             """
             arrow_loc = self.appear_location(SQUAD_POINTING_ARROW, offset=10, static=False)
             if arrow_loc:
-                match, idx = is_squad_at_target(arrow_loc, target_points, SQUAD_ARROW_POS_OFFSET, SQUAD_ARROW_POS_TOL)
+                match, idx = is_squad_at_target(
+                    arrow_loc, [target_points[squad - 1]], SQUAD_ARROW_POS_OFFSET, SQUAD_ARROW_POS_TOL
+                )
                 if match:
                     logger.info(f'[Check] Squad {squad} arrow icon at target #{idx + 1}')
                     return True, idx
