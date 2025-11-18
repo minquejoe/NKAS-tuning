@@ -121,7 +121,7 @@ class DailyRecruit(UI):
                 if saved_path:
                     logger.info(f'Save recruit image to: {saved_path}')
                 # 推送通知
-                if self.config.DailyRecruit_SSRNotifyPush and self.appear(RECRUIT_NIKKE_SSR, threshold=10):
+                if self.config.DailyRecruit_SSRNotifyPush and self.appear(RECRUIT_NIKKE_SSR, threshold=20):
                     self.notify_push('EventFree')
 
                 while 1:
@@ -207,7 +207,7 @@ class DailyRecruit(UI):
                 if saved_path:
                     logger.info(f'Save recruit image to: {saved_path}')
                 # 推送通知
-                if self.config.DailyRecruit_SSRNotifyPush and self.appear(RECRUIT_NIKKE_SSR, threshold=10):
+                if self.config.DailyRecruit_SSRNotifyPush and self.appear(RECRUIT_NIKKE_SSR, threshold=20):
                     self.notify_push('150Gem')
 
                 while 1:
@@ -284,7 +284,7 @@ class DailyRecruit(UI):
                 if saved_path:
                     logger.info(f'Save recruit image to: {saved_path}')
                 # 推送通知
-                if self.config.DailyRecruit_SSRNotifyPush and self.appear(RECRUIT_NIKKE_SSR, threshold=10):
+                if self.config.DailyRecruit_SSRNotifyPush and self.appear(RECRUIT_NIKKE_SSR, threshold=20):
                     self.notify_push('SocialPoint')
 
                 while 1:
