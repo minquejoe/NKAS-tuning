@@ -215,7 +215,7 @@ class Reward(UI):
             if confirm_timer.reached():
                 break
 
-    def run(self):
+    def run(self, internal_call=False):
         # self.device.image = cv2.imread('t1.png')
         # self.appear_text('全部领取')
         self.ui_ensure(page_reward)
@@ -241,4 +241,5 @@ class Reward(UI):
             self.ui_ensure(page_ark)
             self.receive_ranking()
 
-        self.config.task_delay(server_update=True)
+        if not internal_call:
+            self.config.task_delay(server_update=True)

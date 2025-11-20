@@ -267,7 +267,7 @@ class Daily(UI):
             if self.config.Daily_CallReward:
                 from module.reward.reward import Reward
 
-                Reward(config=self.config, device=self.device).run()
+                Reward(config=self.config, device=self.device).run(internal_call=True)
             if self.config.Daily_EnhanceEquipment:
                 self.ui_ensure(page_inventory)
                 self.enhance_equipment()
@@ -285,6 +285,6 @@ class Daily(UI):
                 self.config.Notification_OnePushConfig,
                 title=f'NKAS <{self.config.config_name}>',
                 content='任务已全部完成！',
-                always=self.config.Notification_WinOnePush
+                always=self.config.Notification_WinOnePush,
             )
         self.config.task_delay(server_update=True)
