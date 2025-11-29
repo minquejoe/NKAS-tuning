@@ -160,8 +160,8 @@ def get_nikke_dialogue(content_id, nikke_name):
 
             # 检查名称是否相同
             if label == '角色名称' and value != nikke_name:
-                nikke_name = value
                 print(f'  警告: 角色名称不匹配，使用 {value} 覆盖 {nikke_name}')
+                nikke_name = value
 
             # 检查是否是问题（以"问题"加数字开头）
             elif re.match(r'^问题\d+', label):
