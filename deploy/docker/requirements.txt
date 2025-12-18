@@ -192,8 +192,6 @@ mdurl==0.1.2
     # via markdown-it-py
 more-itertools==10.7.0
     # via cssutils
-mouseinfo==0.1.3
-    # via pyautogui
 multidict==6.6.3
     # via
     #   aiohttp
@@ -280,10 +278,6 @@ py==1.11.0
     # via retry
 py-cpuinfo==9.0.0
     # via paddlex
-pyautogui==0.9.54
-    # via -r requirements.in
-pycaw==20251023
-    # via -r requirements.in
 pyclipper==1.3.0.post6
     # via paddlex
 pycparser==2.23
@@ -301,30 +295,18 @@ pydantic-core==2.33.2
     # via pydantic
 pyelftools==0.32
     # via apkutils2
-pygetwindow==0.0.9
-    # via pyautogui
 pygments==2.19.2
     # via rich
-pymsgbox==1.0.9
-    # via pyautogui
-pynput==1.8.1
-    # via -r requirements.in
 pyparsing==3.2.3
     # via -r requirements.in
 pypdfium2==4.30.0
     # via
     #   -r requirements.in
     #   paddlex
-pyperclip==1.9.0
-    # via mouseinfo
 pyrect==0.2.0
     # via pygetwindow
-pyscreeze==1.0.1
-    # via pyautogui
 python-dateutil==2.9.0.post0
     # via pandas
-pytweening==1.2.0
-    # via pyautogui
 pytz==2025.2
     # via pandas
 pywebio==1.7.1
