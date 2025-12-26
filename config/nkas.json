@@ -1,7 +1,8 @@
 {
   "NKAS": {
     "Client": {
-      "Platform": "adb"
+      "Platform": "adb",
+      "Language": "zh-CN"
     },
     "Optimization": {
       "AutoRedCircle": true,
@@ -11,6 +12,7 @@
     "Notification": {
       "WhenDailyTaskCompleted": false,
       "WhenDailyTaskCrashed": true,
+      "WinOnePush": false,
       "OnePushConfig": "provider: smtp\nhost: smtp.qq.com\nuser: 905503222@qq.com\npassword: dtqyizmwhejxbbdd\nport: 465"
     },
     "Storage": {
@@ -21,7 +23,6 @@
     "Emulator": {
       "Serial": "localhost:6603",
       "PackageName": "com.proximabeta.nikke",
-      "Language": "zh-cn",
       "ScreenshotMethod": "DroidCast",
       "ControlMethod": "minitouch",
       "AdbRestart": false,
@@ -39,17 +40,18 @@
   "PCClient": {
     "PCClientInfo": {
       "Client": "intl",
-      "Language": "zh-cn",
-      "ScreenshotInterval": 0.3,
+      "AutoFillName": true,
+      "LauncherPath": null,
       "LauncherTitleName": null,
       "LauncherProcessName": null,
-      "LauncherPath": null,
+      "GamePath": null,
       "GameTitleName": null,
       "GameProcessName": null,
-      "GamePath": null
+      "ScreenshotInterval": 0.3
     },
     "PCClient": {
       "Screens": false,
+      "ScreenNumber": 0,
       "GameResolutionCompat": false,
       "CloseAutoHdr": true,
       "ScreenRotate": false,
@@ -64,7 +66,7 @@
   "Restart": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "NextRun": "2025-12-25 20:00:03",
       "Command": "Restart",
       "SuccessInterval": 0,
       "FailureInterval": 0,
@@ -77,7 +79,7 @@
   "Reward": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "NextRun": "2025-12-25 20:00:00",
       "Command": "Reward",
       "SuccessInterval": "720-720",
       "FailureInterval": "720-720",
@@ -95,7 +97,7 @@
   "Destruction": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "NextRun": "2025-12-26 05:00:00",
       "Command": "Destruction",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -108,7 +110,7 @@
   "Mailbox": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "NextRun": "2025-12-26 05:00:00",
       "Command": "Mailbox",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -121,7 +123,7 @@
   "DailyRecruit": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "NextRun": "2025-12-26 05:00:00",
       "Command": "DailyRecruit",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -129,7 +131,8 @@
     },
     "DailyRecruit": {
       "EventFreeRecruit": true,
-      "SocialPointRecruit": true
+      "SocialPointRecruit": true,
+      "ScreenshotPath": null
     },
     "Storage": {
       "Storage": {}
@@ -138,7 +141,7 @@
   "Daily": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "NextRun": "2025-12-26 05:00:00",
       "Command": "Daily",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -156,7 +159,7 @@
   "MissionPass": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "NextRun": "2025-12-25 20:00:00",
       "Command": "MissionPass",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -169,7 +172,7 @@
   "Conversation": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-31 04:00:00",
+      "NextRun": "2025-12-26 04:00:00",
       "Command": "Conversation",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -186,7 +189,7 @@
   "Shop": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "NextRun": "2025-12-26 05:00:00",
       "Command": "Shop",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -207,7 +210,7 @@
   "RubbishShop": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-11-04 04:00:00",
+      "NextRun": "2025-12-30 04:00:00",
       "Command": "RubbishShop",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -221,10 +224,23 @@
       "Storage": {}
     }
   },
+  "EpisodeViewing": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "EpisodeViewing",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "04:00"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
   "Commission": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "NextRun": "2025-12-26 05:00:00",
       "Command": "Commission",
       "SuccessInterval": "720-720",
       "FailureInterval": "720-720",
@@ -280,17 +296,31 @@
       "Storage": {}
     }
   },
+  "OutpostStory": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "OutpostStory",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "04:00"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
   "SimulationRoom": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "NextRun": "2025-12-26 05:00:00",
       "Command": "SimulationRoom",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
     },
     "SimulationRoom": {
-      "QuickSimulation": true
+      "QuickSimulation": true,
+      "Immediately": false
     },
     "Area": {
       "Difficulty": "Level_5",
@@ -322,7 +352,7 @@
   "TribeTower": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "NextRun": "2025-12-26 05:00:00",
       "Command": "TribeTower",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -338,7 +368,7 @@
   "Interception": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "NextRun": "2025-12-26 05:00:00",
       "Command": "Interception",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -346,6 +376,7 @@
     },
     "Interception": {
       "Boss": "Kraken",
+      "AchieveLevel": 1,
       "DropScreenshotPath": null
     },
     "InterceptionTeam": {
@@ -362,7 +393,7 @@
   "RookieArena": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "NextRun": "2025-12-26 05:00:00",
       "Command": "RookieArena",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -380,7 +411,7 @@
   "SpecialArena": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "NextRun": "2025-12-26 05:00:00",
       "Command": "SpecialArena",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -398,7 +429,7 @@
   "ChampionArena": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "NextRun": "2025-12-26 05:00:00",
       "Command": "ChampionArena",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -431,7 +462,7 @@
   "SoloRaid": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-30 05:00:00",
+      "NextRun": "2025-12-26 05:00:00",
       "Command": "SoloRaid",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -464,7 +495,7 @@
       "ServerUpdate": "05:00"
     },
     "Event": {
-      "Event": "event_20250924",
+      "Event": "event_20251030",
       "LoginStamp": true,
       "Challenge": true,
       "Story": false,
@@ -491,7 +522,7 @@
       "ServerUpdate": "05:00"
     },
     "Event": {
-      "Event": "event_20250904",
+      "Event": "event_20250924",
       "LoginStamp": true,
       "Challenge": true,
       "Story": false,
@@ -584,7 +615,7 @@
   "DailyGift": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-10-31 05:00:00",
+      "NextRun": "2025-12-26 05:00:00",
       "Command": "DailyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -597,7 +628,7 @@
   "WeeklyGift": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-11-04 04:00:00",
+      "NextRun": "2025-12-30 04:00:00",
       "Command": "WeeklyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -610,7 +641,7 @@
   "MonthlyGift": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-11-01 04:00:00",
+      "NextRun": "2026-01-01 04:00:00",
       "Command": "MonthlyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -631,7 +662,8 @@
   "SemiCombat": {
     "SemiCombat": {
       "SkipStory": false,
-      "FightQuickly": false
+      "FightQuickly": false,
+      "MainStoryMark": false
     },
     "Storage": {
       "Storage": {}
@@ -656,6 +688,15 @@
   "ScreenRotate": {
     "ScreenRotate": {
       "Orientation": 0
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "UpdateHosts": {
+    "Hosts": {
+      "Action": "Add",
+      "Hosts": "# 通用\n18.155.202.10 cloud.nikke-kr.com\n43.132.85.192 nikke-en.com\n43.132.85.192 nikke-jp.com\n43.132.85.192 nikke-kr.com\n# 国际 Global\n43.152.186.163 global-lobby.nikke-kr.com\n43.152.186.163 global-match.nikke-kr.com\n# 日本 JP\n# 43.152.186.163 jp-lobby.nikke-kr.com\n# 43.152.186.163 jp-match.nikke-kr.com\n# 韩国 KR\n# 43.152.186.163 kr-lobby.nikke-kr.com\n# 43.152.186.163 kr-match.nikke-kr.com\n# 东南亚 SEA\n# 43.152.186.163 sea-lobby.nikke-kr.com\n# 43.152.186.163 sea-match.nikke-kr.com\n# 港澳台 HK/MC/TW\n# 43.152.186.163 hmt-lobby.nikke-kr.com\n# 43.152.186.163 hmt-match.nikke-kr.com\n# 北美 NA\n# 175.97.131.54 us-match.nikke-kr.com\n# 175.97.131.54 us-lobby.nikke-kr.com"
     },
     "Storage": {
       "Storage": {}
