@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img alt="LOGO" src="./webapp/buildResources/icon_mem.png" width="256" height="256" />
+<img alt="LOGO" src="./webapp/buildResources/icon.png" width="256" height="256" />
 
 # NIKKEAutoScript
 
