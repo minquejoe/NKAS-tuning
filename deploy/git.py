@@ -85,7 +85,7 @@ class GitManager(DeployConfig):
         """
         logger.hr('Cleaning up git garbage', 1)
         self.execute(f'"{self.git}" reflog expire --expire=now --all', allow_failure=True)
-        self.execute(f'"{self.git}" gc --prune=now --aggressive', allow_failure=True)
+        self.execute(f'"{self.git}" gc --prune=now', allow_failure=True)
 
         logger.hr('Show Version', 1)
         self.execute(f'"{self.git}" --no-pager log --no-merges -1')
