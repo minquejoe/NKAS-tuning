@@ -84,6 +84,7 @@ class GitManager(DeployConfig):
             清理悬空对象和压缩体积
         """
         logger.hr('Cleaning up git garbage', 1)
+        self.execute(f'"{self.git}" reflog expire --expire=now --all', allow_failure=True)
         self.execute(f'"{self.git}" gc --prune=now --aggressive', allow_failure=True)
 
         logger.hr('Show Version', 1)
