@@ -208,18 +208,6 @@
           5
         ]
       },
-      "GameResolutionCompat": {
-        "type": "checkbox",
-        "value": true
-      },
-      "CloseAutoHdr": {
-        "type": "checkbox",
-        "value": true
-      },
-      "ScreenRotate": {
-        "type": "checkbox",
-        "value": false
-      },
       "GameWindowPosition": {
         "type": "select",
         "value": "center",
@@ -230,6 +218,22 @@
           "topleft",
           "topright"
         ]
+      },
+      "GameResolutionCompat": {
+        "type": "checkbox",
+        "value": true
+      },
+      "ScreenRotate": {
+        "type": "checkbox",
+        "value": false
+      },
+      "CloseAutoHdr": {
+        "type": "checkbox",
+        "value": true
+      },
+      "DisableVoice": {
+        "type": "checkbox",
+        "value": false
       },
       "Account": {
         "type": "input",
@@ -338,7 +342,7 @@
       },
       "CollectSpecialArenaPoint": {
         "type": "checkbox",
-        "value": true
+        "value": false
       },
       "CollectRanking": {
         "type": "checkbox",
@@ -488,6 +492,14 @@
       "SocialPointRecruit": {
         "type": "checkbox",
         "value": true
+      },
+      "Ordinary150GemRecruit": {
+        "type": "checkbox",
+        "value": false
+      },
+      "SSRNotifyPush": {
+        "type": "checkbox",
+        "value": false
       },
       "ScreenshotPath": {
         "type": "textarea",
@@ -1328,6 +1340,10 @@
           9
         ]
       },
+      "QuickBattleOnly": {
+        "type": "checkbox",
+        "value": false
+      },
       "DropScreenshotPath": {
         "type": "textarea",
         "value": ""
@@ -1435,6 +1451,19 @@
         "display": "hide"
       }
     },
+    "RookieArena": {
+      "Times": {
+        "type": "select",
+        "value": 5,
+        "option": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
     "OpponentSelection": {
       "Enable": {
         "type": "checkbox",
@@ -1497,6 +1526,16 @@
         "type": "input",
         "value": "05:00",
         "display": "hide"
+      }
+    },
+    "SpecialArena": {
+      "Times": {
+        "type": "select",
+        "value": 2,
+        "option": [
+          1,
+          2
+        ]
       }
     },
     "OpponentSelection": {
@@ -1772,6 +1811,9 @@
         "type": "select",
         "value": "",
         "option": [
+          "event_20251230",
+          "event_20251204",
+          "event_20251120",
           "event_20251030",
           "event_20251016",
           "event_20250924",
@@ -1830,11 +1872,19 @@
         "type": "checkbox",
         "value": false
       },
-      "GameStorySkip": {
+      "GameTenBeam": {
+        "type": "input",
+        "value": 200
+      },
+      "GameTargetScore": {
+        "type": "input",
+        "value": 0
+      },
+      "GameLoop": {
         "type": "checkbox",
         "value": false
       },
-      "GameLoop": {
+      "GameStorySkip": {
         "type": "checkbox",
         "value": false
       }
@@ -1889,6 +1939,9 @@
         "type": "select",
         "value": "",
         "option": [
+          "event_20251230",
+          "event_20251204",
+          "event_20251120",
           "event_20251030",
           "event_20251016",
           "event_20250924",
@@ -1947,13 +2000,77 @@
         "type": "checkbox",
         "value": false
       },
-      "GameStorySkip": {
-        "type": "checkbox",
-        "value": false
+      "GameTenBeam": {
+        "type": "input",
+        "value": 200
+      },
+      "GameTargetScore": {
+        "type": "input",
+        "value": 0
       },
       "GameLoop": {
         "type": "checkbox",
         "value": false
+      },
+      "GameStorySkip": {
+        "type": "checkbox",
+        "value": false
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "SurfaceDaily": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "1989-12-27 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "SurfaceDaily",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "SurfaceDaily": {
+      "AutoPlace": {
+        "type": "checkbox",
+        "value": true
+      },
+      "Heal": {
+        "type": "checkbox",
+        "value": true,
+        "display": "disabled"
       }
     },
     "Storage": {

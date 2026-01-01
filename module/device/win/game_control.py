@@ -49,7 +49,7 @@ class WinClient:
 
     def start_program(self) -> bool:
         """启动程序"""
-        logger.info(f'Starting program: [{self.current_window.name}]:{self.current_window.path}')
+        logger.info(f'Starting program: [{self.current_window.name}]:[{self.current_window.path}]')
         path = self.current_window.path
         if not os.path.exists(path):
             logger.error('Path does not exist')
@@ -218,19 +218,19 @@ class WinClient:
                     exe_path = process.exe()
 
                     # 每个候选窗口的信息
-                    logger.debug(f'Checking window HWND={hwnd}, PID={pid}, Path={exe_path}')
+                    logger.debug(f'Checking window HWND=[{hwnd}], PID=[{pid}], Path=[{exe_path}]')
                     if hasattr(self.current_window, 'path') and self.current_window.path:
                         expected_path = self.current_window.path
                         if exe_path.lower() == expected_path.lower():
                             matched_hwnd = hwnd
-                            logger.info(f'Path matched: {exe_path}')
+                            logger.info(f'Path matched: [{exe_path}]')
                             break
                         else:
-                            logger.debug(f'Path mismatch:\nExpected: {expected_path}\nActual:   {exe_path}')
+                            logger.debug(f'Path mismatch:\nExpected: [{expected_path}]\nActual:   [{exe_path}]')
                 except Exception as e:
                     logger.warning(f'Failed to check process path for window: {e}')
             if not matched_hwnd:
-                logger.error(f'No window matched expected process path={self.current_window.path}')
+                logger.error(f'No window matched expected process path=[{self.current_window.path}]')
                 return False
 
             # 切换到目标窗口
@@ -240,6 +240,38 @@ class WinClient:
         except Exception as e:
             logger.error(f'Error activating window: {e}')
             return False
+
+    def mute_window(self, mute: bool = True):
+        """
+        静音/取消静音当前窗口对应的进程
+        """
+        action = 'Muting' if mute else 'Unmuting'
+        logger.info(f'{action} process: [{self.current_window.name}]:{self.current_window.process}')
+        try:
+            from pycaw.pycaw import AudioUtilities, ISimpleAudioVolume
+        except ImportError:
+            logger.warning('pycaw library is not installed. Unable to control audio.')
+            return
+
+        try:
+            sessions = AudioUtilities.GetAllSessions()
+            target_process = self.current_window.process.lower()
+            target_path = os.path.normpath(self.current_window.path).lower() if self.current_window.path else None
+
+            for session in sessions:
+                if session.Process and session.Process.name().lower() == target_process:
+                    if target_path:
+                        try:
+                            if os.path.normpath(session.Process.exe()).lower() != target_path:
+                                continue
+                        except Exception:
+                            continue
+
+                    volume = session._ctl.QueryInterface(ISimpleAudioVolume)
+                    volume.SetMute(1 if mute else 0, None)
+                    logger.info(f'Process {self.current_window.process} {"muted" if mute else "unmuted"}')
+        except Exception as e:
+            logger.error(f'Error controlling audio: {e}')
 
     def get_resolution(self) -> Optional[Tuple[int, int]]:
         """获取程序窗口的分辨率"""

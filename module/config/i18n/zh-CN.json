@@ -28,6 +28,10 @@
       "name": "剧情活动",
       "help": ""
     },
+    "Surface": {
+      "name": "地面(BETA)",
+      "help": ""
+    },
     "Blablalink": {
       "name": "妮游社",
       "help": ""
@@ -164,6 +168,10 @@
     },
     "Event2": {
       "name": "剧情活动2",
+      "help": ""
+    },
+    "SurfaceDaily": {
+      "name": "地面每日",
       "help": ""
     },
     "BlaAuth": {
@@ -358,18 +366,6 @@
       "4": "4",
       "5": "5"
     },
-    "GameResolutionCompat": {
-      "name": "游戏分辨率设置兼容模式",
-      "help": "如果脚本提示游戏分辨率不正确、日志输出的游戏窗口分辨率不为720*1280，请开启此选项"
-    },
-    "CloseAutoHdr": {
-      "name": "关闭自动HDR",
-      "help": "NKAS运行在HDR开启的设备下可能无法正常运行，如果你开启了系统HDR请开启此选项，开启后会关闭游戏的自动HDR，全局HDR不受影响"
-    },
-    "ScreenRotate": {
-      "name": "旋转屏幕",
-      "help": "仅建议1080p屏幕用户开启，开启该选项后，点击启动时屏幕会变成竖屏以满足竖向分辨率要求；任务结束后会自动旋转为横屏，或者使用快捷键Ctrl+F12手动旋转为横屏"
-    },
     "GameWindowPosition": {
       "name": "游戏窗口位置",
       "help": "设置游戏窗口位置，防止被遮挡或者超出屏幕",
@@ -378,6 +374,22 @@
       "right": "靠右居中",
       "topleft": "左上角",
       "topright": "右上角"
+    },
+    "GameResolutionCompat": {
+      "name": "游戏分辨率设置兼容模式",
+      "help": "如果脚本提示游戏分辨率不正确、日志输出的游戏窗口分辨率不为720*1280，请开启此选项"
+    },
+    "ScreenRotate": {
+      "name": "旋转屏幕",
+      "help": "仅建议1080p屏幕用户开启，开启该选项后，点击启动时屏幕会变成竖屏以满足竖向分辨率要求；任务结束后会自动旋转为横屏，或者使用快捷键Ctrl+F12手动旋转为横屏"
+    },
+    "CloseAutoHdr": {
+      "name": "关闭自动HDR",
+      "help": "NKAS运行在HDR开启的设备下可能无法正常运行，如果你开启了系统HDR请开启此选项，开启后会关闭游戏的自动HDR，全局HDR不受影响"
+    },
+    "DisableVoice": {
+      "name": "禁用声音",
+      "help": "脚本运行时自动禁用游戏进程声音，运行结束后会自动恢复；如果没有自动恢复，需要在系统任务栏中的音量合成器中手动开启"
     },
     "Account": {
       "name": "账号",
@@ -484,6 +496,14 @@
     },
     "SocialPointRecruit": {
       "name": "友情点单抽",
+      "help": ""
+    },
+    "Ordinary150GemRecruit": {
+      "name": "普通150钻单抽",
+      "help": "普通招募中每天一次的150钻抽卡"
+    },
+    "SSRNotifyPush": {
+      "name": "SSR出货提醒",
       "help": ""
     },
     "ScreenshotPath": {
@@ -640,6 +660,33 @@
       "help": "妮姬优先级，当前派遣选择的收藏品数量大于160时会从列表中自动移除并选择下一个，格式例如：Helm > Exia；\n妮姬名称对应：\nDiesel：迪赛尔\nExia：艾可希雅\nLaplace：拉普拉斯\nFrima：普琳玛\nViper：毒蛇\nHelm：海伦\nMiranda：米兰达\nDrake：德雷克\nMilk：米尔克\nPoli：波莉\nJulia：尤莉亚\nBay：贝伊\nTove：托比"
     }
   },
+  "RookieArena": {
+    "_info": {
+      "name": "设置",
+      "help": ""
+    },
+    "Times": {
+      "name": "战斗次数",
+      "help": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5"
+    }
+  },
+  "SpecialArena": {
+    "_info": {
+      "name": "设置",
+      "help": ""
+    },
+    "Times": {
+      "name": "战斗次数",
+      "help": "",
+      "1": "1",
+      "2": "2"
+    }
+  },
   "OpponentSelection": {
     "_info": {
       "name": "对手选择设置",
@@ -750,6 +797,9 @@
     "Event": {
       "name": "当前活动",
       "help": "",
+      "event_20251230": "ARK GUARDIAN",
+      "event_20251204": "TERMINUS Ticket",
+      "event_20251120": "BLANK Ticket",
       "event_20251030": "GODDESS FALL",
       "event_20251016": "GO! NINJA THIEF!",
       "event_20250924": "REBORN EVIL",
@@ -800,13 +850,21 @@
       "name": "小游戏",
       "help": "视情况适配小游戏，如果没有适配会自动跳过"
     },
-    "GameStorySkip": {
-      "name": "跳过小游戏剧情",
-      "help": ""
+    "GameTenBeam": {
+      "name": "小游戏搜索强度",
+      "help": "求解器的搜索范围，越高找到的解越优（略优），但计算时间越长"
+    },
+    "GameTargetScore": {
+      "name": "小游戏目标分数",
+      "help": "仅在 小游戏循环运行 开启时有效，达到目标分数后会停止小游戏循环运行"
     },
     "GameLoop": {
       "name": "小游戏循环运行",
       "help": "停止快捷键F10"
+    },
+    "GameStorySkip": {
+      "name": "跳过小游戏剧情",
+      "help": ""
     }
   },
   "CheerStrategy": {
@@ -852,6 +910,10 @@
       "7": "7",
       "8": "8",
       "9": "9"
+    },
+    "QuickBattleOnly": {
+      "name": "只快速战斗",
+      "help": "只进行快速战斗，快速战斗不可用时会自动跳过，适合每周一手动打拦截的用户"
     },
     "DropScreenshotPath": {
       "name": "掉落截图路径",
@@ -990,7 +1052,7 @@
   "Synchro": {
     "_info": {
       "name": "同步器",
-      "help": ""
+      "help": "只支持同步器等级200以上"
     },
     "UseBox": {
       "name": "使用道具",
@@ -1011,6 +1073,20 @@
     "Hosts": {
       "name": "Hosts",
       "help": "将下面未被注释的内容追加到系统Hosts文件中，只支持Windows；默认启用国际服，更换服务器请取消对应服务器的注释，建议只开启自己所在服务器的Hosts，内容可根据自己实际情况修改"
+    }
+  },
+  "SurfaceDaily": {
+    "_info": {
+      "name": "设置",
+      "help": "可能不稳定，首次使用建议将1 2 3队伍移动到基地并且没有已经开启的任务"
+    },
+    "AutoPlace": {
+      "name": "自动放置队伍",
+      "help": "自动将1 2 3队放置到任务点，关闭时需要将队伍手动移动到任务地点"
+    },
+    "Heal": {
+      "name": "自动恢复",
+      "help": "还没做"
     }
   },
   "Storage": {

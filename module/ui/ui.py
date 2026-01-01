@@ -4,11 +4,12 @@ from module.exception import GameNotRunningError, GamePageUnknownError, GameStar
 from module.handler.assets import *
 from module.handler.info_handle import InfoHandler
 from module.logger import logger
-from module.ui.assets import GOTO_MAIN
+from module.ui.assets import GOTO_MAIN, UI_LOADING_1, UI_LOADING_2, UI_LOADING_3, UI_LOADING_4
 from module.ui.page import (
     Page,
     page_arena,
     page_ark,
+    page_campaign_select,
     page_cash_shop,
     page_commission,
     page_conversation,
@@ -31,6 +32,8 @@ from module.ui.page import (
     page_simulation_room,
     page_special_arena,
     page_special_interception,
+    page_surface,
+    page_surface_back,
     page_synchro,
     page_synchro_facility,
     page_team,
@@ -70,6 +73,9 @@ class UI(InfoHandler):
         page_interception,
         page_special_interception,
         page_recruit,
+        page_campaign_select,
+        page_surface,
+        page_surface_back,
     ]
 
     def ui_page_appear(self, page: Page):
@@ -311,3 +317,33 @@ class UI(InfoHandler):
 
     def ui_goto_main(self):
         return self.ui_ensure(destination=page_main)
+
+    def ui_wait_loading(self):
+        # UI_LOADING消失后检查时间
+        confirm_timer = Timer(2, count=3)
+        # UI_LOADING未出现检查时间
+        overall_timer = Timer(3)
+
+        while 1:
+            self.device.screenshot()
+
+            if (
+                self.appear(UI_LOADING_1, offset=(30, 30))
+                or self.appear(UI_LOADING_2, offset=(30, 30))
+                or self.appear(UI_LOADING_3, offset=(30, 30))
+                or self.appear(UI_LOADING_4, offset=(30, 30))
+            ):
+                # 停止未出现检查时间计时
+                overall_timer.clear()
+
+                if not confirm_timer.started():
+                    confirm_timer.start()
+                if confirm_timer.reached():
+                    break
+            else:
+                confirm_timer.clear()
+
+                if not overall_timer.started():
+                    overall_timer.start()
+                if overall_timer.reached():
+                    break

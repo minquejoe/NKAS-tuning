@@ -1,6 +1,8 @@
 import importlib
 from functools import cached_property
 
+import cv2
+
 from module.base.button import filter_buttons_in_area, merge_buttons
 from module.base.decorator import Config
 from module.base.timer import Timer
@@ -48,11 +50,12 @@ class ChallengeNotFoundError(Exception):
 
 
 class EventInfo:
-    def __init__(self, id, name, type, mini_game, story_part, story_difficulty):
+    def __init__(self, id, name, type, mini_game, mini_game_play, story_part, story_difficulty):
         self.id: str = id
         self.name: str = name
         self.type: int = type
         self.mini_game: bool = mini_game
+        self.mini_game_play: bool = mini_game_play
         self.story_part: str = story_part
         self.story_difficulty: str = story_difficulty
 
@@ -77,9 +80,13 @@ class Event(UI):
     def STORY_STAGE_11(self, story):
         stages = {
             'story_1_normal': self.event_assets.STORY_1_NORMAL_STAGE_11,
+            'story_1_normal_clear': self.event_assets.STORY_1_NORMAL_STAGE_11_CLEAR,
             'story_1_hard': self.event_assets.STORY_1_HARD_STAGE_11,
+            'story_1_hard_clear': self.event_assets.STORY_1_HARD_STAGE_11_CLEAR,
             'story_2_normal': self.event_assets.STORY_2_NORMAL_STAGE_11,
+            'story_2_normal_clear': self.event_assets.STORY_2_NORMAL_STAGE_11_CLEAR,
             'story_2_hard': self.event_assets.STORY_2_HARD_STAGE_11,
+            'story_2_hard_clear': self.event_assets.STORY_2_HARD_STAGE_11_CLEAR,
         }
         return stages[story]
 
@@ -650,7 +657,7 @@ class Event(UI):
                     break
 
         # 滑动到列表最下方检查倒数第二关
-        self.ensure_sroll_to_bottom(x1=(680, 800), x2=(680, 460), count=3)
+        # self.ensure_sroll_to_bottom(x1=(680, 800), x2=(680, 460), count=3)
         self.device.screenshot()
         self.find_and_fight_stage(open_story)
 
@@ -756,7 +763,7 @@ class Event(UI):
                 break
 
         # 滑动到列表最下方检查倒数第二关
-        self.ensure_sroll_to_bottom(x1=(680, 800), x2=(680, 460), count=3)
+        # self.ensure_sroll_to_bottom(x1=(680, 800), x2=(680, 460), count=3)
         self.device.screenshot()
         self.find_and_fight_stage(open_story)
 
@@ -765,7 +772,9 @@ class Event(UI):
 
     def find_and_fight_stage(self, open_story):
         click_timer = Timer(0.3)
-        if self.appear(self.STORY_STAGE_11(open_story), offset=10, threshold=0.9, static=False):
+        if self.appear(self.STORY_STAGE_11(open_story), offset=30, threshold=0.9) and self.appear(
+            self.STORY_STAGE_11(f'{open_story}_clear'), offset=30, threshold=0.9
+        ):
             max_clicks = 0
             while 1:
                 self.device.screenshot()
@@ -783,8 +792,10 @@ class Event(UI):
                     break
 
                 # 关卡检查
-                if click_timer.reached() and self.appear_then_click(
-                    self.STORY_STAGE_11(open_story), offset=10, threshold=0.9, interval=1, static=False
+                if (
+                    click_timer.reached()
+                    and self.appear(self.STORY_STAGE_11(open_story), offset=30, threshold=0.9)
+                    and self.appear_then_click(self.STORY_STAGE_11(f'{open_story}_clear'), offset=30, threshold=0.9)
                 ):
                     self.device.sleep(0.5)
                     click_timer.reset()
@@ -1012,7 +1023,7 @@ class Event(UI):
 
             # 商店页面
             if self.appear(EVENT_SHOP_CHECK, offset=(30, 30)) and self.appear(
-                self.event_assets.SHOP_ITEM_LOAD_CHECK, offset=(30, 30)
+                self.event_assets.SHOP_ITEM_LOAD_CHECK, threshold=0.65, offset=(30, 30)
             ):
                 logger.info('Open event shop')
                 break
@@ -1260,6 +1271,11 @@ class Event(UI):
                 raise EventUnavailableError
 
     def run(self):
+        # image = cv2.imread('1.png')
+        # cv2.cvtColor(image, cv2.COLOR_BGR2RGB, dst=image)
+        # self.device.image  = image
+        # self.appear_text('8')
+
         # 是否需要重新执行
         coop_reschedule = False
 

@@ -99,9 +99,11 @@ Ark:
       - InterceptionTeam
     RookieArena:
       - Scheduler
+      - RookieArena
       - OpponentSelection
     SpecialArena:
       - Scheduler
+      - SpecialArena
       - OpponentSelection
     ChampionArena:
       - Scheduler
@@ -133,6 +135,16 @@ StoryEvent:
     Event2:
       - Scheduler
       - Event
+
+# ==================== Surface ====================
+
+Surface:
+  menu: 'collapse'
+  page: 'setting'
+  tasks:
+    SurfaceDaily:
+      - Scheduler
+      - SurfaceDaily
 
 # ==================== Blablalink ====================
 

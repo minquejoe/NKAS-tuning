@@ -52,10 +52,11 @@
     "PCClient": {
       "Screens": false,
       "ScreenNumber": 0,
-      "GameResolutionCompat": true,
-      "CloseAutoHdr": true,
-      "ScreenRotate": false,
       "GameWindowPosition": "center",
+      "GameResolutionCompat": true,
+      "ScreenRotate": false,
+      "CloseAutoHdr": true,
+      "DisableVoice": false,
       "Account": null,
       "Password": null
     },
@@ -87,7 +88,7 @@
     },
     "Reward": {
       "CollectSocialPoint": true,
-      "CollectSpecialArenaPoint": true,
+      "CollectSpecialArenaPoint": false,
       "CollectRanking": true
     },
     "Storage": {
@@ -148,6 +149,8 @@
     "DailyRecruit": {
       "EventFreeRecruit": true,
       "SocialPointRecruit": true,
+      "Ordinary150GemRecruit": false,
+      "SSRNotifyPush": false,
       "ScreenshotPath": null
     },
     "Storage": {
@@ -406,6 +409,7 @@
     "Interception": {
       "Boss": "Kraken",
       "AchieveLevel": 1,
+      "QuickBattleOnly": false,
       "DropScreenshotPath": null
     },
     "InterceptionTeam": {
@@ -428,6 +432,9 @@
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
     },
+    "RookieArena": {
+      "Times": 5
+    },
     "OpponentSelection": {
       "Enable": false,
       "SortingWeight": "{\"Power\":0.3, \"CommanderLevel\":0.2, \"SynchroLevel\":0.3, \"Ranking\":0.2}",
@@ -445,6 +452,9 @@
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
+    },
+    "SpecialArena": {
+      "Times": 2
     },
     "OpponentSelection": {
       "Enable": false,
@@ -534,8 +544,10 @@
       "Shop": false,
       "ShopDelayList": "TITLE",
       "Game": false,
-      "GameStorySkip": false,
-      "GameLoop": false
+      "GameTenBeam": 200,
+      "GameTargetScore": 0,
+      "GameLoop": false,
+      "GameStorySkip": false
     },
     "Storage": {
       "Storage": {}
@@ -561,8 +573,27 @@
       "Shop": false,
       "ShopDelayList": "TITLE",
       "Game": false,
-      "GameStorySkip": false,
-      "GameLoop": false
+      "GameTenBeam": 200,
+      "GameTargetScore": 0,
+      "GameLoop": false,
+      "GameStorySkip": false
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "SurfaceDaily": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "SurfaceDaily",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "04:00"
+    },
+    "SurfaceDaily": {
+      "AutoPlace": true,
+      "Heal": true
     },
     "Storage": {
       "Storage": {}

@@ -37,10 +37,11 @@ class GeneratedConfig:
     # Group `PCClient`
     PCClient_Screens = False
     PCClient_ScreenNumber = 0  # 0, 1, 2, 3, 4, 5
-    PCClient_GameResolutionCompat = True
-    PCClient_CloseAutoHdr = True
-    PCClient_ScreenRotate = False
     PCClient_GameWindowPosition = 'center'  # center, left, right, topleft, topright
+    PCClient_GameResolutionCompat = True
+    PCClient_ScreenRotate = False
+    PCClient_CloseAutoHdr = True
+    PCClient_DisableVoice = False
     PCClient_Account = None
     PCClient_Password = None
 
@@ -62,12 +63,14 @@ class GeneratedConfig:
 
     # Group `Reward`
     Reward_CollectSocialPoint = True
-    Reward_CollectSpecialArenaPoint = True
+    Reward_CollectSpecialArenaPoint = False
     Reward_CollectRanking = True
 
     # Group `DailyRecruit`
     DailyRecruit_EventFreeRecruit = True
     DailyRecruit_SocialPointRecruit = True
+    DailyRecruit_Ordinary150GemRecruit = False
+    DailyRecruit_SSRNotifyPush = False
     DailyRecruit_ScreenshotPath = None
 
     # Group `SimulationRoom`
@@ -109,6 +112,12 @@ class GeneratedConfig:
     CollectionItems_Enable = False
     CollectionItems_Priority = None
 
+    # Group `RookieArena`
+    RookieArena_Times = 5  # 1, 2, 3, 4, 5
+
+    # Group `SpecialArena`
+    SpecialArena_Times = 2  # 1, 2
+
     # Group `OpponentSelection`
     OpponentSelection_Enable = False
     OpponentSelection_SortingWeight = '{"Power":0.3, "CommanderLevel":0.2, "SynchroLevel":0.3, "Ranking":0.2}'
@@ -138,7 +147,7 @@ class GeneratedConfig:
     BlaExchange_Priority = 'Gem_×320 > Gem_×120 > Gem_×60 > Gem_×30 > Welcome_Gift_Core_Dust_×30'
 
     # Group `Event`
-    Event_Event = ''  # event_20251030, event_20251016, event_20250924, event_20250904, event_20250807, event_20250716, event_20250703s, event_20250703l, event_20250612
+    Event_Event = ''  # event_20251230, event_20251204, event_20251120, event_20251030, event_20251016, event_20250924, event_20250904, event_20250807, event_20250716, event_20250703s, event_20250703l, event_20250612
     Event_LoginStamp = True
     Event_Challenge = True
     Event_Story = False
@@ -148,8 +157,10 @@ class GeneratedConfig:
     Event_Shop = False
     Event_ShopDelayList = 'TITLE'
     Event_Game = False
-    Event_GameStorySkip = False
+    Event_GameTenBeam = 200
+    Event_GameTargetScore = 0
     Event_GameLoop = False
+    Event_GameStorySkip = False
 
     # Group `CheerStrategy`
     CheerStrategy_Enable = False
@@ -158,6 +169,7 @@ class GeneratedConfig:
     # Group `Interception`
     Interception_Boss = 'Kraken'  # Kraken, Indivilia, Harvester, MirrorContainer, Ultra
     Interception_AchieveLevel = 1  # 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Interception_QuickBattleOnly = False
     Interception_DropScreenshotPath = None
 
     # Group `InterceptionTeam`
@@ -195,6 +207,10 @@ class GeneratedConfig:
     # Group `Hosts`
     Hosts_Action = 'Add'  # Add, Delete
     Hosts_Hosts = '# 通用\n18.155.202.10 cloud.nikke-kr.com\n43.132.85.192 nikke-en.com\n43.132.85.192 nikke-jp.com\n43.132.85.192 nikke-kr.com\n# 国际 Global\n43.152.186.163 global-lobby.nikke-kr.com\n43.152.186.163 global-match.nikke-kr.com\n# 日本 JP\n# 43.152.186.163 jp-lobby.nikke-kr.com\n# 43.152.186.163 jp-match.nikke-kr.com\n# 韩国 KR\n# 43.152.186.163 kr-lobby.nikke-kr.com\n# 43.152.186.163 kr-match.nikke-kr.com\n# 东南亚 SEA\n# 43.152.186.163 sea-lobby.nikke-kr.com\n# 43.152.186.163 sea-match.nikke-kr.com\n# 港澳台 HK/MC/TW\n# 43.152.186.163 hmt-lobby.nikke-kr.com\n# 43.152.186.163 hmt-match.nikke-kr.com\n# 北美 NA\n# 175.97.131.54 us-match.nikke-kr.com\n# 175.97.131.54 us-lobby.nikke-kr.com'
+
+    # Group `SurfaceDaily`
+    SurfaceDaily_AutoPlace = True
+    SurfaceDaily_Heal = True
 
     # Group `Storage`
     Storage_Storage = {}

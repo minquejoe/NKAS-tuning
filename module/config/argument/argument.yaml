@@ -66,13 +66,14 @@ PCClient:
   ScreenNumber:
     value: 0
     option: [ 0, 1, 2, 3, 4, 5 ]
-  GameResolutionCompat:
-    value: true
-  CloseAutoHdr: true
-  ScreenRotate: false
   GameWindowPosition:
     value: center
     option: [ center, left, right, topleft, topright ]
+  GameResolutionCompat:
+    value: true
+  ScreenRotate: false
+  CloseAutoHdr: true
+  DisableVoice: false
   Account:
     value: ''
   Password:
@@ -107,11 +108,13 @@ Optimization:
     option: [ stay_there, goto_main, close_game ]
 Reward:
   CollectSocialPoint: true
-  CollectSpecialArenaPoint: true
+  CollectSpecialArenaPoint: false
   CollectRanking: true
 DailyRecruit:
   EventFreeRecruit: true
   SocialPointRecruit: true
+  Ordinary150GemRecruit: false
+  SSRNotifyPush: false
   ScreenshotPath:
     value: ''
     type: textarea
@@ -164,6 +167,14 @@ CollectionItems:
   Priority:
     value: ''
     type: textarea
+RookieArena:
+  Times:
+    value: 5
+    option: [ 1, 2, 3, 4, 5 ]
+SpecialArena:
+  Times:
+    value: 2
+    option: [ 1, 2 ]
 OpponentSelection:
   Enable: false
   SortingWeight:
@@ -209,6 +220,9 @@ Event:
   Event:
     value: ''
     option: [
+      'event_20251230',
+      'event_20251204',
+      'event_20251120',
       'event_20251030',
       'event_20251016',
       'event_20250924',
@@ -243,8 +257,12 @@ Event:
     value: 'TITLE'
     type: textarea
   Game: false
-  GameStorySkip: false
+  GameTenBeam:
+    value: 200
+  GameTargetScore:
+    value: 0
   GameLoop: false
+  GameStorySkip: false
 CheerStrategy:
   Enable: false
   Strategy:
@@ -257,6 +275,7 @@ Interception:
   AchieveLevel:
     value: 1
     option: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  QuickBattleOnly: false
   DropScreenshotPath:
     value: ''
     type: textarea
@@ -317,3 +336,9 @@ Hosts:
   Hosts:
     value: "# 通用\n18.155.202.10 cloud.nikke-kr.com\n43.132.85.192 nikke-en.com\n43.132.85.192 nikke-jp.com\n43.132.85.192 nikke-kr.com\n# 国际 Global\n43.152.186.163 global-lobby.nikke-kr.com\n43.152.186.163 global-match.nikke-kr.com\n# 日本 JP\n# 43.152.186.163 jp-lobby.nikke-kr.com\n# 43.152.186.163 jp-match.nikke-kr.com\n# 韩国 KR\n# 43.152.186.163 kr-lobby.nikke-kr.com\n# 43.152.186.163 kr-match.nikke-kr.com\n# 东南亚 SEA\n# 43.152.186.163 sea-lobby.nikke-kr.com\n# 43.152.186.163 sea-match.nikke-kr.com\n# 港澳台 HK/MC/TW\n# 43.152.186.163 hmt-lobby.nikke-kr.com\n# 43.152.186.163 hmt-match.nikke-kr.com\n# 北美 NA\n# 175.97.131.54 us-match.nikke-kr.com\n# 175.97.131.54 us-lobby.nikke-kr.com"
     type: textarea
+SurfaceDaily:
+  AutoPlace:
+    value: true
+  Heal:
+    value: true
+    display: disabled

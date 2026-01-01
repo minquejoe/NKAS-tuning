@@ -28,6 +28,10 @@
       "name": "Story Event",
       "help": ""
     },
+    "Surface": {
+      "name": "Surface Exploration(BETA)",
+      "help": ""
+    },
     "Blablalink": {
       "name": "BlaBlaLink",
       "help": ""
@@ -164,6 +168,10 @@
     },
     "Event2": {
       "name": "Story Event 2",
+      "help": ""
+    },
+    "SurfaceDaily": {
+      "name": "Surface Daily",
       "help": ""
     },
     "BlaAuth": {
@@ -358,18 +366,6 @@
       "4": "4",
       "5": "5"
     },
-    "GameResolutionCompat": {
-      "name": "Game Resolution Compatibility Mode",
-      "help": "Enable if script reports incorrect game resolution or logs show window resolution not equal to 720x1280"
-    },
-    "CloseAutoHdr": {
-      "name": "Disable Auto HDR",
-      "help": "NKAS may not work properly on systems with HDR enabled. If system HDR is on, enable this option to disable the game's auto-HDR (system-wide HDR remains unaffected)"
-    },
-    "ScreenRotate": {
-      "name": "Rotate Screen",
-      "help": "Recommended for 1080p users only. When enabled, the screen will switch to portrait on start to meet vertical resolution requirements; it will revert to landscape after tasks finish or by pressing Ctrl+F12"
-    },
     "GameWindowPosition": {
       "name": "Game Window Position",
       "help": "Set the game window position to prevent it from being obscured or off-screen",
@@ -378,6 +374,22 @@
       "right": "Right Center",
       "topleft": "Top Left",
       "topright": "Top Right"
+    },
+    "GameResolutionCompat": {
+      "name": "Game Resolution Compatibility Mode",
+      "help": "Enable if script reports incorrect game resolution or logs show window resolution not equal to 720x1280"
+    },
+    "ScreenRotate": {
+      "name": "Rotate Screen",
+      "help": "Recommended for 1080p users only. When enabled, the screen will switch to portrait on start to meet vertical resolution requirements; it will revert to landscape after tasks finish or by pressing Ctrl+F12"
+    },
+    "CloseAutoHdr": {
+      "name": "Disable Auto HDR",
+      "help": "NKAS may not work properly on systems with HDR enabled. If system HDR is on, enable this option to disable the game's auto-HDR (system-wide HDR remains unaffected)"
+    },
+    "DisableVoice": {
+      "name": "Disable Voice",
+      "help": "Automatically mute the game process while the script is running and restore it after completion. If it does not restore automatically, you will need to re-enable it manually in the system volume mixer on the taskbar."
     },
     "Account": {
       "name": "Account",
@@ -484,6 +496,14 @@
     },
     "SocialPointRecruit": {
       "name": "Social Point Single Pull",
+      "help": ""
+    },
+    "Ordinary150GemRecruit": {
+      "name": "Ordinary 150Gems Recruit",
+      "help": "Daily 150-gem gacha in ordinary recruit"
+    },
+    "SSRNotifyPush": {
+      "name": "SSR Drop Notification",
       "help": ""
     },
     "ScreenshotPath": {
@@ -640,6 +660,33 @@
       "help": "NIKKE priority. If selected collectibles exceed 160, the current will be removed and next chosen. Format example: Helm > Exia.\nNIKKE name mappings:\nDiesel: Diesel\nExia: Exia\nLaplace: Laplace\nFrima: Frima\nViper: Viper\nHelm: Helm\nMiranda: Miranda\nDrake: Drake\nMilk: Milk\nPoli: Poli\nJulia: Julia\nBay: Bay\nTove: Tove"
     }
   },
+  "RookieArena": {
+    "_info": {
+      "name": "Battle Settings",
+      "help": ""
+    },
+    "Times": {
+      "name": "Battle Times",
+      "help": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5"
+    }
+  },
+  "SpecialArena": {
+    "_info": {
+      "name": "Battle Settings",
+      "help": ""
+    },
+    "Times": {
+      "name": "Battle Times",
+      "help": "",
+      "1": "1",
+      "2": "2"
+    }
+  },
   "OpponentSelection": {
     "_info": {
       "name": "Opponent Selection Settings",
@@ -664,7 +711,7 @@
   "Conversation": {
     "_info": {
       "name": "Conversation",
-      "help": "Automatically choose the correct dialog options with near-100% accuracy"
+      "help": "Automatically choose the correct dialog options with near-100% accuracy(Only zh-CN)"
     },
     "OnlyFavourite": {
       "name": "Only converse with favorites",
@@ -750,6 +797,9 @@
     "Event": {
       "name": "Current Events",
       "help": "",
+      "event_20251230": "ARK GUARDIAN",
+      "event_20251204": "TERMINUS Ticket",
+      "event_20251120": "BLANK Ticket",
       "event_20251030": "GODDESS FALL",
       "event_20251016": "GO! NINJA THIEF!",
       "event_20250924": "REBORN EVIL",
@@ -800,13 +850,21 @@
       "name": "Mini Game",
       "help": "Adapt mini-games when possible; otherwise skip"
     },
-    "GameStorySkip": {
-      "name": "Skip Mini-Game Story",
-      "help": ""
+    "GameTenBeam": {
+      "name": "Mini-Game Search Strength",
+      "help": "The solver's search range. Higher values yield slightly better solutions but require more computation time."
+    },
+    "GameTargetScore": {
+      "name": "Mini-game Target Score",
+      "help": "Only effective when mini-game looping is enabled. The loop will stop once the target score is reached."
     },
     "GameLoop": {
       "name": "Mini-Game Loop",
       "help": "Stop hotkey: F10"
+    },
+    "GameStorySkip": {
+      "name": "Skip Mini-Game Story",
+      "help": ""
     }
   },
   "CheerStrategy": {
@@ -852,6 +910,10 @@
       "7": "7",
       "8": "8",
       "9": "9"
+    },
+    "QuickBattleOnly": {
+      "name": "Quick Battle Only",
+      "help": "Only performs quick battles. When quick battle is unavailable, it will automatically skip. Suitable for users who manually play Interception on Mondays."
     },
     "DropScreenshotPath": {
       "name": "Drop Screenshot Path",
@@ -990,7 +1052,7 @@
   "Synchro": {
     "_info": {
       "name": "Synchro",
-      "help": ""
+      "help": "Only supports synchro above level 200"
     },
     "UseBox": {
       "name": "Use Box",
@@ -1011,6 +1073,20 @@
     "Hosts": {
       "name": "Hosts",
       "help": "Append uncommented entries below to system Hosts file (Windows only). International servers enabled by default. Uncomment desired servers. It's recommended to only enable hosts for your server and adjust as needed."
+    }
+  },
+  "SurfaceDaily": {
+    "_info": {
+      "name": "Setting",
+      "help": "May be unstable. For first-time use, it is recommended to move squads 1, 2, and 3 back to the base and ensure no missions are already active."
+    },
+    "AutoPlace": {
+      "name": "Automatic squad deployment",
+      "help": "Automatically deploys squads 1, 2, and 3 to mission points. When disabled, squads must be manually moved to the mission locations."
+    },
+    "Heal": {
+      "name": "Auto Heal",
+      "help": "Not done yet"
     }
   },
   "Storage": {
