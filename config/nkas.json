@@ -52,10 +52,11 @@
     "PCClient": {
       "Screens": false,
       "ScreenNumber": 0,
-      "GameResolutionCompat": false,
-      "CloseAutoHdr": true,
-      "ScreenRotate": false,
       "GameWindowPosition": "center",
+      "GameResolutionCompat": false,
+      "ScreenRotate": false,
+      "CloseAutoHdr": true,
+      "DisableVoice": false,
       "Account": null,
       "Password": null
     },
@@ -66,7 +67,7 @@
   "Restart": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2026-01-01 23:51:48",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "Restart",
       "SuccessInterval": 0,
       "FailureInterval": 0,
@@ -79,7 +80,7 @@
   "Reward": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-30 20:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "Reward",
       "SuccessInterval": "720-720",
       "FailureInterval": "720-720",
@@ -97,7 +98,7 @@
   "Destruction": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-31 05:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "Destruction",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -110,7 +111,7 @@
   "Mailbox": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-31 05:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "Mailbox",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -123,7 +124,7 @@
   "DailyRecruit": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-31 05:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "DailyRecruit",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -132,6 +133,8 @@
     "DailyRecruit": {
       "EventFreeRecruit": true,
       "SocialPointRecruit": true,
+      "Ordinary150GemRecruit": false,
+      "SSRNotifyPush": false,
       "ScreenshotPath": null
     },
     "Storage": {
@@ -141,7 +144,7 @@
   "Daily": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-31 05:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "Daily",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -159,7 +162,7 @@
   "MissionPass": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-30 20:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "MissionPass",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -172,7 +175,7 @@
   "Conversation": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-31 04:00:00",
+      "NextRun": "2026-01-02 04:00:00",
       "Command": "Conversation",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -189,7 +192,7 @@
   "Shop": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-31 05:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "Shop",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -240,7 +243,7 @@
   "Commission": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-31 05:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "Commission",
       "SuccessInterval": "720-720",
       "FailureInterval": "720-720",
@@ -312,7 +315,7 @@
   "SimulationRoom": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-31 05:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "SimulationRoom",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -352,7 +355,7 @@
   "TribeTower": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-31 05:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "TribeTower",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -368,7 +371,7 @@
   "Interception": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-31 05:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "Interception",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -377,6 +380,7 @@
     "Interception": {
       "Boss": "Kraken",
       "AchieveLevel": 1,
+      "QuickBattleOnly": false,
       "DropScreenshotPath": null
     },
     "InterceptionTeam": {
@@ -393,11 +397,14 @@
   "RookieArena": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-31 05:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "RookieArena",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
+    },
+    "RookieArena": {
+      "Times": 5
     },
     "OpponentSelection": {
       "Enable": false,
@@ -411,11 +418,14 @@
   "SpecialArena": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-31 05:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "SpecialArena",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
+    },
+    "SpecialArena": {
+      "Times": 2
     },
     "OpponentSelection": {
       "Enable": false,
@@ -429,7 +439,7 @@
   "ChampionArena": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-31 05:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "ChampionArena",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -462,7 +472,7 @@
   "SoloRaid": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-31 05:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "SoloRaid",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -495,7 +505,7 @@
       "ServerUpdate": "05:00"
     },
     "Event": {
-      "Event": "event_20251030",
+      "Event": "event_20251230",
       "LoginStamp": true,
       "Challenge": true,
       "Story": false,
@@ -505,8 +515,10 @@
       "Shop": true,
       "ShopDelayList": "TITLE",
       "Game": false,
-      "GameStorySkip": false,
-      "GameLoop": false
+      "GameTenBeam": 200,
+      "GameTargetScore": 0,
+      "GameLoop": false,
+      "GameStorySkip": false
     },
     "Storage": {
       "Storage": {}
@@ -522,7 +534,7 @@
       "ServerUpdate": "05:00"
     },
     "Event": {
-      "Event": "event_20250924",
+      "Event": "event_20251204",
       "LoginStamp": true,
       "Challenge": true,
       "Story": false,
@@ -532,8 +544,27 @@
       "Shop": true,
       "ShopDelayList": "TITLE",
       "Game": false,
-      "GameStorySkip": false,
-      "GameLoop": false
+      "GameTenBeam": 200,
+      "GameTargetScore": 0,
+      "GameLoop": false,
+      "GameStorySkip": false
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "SurfaceDaily": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "1989-12-27 00:00:00",
+      "Command": "SurfaceDaily",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "04:00"
+    },
+    "SurfaceDaily": {
+      "AutoPlace": true,
+      "Heal": true
     },
     "Storage": {
       "Storage": {}
@@ -615,7 +646,7 @@
   "DailyGift": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2025-12-31 05:00:00",
+      "NextRun": "2026-01-02 05:00:00",
       "Command": "DailyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,
@@ -641,7 +672,7 @@
   "MonthlyGift": {
     "Scheduler": {
       "Enable": true,
-      "NextRun": "2026-01-01 04:00:00",
+      "NextRun": "2026-02-01 04:00:00",
       "Command": "MonthlyGift",
       "SuccessInterval": 0,
       "FailureInterval": 120,
