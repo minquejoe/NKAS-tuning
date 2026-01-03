@@ -139,6 +139,12 @@ page_special_arena.link(button=GOTO_BACK, destination=page_arena)
 page_special_arena.link(button=GOTO_MAIN, destination=page_main)
 page_arena.link(button=ARENA_GOTO_SPECIAL_ARENA, destination=page_special_arena)
 
+# champion arena
+page_champion_arena = Page(CHAMPION_ARENA_CHECK)
+page_champion_arena.link(button=GOTO_BACK, destination=page_arena)
+page_champion_arena.link(button=GOTO_MAIN, destination=page_main)
+page_arena.link(button=ARENA_GOTO_CHAMPION_ARENA, destination=page_champion_arena)
+
 # outpost
 page_outpost = Page(OUTPOST_CHECK)
 page_outpost.link(button=GOTO_BACK, destination=page_main)
