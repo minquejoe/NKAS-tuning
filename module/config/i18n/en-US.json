@@ -789,13 +789,13 @@
       "help": "If empty, nothing will be purchased. Format example: 'Gem_×320 > Welcome_Gift_Core_Dust_×30'. Default is to exchange for Gems. Example options include Gem_×320, Welcome_Gift_Core_Dust_×30, Gem_×30, Skill_Manual_I_×5, Ultra_Boost_Module_×5, Code_Manual_Selection_Box_×5, Gem_×60, Mid-Quality_Mold_×3, Credit_Case_(1H)_x9, Core_Dust_Case_(1H)_×3, Gem_×120, Mid-Quality_Mold_×8, Battle_Data_Set_Case_(1H)_×6, Core_Dust_Case_(1H)_×6, Skill_Manual_I_×30, Ultra_Boost_Module_×30, Code_Manual_Selection_Box_×30"
     }
   },
-  "Event": {
+  "EventInfo": {
     "_info": {
-      "name": "Event Settings",
+      "name": "Event Info",
       "help": ""
     },
     "Event": {
-      "name": "Current Events",
+      "name": "Current Event",
       "help": "",
       "event_20251230": "ARK GUARDIAN",
       "event_20251204": "TERMINUS Ticket",
@@ -810,6 +810,46 @@
       "event_20250703l": "OuteR: Automata",
       "event_20250612": "Memories Teller"
     },
+    "StoryPart": {
+      "name": "Story Part",
+      "help": "",
+      "Story_1": "Story I",
+      "Story_2": "Story II"
+    },
+    "StoryDifficulty": {
+      "name": "Difficulty",
+      "help": "",
+      "Normal": "Normal",
+      "Hard": "Hard"
+    }
+  },
+  "StoryStage": {
+    "_info": {
+      "name": "Event Stages",
+      "help": ""
+    },
+    "AutoPush": {
+      "name": "Auto Push (BETA)",
+      "help": "Automatically clears event stages and skips cutscenes. Tries to support all stages; the script will stop if a stage is unsupported."
+    },
+    "AutoFormation": {
+      "name": "Auto Formation",
+      "help": "Please ensure you have enough Nikkes for a 100% bonus and sufficient combat power."
+    },
+    "HardTicket": {
+      "name": "Buy Hard Mode Tickets",
+      "help": "When Hard Mode is open, automatically purchase all attempts/tickets before starting the run."
+    },
+    "Sweep": {
+      "name": "Stage Sweep",
+      "help": "Performs Quick Battle on the second-to-last stage. Requires having cleared that stage manually first. Ensure your stage progress matches the current event unlock schedule."
+    }
+  },
+  "Event": {
+    "_info": {
+      "name": "Event Settings",
+      "help": ""
+    },
     "LoginStamp": {
       "name": "Login Stamp",
       "help": ""
@@ -817,22 +857,6 @@
     "Challenge": {
       "name": "Challenge",
       "help": "Requires teams to be set up in advance"
-    },
-    "Story": {
-      "name": "Stage Sweep",
-      "help": "Fast fight on the penultimate stage. Must have cleared penultimate stage of current open stage. Use SemiCombat for auto routing. Ensure your stage progress follows the event"
-    },
-    "StoryPart": {
-      "name": "Stage Selection",
-      "help": "",
-      "Story_1": "Story 1",
-      "Story_2": "Story 2"
-    },
-    "StoryDifficulty": {
-      "name": "Stage Difficulty",
-      "help": "",
-      "Normal": "Normal",
-      "Hard": "Hard"
     },
     "Coop": {
       "name": "Coop",
