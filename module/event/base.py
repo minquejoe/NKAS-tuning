@@ -50,7 +50,7 @@ class EventBase(UI):
 
     @cached_property
     def event(self) -> EventInfo:
-        target_event_id = getattr(self.config, 'Event_Event', None)
+        target_event_id = getattr(self.config, 'EventInfo_Event', None)
 
         event_config = next(
             (e for e in self.config.EVENTS if e.get('event_id') == target_event_id), self.config.EVENTS[0]
