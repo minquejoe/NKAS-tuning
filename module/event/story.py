@@ -436,7 +436,7 @@ class EventStory(EventBase):
                     self.STORY_STAGE_12(f'{open_story}_clear'), offset=30, threshold=0.9
                 ):
                     logger.warning('Story push done, stage 12 cleared')
-                    self.back_to_event()
+                    # self.back_to_event()
                     return
         else:
             logger.info('No pending stage found or Stage 12 cleared, check sweep')
