@@ -45,6 +45,10 @@ class Event(
             else:
                 event_timer.clear()
 
+            if confirm_timer.reached():
+                logger.error('Event not found')
+                raise EventUnavailableError
+
             # 切换活动
             if (
                 click_timer.reached()
@@ -52,7 +56,6 @@ class Event(
                 and self.appear_then_click(EVENT_SWITCH, offset=10, interval=3)
             ):
                 click_timer.reset()
-                confirm_timer.reset()
                 continue
 
             # 在主页点击故事图标
@@ -79,10 +82,6 @@ class Event(
             ):
                 self.device.click_minitouch(10, 10)
                 skip_click_timer.reset()
-
-            if confirm_timer.reached():
-                logger.error('Event not found')
-                raise EventUnavailableError
 
     def run(self):
         # self.team_up()
