@@ -1811,6 +1811,7 @@
         "type": "select",
         "value": "",
         "option": [
+          "event_20260115",
           "event_20251230",
           "event_20251204",
           "event_20251120",
@@ -1955,6 +1956,7 @@
         "type": "select",
         "value": "",
         "option": [
+          "event_20260115",
           "event_20251230",
           "event_20251204",
           "event_20251120",
