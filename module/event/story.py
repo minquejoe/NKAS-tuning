@@ -381,10 +381,18 @@ class EventStory(EventBase):
                     continue
 
                 # 组队
-                if self.appear(self.event_assets.STORY_STAGE_CHECK, offset=30) and self.appear_then_click(
-                    STAGE_TEAM_NOT_SELECT, offset=30, interval=1
+                if self.appear(self.event_assets.STORY_STAGE_CHECK, offset=30) and self.appear(
+                    STAGE_TEAM_NOT_SELECT, offset=30
                 ):
                     logger.info('Team up before story push')
+                    while 1:
+                        self.device.screenshot()
+
+                        if self.appear(TEAM_NIKKE_NOT_SELECT_5, offset=30):
+                            break
+                        if self.appear_then_click(STAGE_TEAM_NOT_SELECT, offset=30, interval=1):
+                            continue
+
                     self.team_up()
                     continue
 
