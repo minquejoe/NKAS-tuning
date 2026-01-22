@@ -287,6 +287,8 @@ class EventStory(EventBase):
                     click_timer.reset()
                     break
 
+            self.device.sleep(1)
+            self.device.screenshot()
             # 困难难度关闭
             if self.appear(self.event_assets.STORY_1_NORMAL, threshold=10) and self.appear(
                 self.event_assets.STORY_1_HARD_LOCKED, offset=10
