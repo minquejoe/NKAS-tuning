@@ -1,11 +1,12 @@
 import time
 from functools import cached_property
 
+import cv2
 import numpy as np
 
 from module.base.button import Button
 from module.base.timer import Timer
-from module.base.utils import float2str, point2str
+from module.base.utils import color_similar, float2str, get_color, point2str
 from module.config.config import NikkeConfig
 from module.logger import logger
 from module.ocr.models import OCR_MODEL
@@ -149,6 +150,93 @@ class ModuleBase:
                           static=True, screenshot=False) -> bool:
 
         appear = self.appear(button, offset=offset, interval=interval, threshold=threshold, static=static)
+        if appear:
+            if screenshot:
+                self.device.sleep(self.config.WAIT_BEFORE_SAVING_SCREEN_SHOT)
+                self.device.screenshot()
+            self.device.click(button, click_offset)
+
+        return appear
+
+    def appear_with_flip(self, button: Button, offset=0, interval=0, threshold=None, color_threshold=None, static=True) -> bool:
+        self.device.stuck_record_add(button)
+
+        if interval:
+            if button.name in self.interval_timer:
+                if self.interval_timer[button.name].limit != interval:
+                    self.interval_timer[button.name] = Timer(interval)
+            else:
+                self.interval_timer[button.name] = Timer(interval)
+            if not self.interval_timer[button.name].reached():
+                return False
+
+        button.ensure_template()
+        original_image = button.image.copy()
+        search_image = self.device.image.copy()
+
+        flip_modes = [None, 1, 0, -1]
+        is_matched = False
+        try:
+            for mode in flip_modes:
+                if mode is not None:
+                    button.image = cv2.flip(original_image, mode)
+                else:
+                    button.image = original_image
+
+                limit = self.config.BUTTON_MATCH_SIMILARITY if not threshold else threshold
+                search_offset = 30 
+
+                while True:
+                    # 1. 形状匹配
+                    if button.match(search_image, offset=search_offset, threshold=limit, static=static):
+                        # 2. 颜色校验
+                        if color_threshold is not None:
+                            # 获取匹配到的区域坐标
+                            found_area = button._button_offset
+                            # 从原图提取颜色
+                            actual_color = get_color(self.device.image, found_area)
+                            diff = color_similar(color1=actual_color, color2=button.color)
+                            # 判断差值是否在允许范围内
+                            if diff <= color_threshold:
+                                logger.debug(f"[Flip] {button.name} matched in mode {mode}. "
+                                             f"Pos: {found_area}, ColorDiff: {diff} <= {color_threshold}")
+                                is_matched = True
+                                break 
+                            else:
+                                logger.debug(f"[Flip] {button.name} matched shape in mode {mode}, but color failed. "
+                                             f"Pos: {found_area}. "
+                                             f"Diff: {diff} > {color_threshold} (Target: {button.color}, Actual: {actual_color}). "
+                                             f"Masking and retrying...")
+
+                                # 掩盖并重试
+                                mx1, my1, mx2, my2 = found_area
+                                cv2.rectangle(search_image, (mx1, my1), (mx2, my2), (0, 0, 0), -1)
+                                continue
+                        else:
+                            # 无需颜色校验
+                            logger.debug(f"[Flip] {button.name} matched in mode {mode} (no color check).")
+                            is_matched = True
+                            break 
+                    else:
+                        break 
+
+                if is_matched:
+                    break
+
+        finally:
+            button.image = original_image
+
+        if is_matched and interval:
+            self.interval_timer[button.name].reset()
+
+        return is_matched
+
+    def appear_with_flip_then_click(self, button, offset=0, click_offset=0, interval=0, threshold=None, 
+                        color_threshold=None, static=True, screenshot=False) -> bool:
+
+        appear = self.appear_with_flip(button, offset=offset, interval=interval, threshold=threshold, 
+                        color_threshold=color_threshold, static=static)
+
         if appear:
             if screenshot:
                 self.device.sleep(self.config.WAIT_BEFORE_SAVING_SCREEN_SHOT)

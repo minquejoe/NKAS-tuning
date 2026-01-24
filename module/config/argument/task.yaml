@@ -131,9 +131,13 @@ StoryEvent:
   tasks:
     Event:
       - Scheduler
+      - EventInfo
+      - StoryStage
       - Event
     Event2:
       - Scheduler
+      - EventInfo
+      - StoryStage
       - Event
 
 # ==================== Surface ====================

@@ -789,14 +789,15 @@
       "help": "記入しない場合、購入しません。記入形式：'Gem_×320 > Welcome_Gift_Core_Dust_×30'（大なり記号で区切る）。デフォルトではダイヤのみを交換します：\nGem_×320: ジュエル ×320\nWelcome_Gift_Core_Dust_×30: コマンダーウェルカムギフト：コアダスト ×30\nGem_×30: ジュエル ×30\nSkill_Manual_I_×5: スキルマニュアル I ×5\nUltra_Boost_Module_×5: モジュールアドバンスブースター ×5\nCode_Manual_Selection_Box_×5: コードマニュアルセレクトボックス ×5\nGem_×60: ジュエル ×60\nMid-Quality_Mold_×3: 中品質モールド ×3\nCredit_Case_(1H)_x9: クレジットケース(1H) x9\nCore_Dust_Case_(1H)_×3: コアダストケース (1H) ×3\nGem_×120: ジュエル ×120\nMid-Quality_Mold_×8: 中品質モールド ×8\nBattle_Data_Set_Case_(1H)_×6: バトルデータセットケース (1H) ×6\nCore_Dust_Case_(1H)_×6: コアダストケース (1H) ×6\nSkill_Manual_I_×30: スキルマニュアル I ×30\nUltra_Boost_Module_×30: モジュールアドバンスブースター ×30\nCode_Manual_Selection_Box_×30: コードマニュアルセレクトボックス ×30\n"
     }
   },
-  "Event": {
+  "EventInfo": {
     "_info": {
-      "name": "イベント設定",
+      "name": "イベント情報",
       "help": ""
     },
     "Event": {
-      "name": "現在のイベント",
+      "name": "開催中のイベント",
       "help": "",
+      "event_20260115": "SIN EDITOR",
       "event_20251230": "ARK GUARDIAN",
       "event_20251204": "TERMINUS Ticket",
       "event_20251120": "BLANK Ticket",
@@ -810,6 +811,46 @@
       "event_20250703l": "OuteR: Automata",
       "event_20250612": "Memories Teller"
     },
+    "StoryPart": {
+      "name": "ストーリーパート",
+      "help": "",
+      "Story_1": "Story I",
+      "Story_2": "Story II"
+    },
+    "StoryDifficulty": {
+      "name": "難易度",
+      "help": "",
+      "Normal": "Normal",
+      "Hard": "Hard"
+    }
+  },
+  "StoryStage": {
+    "_info": {
+      "name": "イベントステージ",
+      "help": ""
+    },
+    "AutoPush": {
+      "name": "自動攻略 (BETA)",
+      "help": "イベントステージを自動で進行し、ストーリーをスキップします。可能な限り全ステージに対応しますが、非対応の場合はスクリプトが停止します。"
+    },
+    "AutoFormation": {
+      "name": "自動編成",
+      "help": "ボーナス適用ニケで100%になるように編成し、十分な戦力を確保してください。"
+    },
+    "HardTicket": {
+      "name": "ハード入場券購入",
+      "help": "ハードモード解放時、自動攻略を開始する前に入場券を全て購入します。"
+    },
+    "Sweep": {
+      "name": "ステージ掃討",
+      "help": "最後から2番目のステージでクイック戦闘を行います。該当ステージをクリア済みである必要があります。自身の進行度がイベントの解放スケジュールに追いついていることを確認してください。"
+    }
+  },
+  "Event": {
+    "_info": {
+      "name": "イベント設定",
+      "help": ""
+    },
     "LoginStamp": {
       "name": "ログインスタンプ",
       "help": ""
@@ -817,22 +858,6 @@
     "Challenge": {
       "name": "チャレンジ",
       "help": "事前にチームを設定する必要があります"
-    },
-    "Story": {
-      "name": "ステージ掃討",
-      "help": "最後から2番目のステージでのクイックバトル。現在開いているステージの最後から2番目のステージをクリアした後でなければ正常に使用できません。自動プッシュ機能はツールのセミオートクリックを使用してください。自身のステージ進行度が通常のイベントステージ進行度についていけることを保証する必要があります"
-    },
-    "StoryPart": {
-      "name": "ステージ選択",
-      "help": "",
-      "Story_1": "ストーリー1",
-      "Story_2": "ストーリー2"
-    },
-    "StoryDifficulty": {
-      "name": "ステージ難易度",
-      "help": "",
-      "Normal": "普通",
-      "Hard": "困難"
     },
     "Coop": {
       "name": "共同作戦",

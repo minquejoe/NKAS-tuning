@@ -533,13 +533,20 @@
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
     },
-    "Event": {
+    "EventInfo": {
       "Event": "",
+      "StoryPart": "Story_1",
+      "StoryDifficulty": "Normal"
+    },
+    "StoryStage": {
+      "AutoPush": false,
+      "AutoFormation": false,
+      "HardTicket": false,
+      "Sweep": true
+    },
+    "Event": {
       "LoginStamp": true,
       "Challenge": true,
-      "Story": false,
-      "StoryPart": "Story_1",
-      "StoryDifficulty": "Normal",
       "Coop": false,
       "Shop": false,
       "ShopDelayList": "TITLE",
@@ -562,13 +569,20 @@
       "FailureInterval": 120,
       "ServerUpdate": "05:00"
     },
-    "Event": {
+    "EventInfo": {
       "Event": "",
+      "StoryPart": "Story_1",
+      "StoryDifficulty": "Normal"
+    },
+    "StoryStage": {
+      "AutoPush": false,
+      "AutoFormation": false,
+      "HardTicket": false,
+      "Sweep": true
+    },
+    "Event": {
       "LoginStamp": true,
       "Challenge": true,
-      "Story": false,
-      "StoryPart": "Story_1",
-      "StoryDifficulty": "Normal",
       "Coop": false,
       "Shop": false,
       "ShopDelayList": "TITLE",

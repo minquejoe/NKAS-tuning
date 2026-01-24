@@ -1806,11 +1806,12 @@
         "display": "hide"
       }
     },
-    "Event": {
+    "EventInfo": {
       "Event": {
         "type": "select",
         "value": "",
         "option": [
+          "event_20260115",
           "event_20251230",
           "event_20251204",
           "event_20251120",
@@ -1825,18 +1826,6 @@
           "event_20250612"
         ],
         "display": "disabled"
-      },
-      "LoginStamp": {
-        "type": "checkbox",
-        "value": true
-      },
-      "Challenge": {
-        "type": "checkbox",
-        "value": true
-      },
-      "Story": {
-        "type": "checkbox",
-        "value": false
       },
       "StoryPart": {
         "type": "select",
@@ -1855,6 +1844,34 @@
           "Hard"
         ],
         "display": "disabled"
+      }
+    },
+    "StoryStage": {
+      "AutoPush": {
+        "type": "checkbox",
+        "value": false
+      },
+      "AutoFormation": {
+        "type": "checkbox",
+        "value": false
+      },
+      "HardTicket": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Sweep": {
+        "type": "checkbox",
+        "value": true
+      }
+    },
+    "Event": {
+      "LoginStamp": {
+        "type": "checkbox",
+        "value": true
+      },
+      "Challenge": {
+        "type": "checkbox",
+        "value": true
       },
       "Coop": {
         "type": "checkbox",
@@ -1934,11 +1951,12 @@
         "display": "hide"
       }
     },
-    "Event": {
+    "EventInfo": {
       "Event": {
         "type": "select",
         "value": "",
         "option": [
+          "event_20260115",
           "event_20251230",
           "event_20251204",
           "event_20251120",
@@ -1953,18 +1971,6 @@
           "event_20250612"
         ],
         "display": "disabled"
-      },
-      "LoginStamp": {
-        "type": "checkbox",
-        "value": true
-      },
-      "Challenge": {
-        "type": "checkbox",
-        "value": true
-      },
-      "Story": {
-        "type": "checkbox",
-        "value": false
       },
       "StoryPart": {
         "type": "select",
@@ -1983,6 +1989,34 @@
           "Hard"
         ],
         "display": "disabled"
+      }
+    },
+    "StoryStage": {
+      "AutoPush": {
+        "type": "checkbox",
+        "value": false
+      },
+      "AutoFormation": {
+        "type": "checkbox",
+        "value": false
+      },
+      "HardTicket": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Sweep": {
+        "type": "checkbox",
+        "value": true
+      }
+    },
+    "Event": {
+      "LoginStamp": {
+        "type": "checkbox",
+        "value": true
+      },
+      "Challenge": {
+        "type": "checkbox",
+        "value": true
       },
       "Coop": {
         "type": "checkbox",
